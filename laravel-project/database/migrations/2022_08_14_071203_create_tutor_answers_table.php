@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('tutor_answers', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('tutor_id');
-            $table->unsignedInteger('student_question_id');
+//            $table->unsignedInteger('tutor_id');
+//            $table->unsignedInteger('student_question_id');
             $table->text('content');
             $table->timestamps();
             $table
