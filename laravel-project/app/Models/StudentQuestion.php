@@ -20,4 +20,9 @@ class StudentQuestion extends Model
     {
         return $this->hasMany(StudentComment::class);
     }
+
+    public function images()
+    {
+        return $this->morphMany(Image::class, 'imageable');
+    }
 }

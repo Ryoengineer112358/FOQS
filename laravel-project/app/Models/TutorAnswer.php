@@ -20,4 +20,9 @@ class TutorAnswer extends Model
     {
         return $this->belongsTo(StudentQuestion::class);
     }
+
+    public function images()
+    {
+        return $this->morphMany(Image::class, 'imageable');
+    }
 }

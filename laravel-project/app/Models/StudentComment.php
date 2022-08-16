@@ -25,4 +25,9 @@ class StudentComment extends Model
     {
         return $this->belongsTo(Tutor::class);
     }
+
+    public function images()
+    {
+        return $this->morphMany(Image::class, 'imageable');
+    }
 }
