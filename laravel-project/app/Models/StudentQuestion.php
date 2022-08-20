@@ -9,11 +9,16 @@ class StudentQuestion extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['created_at', 'updated_at'];
+    protected $guarded = ['id', 'created_at', 'updated_at'];
 
     public function student()
     {
         return $this->belongsTo(Student::class);
+    }
+
+    public function tutor_answer()
+    {
+        return $this->hasMany(TutorAnswer::class);
     }
 
     public function student_comments()
