@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('tutors', function (Blueprint $table) {
             $table->id();
             $table->string('name', 100);
+            $table->string('email', 100);
             $table->string('password', 100);
             $table->string('university', 100);
             $table->tinyInteger('sex');

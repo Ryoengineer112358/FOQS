@@ -2,16 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ec3f6a04-af40-4f7c-9b11-53534ee2663e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/db/data/ib_buffer_pool" beforeDir="false" afterPath="$PROJECT_DIR$/docker/db/data/ib_buffer_pool" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/db/data/ib_logfile0" beforeDir="false" afterPath="$PROJECT_DIR$/docker/db/data/ib_logfile0" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/db/data/ibdata1" beforeDir="false" afterPath="$PROJECT_DIR$/docker/db/data/ibdata1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/db/data/ibtmp1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/db/data/mysql/innodb_index_stats.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/docker/db/data/mysql/innodb_index_stats.ibd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/db/data/mysql/innodb_table_stats.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/docker/db/data/mysql/innodb_table_stats.ibd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/php/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/docker/php/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel-project/database/migrations/2022_08_13_091727_create_students_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel-project/database/migrations/2022_08_13_091727_create_students_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel-project/database/migrations/2022_08_14_030606_create_tutors_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel-project/database/migrations/2022_08_14_030606_create_tutors_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel-project/database/migrations/2022_08_14_072752_create_student_comments_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel-project/database/migrations/2022_08_14_072752_create_student_comments_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel-project/database/migrations/2022_08_16_042803_create_images_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel-project/database/migrations/2022_08_16_042803_create_images_table.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -183,7 +179,7 @@
       <workItem from="1660031062716" duration="2089000" />
       <workItem from="1660202901446" duration="32692000" />
       <workItem from="1660534557113" duration="33192000" />
-      <workItem from="1660730035780" duration="2105000" />
+      <workItem from="1660730035780" duration="14179000" />
     </task>
     <servers />
   </component>

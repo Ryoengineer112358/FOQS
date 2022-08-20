@@ -34,3 +34,9 @@ services:
       - ./docker/db/sql:/docker-entrypoint-initdb.d
     ports:
       - 3306:3306
+
+    #build：「一つのDockerを詳細に組み立てる＝Dockerfileを作る」ための命令
+    #context：docker buildコマンドを実行した場所
+    #context: .：コンテキストをルートディレクトリに設定
+    #volumes：自分のパソコンの中のファイルを、Dockerの環境に接続する命令
+    #environment：環境変数
