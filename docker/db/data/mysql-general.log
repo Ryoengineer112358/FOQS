@@ -528,3 +528,207 @@ Time                 Id Command    Argument
 /usr/sbin/mysqld, Version: 5.7.36-log (MySQL Community Server (GPL)). started with:
 Tcp port: 0  Unix socket: /var/run/mysqld/mysqld.sock
 Time                 Id Command    Argument
+/usr/sbin/mysqld, Version: 5.7.36-log (MySQL Community Server (GPL)). started with:
+Tcp port: 0  Unix socket: /var/run/mysqld/mysqld.sock
+Time                 Id Command    Argument
+2022-08-20T20:56:50.433343+09:00	    2 Connect	root@172.21.0.3 on database using TCP/IP
+2022-08-20T20:56:50.459978+09:00	    2 Query	use `database`
+2022-08-20T20:56:50.469703+09:00	    2 Prepare	set names 'utf8mb4' collate 'utf8mb4_unicode_ci'
+2022-08-20T20:56:50.470758+09:00	    2 Execute	set names 'utf8mb4' collate 'utf8mb4_unicode_ci'
+2022-08-20T20:56:50.472580+09:00	    2 Close stmt	
+2022-08-20T20:56:50.475802+09:00	    2 Prepare	set session sql_mode='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION'
+2022-08-20T20:56:50.476363+09:00	    2 Execute	set session sql_mode='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION'
+2022-08-20T20:56:50.477966+09:00	    2 Close stmt	
+2022-08-20T20:56:50.491109+09:00	    2 Prepare	select * from information_schema.tables where table_schema = ? and table_name = ? and table_type = 'BASE TABLE'
+2022-08-20T20:56:50.494767+09:00	    2 Execute	select * from information_schema.tables where table_schema = 'database' and table_name = 'migrations' and table_type = 'BASE TABLE'
+2022-08-20T20:56:50.534087+09:00	    2 Close stmt	
+2022-08-20T20:56:50.538559+09:00	    2 Prepare	select * from information_schema.tables where table_schema = ? and table_name = ? and table_type = 'BASE TABLE'
+2022-08-20T20:56:50.539152+09:00	    2 Execute	select * from information_schema.tables where table_schema = 'database' and table_name = 'migrations' and table_type = 'BASE TABLE'
+2022-08-20T20:56:50.540569+09:00	    2 Close stmt	
+2022-08-20T20:56:50.558541+09:00	    2 Prepare	select `migration` from `migrations` order by `batch` asc, `migration` asc
+2022-08-20T20:56:50.559172+09:00	    2 Execute	select `migration` from `migrations` order by `batch` asc, `migration` asc
+2022-08-20T20:56:50.564970+09:00	    2 Close stmt	
+2022-08-20T20:56:50.569811+09:00	    2 Prepare	select `migration` from `migrations` order by `batch` asc, `migration` asc
+2022-08-20T20:56:50.570384+09:00	    2 Execute	select `migration` from `migrations` order by `batch` asc, `migration` asc
+2022-08-20T20:56:50.571521+09:00	    2 Close stmt	
+2022-08-20T20:56:50.626458+09:00	    2 Quit	
+2022-08-20T20:59:12.613793+09:00	    3 Connect	root@172.21.0.3 on database using TCP/IP
+2022-08-20T20:59:12.616431+09:00	    3 Query	use `database`
+2022-08-20T20:59:12.617604+09:00	    3 Prepare	set names 'utf8mb4' collate 'utf8mb4_unicode_ci'
+2022-08-20T20:59:12.618240+09:00	    3 Execute	set names 'utf8mb4' collate 'utf8mb4_unicode_ci'
+2022-08-20T20:59:12.618823+09:00	    3 Close stmt	
+2022-08-20T20:59:12.619917+09:00	    3 Prepare	set session sql_mode='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION'
+2022-08-20T20:59:12.620422+09:00	    3 Execute	set session sql_mode='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION'
+2022-08-20T20:59:12.621144+09:00	    3 Close stmt	
+2022-08-20T20:59:12.622849+09:00	    3 Prepare	select * from information_schema.tables where table_schema = ? and table_name = ? and table_type = 'BASE TABLE'
+2022-08-20T20:59:12.624224+09:00	    3 Execute	select * from information_schema.tables where table_schema = 'database' and table_name = 'migrations' and table_type = 'BASE TABLE'
+2022-08-20T20:59:12.626178+09:00	    3 Close stmt	
+2022-08-20T20:59:12.634846+09:00	    3 Prepare	select `migration` from `migrations` order by `batch` asc, `migration` asc
+2022-08-20T20:59:12.635386+09:00	    3 Execute	select `migration` from `migrations` order by `batch` asc, `migration` asc
+2022-08-20T20:59:12.636690+09:00	    3 Close stmt	
+2022-08-20T20:59:12.710881+09:00	    3 Prepare	drop table if exists `images`
+2022-08-20T20:59:12.711952+09:00	    3 Execute	drop table if exists `images`
+2022-08-20T20:59:12.768226+09:00	    3 Close stmt	
+2022-08-20T20:59:12.773220+09:00	    3 Prepare	delete from `migrations` where `migration` = ?
+2022-08-20T20:59:12.773966+09:00	    3 Execute	delete from `migrations` where `migration` = '2022_08_16_042803_create_images_table'
+2022-08-20T20:59:12.781919+09:00	    3 Close stmt	
+2022-08-20T20:59:12.783995+09:00	    3 Prepare	drop table if exists `student_comments`
+2022-08-20T20:59:12.784599+09:00	    3 Execute	drop table if exists `student_comments`
+2022-08-20T20:59:12.810112+09:00	    3 Close stmt	
+2022-08-20T20:59:12.811762+09:00	    3 Prepare	delete from `migrations` where `migration` = ?
+2022-08-20T20:59:12.813011+09:00	    3 Execute	delete from `migrations` where `migration` = '2022_08_14_072752_create_student_comments_table'
+2022-08-20T20:59:12.817185+09:00	    3 Close stmt	
+2022-08-20T20:59:12.819018+09:00	    3 Prepare	drop table if exists `tutor_answers`
+2022-08-20T20:59:12.819903+09:00	    3 Execute	drop table if exists `tutor_answers`
+2022-08-20T20:59:12.846838+09:00	    3 Close stmt	
+2022-08-20T20:59:12.848317+09:00	    3 Prepare	delete from `migrations` where `migration` = ?
+2022-08-20T20:59:12.849037+09:00	    3 Execute	delete from `migrations` where `migration` = '2022_08_14_071203_create_tutor_answers_table'
+2022-08-20T20:59:12.851039+09:00	    3 Close stmt	
+2022-08-20T20:59:12.852954+09:00	    3 Prepare	drop table if exists `student_questions`
+2022-08-20T20:59:12.853559+09:00	    3 Execute	drop table if exists `student_questions`
+2022-08-20T20:59:12.879125+09:00	    3 Close stmt	
+2022-08-20T20:59:12.880834+09:00	    3 Prepare	delete from `migrations` where `migration` = ?
+2022-08-20T20:59:12.882022+09:00	    3 Execute	delete from `migrations` where `migration` = '2022_08_14_070214_create_student_questions_table'
+2022-08-20T20:59:12.888190+09:00	    3 Close stmt	
+2022-08-20T20:59:12.890921+09:00	    3 Prepare	drop table if exists `tutors`
+2022-08-20T20:59:12.892026+09:00	    3 Execute	drop table if exists `tutors`
+2022-08-20T20:59:12.916112+09:00	    3 Close stmt	
+2022-08-20T20:59:12.917361+09:00	    3 Prepare	delete from `migrations` where `migration` = ?
+2022-08-20T20:59:12.917978+09:00	    3 Execute	delete from `migrations` where `migration` = '2022_08_14_030606_create_tutors_table'
+2022-08-20T20:59:12.920263+09:00	    3 Close stmt	
+2022-08-20T20:59:12.921889+09:00	    3 Prepare	drop table if exists `students`
+2022-08-20T20:59:12.922569+09:00	    3 Execute	drop table if exists `students`
+2022-08-20T20:59:12.943691+09:00	    3 Close stmt	
+2022-08-20T20:59:12.945256+09:00	    3 Prepare	delete from `migrations` where `migration` = ?
+2022-08-20T20:59:12.946164+09:00	    3 Execute	delete from `migrations` where `migration` = '2022_08_13_091727_create_students_table'
+2022-08-20T20:59:12.949834+09:00	    3 Close stmt	
+2022-08-20T20:59:12.951826+09:00	    3 Prepare	drop table if exists `personal_access_tokens`
+2022-08-20T20:59:12.952898+09:00	    3 Execute	drop table if exists `personal_access_tokens`
+2022-08-20T20:59:12.975688+09:00	    3 Close stmt	
+2022-08-20T20:59:12.977032+09:00	    3 Prepare	delete from `migrations` where `migration` = ?
+2022-08-20T20:59:12.978707+09:00	    3 Execute	delete from `migrations` where `migration` = '2019_12_14_000001_create_personal_access_tokens_table'
+2022-08-20T20:59:12.982006+09:00	    3 Close stmt	
+2022-08-20T20:59:12.983905+09:00	    3 Prepare	drop table if exists `failed_jobs`
+2022-08-20T20:59:12.984775+09:00	    3 Execute	drop table if exists `failed_jobs`
+2022-08-20T20:59:13.007778+09:00	    3 Close stmt	
+2022-08-20T20:59:13.009124+09:00	    3 Prepare	delete from `migrations` where `migration` = ?
+2022-08-20T20:59:13.009760+09:00	    3 Execute	delete from `migrations` where `migration` = '2019_08_19_000000_create_failed_jobs_table'
+2022-08-20T20:59:13.013184+09:00	    3 Close stmt	
+2022-08-20T20:59:13.016292+09:00	    3 Prepare	drop table if exists `password_resets`
+2022-08-20T20:59:13.017584+09:00	    3 Execute	drop table if exists `password_resets`
+2022-08-20T20:59:13.042533+09:00	    3 Close stmt	
+2022-08-20T20:59:13.044121+09:00	    3 Prepare	delete from `migrations` where `migration` = ?
+2022-08-20T20:59:13.045079+09:00	    3 Execute	delete from `migrations` where `migration` = '2014_10_12_100000_create_password_resets_table'
+2022-08-20T20:59:13.046805+09:00	    3 Close stmt	
+2022-08-20T20:59:13.049849+09:00	    3 Prepare	drop table if exists `users`
+2022-08-20T20:59:13.050725+09:00	    3 Execute	drop table if exists `users`
+2022-08-20T20:59:13.069889+09:00	    3 Close stmt	
+2022-08-20T20:59:13.071051+09:00	    3 Prepare	delete from `migrations` where `migration` = ?
+2022-08-20T20:59:13.071782+09:00	    3 Execute	delete from `migrations` where `migration` = '2014_10_12_000000_create_users_table'
+2022-08-20T20:59:13.074598+09:00	    3 Close stmt	
+2022-08-20T20:59:13.078963+09:00	    3 Prepare	select * from information_schema.tables where table_schema = ? and table_name = ? and table_type = 'BASE TABLE'
+2022-08-20T20:59:13.082008+09:00	    3 Execute	select * from information_schema.tables where table_schema = 'database' and table_name = 'migrations' and table_type = 'BASE TABLE'
+2022-08-20T20:59:13.084272+09:00	    3 Close stmt	
+2022-08-20T20:59:13.085409+09:00	    3 Prepare	select * from information_schema.tables where table_schema = ? and table_name = ? and table_type = 'BASE TABLE'
+2022-08-20T20:59:13.086093+09:00	    3 Execute	select * from information_schema.tables where table_schema = 'database' and table_name = 'migrations' and table_type = 'BASE TABLE'
+2022-08-20T20:59:13.087531+09:00	    3 Close stmt	
+2022-08-20T20:59:13.088369+09:00	    3 Prepare	select `migration` from `migrations` order by `batch` asc, `migration` asc
+2022-08-20T20:59:13.088890+09:00	    3 Execute	select `migration` from `migrations` order by `batch` asc, `migration` asc
+2022-08-20T20:59:13.089990+09:00	    3 Close stmt	
+2022-08-20T20:59:13.092029+09:00	    3 Prepare	select `migration` from `migrations` order by `batch` asc, `migration` asc
+2022-08-20T20:59:13.092669+09:00	    3 Execute	select `migration` from `migrations` order by `batch` asc, `migration` asc
+2022-08-20T20:59:13.095782+09:00	    3 Close stmt	
+2022-08-20T20:59:13.099578+09:00	    3 Prepare	select max(`batch`) as aggregate from `migrations`
+2022-08-20T20:59:13.100728+09:00	    3 Execute	select max(`batch`) as aggregate from `migrations`
+2022-08-20T20:59:13.104009+09:00	    3 Close stmt	
+2022-08-20T20:59:13.111577+09:00	    3 Prepare	create table `users` (`id` bigint unsigned not null auto_increment primary key, `name` varchar(255) not null, `email` varchar(255) not null, `email_verified_at` timestamp null, `password` varchar(255) not null, `remember_token` varchar(100) null, `created_at` timestamp null, `updated_at` timestamp null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2022-08-20T20:59:13.112180+09:00	    3 Execute	create table `users` (`id` bigint unsigned not null auto_increment primary key, `name` varchar(255) not null, `email` varchar(255) not null, `email_verified_at` timestamp null, `password` varchar(255) not null, `remember_token` varchar(100) null, `created_at` timestamp null, `updated_at` timestamp null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2022-08-20T20:59:13.187384+09:00	    3 Close stmt	
+2022-08-20T20:59:13.188798+09:00	    3 Prepare	alter table `users` add unique `users_email_unique`(`email`)
+2022-08-20T20:59:13.189327+09:00	    3 Execute	alter table `users` add unique `users_email_unique`(`email`)
+2022-08-20T20:59:13.246692+09:00	    3 Close stmt	
+2022-08-20T20:59:13.249031+09:00	    3 Prepare	insert into `migrations` (`migration`, `batch`) values (?, ?)
+2022-08-20T20:59:13.249765+09:00	    3 Execute	insert into `migrations` (`migration`, `batch`) values ('2014_10_12_000000_create_users_table', 1)
+2022-08-20T20:59:13.253470+09:00	    3 Close stmt	
+2022-08-20T20:59:13.255988+09:00	    3 Prepare	create table `password_resets` (`email` varchar(255) not null, `token` varchar(255) not null, `created_at` timestamp null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2022-08-20T20:59:13.256633+09:00	    3 Execute	create table `password_resets` (`email` varchar(255) not null, `token` varchar(255) not null, `created_at` timestamp null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2022-08-20T20:59:13.298853+09:00	    3 Close stmt	
+2022-08-20T20:59:13.299697+09:00	    3 Prepare	alter table `password_resets` add index `password_resets_email_index`(`email`)
+2022-08-20T20:59:13.300298+09:00	    3 Execute	alter table `password_resets` add index `password_resets_email_index`(`email`)
+2022-08-20T20:59:13.335148+09:00	    3 Close stmt	
+2022-08-20T20:59:13.336263+09:00	    3 Prepare	insert into `migrations` (`migration`, `batch`) values (?, ?)
+2022-08-20T20:59:13.337088+09:00	    3 Execute	insert into `migrations` (`migration`, `batch`) values ('2014_10_12_100000_create_password_resets_table', 1)
+2022-08-20T20:59:13.338776+09:00	    3 Close stmt	
+2022-08-20T20:59:13.342472+09:00	    3 Prepare	create table `failed_jobs` (`id` bigint unsigned not null auto_increment primary key, `uuid` varchar(255) not null, `connection` text not null, `queue` text not null, `payload` longtext not null, `exception` longtext not null, `failed_at` timestamp default CURRENT_TIMESTAMP not null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2022-08-20T20:59:13.344229+09:00	    3 Execute	create table `failed_jobs` (`id` bigint unsigned not null auto_increment primary key, `uuid` varchar(255) not null, `connection` text not null, `queue` text not null, `payload` longtext not null, `exception` longtext not null, `failed_at` timestamp default CURRENT_TIMESTAMP not null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2022-08-20T20:59:13.385923+09:00	    3 Close stmt	
+2022-08-20T20:59:13.386680+09:00	    3 Prepare	alter table `failed_jobs` add unique `failed_jobs_uuid_unique`(`uuid`)
+2022-08-20T20:59:13.387243+09:00	    3 Execute	alter table `failed_jobs` add unique `failed_jobs_uuid_unique`(`uuid`)
+2022-08-20T20:59:13.424699+09:00	    3 Close stmt	
+2022-08-20T20:59:13.425799+09:00	    3 Prepare	insert into `migrations` (`migration`, `batch`) values (?, ?)
+2022-08-20T20:59:13.426650+09:00	    3 Execute	insert into `migrations` (`migration`, `batch`) values ('2019_08_19_000000_create_failed_jobs_table', 1)
+2022-08-20T20:59:13.428336+09:00	    3 Close stmt	
+2022-08-20T20:59:13.430909+09:00	    3 Prepare	create table `personal_access_tokens` (`id` bigint unsigned not null auto_increment primary key, `tokenable_type` varchar(255) not null, `tokenable_id` bigint unsigned not null, `name` varchar(255) not null, `token` varchar(64) not null, `abilities` text null, `last_used_at` timestamp null, `expires_at` timestamp null, `created_at` timestamp null, `updated_at` timestamp null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2022-08-20T20:59:13.431635+09:00	    3 Execute	create table `personal_access_tokens` (`id` bigint unsigned not null auto_increment primary key, `tokenable_type` varchar(255) not null, `tokenable_id` bigint unsigned not null, `name` varchar(255) not null, `token` varchar(64) not null, `abilities` text null, `last_used_at` timestamp null, `expires_at` timestamp null, `created_at` timestamp null, `updated_at` timestamp null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2022-08-20T20:59:13.479415+09:00	    3 Close stmt	
+2022-08-20T20:59:13.480222+09:00	    3 Prepare	alter table `personal_access_tokens` add index `personal_access_tokens_tokenable_type_tokenable_id_index`(`tokenable_type`, `tokenable_id`)
+2022-08-20T20:59:13.480893+09:00	    3 Execute	alter table `personal_access_tokens` add index `personal_access_tokens_tokenable_type_tokenable_id_index`(`tokenable_type`, `tokenable_id`)
+2022-08-20T20:59:13.521922+09:00	    3 Close stmt	
+2022-08-20T20:59:13.522723+09:00	    3 Prepare	alter table `personal_access_tokens` add unique `personal_access_tokens_token_unique`(`token`)
+2022-08-20T20:59:13.523189+09:00	    3 Execute	alter table `personal_access_tokens` add unique `personal_access_tokens_token_unique`(`token`)
+2022-08-20T20:59:13.559999+09:00	    3 Close stmt	
+2022-08-20T20:59:13.561726+09:00	    3 Prepare	insert into `migrations` (`migration`, `batch`) values (?, ?)
+2022-08-20T20:59:13.562456+09:00	    3 Execute	insert into `migrations` (`migration`, `batch`) values ('2019_12_14_000001_create_personal_access_tokens_table', 1)
+2022-08-20T20:59:13.564189+09:00	    3 Close stmt	
+2022-08-20T20:59:13.567224+09:00	    3 Prepare	create table `students` (`id` bigint unsigned not null auto_increment primary key, `name` varchar(100) not null, `email` varchar(100) not null, `password` varchar(100) not null, `high_school` varchar(100) not null, `age` tinyint unsigned not null, `sex` tinyint not null, `created_at` timestamp null, `updated_at` timestamp null, `quit_at` datetime null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2022-08-20T20:59:13.567944+09:00	    3 Execute	create table `students` (`id` bigint unsigned not null auto_increment primary key, `name` varchar(100) not null, `email` varchar(100) not null, `password` varchar(100) not null, `high_school` varchar(100) not null, `age` tinyint unsigned not null, `sex` tinyint not null, `created_at` timestamp null, `updated_at` timestamp null, `quit_at` datetime null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2022-08-20T20:59:13.611938+09:00	    3 Close stmt	
+2022-08-20T20:59:13.612948+09:00	    3 Prepare	insert into `migrations` (`migration`, `batch`) values (?, ?)
+2022-08-20T20:59:13.613676+09:00	    3 Execute	insert into `migrations` (`migration`, `batch`) values ('2022_08_13_091727_create_students_table', 1)
+2022-08-20T20:59:13.615401+09:00	    3 Close stmt	
+2022-08-20T20:59:13.618463+09:00	    3 Prepare	create table `tutors` (`id` bigint unsigned not null auto_increment primary key, `name` varchar(100) not null, `email` varchar(100) not null, `password` varchar(100) not null, `university` varchar(100) not null, `sex` tinyint not null, `created_at` timestamp null, `updated_at` timestamp null, `quit_at` datetime null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2022-08-20T20:59:13.619166+09:00	    3 Execute	create table `tutors` (`id` bigint unsigned not null auto_increment primary key, `name` varchar(100) not null, `email` varchar(100) not null, `password` varchar(100) not null, `university` varchar(100) not null, `sex` tinyint not null, `created_at` timestamp null, `updated_at` timestamp null, `quit_at` datetime null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2022-08-20T20:59:13.666153+09:00	    3 Close stmt	
+2022-08-20T20:59:13.667495+09:00	    3 Prepare	insert into `migrations` (`migration`, `batch`) values (?, ?)
+2022-08-20T20:59:13.668193+09:00	    3 Execute	insert into `migrations` (`migration`, `batch`) values ('2022_08_14_030606_create_tutors_table', 1)
+2022-08-20T20:59:13.670459+09:00	    3 Close stmt	
+2022-08-20T20:59:13.730824+09:00	    3 Prepare	create table `student_questions` (`id` bigint unsigned not null auto_increment primary key, `context` text not null, `created_at` timestamp null, `updated_at` timestamp null, `student_id` bigint unsigned not null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2022-08-20T20:59:13.731382+09:00	    3 Execute	create table `student_questions` (`id` bigint unsigned not null auto_increment primary key, `context` text not null, `created_at` timestamp null, `updated_at` timestamp null, `student_id` bigint unsigned not null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2022-08-20T20:59:13.768992+09:00	    3 Close stmt	
+2022-08-20T20:59:13.769938+09:00	    3 Prepare	alter table `student_questions` add constraint `student_questions_student_id_foreign` foreign key (`student_id`) references `students` (`id`)
+2022-08-20T20:59:13.770457+09:00	    3 Execute	alter table `student_questions` add constraint `student_questions_student_id_foreign` foreign key (`student_id`) references `students` (`id`)
+2022-08-20T20:59:13.847978+09:00	    3 Close stmt	
+2022-08-20T20:59:13.849090+09:00	    3 Prepare	insert into `migrations` (`migration`, `batch`) values (?, ?)
+2022-08-20T20:59:13.850281+09:00	    3 Execute	insert into `migrations` (`migration`, `batch`) values ('2022_08_14_070214_create_student_questions_table', 1)
+2022-08-20T20:59:13.852347+09:00	    3 Close stmt	
+2022-08-20T20:59:13.855421+09:00	    3 Prepare	create table `tutor_answers` (`id` bigint unsigned not null auto_increment primary key, `content` text not null, `created_at` timestamp null, `updated_at` timestamp null, `tutor_id` bigint unsigned not null, `student_question_id` bigint unsigned not null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2022-08-20T20:59:13.856270+09:00	    3 Execute	create table `tutor_answers` (`id` bigint unsigned not null auto_increment primary key, `content` text not null, `created_at` timestamp null, `updated_at` timestamp null, `tutor_id` bigint unsigned not null, `student_question_id` bigint unsigned not null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2022-08-20T20:59:13.896894+09:00	    3 Close stmt	
+2022-08-20T20:59:13.897679+09:00	    3 Prepare	alter table `tutor_answers` add constraint `tutor_answers_tutor_id_foreign` foreign key (`tutor_id`) references `tutors` (`id`)
+2022-08-20T20:59:13.898334+09:00	    3 Execute	alter table `tutor_answers` add constraint `tutor_answers_tutor_id_foreign` foreign key (`tutor_id`) references `tutors` (`id`)
+2022-08-20T20:59:13.970010+09:00	    3 Close stmt	
+2022-08-20T20:59:13.970830+09:00	    3 Prepare	alter table `tutor_answers` add constraint `tutor_answers_student_question_id_foreign` foreign key (`student_question_id`) references `student_questions` (`id`) on delete cascade
+2022-08-20T20:59:13.971757+09:00	    3 Execute	alter table `tutor_answers` add constraint `tutor_answers_student_question_id_foreign` foreign key (`student_question_id`) references `student_questions` (`id`) on delete cascade
+2022-08-20T20:59:14.050059+09:00	    3 Close stmt	
+2022-08-20T20:59:14.051234+09:00	    3 Prepare	insert into `migrations` (`migration`, `batch`) values (?, ?)
+2022-08-20T20:59:14.051953+09:00	    3 Execute	insert into `migrations` (`migration`, `batch`) values ('2022_08_14_071203_create_tutor_answers_table', 1)
+2022-08-20T20:59:14.053684+09:00	    3 Close stmt	
+2022-08-20T20:59:14.056145+09:00	    3 Prepare	create table `student_comments` (`id` bigint unsigned not null auto_increment primary key, `content` text not null, `created_at` timestamp null, `updated_at` timestamp null, `student_question_id` bigint unsigned not null, `tutor_id` bigint unsigned not null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2022-08-20T20:59:14.057071+09:00	    3 Execute	create table `student_comments` (`id` bigint unsigned not null auto_increment primary key, `content` text not null, `created_at` timestamp null, `updated_at` timestamp null, `student_question_id` bigint unsigned not null, `tutor_id` bigint unsigned not null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2022-08-20T20:59:14.097153+09:00	    3 Close stmt	
+2022-08-20T20:59:14.097889+09:00	    3 Prepare	alter table `student_comments` add constraint `student_comments_student_question_id_foreign` foreign key (`student_question_id`) references `student_questions` (`id`) on delete cascade
+2022-08-20T20:59:14.098391+09:00	    3 Execute	alter table `student_comments` add constraint `student_comments_student_question_id_foreign` foreign key (`student_question_id`) references `student_questions` (`id`) on delete cascade
+2022-08-20T20:59:14.170109+09:00	    3 Close stmt	
+2022-08-20T20:59:14.170748+09:00	    3 Prepare	alter table `student_comments` add constraint `student_comments_tutor_id_foreign` foreign key (`tutor_id`) references `tutors` (`id`)
+2022-08-20T20:59:14.171534+09:00	    3 Execute	alter table `student_comments` add constraint `student_comments_tutor_id_foreign` foreign key (`tutor_id`) references `tutors` (`id`)
+2022-08-20T20:59:14.249590+09:00	    3 Close stmt	
+2022-08-20T20:59:14.250757+09:00	    3 Prepare	insert into `migrations` (`migration`, `batch`) values (?, ?)
+2022-08-20T20:59:14.251317+09:00	    3 Execute	insert into `migrations` (`migration`, `batch`) values ('2022_08_14_072752_create_student_comments_table', 1)
+2022-08-20T20:59:14.252979+09:00	    3 Close stmt	
+2022-08-20T20:59:14.255986+09:00	    3 Prepare	create table `images` (`id` bigint unsigned not null auto_increment primary key, `image_pass` varchar(255) not null, `created_at` timestamp null, `updated_at` timestamp null, `imageable_id` bigint unsigned not null, `imageable_type` int unsigned not null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2022-08-20T20:59:14.256797+09:00	    3 Execute	create table `images` (`id` bigint unsigned not null auto_increment primary key, `image_pass` varchar(255) not null, `created_at` timestamp null, `updated_at` timestamp null, `imageable_id` bigint unsigned not null, `imageable_type` int unsigned not null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2022-08-20T20:59:14.295234+09:00	    3 Close stmt	
+2022-08-20T20:59:14.296374+09:00	    3 Prepare	insert into `migrations` (`migration`, `batch`) values (?, ?)
+2022-08-20T20:59:14.297446+09:00	    3 Execute	insert into `migrations` (`migration`, `batch`) values ('2022_08_16_042803_create_images_table', 1)
+2022-08-20T20:59:14.299241+09:00	    3 Close stmt	
+2022-08-20T20:59:14.303417+09:00	    3 Quit	

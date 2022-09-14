@@ -20,6 +20,7 @@ services:
       - app
   db:
     image: mysql:5.7
+    platform: linux/x86_64
     container_name: db
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -34,6 +35,15 @@ services:
       - ./docker/db/sql:/docker-entrypoint-initdb.d
     ports:
       - 3306:3306
+
+  frontend:
+    build:
+      context: ./docker/frontend/
+    volumes:
+      - ./frontend:/usr/src/app
+    command: sh -c 'npm run dev'
+    ports:
+      - "3000:3000"
 
     #build：「一つのDockerを詳細に組み立てる＝Dockerfileを作る」ための命令
     #context：docker buildコマンドを実行した場所
