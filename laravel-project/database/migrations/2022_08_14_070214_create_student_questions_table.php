@@ -19,8 +19,8 @@ return new class extends Migration
             $table->timestamps();
             $table
                 ->foreignId('student_id')
-                ->constrained();
-//                ->cascadeOnDelete(); 生徒が消えても質問は残るべきなので、つけるべきではない
+                ->constrained()
+                ->cascadeOnDelete();
         });
     }
 

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('email', 100);
             $table->string('password', 100);
             $table->string('university', 100);
+            $table->unsignedTinyInteger('age');
             $table->tinyInteger('sex');
             $table->timestamps();
             $table->dateTime('quit_at')->nullable();
