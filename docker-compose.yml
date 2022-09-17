@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: ./docker/php/Dockerfile
     volumes:
-      - .:/var/www
+      - ./laravel-project:/var/www
   nginx:
     image: nginx
     container_name: nginx
@@ -20,7 +20,7 @@ services:
       - app
   db:
     image: mysql:5.7
-    platform: linux/x86_64
+    platform: linux/amd64
     container_name: db
     environment:
       MYSQL_ROOT_PASSWORD: root

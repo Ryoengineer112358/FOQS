@@ -11,6 +11,11 @@ class Tutor extends Model
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
+    public function student_questions()
+    {
+        return $this->hasMany(StudentQuestion::class);
+    }
+
     public function tutor_answers()
     {
         return $this->hasMany(TutorAnswer::class);

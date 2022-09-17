@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ec3f6a04-af40-4f7c-9b11-53534ee2663e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/laravel-project/database/migrations/2022_08_13_091727_create_students_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel-project/database/migrations/2022_08_13_091727_create_students_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel-project/database/migrations/2022_08_14_030606_create_tutors_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel-project/database/migrations/2022_08_14_030606_create_tutors_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel-project/app/Models/StudentQuestion.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel-project/app/Models/StudentQuestion.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel-project/app/Models/Tutor.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel-project/app/Models/Tutor.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/laravel-project/database/migrations/2022_08_14_070214_create_student_questions_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel-project/database/migrations/2022_08_14_070214_create_student_questions_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel-project/database/migrations/2022_08_14_071203_create_tutor_answers_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel-project/database/migrations/2022_08_14_071203_create_tutor_answers_table.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -184,7 +185,7 @@
       <workItem from="1663047533481" duration="646000" />
       <workItem from="1663063067381" duration="5000" />
       <workItem from="1663128094344" duration="1093000" />
-      <workItem from="1663321171758" duration="3556000" />
+      <workItem from="1663321171758" duration="11736000" />
     </task>
     <servers />
   </component>

@@ -17,10 +17,15 @@ return new class extends Migration
             $table->id();
             $table->text('context');
             $table->timestamps();
+            $table->timestamp('solved_at')->nullable();
             $table
                 ->foreignId('student_id')
                 ->constrained()
                 ->cascadeOnDelete();
+            $table
+                ->foreignId('tutor_id')
+                ->constrained()
+                ->nullable();
         });
     }
 
