@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('student_questions', function (Blueprint $table) {
             $table->id();
-            $table->text('context');
+            $table->text('content');
             $table->timestamps();
             $table->timestamp('solved_at')->nullable();
             $table

@@ -3,8 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="ec3f6a04-af40-4f7c-9b11-53534ee2663e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel-project/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/laravel-project/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel-project/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/laravel-project/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel-project/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel-project/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel-project/database/migrations/2022_08_14_070214_create_student_questions_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel-project/database/migrations/2022_08_14_070214_create_student_questions_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel-project/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel-project/database/seeders/DatabaseSeeder.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -183,7 +185,7 @@
       <workItem from="1663047533481" duration="646000" />
       <workItem from="1663063067381" duration="5000" />
       <workItem from="1663128094344" duration="1093000" />
-      <workItem from="1663321171758" duration="14407000" />
+      <workItem from="1663321171758" duration="25399000" />
     </task>
     <servers />
   </component>
