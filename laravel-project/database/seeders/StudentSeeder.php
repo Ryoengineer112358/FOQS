@@ -18,7 +18,7 @@ class StudentSeeder extends Seeder
         Student::create([
             'name'=>'高島良平',
             'email'=>'takashimaryohei@gmail.com',
-            'password'=>'password',
+            'password'=>bcrypt('password'),
             'high_school'=>'巣鴨高校',
             'first_choice_university'=>'東京大学',
             'age'=>26,

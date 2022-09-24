@@ -18,7 +18,7 @@ class TutorSeeder extends Seeder
         Tutor::create([
             'name'=>'五嶋俊彬',
             'email'=>'gototoshiaki@gmail.com',
-            'password'=>'password',
+            'password'=>bcrypt('password'),
             'university'=>'京都大学',
             'age'=>25,
             'sex'=>'0',
