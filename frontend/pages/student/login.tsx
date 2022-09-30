@@ -1,9 +1,9 @@
-import {useAuth} from '../hooks/auth'
+import {useAuth} from '../../hooks/auth'
 import {FormEventHandler, useEffect, useState} from 'react'
 import {useRouter} from 'next/router'
 import {NextPage} from "next";
 import {Box, Button, Card, Checkbox, FormControlLabel, Link, TextField, Container} from "@mui/material";
-import DefaultLayout from "../components/defaultLayout";
+import DefaultLayout from "../../components/defaultLayout";
 
 const Login: NextPage = () => {
   const router = useRouter()
@@ -36,7 +36,7 @@ const Login: NextPage = () => {
 
   return (
     <DefaultLayout header="">
-      <Card sx={{p: 3}}>
+      <Card sx={{p: 3, borderRadius: 8}}>
         <Box
             onSubmit={submitForm}
             component="form"
@@ -47,7 +47,7 @@ const Login: NextPage = () => {
                 id="email"
                 type="email"
                 value={email}
-                label="Email"
+                label="Eメール"
                 onChange={event => setEmail(event.target.value)}
                 required
                 autoFocus
@@ -55,12 +55,12 @@ const Login: NextPage = () => {
           </Box>
 
           {/* Password */}
-          <Box>
+          <Box sx={{marginTop: "0.8rem"}}>
             <TextField
                 id="password"
                 type="password"
                 value={password}
-                label="password"
+                label="パスワード"
                 onChange={event => setPassword(event.target.value)}
                 required
                 autoComplete="current-password"
@@ -70,7 +70,7 @@ const Login: NextPage = () => {
           {/* Remember Me */}
           <Box>
             <FormControlLabel
-                label="Remember me"
+                label="ログインしたままにする"
                 control={
                   <Checkbox
                       id="remember_me"
@@ -86,7 +86,7 @@ const Login: NextPage = () => {
             </Link>
           </Container>
           <Container>
-            <Button type="submit" variant="contained">Login</Button>
+            <Button type="submit" variant="contained">ログイン</Button>
           </Container>
         </Box>
       </Card>

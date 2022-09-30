@@ -7,7 +7,7 @@ const DefaultLayout = ({ header, children }: { header: String, children: ReactEl
     <>
       {/* AppBar */}
       <AppBar component="nav" elevation={0} square={true} color="transparent" sx={{backdropFilter: "blur(10px)"}}>
-        <Grid container alignItems="center" justifyContent="center" fontSize="2rem">
+        <Grid container alignItems="center" justifyContent="center" fontSize="4rem">
           <Link href="/" underline="none"><span color="primary">FOQS</span></Link>
         </Grid>
       </AppBar>
@@ -21,7 +21,7 @@ const DefaultLayout = ({ header, children }: { header: String, children: ReactEl
 
       {/* Page Content */}
       <Container maxWidth="sm">
-        <Box component="main" sx={{paddingTop: "2.5rem"}}>{children}</Box>
+        <Box component="main" sx={{paddingTop: "5rem"}}>{children}</Box>
       </Container>
     </>
   )
