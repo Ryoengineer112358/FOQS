@@ -10,7 +10,7 @@ const Login: NextPage = () => {
 
   const { login } = useAuth({
     middleware: 'guest',
-    redirectIfAuthenticated: '/',
+    redirectIfAuthenticated: '/tutor',
   })
 
   const [email, setEmail] = useState('')

@@ -41,7 +41,7 @@ export const useAuth = ({ middleware, redirectIfAuthenticated }: any = {}) => {
     setStatus(null)
 
     axios
-        .post('/login', props)
+        .post('/student/login', props)
         .then(() => mutate())
         .catch(error => {
           if (error.response.status !== 422) throw error
@@ -95,7 +95,7 @@ export const useAuth = ({ middleware, redirectIfAuthenticated }: any = {}) => {
           .then(() => mutate())
     }
 
-    window.location.pathname = '/login'
+    window.location.pathname = 'student/login'
   }
 
   useEffect(() => {

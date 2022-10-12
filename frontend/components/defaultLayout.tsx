@@ -8,7 +8,7 @@ const DefaultLayout = ({ header, children }: { header: String, children: ReactEl
       {/* AppBar */}
       <AppBar component="nav" elevation={0} square={true} color="transparent" sx={{backdropFilter: "blur(10px)"}}>
         <Grid container alignItems="center" justifyContent="center" fontSize="4rem">
-          <Link href="/" underline="none"><span color="primary">FOQS</span></Link>
+          <Link href="/student" underline="none"><span color="primary">FOQS</span></Link>
         </Grid>
       </AppBar>
 
