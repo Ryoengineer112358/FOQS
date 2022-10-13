@@ -3,6 +3,7 @@ import {ReactElement} from 'react'
 
 type Props = {
   text: string;
+  href: string;
 };
 
 const LargeButton = (props: Props) => {
@@ -10,8 +11,8 @@ const LargeButton = (props: Props) => {
     return (
       <>
         <Button
-          variant="contained"
-          href="#contained-buttons"
+          variant="outlined"
+          href={props.href}
           sx={{
             m:1,
             width: 168,

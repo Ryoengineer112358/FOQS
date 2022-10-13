@@ -8,9 +8,10 @@ import DefaultLayout from "../../components/defaultLayout";
 const Login: NextPage = () => {
   const router = useRouter()
 
-  const { login } = useAuth({
+  const { loginTutor } = useAuth({
     middleware: 'guest',
     redirectIfAuthenticated: '/tutor',
+    loginDestination: 'tutor'
   })
 
   const [email, setEmail] = useState('')
@@ -31,11 +32,11 @@ const Login: NextPage = () => {
   const submitForm: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault()
 
-    login({ email, password, remember: shouldRemember, setErrors, setStatus })
+    loginTutor({ email, password, remember: shouldRemember, setErrors, setStatus })
   }
 
   return (
-    <DefaultLayout header="">
+    <DefaultLayout middleware="">
       <Card sx={{p: 3, borderRadius: 8}}>
         <Box
             onSubmit={submitForm}

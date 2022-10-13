@@ -6,11 +6,12 @@ import * as React from "react";
 import DefaultLayout from "../../components/defaultLayout";
 
 const Home: NextPage = () => {
-  const { user } = useAuth({ middleware: 'auth' })
+  const middleware = "tutor"
+  const { user } = useAuth({ middleware: middleware })
 
   return (
     <>
-      <DefaultLayout header="">
+      <DefaultLayout middleware={middleware}>
         <div></div>
       </DefaultLayout>
     </>

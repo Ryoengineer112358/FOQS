@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware(['auth'])->get('/user', function (Request $request) {
+Route::middleware(['auth:tutors'])->get('/myself_tutor', function (Request $request) {
+    return $request->user();
+});
+
+Route::middleware(['auth:students'])->get('/myself_student', function (Request $request) {
     return $request->user();
 });

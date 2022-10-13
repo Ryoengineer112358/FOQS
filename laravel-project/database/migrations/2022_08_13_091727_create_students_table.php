@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('first_choice_university', 100);
             $table->unsignedTinyInteger('age');
             $table->tinyInteger('sex');
+            $table->rememberToken();
             $table->timestamps();
             $table->dateTime('quit_at')->nullable();
         });
