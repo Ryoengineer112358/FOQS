@@ -30,5 +30,6 @@ a {
             hsl(253deg 93% 36%) 100%
     );
     background-attachment: fixed;
+    padding: 0 1rem;
   }
 /*}*/

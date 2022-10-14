@@ -15,7 +15,7 @@ const LargeButton = (props: Props) => {
           href={props.href}
           sx={{
             m:1,
-            width: 168,
+            width: 160,
             height: 80,
             borderRadius: 30,
           }}

@@ -17,8 +17,8 @@ const BackButton = (props: Props) => {
         href={props.href}
         sx={{
           m:1,
-          width: 120,
-          height: 120,
+          width: 80,
+          height: 80,
           borderRadius: 100,
         }}
       >

@@ -16,18 +16,18 @@ const Home: NextPage = () => {
       <DefaultLayout middleware={middleware}>
         <div></div>
       </DefaultLayout>
-        <h2>{user?.name}さん、こんにちは</h2>
-        <Grid container>
-          <Grid xs={8}>
+      <h2>{user?.name}さん、こんにちは</h2>
+        <Grid container justifyContent="center">
+          <Grid xs={12}>
             <CardMessage />
             <CardMessage />
             <CardMessage />
             <CardMessage />
             <CardMessage />
           </Grid>
+          <LargeButton text="質問履歴" href={""}/>
+          <LargeButton text="質問する" href={""}/>
         </Grid>
-        <LargeButton text="質問履歴" href={""}/>
-        <LargeButton text="質問する" href={""}/>
 
     </>
   )
