@@ -19,14 +19,14 @@ const Home: NextPage = () => {
       <h2>{user?.name}さん、こんにちは</h2>
         <Grid container justifyContent="center">
           <Grid xs={12}>
-            <CardMessage />
-            <CardMessage />
-            <CardMessage />
-            <CardMessage />
-            <CardMessage />
+            <CardMessage text="画像の問題についてについて質問です" href="" />
+            <CardMessage text="画像の問題についてについて質問です" href={""} />
+            <CardMessage text="画像の問題についてについて質問です" href={""} />
+            <CardMessage text="画像の問題についてについて質問です" href={""} />
+            <CardMessage text="画像の問題についてについて質問です" href={""} />
           </Grid>
-          <LargeButton text="質問履歴" href={""}/>
-          <LargeButton text="質問する" href={""}/>
+          <LargeButton text="質問履歴" href="student/questionhistory"/>
+          <LargeButton text="質問する" href={"student/question"}/>
         </Grid>
 
     </>
