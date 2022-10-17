@@ -10,6 +10,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       mode: 'light',
       primary: {
         main: '#ffffff',
+      },
+      secondary: {
+        main: '#ffffff',
       }
     }
   })
