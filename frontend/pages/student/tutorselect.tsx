@@ -6,6 +6,7 @@ import DefaultLayout from "../../components/defaultLayout";
 import BackButton from "../../components/backButton";
 import Textarea from "../../components/textarea";
 import MiddleButton from "../../components/middleButton";
+import LargeButton from "../../components/largeButton";
 
 const TutorSelect: NextPage = () => {
   const middleware = "student"
@@ -17,8 +18,9 @@ const TutorSelect: NextPage = () => {
         <div></div>
       </DefaultLayout>
       <Grid container justifyContent="center">
+        <LargeButton text={"講師を選択"} href={""} />
+        <LargeButton text={"フリーで質問"} href={""} />
         <BackButton />
-        <MiddleButton text={"確認"} href={""}/>
       </Grid>
 
 
