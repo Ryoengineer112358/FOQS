@@ -4,8 +4,9 @@ import {Grid, AppBar, Button, Box, Stack} from "@mui/material";
 import {FormEventHandler, useEffect, useState, ReactElement} from 'react'
 import * as React from "react";
 import DefaultLayout from "../../components/defaultLayout";
-import LargeButton from "../../components/largeButton";
+import LargeButton from "../../components/middleButton";
 import CardMessage from "../../components/cardMessage";
+import MiddleButton from "../../components/middleButton";
 
 const Home: NextPage = () => {
   const middleware = "student"
@@ -25,8 +26,8 @@ const Home: NextPage = () => {
             <CardMessage text="画像の問題についてについて質問です" href={""} />
             <CardMessage text="画像の問題についてについて質問です" href={""} />
           </Grid>
-          <LargeButton text="質問履歴" href="student/questionhistory"/>
-          <LargeButton text="質問する" href={"student/question"}/>
+          <MiddleButton text="質問履歴" href="student/questionhistory"/>
+          <MiddleButton text="質問する" href={"student/question"}/>
         </Grid>
 
     </>

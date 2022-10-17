@@ -7,7 +7,7 @@ import BackButton from "../../components/backButton";
 import Textarea from "../../components/textarea";
 import MiddleButton from "../../components/middleButton";
 
-const Question: NextPage = () => {
+const TutorSelect: NextPage = () => {
   const middleware = "student"
   const { user } = useAuth({ middleware: middleware })
 
@@ -17,9 +17,8 @@ const Question: NextPage = () => {
         <div></div>
       </DefaultLayout>
       <Grid container justifyContent="center">
-        <Textarea></Textarea>
         <BackButton />
-        <MiddleButton text={"次へ"} href={"tutorselect"}/>
+        <MiddleButton text={"確認"} href={""}/>
       </Grid>
 
 
@@ -27,4 +26,4 @@ const Question: NextPage = () => {
   )
 }
 
-export default Question
+export default TutorSelect

@@ -5,7 +5,7 @@ import {FormEventHandler, useEffect, useState, ReactElement} from 'react'
 import * as React from "react";
 import DefaultLayout from "../../components/defaultLayout";
 import DrawerAppBar from "../../components/drawerAppBar";
-import LargeButton from "../../components/largeButton";
+import LargeButton from "../../components/middleButton";
 
 const Question: NextPage = () => {
   const middleware = "student"

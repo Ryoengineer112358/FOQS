@@ -5,7 +5,7 @@ type Props = {
   href: string;
 };
 
-const LargeButton = (props: Props) => {
+const MiddleButton = (props: Props) => {
 
     return (
       <>
@@ -27,4 +27,4 @@ const LargeButton = (props: Props) => {
     )
 }
 
-export default LargeButton;
+export default MiddleButton;

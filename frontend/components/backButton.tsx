@@ -2,11 +2,7 @@ import {Button} from "@mui/material";
 import {ReactElement} from 'react'
 import {TurnLeft} from "@mui/icons-material";
 
-type Props = {
-  text: string;
-};
-
-const BackButton = (props: Props) => {
+const BackButton = () => {
 
   return (
     <>
@@ -23,7 +19,7 @@ const BackButton = (props: Props) => {
           borderRadius: 100,
         }}
       >
-        {props.text}
+        戻る
       </Button>
     </>
   )
