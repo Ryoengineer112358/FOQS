@@ -6,7 +6,7 @@ type Props = {
   href: string;
 }
 
-const CardMessage = (props: Props) => {
+const Tutor = (props: Props) => {
   return (
     <>
       <Link href={props.href}>
@@ -15,7 +15,7 @@ const CardMessage = (props: Props) => {
           sx={{
             mt: 2,
             p: 1,
-            height: 80,
+            height: 60,
             borderRadius: 100,
           }}
         >
@@ -30,4 +30,4 @@ const CardMessage = (props: Props) => {
   );
 }
 
-export default CardMessage;
+export default Tutor;

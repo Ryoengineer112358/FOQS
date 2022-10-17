@@ -13,7 +13,8 @@ const LargeButton = (props: Props) => {
         variant="outlined"
         href={props.href}
         sx={{
-          mt: 3,
+          mt: 2,
+          mb: 1,
           width: 320,
           height: 100,
           borderRadius: 100,

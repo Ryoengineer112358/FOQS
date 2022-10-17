@@ -3,13 +3,12 @@ import type { NextPage } from 'next'
 import {Grid} from "@mui/material";
 import * as React from "react";
 import DefaultLayout from "../../components/defaultLayout";
-import BackButton from "../../components/backButton";
-import Textarea from "../../components/textarea";
-import MiddleButton from "../../components/middleButton";
-import LargeButton from "../../components/largeButton";
+import BackButton from "../../components/backButton";import LargeButton from "../../components/largeButton";
+import Tutor from "../../components/tutor";
 import HomeButton from "../../components/homeButton";
+import Profile from "../../components/profile";
 
-const TutorSelect: NextPage = () => {
+const TutorProfile: NextPage = () => {
   const middleware = "student"
   const { user } = useAuth({ middleware: middleware })
 
@@ -19,9 +18,9 @@ const TutorSelect: NextPage = () => {
         <div></div>
       </DefaultLayout>
       <Grid container justifyContent="center">
-        <LargeButton text={"講師を選択"} href={"tutors"} />
-        <LargeButton text={"フリーで質問"} href={""} />
+　　    <Profile name={"高島良平"} university={"東京大学大学院"}　/>
         <BackButton />
+        <HomeButton />
       </Grid>
 
 
@@ -29,4 +28,4 @@ const TutorSelect: NextPage = () => {
   )
 }
 
-export default TutorSelect
+export default TutorProfile
