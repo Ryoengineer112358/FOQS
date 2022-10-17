@@ -19,7 +19,7 @@ const Question: NextPage = () => {
       </DefaultLayout>
       <Grid container justifyContent="center">
         <Textarea></Textarea>
-        <BackButton text={"戻る"} href={""}/>
+        <BackButton text={"戻る"} />
         <LargeButton text={"次へ"} href={""}/>
       </Grid>
 

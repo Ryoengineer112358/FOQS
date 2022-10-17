@@ -4,7 +4,6 @@ import {TurnLeft} from "@mui/icons-material";
 
 type Props = {
   text: string;
-  href: string;
 };
 
 const BackButton = (props: Props) => {
@@ -14,10 +13,12 @@ const BackButton = (props: Props) => {
       <Button
         startIcon={<TurnLeft />}
         variant="outlined"
-        href={props.href}
+        onClick={() => history.back()}
         sx={{
-          m:1,
-          width: 80,
+          mt: 3,
+          mr: 1,
+          ml: 1,
+          width: 160,
           height: 80,
           borderRadius: 100,
         }}
