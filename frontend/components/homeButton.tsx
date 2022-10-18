@@ -1,12 +1,13 @@
 import {Button} from "@mui/material";
+import Link from 'next/link';
 
 const HomeButton = () => {
 
   return (
     <>
+      <Link href={"/student"}>
       <Button
         variant="contained"
-        href="/student"
         sx={{
           mt: 5,
           mr: 3,
@@ -17,6 +18,7 @@ const HomeButton = () => {
       >
         ホーム
       </Button>
+      </Link>
     </>
   )
 }

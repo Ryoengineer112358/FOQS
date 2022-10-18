@@ -4,7 +4,6 @@ import {Grid, AppBar, Button, Box, Stack} from "@mui/material";
 import {FormEventHandler, useEffect, useState, ReactElement} from 'react'
 import * as React from "react";
 import DefaultLayout from "../../components/defaultLayout";
-import LargeButton from "../../components/middleButton";
 import CardMessage from "../../components/cardMessage";
 import MiddleButton from "../../components/middleButton";
 
@@ -18,7 +17,7 @@ const Home: NextPage = () => {
         <div></div>
       </DefaultLayout>
         <Grid container justifyContent="center">
-          <h2 style={{color: "white"}}>{user?.name}さん、こんにちは！</h2>
+          <h2 style={{color: "white",}}>{user?.name}さん、こんにちは！</h2>
           <Grid xs={12}>
             <CardMessage text="画像の問題についてについて質問です" href="" />
             <CardMessage text="画像の問題についてについて質問です" href={""} />

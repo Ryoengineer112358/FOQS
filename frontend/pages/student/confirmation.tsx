@@ -1,13 +1,10 @@
 import { useAuth } from '../../hooks/auth'
 import type { NextPage } from 'next'
-import {Grid} from "@mui/material";
+import {Grid, Button, Modal, Box, Typography} from "@mui/material";
 import * as React from "react";
 import DefaultLayout from "../../components/defaultLayout";
 import BackButton from "../../components/backButton";
-import LargeButton from "../../components/largeButton";
-import Tutor from "../../components/tutor";
 import MiddleButton from "../../components/middleButton";
-import Profile from "../../components/profile";
 import QuestionContext from "../../components/questionContext";
 
 const Confirmation: NextPage = () => {
@@ -31,4 +28,4 @@ const Confirmation: NextPage = () => {
   )
 }
 
-export default Confirmation
+export default Confirmation;

@@ -22,7 +22,6 @@ const QuestionHistory: NextPage = () => {
           <CardMessage text="画像の問題について質問です" href={""}/>
           <CardMessage text="画像の問題について質問です" href={""}/>
           <CardMessage text="画像の問題について質問です" href={""}/>
-          <CardMessage text="画像の問題について質問です" href={""}/>
         </Grid>
       </Grid>
       <Grid container justifyContent="right">

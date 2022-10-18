@@ -1,4 +1,5 @@
 import {Button} from "@mui/material";
+import Link from 'next/link';
 
 type Props = {
   text: string;
@@ -9,9 +10,9 @@ const LargeButton = (props: Props) => {
 
   return (
     <>
+      <Link href={props.href}>
       <Button
         variant="outlined"
-        href={props.href}
         sx={{
           mt: 2,
           mb: 1,
@@ -22,6 +23,7 @@ const LargeButton = (props: Props) => {
       >
         {props.text}
       </Button>
+      </Link>
     </>
   )
 }

@@ -1,5 +1,6 @@
 import * as React from 'react';
-import {Card, CardActions, CardContent, Link, Typography} from '@mui/material';
+import {Card, CardActions, CardContent, Typography} from '@mui/material';
+import Link from 'next/link';
 
 type Props = {
   text: string;

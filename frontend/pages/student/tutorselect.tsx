@@ -19,8 +19,8 @@ const TutorSelect: NextPage = () => {
         <div></div>
       </DefaultLayout>
       <Grid container justifyContent="center">
-        <LargeButton text={"講師を選択"} href={"tutors"} />
-        <LargeButton text={"フリーで質問"} href={""} />
+        <LargeButton text={"質問する講師を選択"} href={"tutors"} />
+        <LargeButton text={"講師を選択しないで質問"} href={"confirmation"} />
         <BackButton />
       </Grid>
 

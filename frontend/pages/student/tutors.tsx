@@ -18,8 +18,7 @@ const Tutors: NextPage = () => {
       </DefaultLayout>
       <Grid container justifyContent="center">
         <Grid xs={12}>
-          <Tutor text={"高島先生(東京大学大学院教養学部)"} href={"tutorprofile"} />
-          <Tutor text={"五嶋先生(京都大学法学部)"} href={""} />
+          <Tutor text={"五嶋先生(京都大学法学部)"} href={"tutorprofile"} />
           <Tutor text={"須田先生(東京大学法学部)"} href={""} />
         </Grid>
         <BackButton />

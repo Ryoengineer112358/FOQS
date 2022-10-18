@@ -1,6 +1,7 @@
 import { useAuth } from '../hooks/auth'
-import {AppBar, Box, Grid, Link, Container} from "@mui/material";
+import {AppBar, Box, Grid, Container} from "@mui/material";
 import {ReactElement} from 'react'
+import Link from 'next/link';
 
 const DefaultLayout = ({ middleware, children }: { middleware: String, children: ReactElement}) => {
   const href = `/${middleware}`
@@ -8,8 +9,8 @@ const DefaultLayout = ({ middleware, children }: { middleware: String, children:
     <>
       {/* AppBar */}
       <AppBar component="nav" elevation={0} square={true} color="transparent" sx={{backdropFilter: "blur(10px)"}}>
-        <Grid container alignItems="center" justifyContent="center" fontSize="4rem">
-          <Link href={ href } underline="none"><span color="primary">FOQS</span></Link>
+        <Grid container alignItems="center" justifyContent="center" fontSize="4rem" color="white">
+          <Link href={ href }>FOQS</Link>
         </Grid>
       </AppBar>
 
