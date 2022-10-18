@@ -17,7 +17,7 @@ const Question: NextPage = () => {
         <div></div>
       </DefaultLayout>
       <Grid container justifyContent="center">
-        <Textarea></Textarea>
+        <Textarea />
         <BackButton />
         <MiddleButton text={"次へ"} href={"tutorselect"}/>
       </Grid>

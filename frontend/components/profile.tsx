@@ -10,15 +10,17 @@ const Profile = (props: Props) => {
   return (
     <Box
       sx={{
-        width: 300,
+        width: 360,
         height: 300,
-        backgroundColor: 'primary.dark',
-        '&:hover': {
-          backgroundColor: 'primary.main',
-          opacity: [0.9, 0.8, 0.7],
-        },
+        p: 1,
+        backgroundColor: 'primary.main',
+        borderRadius: 8,
       }}
-    />
+    >
+    講師名：{props.name}
+      <br />
+    大学名:{props.university}
+    </Box>
   );
 }
 

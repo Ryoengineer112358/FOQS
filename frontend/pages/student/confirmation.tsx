@@ -6,10 +6,11 @@ import DefaultLayout from "../../components/defaultLayout";
 import BackButton from "../../components/backButton";
 import LargeButton from "../../components/largeButton";
 import Tutor from "../../components/tutor";
-import HomeButton from "../../components/homeButton";
+import MiddleButton from "../../components/middleButton";
 import Profile from "../../components/profile";
+import QuestionContext from "../../components/questionContext";
 
-const TutorProfile: NextPage = () => {
+const Confirmation: NextPage = () => {
   const middleware = "student"
   const { user } = useAuth({ middleware: middleware })
 
@@ -19,13 +20,15 @@ const TutorProfile: NextPage = () => {
         <div></div>
       </DefaultLayout>
       <Grid container justifyContent="center">
-　　    <Profile name={"五嶋俊彬"} university={"京都大学法学部"}　/>
-        <LargeButton text={"この講師に質問する"} href={"confirmation"} />
-        <BackButton />
-        <HomeButton />
+        <h1 style={{color: "white", margin: 0}}>質問内容</h1>
+        <QuestionContext context={"画像の問題について質問です"}　/>
+        <h1 style={{color: "white", textAlign: "center", marginBottom: 0}}>質問講師</h1>
+        <h2 style={{color: "white", textAlign: "center", margin: 0}}>五嶋先生(京都大学法学部)</h2>
       </Grid>
+      <BackButton />
+      <MiddleButton text={"質問する"} href={""} />
     </>
   )
 }
 
-export default TutorProfile
+export default Confirmation
