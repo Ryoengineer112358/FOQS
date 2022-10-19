@@ -13,11 +13,13 @@ const Profile = (props: Props) => {
       sx={{
         width: 360,
         height: 300,
-        p: 1,
+        p: 2,
         backgroundColor: 'primary.main',
         borderRadius: 8,
       }}
     >
+    ID：
+      <br />
     名前：{props.name}
       <br />
     {props.property}：{props.university}
