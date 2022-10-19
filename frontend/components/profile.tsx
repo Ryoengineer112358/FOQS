@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 
 type Props = {
   name: string;
+  property: string;
   university: string;
 }
 
@@ -17,9 +18,9 @@ const Profile = (props: Props) => {
         borderRadius: 8,
       }}
     >
-    講師名：{props.name}
+    名前：{props.name}
       <br />
-    大学名:{props.university}
+    {props.property}：{props.university}
     </Box>
   );
 }

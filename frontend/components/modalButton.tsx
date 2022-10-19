@@ -40,7 +40,19 @@ const ModalButton = () => {
         open={open}
         onClose={handleClose}
       >
-        <Box sx={style}>
+        <Box
+          sx={{
+            position: 'absolute' as 'absolute',
+            top: '35%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: 360,
+            borderRadius: 6,
+            bgcolor: 'background.paper',
+            border: '2px solid #ffffff',
+            boxShadow: 24,
+            p: 4,
+          }}>
           <Typography >
             規約事項を守って質問を行ってください
             <br />
