@@ -1,22 +1,37 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import SendMessage from './sendMessage';
+import {StudentQuestion,isStudentQuestion, TutorAnswer, StudentComment} from '../types/types';
+
+import student from "../pages/student";
 
 
-function ChatMessage() {
+type Props = {
+  middleware: string;
+  messages: Array<StudentQuestion | TutorAnswer | StudentComment>;
+  sendFunction: Function;
+}
+
+function ChatMessage(props: Props) {
   // const [messages, setMessages] = useState([]);
-  const messages: string[] = ["こんにちは！", "写真を送りました", "この問題を解いてください、よろしくお願いします"];
+
   return (
     <>
-      <div>
-        {messages.map((message, index) => (
-          <div key={message}>
-            <p>{message}</p>
+      <div className="msgs">
+        {props.messages.map((message, index) => (
+          <div>
+            <div key={message.id}
+                 className={`msg ${
+                   props.middleware === "student" && isStudentQuestion(message) ? "sent" : "received"
+                 }`}
+            >
+              <p>{message.content}</p>
+            </div>
           </div>
         )
         )}
       </div>
-      <SendMessage />
+      <SendMessage sendFunction={props.sendFunction}/>
     </>
   )
 }

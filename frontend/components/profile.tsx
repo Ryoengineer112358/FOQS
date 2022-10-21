@@ -2,6 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 
 type Props = {
+  id: number;
   name: string;
   property: string;
   university: string;
@@ -18,7 +19,7 @@ const Profile = (props: Props) => {
         borderRadius: 8,
       }}
     >
-    ID：
+    ID：{props.id}
       <br />
     名前：{props.name}
       <br />

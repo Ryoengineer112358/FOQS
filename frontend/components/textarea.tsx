@@ -6,9 +6,10 @@ const Textarea = () => {
     <TextareaAutosize
       maxRows={100}
       aria-label="maximum height"
-      placeholder="Maximum 4 rows"
-      defaultValue="ここに質問を入力してください"
+      placeholder="ここに質問を入力してください"
+      // defaultValue="ここに質問を入力してください"
       style={{
+        padding: 10,
         width: 360,
         height: 320,
         borderRadius: 30

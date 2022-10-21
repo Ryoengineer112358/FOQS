@@ -19,7 +19,7 @@ const TutorProfile: NextPage = () => {
         <div></div>
       </DefaultLayout>
       <Grid container justifyContent="center">
-        <Profile name={"五嶋俊彬"} university={"京都大学法学部"} />
+        <Profile id={1} name={"五嶋俊彬"} property={"大学"} university={"京都大学法学部"} />
         <LargeButton text={"この講師に質問する"} href={"confirmation"} />
         <BackButton />
         <HomeButton />
