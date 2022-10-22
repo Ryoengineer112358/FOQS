@@ -25,7 +25,7 @@ const QuestionHistory: NextPage = () => {
         </Grid>
       </Grid>
       <Grid container justifyContent="right">
-        <HomeButton />
+        <HomeButton href={"/student"}/>
       </Grid>
     </>
   )

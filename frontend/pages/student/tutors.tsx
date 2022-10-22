@@ -22,7 +22,7 @@ const Tutors: NextPage = () => {
           <Tutor text={"須田先生(東京大学法学部)"} href={""} />
         </Grid>
         <BackButton />
-        <HomeButton />
+        <HomeButton href={"/student"} />
       </Grid>
 
 

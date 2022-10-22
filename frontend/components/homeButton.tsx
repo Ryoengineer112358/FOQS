@@ -1,11 +1,15 @@
 import {Button} from "@mui/material";
 import Link from 'next/link';
 
-const HomeButton = () => {
+type Props = {
+  href: string;
+}
+
+const HomeButton = (props: Props) => {
 
   return (
     <>
-      <Link href={"/student"}>
+      <Link href={props.href}>
       <Button
         variant="contained"
         sx={{
