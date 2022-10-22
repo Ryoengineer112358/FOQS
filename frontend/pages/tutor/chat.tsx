@@ -42,7 +42,7 @@ const Chat: NextPage = () => {
 
   return (
     <>
-       <DefaultLayout middleware={middleware}>
+      <DefaultLayout middleware={middleware}>
         <div></div>
       </DefaultLayout>
       <ChatMessage middleware={middleware} messages={messages} sendFunction={updateMessages}/>

@@ -13,7 +13,7 @@
   border-top-right-radius: 50px;
   flex-direction: row-reverse;
   padding: 20px 20px 0 10px;
-  text-align: end;
+  /*text-align: end;*/
   float: right;
   max-width: 80%;
 }
@@ -57,7 +57,7 @@
 
 @media (max-width: 500px) {
   .sent {
-    padding: 0 24px 0 16px;
+    padding: 0 16px 0 24px;
   }
   .received {
     padding: 0 16px 0 24px;

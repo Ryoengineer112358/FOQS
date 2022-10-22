@@ -16,18 +16,17 @@ const Home: NextPage = () => {
       <DefaultLayout middleware={middleware}>
         <div></div>
       </DefaultLayout>
-        <Grid container justifyContent="center">
-          <h2 style={{color: "white",}}>{user?.name}さん、こんにちは！</h2>
-          <Grid xs={12}>
-            <CardMessage text="画像の問題についてについて質問です" href="" />
-            <CardMessage text="画像の問題についてについて質問です" href={""} />
-            <CardMessage text="画像の問題についてについて質問です" href={""} />
-            <CardMessage text="画像の問題についてについて質問です" href={""} />
-          </Grid>
-          <MiddleButton text="質問履歴" href="student/questionhistory"/>
-          <MiddleButton text="質問する" href={"student/question"}/>
+      <Grid container justifyContent="center">
+        <h2 style={{color: "white",}}>{user?.name}さん、こんにちは！</h2>
+        <Grid xs={12}>
+          <CardMessage text="こちらの画像の問題を解いてください" href="student/chat" />
+          <CardMessage text="画像の問題についてについて質問です" href={""} />
+          <CardMessage text="画像の問題についてについて質問です" href={""} />
+          <CardMessage text="画像の問題についてについて質問です" href={""} />
         </Grid>
-
+        <MiddleButton text="質問履歴" href="student/questionhistory"/>
+        <MiddleButton text="質問する" href={"student/question"}/>
+      </Grid>
     </>
   )
 }
