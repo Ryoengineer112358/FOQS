@@ -29,3 +29,33 @@ export interface StudentComment {
   updated_at: Date,
 }
 
+export interface Tutor {
+  id: number,
+  name: string,
+  email: string,
+  university: string,
+  age: number,
+  sex: number,
+  quit_at?: Date,
+  created_at: Date,
+  updated_at: Date,
+}
+export function isTutor(arg: any): arg is Tutor {
+  return arg.id !== undefined;
+}
+
+export interface Student {
+  id: number,
+  name: string,
+  email: string,
+  high_school: string,
+  first_choice_university: string,
+  age: number,
+  sex: number,
+  quit_at?: Date,
+  created_at: Date,
+  updated_at: Date,
+}
+export function isStudent(arg: any): arg is Student {
+  return arg.id !== undefined;
+}

@@ -2,7 +2,8 @@ import {useAuth} from '../../hooks/auth'
 import {FormEventHandler, useEffect, useState} from 'react'
 import {useRouter} from 'next/router'
 import {NextPage} from "next";
-import {Box, Button, Card, Checkbox, FormControlLabel, Link, TextField, Container} from "@mui/material";
+import Link from "next/link";
+import {Box, Button, Card, Checkbox, FormControlLabel, TextField, Container} from "@mui/material";
 import DefaultLayout from "../../components/defaultLayout";
 
 const Login: NextPage = () => {
@@ -36,7 +37,7 @@ const Login: NextPage = () => {
   }
 
   return (
-    <DefaultLayout middleware="">
+    <DefaultLayout middleware="tutor">
       <Card sx={{p: 3, borderRadius: 8}}>
         <Box
             onSubmit={submitForm}
@@ -82,12 +83,12 @@ const Login: NextPage = () => {
             />
           </Box>
           <Container>
+            <Button type="submit" variant="contained">ログイン</Button>
+          </Container>
+          <Container>
             <Link href="/forgot-password">
               パスワードを忘れた場合
             </Link>
-          </Container>
-          <Container>
-            <Button type="submit" variant="contained">ログイン</Button>
           </Container>
         </Box>
       </Card>
