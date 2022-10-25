@@ -24,7 +24,7 @@ const Home: NextPage = () => {
           <CardMessage text="画像の問題についてについて質問です" href={""} />
           <CardMessage text="画像の問題についてについて質問です" href={""} />
         </Grid>
-        <LargeButton text="質問を見つける" href="tutor/questionhistory"/>
+        <LargeButton text="質問を見つける" href="tutor/questions"/>
       </Grid>
     </>
   )
