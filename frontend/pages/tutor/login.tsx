@@ -7,12 +7,13 @@ import {Box, Button, Card, Checkbox, FormControlLabel, TextField, Container} fro
 import DefaultLayout from "../../components/defaultLayout";
 
 const Login: NextPage = () => {
+  const middleware = "tutor"
   const router = useRouter()
 
   const { loginStudent } = useAuth({
-    middleware: 'guest',
-    redirectIfAuthenticated: '/student',
-    loginDestination: 'student'
+    middleware: middleware,
+    redirectIfAuthenticated: '/tutor',
+    loginDestination: 'tutor'
   })
 
   const [email, setEmail] = useState('')
@@ -37,7 +38,7 @@ const Login: NextPage = () => {
   }
 
   return (
-    <DefaultLayout middleware="tutor">
+    <DefaultLayout middleware={middleware}>
       <Card sx={{p: 3, borderRadius: 8}}>
         <Box
             onSubmit={submitForm}

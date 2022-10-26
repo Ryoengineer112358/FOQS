@@ -7,8 +7,10 @@ import BackButton from "../../components/backButton";
 import MiddleButton from "../../components/middleButton";
 import QuestionContext from "../../components/questionContext";
 import ModalButton from "../../components/modalButton";
+import { useRouter } from 'next/router';
 
 const Confirmation: NextPage = () => {
+  const router = useRouter()
   const middleware = "student"
   const { user } = useAuth({ middleware: middleware })
 
@@ -23,7 +25,12 @@ const Confirmation: NextPage = () => {
         <h1 style={{color: "white", textAlign: "center", marginBottom: 0}}>質問者：高島さん</h1>
         <h1 style={{color: "white", textAlign: "center", margin: 0}}>志望大学：東京大学</h1>
         <BackButton />
-        <ModalButton />
+        <ModalButton
+          firstbuttontext={"質問を取得する"}
+          modaltext={"一度質問を取得すると、取り消すことができません"}
+          finalbuttontext={"取得する"}
+          clickHandler={() => {router.push(`/${middleware}/chat`)}}
+        />
       </Grid>
     </>
   )

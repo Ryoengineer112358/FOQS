@@ -8,7 +8,7 @@ import CardMessage from "../../components/cardMessage";
 import LargeButton from "../../components/largeButton";
 
 const Home: NextPage = () => {
-  const middleware = "student"
+  const middleware = "tutor"
   const { user } = useAuth({ middleware: middleware })
 
   return (

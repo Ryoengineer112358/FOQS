@@ -16,11 +16,13 @@ import Link from "next/link";
 // };
 
 type Props = {
+  firstbuttontext: string;
   modaltext: string;
-  buttontext: string;
+  finalbuttontext: string;
+  clickHandler: Function;
 }
 
-const ModalButton = () => {
+const ModalButton = (props: Props) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -39,7 +41,7 @@ const ModalButton = () => {
           borderRadius: 100,
         }}
       >
-        質問する
+        {props.firstbuttontext}
       </Button>
       <Modal
         open={open}
@@ -59,29 +61,9 @@ const ModalButton = () => {
             p: 4,
           }}>
           <Typography >
-            規約事項を守って質問を行ってください
-            <br />
-            質問は取り消すことができません
+            {props.modaltext}
           </Typography>
           <Grid container justifyContent="center">
-            <Link href="/student">
-              <Button
-                variant="outlined"
-                sx={{
-                  mt: 4,
-                  mr: 1,
-                  ml: 1,
-                  width: 120,
-                  height: 60,
-                  borderRadius: 100,
-                  color: '#000000',
-                  border: '2px solid #000000',
-                  textAlign: "center",
-                }}
-              >
-                質問を行う
-              </Button>
-            </Link>
             <Button
               variant="outlined"
               onClick={handleClose}
@@ -99,6 +81,25 @@ const ModalButton = () => {
             >
               戻る
             </Button>
+              <Button
+                onClick={() => props.clickHandler()}
+                variant="outlined"
+                sx={{
+                  mt: 4,
+                  mr: 1,
+                  ml: 1,
+                  width: 120,
+                  height: 60,
+                  borderRadius: 100,
+                  color: 'white',
+                  border: '2px solid #000000',
+                  textAlign: "center",
+                  backgroundColor: "red"
+                  // backgroundColor: "#85e14b"
+                }}
+              >
+                {props.finalbuttontext}
+              </Button>
           </Grid>
         </Box>
       </Modal>
