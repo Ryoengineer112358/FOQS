@@ -7,6 +7,7 @@ import {any} from "prop-types";
 
 type Props = {
   sendFunction: Function;
+  sender_role: string;
 }
 
 function SendMessage(props: Props) {
@@ -23,6 +24,7 @@ function SendMessage(props: Props) {
       tutor_id: 1,
       created_at: new Date(),
       updated_at: new Date(),
+      sender_role: props.sender_role,
     })
     //ここにDBとのやりとりを記載
 
@@ -47,6 +49,7 @@ function SendMessage(props: Props) {
             value={message}
           />
           <SendIcon
+            onClick={sendMessage}
             style={{ color: "#7AC2FF", marginLeft: "20px" }}
           />
         </div>

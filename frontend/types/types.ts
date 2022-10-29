@@ -18,6 +18,7 @@ export interface TutorAnswer {
   student_question_id: number,
   created_at: Date,
   updated_at: Date,
+  sender_role: string,
 }
 
 export interface StudentComment {
@@ -27,6 +28,7 @@ export interface StudentComment {
   tutor_id: number,
   created_at: Date,
   updated_at: Date,
+  sender_role: string,
 }
 
 export interface Tutor {

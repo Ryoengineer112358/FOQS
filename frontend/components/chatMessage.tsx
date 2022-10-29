@@ -22,7 +22,8 @@ function ChatMessage(props: Props) {
           <div>
             <div key={message.id}
                  className={`msg ${
-                   props.middleware === "student" && isStudentQuestion(message) ? "sent" : "received"
+                   (props.middleware === "student" && (isStudentQuestion(message) || message.sender_role === "student"))
+                     || (props.middleware === "tutor" && (!isStudentQuestion(message) && message.sender_role === "tutor")) ? "sent" : "received"
                  }`}
             >
               <p>{message.content}</p>
@@ -31,7 +32,7 @@ function ChatMessage(props: Props) {
         )
         )}
       </div>
-      <SendMessage sendFunction={props.sendFunction}/>
+      <SendMessage sendFunction={props.sendFunction} sender_role={props.middleware}/>
     </>
   )
 }

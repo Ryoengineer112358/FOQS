@@ -24,6 +24,7 @@ const Chat: NextPage = () => {
       student_question_id: 1,
       created_at: new Date(),
       updated_at: new Date(),
+      sender_role: "tutor",
     },
     {
       id: 1,
@@ -32,6 +33,7 @@ const Chat: NextPage = () => {
       tutor_id: 1,
       created_at: new Date(),
       updated_at: new Date(),
+      sender_role: "student",
     },
   ];
   const [messages, setMessages] = useState(initialMessages);

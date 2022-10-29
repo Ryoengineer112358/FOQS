@@ -7,10 +7,10 @@ import {Box, Button, Card, Checkbox, FormControlLabel, TextField, Container} fro
 import DefaultLayout from "../../components/defaultLayout";
 
 const Login: NextPage = () => {
-  const middleware = "tutor"
+  const middleware = "guest"
   const router = useRouter()
 
-  const { loginStudent } = useAuth({
+  const { loginTutor } = useAuth({
     middleware: middleware,
     redirectIfAuthenticated: '/tutor',
     loginDestination: 'tutor'
@@ -34,7 +34,7 @@ const Login: NextPage = () => {
   const submitForm: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault()
 
-    loginStudent({ email, password, remember: shouldRemember, setErrors, setStatus })
+    loginTutor({ email, password, remember: shouldRemember, setErrors, setStatus })
   }
 
   return (
