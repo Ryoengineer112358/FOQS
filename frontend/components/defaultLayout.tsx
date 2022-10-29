@@ -41,30 +41,31 @@ const DefaultLayout = ({ middleware, children }: { middleware: String, children:
     <>
       {/* AppBar */}
       <AppBar component="nav" elevation={0} square={true} color="transparent" sx={{backdropFilter: "blur(10px)"}}>
-        <Toolbar>
           {middleware == "guest" ?
-            <Grid container alignItems="center" justifyContent="center" fontSize="4rem" color="white">
-              <div>FOQS</div>
-            </Grid> :
-          <>
-            <Box component="div" sx={{height: "1rem", width: "4rem", mr: 2}}></Box>
-            <Grid container alignItems="center" justifyContent="center" fontSize="4rem" color="white">
-              <Link href={`/${middleware}`}>
-                FOQS
-              </Link>
-            </Grid>
-            <IconButton
-                color="primary"
-                aria-label="open drawer"
-                edge="end"
-                onClick={handleDrawerToggle}
-                sx={{ mr: 2 }}
-            >
-              <MenuIcon />
-            </IconButton>
-          </>
+            <Toolbar>
+              <Grid container alignItems="center" justifyContent="center" fontSize="4rem" color="white">
+                <div>FOQS</div>
+              </Grid>
+            </Toolbar>
+          :
+            <Toolbar>
+              <Box component="div" sx={{height: "1rem", width: "4rem", mr: 2}}/>
+              <Grid container alignItems="center" justifyContent="center" fontSize="4rem" color="white">
+                <Link href={`/${middleware}`}>
+                  FOQS
+                </Link>
+              </Grid>
+              <IconButton
+                  color="primary"
+                  aria-label="open drawer"
+                  edge="end"
+                  onClick={handleDrawerToggle}
+                  sx={{ mr: 2 }}
+              >
+                <MenuIcon />
+              </IconButton>
+            </Toolbar>
           }
-        </Toolbar>
       </AppBar>
 
       <Box component="nav">

@@ -1,3 +1,5 @@
+export type Middleware = "student" | "tutor" | "guest"
+
 export interface StudentQuestion {
   id: number,
   content: string,
@@ -6,7 +8,6 @@ export interface StudentQuestion {
   created_at: Date,
   updated_at: Date,
 }
-
 export function isStudentQuestion(arg: any): arg is StudentQuestion {
   return arg.student_id !== undefined;
 }
@@ -43,7 +44,7 @@ export interface Tutor {
   updated_at: Date,
 }
 export function isTutor(arg: any): arg is Tutor {
-  return arg.id !== undefined;
+  return arg.university !== undefined;
 }
 
 export interface Student {
@@ -59,5 +60,5 @@ export interface Student {
   updated_at: Date,
 }
 export function isStudent(arg: any): arg is Student {
-  return arg.id !== undefined;
+  return arg.first_choice_university !== undefined;
 }

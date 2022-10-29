@@ -12,6 +12,11 @@ class Student extends Authenticatable implements MustVerifyEmail
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
     public function student_questions()
     {
         return $this->hasMany(StudentQuestion::class);

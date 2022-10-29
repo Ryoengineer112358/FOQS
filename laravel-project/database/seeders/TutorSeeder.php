@@ -21,7 +21,7 @@ class TutorSeeder extends Seeder
             'password'=>bcrypt('password'),
             'university'=>'京都大学',
             'age'=>25,
-            'sex'=>'0',
+            'sex'=> 0,
         ]);
     }
 }

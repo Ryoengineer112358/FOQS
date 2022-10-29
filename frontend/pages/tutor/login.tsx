@@ -8,12 +8,13 @@ import DefaultLayout from "../../components/defaultLayout";
 
 const Login: NextPage = () => {
   const middleware = "guest"
+  const loginDestination = 'tutor'
   const router = useRouter()
 
-  const { loginTutor } = useAuth({
+  const { login } = useAuth({
     middleware: middleware,
-    redirectIfAuthenticated: '/tutor',
-    loginDestination: 'tutor'
+    redirectIfAuthenticated: `/${loginDestination}`,
+    loginDestination: loginDestination
   })
 
   const [email, setEmail] = useState('')
@@ -34,7 +35,7 @@ const Login: NextPage = () => {
   const submitForm: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault()
 
-    loginTutor({ email, password, remember: shouldRemember, setErrors, setStatus })
+    login({ email, password, remember: shouldRemember, setErrors, setStatus })
   }
 
   return (
