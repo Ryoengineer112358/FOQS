@@ -16,7 +16,8 @@ class TutorSeeder extends Seeder
     public function run()
     {
         Tutor::create([
-            'name'=>'五嶋俊彬',
+            'last_name'=>'五嶋',
+            'first_name'=>'俊彬',
             'email'=>'gototoshiaki@gmail.com',
             'password'=>bcrypt('password'),
             'university'=>'京都大学',

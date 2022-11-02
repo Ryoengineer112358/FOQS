@@ -16,7 +16,8 @@ class StudentSeeder extends Seeder
     public function run()
     {
         Student::create([
-            'name'=>'高島良平',
+            'last_name'=>'高島',
+            'first_name'=>'良平',
             'email'=>'takashimaryohei@gmail.com',
             'password'=>bcrypt('password'),
             'high_school'=>'巣鴨高校',
