@@ -3,6 +3,7 @@ import { useAuth } from '../../hooks/auth'
 import type { NextPage } from 'next'
 import DefaultLayout from '../../components/defaultLayout'
 import ChatMessage from '../../components/chatMessage'
+import BackButton from "../../components/backButton";
 import {StudentComment, StudentQuestion, TutorAnswer} from "../../types/types";
 
 const Chat: NextPage = () => {
@@ -48,6 +49,7 @@ const Chat: NextPage = () => {
         <div></div>
       </DefaultLayout>
       <ChatMessage middleware={middleware} messages={messages} sendFunction={updateMessages}/>
+      <BackButton />
     </>
   )
 }

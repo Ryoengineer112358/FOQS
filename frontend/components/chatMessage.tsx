@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import SendMessage from './sendMessage';
 import {StudentQuestion,isStudentQuestion, TutorAnswer, StudentComment} from '../types/types';
+import BackButton from "./backButton";
 
 import student from "../pages/student";
 

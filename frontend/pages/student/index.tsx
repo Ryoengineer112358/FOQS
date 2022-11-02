@@ -17,7 +17,7 @@ const Home: NextPage = () => {
         <div></div>
       </DefaultLayout>
       <Grid container justifyContent="center">
-        <h2 style={{color: "white",}}>{user?.name}さん、こんにちは！</h2>
+        <h2 style={{color: "white",}}>{user?.last_name}さん、こんにちは！</h2>
         <Grid xs={12}>
           <CardMessage text="こちらの画像の問題を解いてください" href="student/chat" />
           <CardMessage text="画像の問題についてについて質問です" href={""} />

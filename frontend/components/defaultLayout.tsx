@@ -10,7 +10,10 @@ import MenuIcon from "@mui/icons-material/Menu";
 
 const drawerWidth = "80%";
 const navItemsForStudent = ['ホーム', 'マイページ', '質問履歴', '講師一覧'];
+const navLinkForStudent = ['/student', '/student/mypage', '/student/questionhistory', '/student/tutors'];
 const navItemsForTutor = ['ホーム', 'マイページ', 'フリー質問一覧', '回答履歴'];
+const navLinkForTutor = ['/tutor', '/tutor/mypage', '/tutor/questions', '/tutor/questionhistory']
+
 
 const DefaultLayout = ({ middleware, children }: { middleware: String, children: ReactElement}) => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -26,12 +29,14 @@ const DefaultLayout = ({ middleware, children }: { middleware: String, children:
         </Typography>
         <Divider />
         <List>
-          {(middleware == 'student' ? navItemsForStudent : navItemsForTutor).map((item) => (
+          {(middleware == 'student' ? navItemsForStudent : navItemsForTutor).map((item, index) => (
+            <Link href={(middleware == 'student' ? navLinkForStudent[index] : navLinkForTutor[index])} >
               <ListItem key={item} disablePadding>
                 <ListItemButton sx={{ textAlign: 'center' }}>
                   <ListItemText primary={item} />
                 </ListItemButton>
               </ListItem>
+            </Link>
           ))}
         </List>
       </Box>
