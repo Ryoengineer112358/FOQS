@@ -9,11 +9,25 @@ import * as React from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 
 const drawerWidth = "80%";
-const navItemsForStudent = ['ホーム', 'マイページ', '質問履歴', '講師一覧'];
-const navLinkForStudent = ['/student', '/student/mypage', '/student/questionhistory', '/student/tutors'];
-const navItemsForTutor = ['ホーム', 'マイページ', 'フリー質問一覧', '回答履歴'];
-const navLinkForTutor = ['/tutor', '/tutor/mypage', '/tutor/questions', '/tutor/questionhistory']
 
+type Item = {
+  label: string;
+  link: string;
+}
+
+const navItemsForStudent = [
+  {'label' : 'ホーム', 'link': '/student'},
+  {'label' : 'マイページ', 'link': '/student/mypage'},
+  {'label' : '質問履歴', 'link': '/student/questionhistory'},
+  {'label' : '講師一覧', 'link': '/student/tutors'},
+];
+
+const navItemsForTutor = [
+  {'label' : 'ホーム', 'link': '/tutor'},
+  {'label' : 'マイページ', 'link': '/tutor/mypage'},
+  {'label' : 'フリー質問一覧', 'link': '/tutor/questions'},
+  {'label' : '回答履歴', 'link': '/tutor/questionhistory'},
+];
 
 const DefaultLayout = ({ middleware, children }: { middleware: String, children: ReactElement}) => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -29,11 +43,11 @@ const DefaultLayout = ({ middleware, children }: { middleware: String, children:
         </Typography>
         <Divider />
         <List>
-          {(middleware == 'student' ? navItemsForStudent : navItemsForTutor).map((item, index) => (
-            <Link href={(middleware == 'student' ? navLinkForStudent[index] : navLinkForTutor[index])} >
-              <ListItem key={item} disablePadding>
+          {(middleware == 'student' ? navItemsForStudent : navItemsForTutor).map((item: Item) => (
+            <Link href={item.link} >
+              <ListItem key={item.label} disablePadding>
                 <ListItemButton sx={{ textAlign: 'center' }}>
-                  <ListItemText primary={item} />
+                  <ListItemText primary={item.label} />
                 </ListItemButton>
               </ListItem>
             </Link>

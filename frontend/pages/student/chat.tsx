@@ -5,6 +5,7 @@ import DefaultLayout from '../../components/defaultLayout'
 import ChatMessage from '../../components/chatMessage'
 import BackButton from "../../components/backButton";
 import {StudentComment, StudentQuestion, TutorAnswer} from "../../types/types";
+import {Box} from "@mui/material";
 
 const Chat: NextPage = () => {
   const middleware = "student"
@@ -49,7 +50,9 @@ const Chat: NextPage = () => {
         <div></div>
       </DefaultLayout>
       <ChatMessage middleware={middleware} messages={messages} sendFunction={updateMessages}/>
-      <BackButton />
+      <Box sx={{position: 'sticky', bottom: 0}}>
+        <BackButton />
+      </Box>
     </>
   )
 }

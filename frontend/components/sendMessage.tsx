@@ -18,11 +18,14 @@ function SendMessage(props: Props) {
     //型のanyはいずれ変更する
     console.log(e);
     e.preventDefault();
+    if (message === '') {
+      return;
+    }
     props.sendFunction({
       id: 1,
       content: message,
-      student_id: 1,
       tutor_id: 1,
+      student_question_id: 1,
       created_at: new Date(),
       updated_at: new Date(),
       sender_role: props.sender_role,

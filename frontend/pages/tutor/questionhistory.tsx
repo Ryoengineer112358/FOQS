@@ -7,7 +7,7 @@ import CardMessage from "../../components/cardMessage";
 import HomeButton from "../../components/homeButton";
 
 const QuestionHistory: NextPage = () => {
-  const middleware = "student"
+  const middleware = "tutor"
   const { user } = useAuth({ middleware: middleware })
 
   return (

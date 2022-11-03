@@ -6,7 +6,7 @@ import HomeButton from '../../components/homeButton'
 import {Grid} from "@mui/material"
 
 const MyPage: NextPage = () => {
-  const middleware = "student"
+  const middleware = "tutor"
   const { user } = useAuth({ middleware: middleware })
 
   return (

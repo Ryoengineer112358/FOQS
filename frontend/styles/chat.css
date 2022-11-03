@@ -32,12 +32,12 @@
 }
 
 .sendMsg {
-  position: fixed;
+  position: sticky;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  bottom: 20px;
+  bottom: 80px;
   z-index: 3;
   /*border-top: 1px solid lightgray;*/
   margin-left: -16px;

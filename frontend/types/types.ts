@@ -19,7 +19,10 @@ export interface TutorAnswer {
   student_question_id: number,
   created_at: Date,
   updated_at: Date,
-  sender_role: string,
+  sender_role: "tutor" | "student",
+}
+export function isTutorAnswer(arg: any): arg is StudentQuestion {
+  return arg.student_question_id !== undefined && arg.sender_role == "tutor";
 }
 
 export interface StudentComment {
@@ -29,7 +32,10 @@ export interface StudentComment {
   tutor_id: number,
   created_at: Date,
   updated_at: Date,
-  sender_role: string,
+  sender_role: "tutor" | "student",
+}
+export function isStudentComment(arg: any): arg is StudentQuestion {
+  return arg.student_question_id !== undefined && arg.sender_role == "student";
 }
 
 export interface Tutor {

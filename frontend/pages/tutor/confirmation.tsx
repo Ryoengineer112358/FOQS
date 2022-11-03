@@ -11,7 +11,7 @@ import { useRouter } from 'next/router';
 
 const Confirmation: NextPage = () => {
   const router = useRouter()
-  const middleware = "student"
+  const middleware = "tutor"
   const { user } = useAuth({ middleware: middleware })
 
   return (

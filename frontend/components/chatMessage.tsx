@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import SendMessage from './sendMessage';
-import {StudentQuestion,isStudentQuestion, TutorAnswer, StudentComment} from '../types/types';
+import {StudentQuestion,isStudentQuestion, TutorAnswer, StudentComment, isStudentComment, isTutorAnswer} from '../types/types';
 import BackButton from "./backButton";
 
 import student from "../pages/student";
@@ -23,8 +23,8 @@ function ChatMessage(props: Props) {
           <div>
             <div key={message.id}
                  className={`msg ${
-                   (props.middleware === "student" && (isStudentQuestion(message) || message.sender_role === "student"))
-                     || (props.middleware === "tutor" && (!isStudentQuestion(message) && message.sender_role === "tutor")) ? "sent" : "received"
+                   (props.middleware === "student" && (isStudentQuestion(message) || isStudentComment(message)))
+                     || (props.middleware === "tutor" && (!isStudentQuestion(message) && isTutorAnswer(message))) ? "sent" : "received"
                  }`}
             >
               <p>{message.content}</p>
