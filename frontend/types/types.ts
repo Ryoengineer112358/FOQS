@@ -40,7 +40,8 @@ export function isStudentComment(arg: any): arg is StudentQuestion {
 
 export interface Tutor {
   id: number,
-  name: string,
+  first_name: string,
+  last_name: string,
   email: string,
   university: string,
   age: number,
@@ -55,7 +56,8 @@ export function isTutor(arg: any): arg is Tutor {
 
 export interface Student {
   id: number,
-  name: string,
+  first_name: string,
+  last_name: string,
   email: string,
   high_school: string,
   first_choice_university: string,

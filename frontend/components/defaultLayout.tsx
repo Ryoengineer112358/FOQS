@@ -3,10 +3,13 @@ import {
   Typography, Divider, List, ListItem,
   ListItemButton, ListItemText, Drawer, Toolbar
 } from "@mui/material";
-import {ReactElement} from 'react'
+import {ReactElement, useEffect} from 'react'
 import Link from 'next/link';
 import * as React from "react";
 import MenuIcon from "@mui/icons-material/Menu";
+import {State, useAppDispatch} from "../store";
+import {fetchTutors} from "../store/modules/tutors";
+import {useSelector} from "react-redux";
 
 const drawerWidth = "80%";
 
@@ -15,14 +18,14 @@ type Item = {
   link: string;
 }
 
-const navItemsForStudent = [
+const navItemsForStudent: Item[] = [
   {'label' : 'ホーム', 'link': '/student'},
   {'label' : 'マイページ', 'link': '/student/mypage'},
   {'label' : '質問履歴', 'link': '/student/questionhistory'},
   {'label' : '講師一覧', 'link': '/student/tutors'},
-];
+]
 
-const navItemsForTutor = [
+const navItemsForTutor: Item[] = [
   {'label' : 'ホーム', 'link': '/tutor'},
   {'label' : 'マイページ', 'link': '/tutor/mypage'},
   {'label' : 'フリー質問一覧', 'link': '/tutor/questions'},
@@ -30,6 +33,14 @@ const navItemsForTutor = [
 ];
 
 const DefaultLayout = ({ middleware, children }: { middleware: String, children: ReactElement}) => {
+
+  const tutors = useSelector((state: State) => state.tutors)
+  const dispatch = useAppDispatch()
+  useEffect(() => {
+    // 生徒でログインしている場合は講師一覧を初回取得
+    if (middleware == "student" && tutors.length == 0) dispatch(fetchTutors())
+  }, []);
+
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
@@ -44,7 +55,7 @@ const DefaultLayout = ({ middleware, children }: { middleware: String, children:
         <Divider />
         <List>
           {(middleware == 'student' ? navItemsForStudent : navItemsForTutor).map((item: Item) => (
-            <Link href={item.link} >
+            <Link href={item.link} key={item.link} >
               <ListItem key={item.label} disablePadding>
                 <ListItemButton sx={{ textAlign: 'center' }}>
                   <ListItemText primary={item.label} />
