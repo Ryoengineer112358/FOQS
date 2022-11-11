@@ -1,4 +1,4 @@
-import { Tutor } from "../../types/types";
+import { Tutor } from "../../types";
 import axios from "../../lib/axios";
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 

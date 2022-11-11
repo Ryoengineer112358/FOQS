@@ -3,7 +3,7 @@ import { useAuth } from '../../hooks/auth'
 import type { NextPage } from 'next'
 import DefaultLayout from '../../components/defaultLayout'
 import ChatMessage from '../../components/chatMessage'
-import {StudentComment, StudentQuestion, TutorAnswer} from "../../types/types";
+import {StudentComment, StudentQuestion, TutorAnswer} from "../../types";
 
 const Chat: NextPage = () => {
   const middleware = "tutor"

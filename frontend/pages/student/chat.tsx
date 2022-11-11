@@ -4,7 +4,7 @@ import type { NextPage } from 'next'
 import DefaultLayout from '../../components/defaultLayout'
 import ChatMessage from '../../components/chatMessage'
 import BackButton from "../../components/backButton";
-import {StudentComment, StudentQuestion, TutorAnswer} from "../../types/types";
+import {StudentComment, StudentQuestion, TutorAnswer} from "../../types";
 import {Box} from "@mui/material";
 
 const Chat: NextPage = () => {

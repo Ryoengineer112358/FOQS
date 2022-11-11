@@ -2,7 +2,7 @@ import useSWR from 'swr'
 import axios from '../lib/axios'
 import {useEffect} from 'react'
 import { useRouter } from 'next/router'
-import {Middleware, Tutor, Student, isTutor, isStudent} from '../types/types'
+import {Middleware, Tutor, Student, isTutor, isStudent} from '../types'
 import {convertDateTypeOnObject} from '../utils'
 
 type Props = {

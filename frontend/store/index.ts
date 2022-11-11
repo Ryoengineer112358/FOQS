@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { Tutor } from "../types/types"
+import { Tutor } from "../types"
 import tutorsReducer from "./modules/tutors"
 import {configureStore} from '@reduxjs/toolkit';
 import {useDispatch} from "react-redux";

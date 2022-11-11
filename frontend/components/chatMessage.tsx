@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import SendMessage from './sendMessage';
-import {StudentQuestion,isStudentQuestion, TutorAnswer, StudentComment, isStudentComment, isTutorAnswer} from '../types/types';
+import {StudentQuestion,isStudentQuestion, TutorAnswer, StudentComment, isStudentComment, isTutorAnswer} from '../types';
 import BackButton from "./backButton";
 
 import student from "../pages/student";
