@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\TutorController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,4 +28,8 @@ Route::group(['middleware' => ['auth:students,tutors']], function () {
 
 Route::group(['middleware' => ['auth:students']], function () {
     Route::get('/tutors', [TutorController::class, 'index']);
+});
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::apiResource('questions', QuestionController::class)->only('index','show');
 });
