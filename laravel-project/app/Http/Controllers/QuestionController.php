@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\StudentQuestion;
+use App\Models\TutorAnswer;
 use Illuminate\Http\Request;
+use App\Models\StudentComment;
 
 class QuestionController extends Controller
 {
@@ -43,9 +46,12 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(StudentQuestion $question)
     {
-        //
+        $tutorAnswers = TutorAnswer::where('tutor_id', $question->tutor_id)->get()->each(fn($x) => $x->sender_role = 'tutor');
+        $studentComments = StudentComment::where('tutor_id', $question->tutor_id)->get()->each(fn($x) => $x->sender_role = 'student');
+        $messages = collect([$question])->concat($tutorAnswers)->concat($studentComments)->sortBy('created_at');
+        return $messages;
     }
 
     /**
