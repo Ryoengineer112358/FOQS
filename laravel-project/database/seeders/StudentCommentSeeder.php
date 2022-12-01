@@ -20,5 +20,11 @@ class StudentCommentSeeder extends Seeder
             'student_question_id'=>1,
             'tutor_id'=>1,
         ]);
+
+        StudentComment::create([
+            'content'=>'「You」ではなく「We」ではダメなのですか？',
+            'student_question_id'=>2,
+            'tutor_id'=>2,
+        ]);
     }
 }

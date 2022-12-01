@@ -20,5 +20,11 @@ class StudentQuestionSeeder extends Seeder
             'student_id'=>1,
             'tutor_id'=>1,
         ]);
+
+        StudentQuestion::create([
+            'content'=>'「お腹が空いていたら何でもおいしく見える」の英語訳が何故「Everything looks delicious when you are hungry.」となるのでしょうか。「you」は「あなた」という意味ではないのですか？',
+            'student_id'=>1,
+            'tutor_id'=>2,
+        ]);
     }
 }

@@ -9,13 +9,15 @@ import {Box} from "@mui/material";
 import axios from "../../../lib/axios";
 import { useRouter} from "next/router";
 
+type Message = StudentQuestion | TutorAnswer | StudentComment
+
 const Chat: NextPage = () => {
   const router = useRouter();
   const {questionid} = router.query;
   // console.log(questionid)
   useEffect(() => {
     axios.get(`/api/questions/${questionid}`).then(
-      (result) => setMessages( result.data.map((x: StudentQuestion) => x))
+      (result) => setMessages( result.data.map((x: Message) => x))
     )
   }, [router])
   const middleware = "student"
@@ -48,9 +50,9 @@ const Chat: NextPage = () => {
   //     sender_role: "student",
   //   },
   // ];
-  const [messages, setMessages] = useState<Array<StudentQuestion | TutorAnswer | StudentComment>>([]);
+  const [messages, setMessages] = useState<Array<Message>>([]);
 
-  const updateMessages = (newMessage: StudentQuestion | TutorAnswer | StudentComment) => {
+  const updateMessages = (newMessage: Message) => {
     setMessages([...messages, newMessage])
   }
 

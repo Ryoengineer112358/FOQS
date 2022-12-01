@@ -20,5 +20,11 @@ class TutorAnswerSeeder extends Seeder
             'tutor_id'=>1,
             'student_question_id'=>1,
         ]);
+
+        TutorAnswer::create([
+            'content'=>'このYouは「総称のyou」であり「あなた」ではなく「(自分も含めた)全員」という意味になります',
+            'tutor_id'=>2,
+            'student_question_id'=>2,
+        ]);
     }
 }

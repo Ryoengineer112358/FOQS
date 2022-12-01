@@ -5,6 +5,8 @@ export interface StudentQuestion {
   content: string,
   student_id: number,
   tutor_id?: number,
+  tutor_answers: TutorAnswer[],
+  student_comments: StudentComment[],
   created_at: Date,
   updated_at: Date,
 }

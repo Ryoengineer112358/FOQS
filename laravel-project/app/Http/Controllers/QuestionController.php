@@ -16,7 +16,31 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        //
+        if(\Auth::guard('students')->check()){
+            return StudentQuestion::where('student_id', \Auth::id())->orderByDesc('updated_at')
+                ->with(
+                    [
+                        'tutor_answers' => function ($query) {
+                            $query->orderBy('created_at', 'desc')->limit(1);
+                        },
+                        'student_comments' => function ($query) {
+                            $query->orderBy('created_at', 'desc')->limit(1);
+                        },
+                    ]
+                )->get();
+        } elseif (\Auth::guard('tutors')->check()){
+            return StudentQuestion::where('tutor_id', \Auth::id())->orderByDesc('updated_at')
+                ->with(
+                    [
+                        'tutor_answers' => function ($query) {
+                            $query->orderBy('created_at', 'desc')->limit(1);
+                        },
+                        'student_comments' => function ($query) {
+                            $query->orderBy('created_at', 'desc')->limit(1);
+                        },
+                    ]
+                )->get();
+        }
     }
 
     /**

@@ -24,5 +24,15 @@ class TutorSeeder extends Seeder
             'age'=>25,
             'sex'=> 0,
         ]);
+
+        Tutor::create([
+            'last_name'=>'須田',
+            'first_name'=>'皓',
+            'email'=>'sudaakira@gmail.com',
+            'password'=>bcrypt('password'),
+            'university'=>'東京大学',
+            'age'=>26,
+            'sex'=> 0,
+        ]);
     }
 }

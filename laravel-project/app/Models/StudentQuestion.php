@@ -21,7 +21,7 @@ class StudentQuestion extends Model
         return $this->belongsTo(Tutor::class);
     }
 
-    public function tutor_answer()
+    public function tutor_answers()
     {
         return $this->hasMany(TutorAnswer::class);
     }
