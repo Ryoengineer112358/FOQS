@@ -16,31 +16,28 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        if(\Auth::guard('students')->check()){
-            return StudentQuestion::where('student_id', \Auth::id())->orderByDesc('updated_at')
-                ->with(
-                    [
-                        'tutor_answers' => function ($query) {
-                            $query->orderBy('created_at', 'desc')->limit(1);
-                        },
-                        'student_comments' => function ($query) {
-                            $query->orderBy('created_at', 'desc')->limit(1);
-                        },
-                    ]
-                )->get();
-        } elseif (\Auth::guard('tutors')->check()){
-            return StudentQuestion::where('tutor_id', \Auth::id())->orderByDesc('updated_at')
-                ->with(
-                    [
-                        'tutor_answers' => function ($query) {
-                            $query->orderBy('created_at', 'desc')->limit(1);
-                        },
-                        'student_comments' => function ($query) {
-                            $query->orderBy('created_at', 'desc')->limit(1);
-                        },
-                    ]
-                )->get();
+        $studentAuth = \Auth::guard('students')->check();
+        $authorAuth = \Auth::guard('tutors')->check();
+
+        if (!$studentAuth && !$authorAuth) {
+            return [];
         }
+        if ($studentAuth) {
+            $query = StudentQuestion::where('student_id', \Auth::id());
+        } else {
+            $query = StudentQuestion::where('tutor_id', \Auth::id());
+        }
+
+        $questions = $query->orderByDesc('updated_at')
+            ->with('tutor_answers', 'student_comments')
+            ->get();
+
+        foreach ($questions as $question) {
+            $question->tutor_answers = $question->tutor_answers->sortByDesc("created_at");
+            $question->student_comments = $question->student_comments->sortByDesc("created_at");
+        }
+
+        return $questions;
     }
 
     /**
