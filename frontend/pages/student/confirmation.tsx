@@ -1,12 +1,11 @@
-import { useAuth } from '../../hooks/auth'
+import { useAuth } from '@/hooks/auth'
 import type { NextPage } from 'next'
-import {Grid, Button, Modal, Box, Typography} from "@mui/material";
+import {Grid} from "@mui/material";
 import * as React from "react";
-import DefaultLayout from "../../components/defaultLayout";
-import BackButton from "../../components/backButton";
-import MiddleButton from "../../components/middleButton";
-import QuestionContext from "../../components/questionContext";
-import ModalButton from "../../components/modalButton";
+import DefaultLayout from "@/components/defaultLayout";
+import BackButton from "@/components/backButton";
+import QuestionContext from "@/components/questionContext";
+import ModalButton from "@/components/modalButton";
 import { useRouter } from 'next/router';
 
 const Confirmation: NextPage = () => {

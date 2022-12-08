@@ -1,13 +1,13 @@
-import {useAuth} from '../../hooks/auth'
+import {useAuth} from '@/hooks/auth'
 import type {NextPage} from 'next'
 import {Grid} from "@mui/material";
 import * as React from "react";
 import {useSelector} from 'react-redux'
-import DefaultLayout from "../../components/defaultLayout";
-import BackButton from "../../components/backButton";
-import Tutor from "../../components/tutor";
-import HomeButton from "../../components/homeButton";
-import {State} from "../../store"
+import DefaultLayout from "@/components/defaultLayout";
+import BackButton from "@/components/backButton";
+import Tutor from "@/components/tutor";
+import HomeButton from "@/components/homeButton";
+import {State} from "@/store"
 
 const Tutors: NextPage = () => {
   const middleware = "student"

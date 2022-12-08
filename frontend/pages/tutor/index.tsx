@@ -1,11 +1,11 @@
-import { useAuth } from '../../hooks/auth'
+import { useAuth } from '@/hooks/auth'
 import type { NextPage } from 'next'
 import {AppBar, Button, Box, Grid} from "@mui/material";
 import {FormEventHandler, useEffect, useState, ReactElement} from 'react'
 import * as React from "react";
-import DefaultLayout from "../../components/defaultLayout";
-import CardMessage from "../../components/cardMessage";
-import LargeButton from "../../components/largeButton";
+import DefaultLayout from "@/components/defaultLayout";
+import CardMessage from "@/components/cardMessage";
+import LargeButton from "@/components/largeButton";
 
 const Home: NextPage = () => {
   const middleware = "tutor"

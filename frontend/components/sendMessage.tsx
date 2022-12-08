@@ -2,9 +2,6 @@ import React from 'react'
 import { useState } from 'react';
 import { Input } from '@mui/material';
 import SendIcon from "@mui/icons-material/Send"
-import {StudentComment, StudentQuestion, TutorAnswer} from "../types";
-import {any} from "prop-types";
-import BackButton from "./backButton";
 
 type Props = {
   sendFunction: Function;

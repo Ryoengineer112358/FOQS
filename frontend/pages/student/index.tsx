@@ -1,13 +1,13 @@
-import { useAuth } from '../../hooks/auth'
+import { useAuth } from '@/hooks/auth'
 import type { NextPage } from 'next'
-import {Grid, AppBar, Button, Box, Stack} from "@mui/material";
+import {Grid} from "@mui/material";
 import {FormEventHandler, useEffect, useState, ReactElement} from 'react'
 import * as React from "react";
-import DefaultLayout from "../../components/defaultLayout";
-import CardMessage from "../../components/cardMessage";
-import MiddleButton from "../../components/middleButton";
-import axios from "../../lib/axios";
-import {StudentQuestion} from "../../types";
+import axios from "@/lib/axios";
+import {StudentQuestion} from "@/types";
+import DefaultLayout from "@/components/defaultLayout";
+import CardMessage from "@/components/cardMessage";
+import MiddleButton from "@/components/middleButton";
 
 const Home: NextPage = () => {
   const middleware = "student"
@@ -30,7 +30,7 @@ const Home: NextPage = () => {
         <h2 style={{color: "white",}}>{user?.last_name}さん、こんにちは！</h2>
         <Grid xs={12}>
           {questions.map(x =>
-            <CardMessage text={(() => {
+            <CardMessage key={x.id} text={(() => {
              if(x.tutor_answers.length == 0 && x.student_comments.length == 0) {
                return x.content;
              } else if (x.tutor_answers.length == 0) {

@@ -7,8 +7,8 @@ import {ReactElement, useEffect} from 'react'
 import Link from 'next/link';
 import * as React from "react";
 import MenuIcon from "@mui/icons-material/Menu";
-import {State, useAppDispatch} from "../store";
-import {fetchTutors} from "../store/modules/tutors";
+import {State, useAppDispatch} from "@/store";
+import {fetchTutors} from "@/store/modules/tutors";
 import {useSelector} from "react-redux";
 
 const drawerWidth = "80%";

@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
-import { useAuth } from '../../hooks/auth'
+import { useAuth } from '@/hooks/auth'
 import type { NextPage } from 'next'
-import DefaultLayout from '../../components/defaultLayout'
-import ChatMessage from '../../components/chatMessage'
-import {StudentComment, StudentQuestion, TutorAnswer} from "../../types";
+import DefaultLayout from '@/components/defaultLayout'
+import ChatMessage from '@/components/chatMessage'
+import {StudentComment, StudentQuestion, TutorAnswer} from "@/types";
 
 const Chat: NextPage = () => {
   const middleware = "tutor"
@@ -14,6 +14,8 @@ const Chat: NextPage = () => {
       content: "こちらの画像の問題を解いてください",
       student_id: 1,
       tutor_id: 1,
+      tutor_answers: [],
+      student_comments: [],
       created_at: new Date(),
       updated_at: new Date(),
     },

@@ -1,10 +1,10 @@
-import { useAuth } from '../../hooks/auth'
+import { useAuth } from '@/hooks/auth'
 import type { NextPage } from 'next'
 import {Grid} from "@mui/material";
 import * as React from "react";
-import DefaultLayout from "../../components/defaultLayout";
-import CardMessage from "../../components/cardMessage";
-import HomeButton from "../../components/homeButton";
+import DefaultLayout from "@/components/defaultLayout";
+import CardMessage from "@/components/cardMessage";
+import HomeButton from "@/components/homeButton";
 
 const QuestionHistory: NextPage = () => {
   const middleware = "student"
