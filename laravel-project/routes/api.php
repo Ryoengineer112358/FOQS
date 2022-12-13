@@ -31,5 +31,7 @@ Route::group(['middleware' => ['auth:students']], function () {
 });
 
 Route::group(['middleware' => ['auth']], function () {
+    Route::post('/questions/{question}', [QuestionController::class, 'reply']);
     Route::apiResource('questions', QuestionController::class)->only('index','show');
 });
+

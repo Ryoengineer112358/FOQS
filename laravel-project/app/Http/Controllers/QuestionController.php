@@ -17,9 +17,9 @@ class QuestionController extends Controller
     public function index()
     {
         $studentAuth = \Auth::guard('students')->check();
-        $authorAuth = \Auth::guard('tutors')->check();
+        $tutorAuth = \Auth::guard('tutors')->check();
 
-        if (!$studentAuth && !$authorAuth) {
+        if (!$studentAuth && !$tutorAuth) {
             return [];
         }
         if ($studentAuth) {
@@ -107,5 +107,31 @@ class QuestionController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function reply(Request $request, StudentQuestion $question)
+    {
+        if ($request->user()->cannot('view', $question)) {
+            abort(403);
+        }
+
+        $studentAuth = \Auth::guard('students')->check();
+        $tutorAuth = \Auth::guard('tutors')->check();
+
+        if ($studentAuth) {
+            StudentComment::create([
+                'content' => $request->message,
+                'student_question_id' => $question->id,
+                'tutor_id' => $question->tutor_id,
+            ]);
+        }
+
+        if ($tutorAuth) {
+            TutorAnswer::create([
+                'content' => $request->message,
+                'student_question_id' => $question->id,
+                'tutor_id' => $question->tutor_id,
+            ]);
+        }
     }
 }

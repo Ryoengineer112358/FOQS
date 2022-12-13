@@ -12,20 +12,25 @@ import { useRouter} from "next/router";
 type Message = StudentQuestion | TutorAnswer | StudentComment
 
 const Chat: NextPage = () => {
-  const router = useRouter();
-  const {questionid} = router.query;
-  // console.log(questionid)
-  useEffect(() => {
-    axios.get(`/api/questions/${questionid}`).then(
-      (result) => setMessages( result.data.map((x: Message) => x))
+  const { query, isReady } = useRouter();
+  const {questionid} = query;
+
+  const fetchMessages = () => {
+    isReady && axios.get(`/api/questions/${questionid}`).then(
+      (result) => setMessages(result.data.map((x: Message) => x))
     )
-  }, [router])
+  }
+
+  useEffect(fetchMessages, [isReady])
   const middleware = "student"
   const { user } = useAuth({ middleware: middleware })
   const [messages, setMessages] = useState<Array<Message>>([]);
 
   const updateMessages = (newMessage: Message) => {
     setMessages([...messages, newMessage])
+    axios.post(`/api/questions/${questionid}`, {message: newMessage.content}).then(
+      fetchMessages
+    )
   }
 
   return (

@@ -19,10 +19,10 @@ function SendMessage(props: Props) {
       return;
     }
     props.sendFunction({
-      id: 1,
+      id: 0,
       content: message,
-      tutor_id: 1,
-      student_question_id: 1,
+      tutor_id: 0,
+      student_question_id: 0,
       created_at: new Date(),
       updated_at: new Date(),
       sender_role: props.sender_role,
