@@ -29,7 +29,16 @@ class QuestionController extends Controller
         }
 
         $questions = $query->orderByDesc('updated_at')
-            ->with('tutor_answers', 'student_comments')
+            ->with(
+                [
+                    'tutor_answers' => function ($query) {
+                        $query->orderBy('created_at', 'desc');
+                    },
+                    'student_comments' => function ($query) {
+                        $query->orderBy('created_at', 'desc');
+                    },
+                ]
+            )
             ->get();
 
         foreach ($questions as $question) {
