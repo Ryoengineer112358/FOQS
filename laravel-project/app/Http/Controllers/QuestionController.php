@@ -78,9 +78,13 @@ class QuestionController extends Controller
      */
     public function show(StudentQuestion $question)
     {
+        \Log::info(collect([$question]));
         $tutorAnswers = TutorAnswer::where('tutor_id', $question->tutor_id)->get()->each(fn($x) => $x->sender_role = 'tutor');
+//        \Log::info($tutorAnswers);
         $studentComments = StudentComment::where('tutor_id', $question->tutor_id)->get()->each(fn($x) => $x->sender_role = 'student');
-        $messages = collect([$question])->concat($tutorAnswers)->concat($studentComments)->sortBy('created_at');
+//        \Log::info($studentComments);
+        $messages = collect([$question])->concat($tutorAnswers)->concat($studentComments)->sortBy('created_at')->values();
+//        \Log::info($messages);
         return $messages;
     }
 
