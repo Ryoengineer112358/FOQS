@@ -7,11 +7,15 @@ import BackButton from "@/components/backButton";
 import QuestionContext from "@/components/questionContext";
 import ModalButton from "@/components/modalButton";
 import { useRouter } from 'next/router';
+import {useSelector} from 'react-redux';
+import {State} from "@/store"
 
 const Confirmation: NextPage = () => {
   const router = useRouter()
   const middleware = "student"
   const { user } = useAuth({ middleware: middleware })
+  const newQuestion = useSelector((state: State) => state.newQuestion);
+
 
   return (
     <>
@@ -20,7 +24,7 @@ const Confirmation: NextPage = () => {
       </DefaultLayout>
       <Grid container justifyContent="center">
         <h1 style={{color: "white", margin: 0}}>質問内容</h1>
-        <QuestionContext context={"画像の問題について質問です"}　/>
+        <QuestionContext content={newQuestion ? newQuestion.content: ""}　/>
         <h1 style={{color: "white", textAlign: "center", marginBottom: 0}}>質問講師</h1>
         <h2 style={{color: "white", textAlign: "center", margin: 0}}>五嶋先生(京都大学法学部)</h2>
         <BackButton />

@@ -5,7 +5,7 @@ import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 // Reducers
 const slice = createSlice({
   name: 'tutors',
-  initialState: [],
+  initialState: [] as Tutor[],
   reducers: {
   },
   extraReducers: (builder) => {
@@ -22,8 +22,8 @@ const slice = createSlice({
 export const fetchTutors = createAsyncThunk(
     'tutors/fetchTutors',
     async () => {
-      const responce = await axios.get('/api/tutors')
-      return responce.data.map((x: Tutor) => x)
+      const response = await axios.get<Tutor[]>('/api/tutors')
+      return response.data
   }
 )
 

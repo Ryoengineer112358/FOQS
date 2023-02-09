@@ -4,13 +4,14 @@ import Link from 'next/link';
 type Props = {
   text: string;
   href: string;
+  onClickHandler?: Function;
 };
 
 const MiddleButton = (props: Props) => {
 
     return (
       <>
-        <Link href={props.href}>
+        <Link href={props.href} onClick={(e: any) => props.onClickHandler}>
           <Button
             variant="outlined"
             sx={{

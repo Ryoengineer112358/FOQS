@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 
 type Props = {
-  context: string,
+  content: string,
 }
 
 const QuestionContext = (props: Props) => {
@@ -17,7 +17,7 @@ const QuestionContext = (props: Props) => {
           borderRadius: 8,
         }}
       >
-        {props.context}
+        {props.content}
       </Box>
     </>
   );
