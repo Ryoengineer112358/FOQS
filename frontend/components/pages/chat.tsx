@@ -19,8 +19,8 @@ const Chat = (props: Props) => {
   const {questionid} = query;
 
   const fetchMessages = () => {
-    isReady && axios.get(`/api/questions/${questionid}`).then(
-      (result) => setMessages(result.data.map((x: Message) => x))
+    isReady && axios.get<Message[]>(`/api/questions/${questionid}`).then(
+      (result) => setMessages(result.data)
     )
   }
 

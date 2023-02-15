@@ -11,8 +11,9 @@ const MiddleButton = (props: Props) => {
 
     return (
       <>
-        <Link href={props.href} onClick={(e: any) => props.onClickHandler}>
+        <Link href={props.href}>
           <Button
+            onClick={() => {if (props.onClickHandler) props.onClickHandler()}}
             variant="outlined"
             sx={{
               mt: 3,

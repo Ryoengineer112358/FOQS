@@ -12,7 +12,7 @@ const slice = createSlice({
   initialState: null as NewQuestion | null,
   reducers: {
     update: (state, action) => {
-      state = action.payload;
+      return action.payload;
     }
   },
 });
