@@ -4,6 +4,7 @@ import Link from 'next/link';
 type Props = {
   text: string;
   href: string;
+  onClickHandler?: Function;
 };
 
 const LargeButton = (props: Props) => {
@@ -12,6 +13,7 @@ const LargeButton = (props: Props) => {
     <>
       <Link href={props.href}>
       <Button
+        onClick={() => {if (props.onClickHandler) props.onClickHandler()}}
         variant="outlined"
         sx={{
           mt: 2,

@@ -15,7 +15,7 @@ const MyPage: NextPage = () => {
         <div></div>
       </DefaultLayout>
       <Grid container justifyContent="center">
-      <Profile id={1} name={user?.name} property="第一志望校" university="東京大学大学院"/>
+      <Profile name={user?.name} property="第一志望校" university="東京大学大学院"/>
       </Grid>
       <Grid container justifyContent="right">
         <HomeButton href="/student" />

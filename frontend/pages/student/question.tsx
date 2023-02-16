@@ -7,7 +7,7 @@ import BackButton from "@/components/backButton";
 import Textarea from "@/components/textarea";
 import MiddleButton from "@/components/middleButton";
 import {State, useAppDispatch} from "@/store";
-import {update} from "@/store/modules/newQuestion";
+import {setContent} from "@/store/modules/newQuestion";
 import {useSelector} from "react-redux";
 
 const Question: NextPage = () => {
@@ -24,7 +24,7 @@ const Question: NextPage = () => {
       <Grid container justifyContent="center">
         <Textarea value={questionContent} changeHandler={setQuestionContent}/>
         <BackButton />
-        <MiddleButton text={"次へ"} href={"tutorselect"} onClickHandler={() => dispatch(update({content: questionContent}))}/>
+        <MiddleButton text={"次へ"} href={"tutorselect"} onClickHandler={() => dispatch(setContent(questionContent))}/>
       </Grid>
 
 

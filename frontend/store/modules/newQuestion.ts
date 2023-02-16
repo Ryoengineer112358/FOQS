@@ -11,12 +11,19 @@ const slice = createSlice({
   name: 'newQuestion',
   initialState: null as NewQuestion | null,
   reducers: {
-    update: (state, action) => {
-      return action.payload;
-    }
-  },
+    setContent: (state, action) => {
+      return { content: action.payload, tutorId: state?.tutorId }
+      // return {content: action.payload};
+    },
+    setTutorId: (state, action) => {
+      return { content: state?.content ?? '', tutorId: action.payload }
+      // return state ?
+      //   {content: state.content, tutorId: action.payload}
+      // : {content: "", tutorId: action.payload};
+    },
+  }
 });
 // Action Creators
-export const {update} = slice.actions;
+export const {setContent, setTutorId} = slice.actions;
 
 export default slice.reducer;
