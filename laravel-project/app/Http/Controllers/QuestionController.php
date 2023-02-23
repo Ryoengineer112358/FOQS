@@ -14,7 +14,7 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $studentAuth = \Auth::guard('students')->check();
         $tutorAuth = \Auth::guard('tutors')->check();
@@ -28,8 +28,11 @@ class QuestionController extends Controller
             $query = StudentQuestion::where('tutor_id', \Auth::id());
         }
 
-        $questions = $query->orderByDesc('updated_at')
-            ->with(
+
+        if ($request->solved_only) {
+            $query = $query->whereNotNull('solved_at');
+        } else {
+            $query = $query->with(
                 [
                     'tutor_answers' => function ($query) {
                         $query->orderBy('created_at', 'desc');
@@ -38,8 +41,10 @@ class QuestionController extends Controller
                         $query->orderBy('created_at', 'desc');
                     },
                 ]
-            )
-            ->get();
+            );
+        }
+
+        $questions = $query->orderByDesc('updated_at')->get();
 
         foreach ($questions as $question) {
             $question->tutor_answers = $question->tutor_answers->sortByDesc("created_at");
@@ -128,23 +133,26 @@ class QuestionController extends Controller
             abort(403);
         }
 
-        $studentAuth = \Auth::guard('students')->check();
-        $tutorAuth = \Auth::guard('tutors')->check();
+        \DB::transaction(function () use($question, $request) {
+            $studentAuth = \Auth::guard('students')->check();
+            $tutorAuth = \Auth::guard('tutors')->check();
+            $question->touch();
 
-        if ($studentAuth) {
-            StudentComment::create([
-                'content' => $request->message,
-                'student_question_id' => $question->id,
-                'tutor_id' => $question->tutor_id,
-            ]);
-        }
+            if ($studentAuth) {
+                StudentComment::create([
+                    'content' => $request->message,
+                    'student_question_id' => $question->id,
+                    'tutor_id' => $question->tutor_id,
+                ]);
+            }
 
-        if ($tutorAuth) {
-            TutorAnswer::create([
-                'content' => $request->message,
-                'student_question_id' => $question->id,
-                'tutor_id' => $question->tutor_id,
-            ]);
-        }
+            if ($tutorAuth) {
+                TutorAnswer::create([
+                    'content' => $request->message,
+                    'student_question_id' => $question->id,
+                    'tutor_id' => $question->tutor_id,
+                ]);
+            }
+        });
     }
 }
