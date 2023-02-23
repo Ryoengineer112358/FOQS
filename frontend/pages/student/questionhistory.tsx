@@ -5,10 +5,20 @@ import * as React from "react";
 import DefaultLayout from "@/components/defaultLayout";
 import CardMessage from "@/components/cardMessage";
 import HomeButton from "@/components/homeButton";
+import {useEffect, useState} from "react";
+import {StudentQuestion} from "@/types";
+import axios from "@/lib/axios";
 
 const QuestionHistory: NextPage = () => {
   const middleware = "student"
   const { user } = useAuth({ middleware: middleware })
+  const [questions, setQuestions] = useState<Array<StudentQuestion>>([]);
+
+  useEffect(() => {
+    axios.get<StudentQuestion[]>('/api/questions?solved_only=true').then(
+      (result) => setQuestions( result.data)
+    )
+  }, [])
 
   return (
     <>
@@ -17,11 +27,9 @@ const QuestionHistory: NextPage = () => {
       </DefaultLayout>
       <Grid container justifyContent="center">
         <Grid xs={12}>
-          <CardMessage text="画像の問題について質問です" href={""}/>
-          <CardMessage text="画像の問題について質問です" href={""}/>
-          <CardMessage text="画像の問題について質問です" href={""}/>
-          <CardMessage text="画像の問題について質問です" href={""}/>
-          <CardMessage text="画像の問題について質問です" href={""}/>
+          {questions.map(x =>
+            <CardMessage key={x.id} text={x.content} href={`${middleware}/chat/${x.id}`} />
+          )}
         </Grid>
       </Grid>
       <Grid container justifyContent="right">

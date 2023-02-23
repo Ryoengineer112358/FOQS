@@ -28,7 +28,7 @@ class QuestionController extends Controller
             $query = StudentQuestion::where('tutor_id', \Auth::id());
         }
 
-
+        \Log::info($request->all());
         if ($request->solved_only) {
             $query = $query->whereNotNull('solved_at');
         } else {

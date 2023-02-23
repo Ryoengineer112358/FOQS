@@ -17,8 +17,8 @@ const Home = (props: Props) => {
   const [questions, setQuestions] = useState<Array<StudentQuestion>>([]);
 
   useEffect(() => {
-    axios.get('/api/questions').then(
-      (result) => setQuestions( result.data.map((x: StudentQuestion) => x))
+    axios.get<StudentQuestion[]>('/api/questions').then(
+      (result) => setQuestions( result.data)
     )
   }, [])
 
