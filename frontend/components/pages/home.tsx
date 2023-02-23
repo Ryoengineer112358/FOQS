@@ -18,7 +18,7 @@ const Home = (props: Props) => {
 
   useEffect(() => {
     axios.get<StudentQuestion[]>('/api/questions').then(
-      (result) => setQuestions( result.data)
+      result => setQuestions(result.data)
     )
   }, [])
 

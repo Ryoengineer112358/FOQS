@@ -6,10 +6,8 @@ import DefaultLayout from "@/components/defaultLayout";
 import BackButton from "@/components/backButton";
 import Textarea from "@/components/textarea";
 import MiddleButton from "@/components/middleButton";
-import {State, useAppDispatch} from "@/store";
+import {useAppDispatch} from "@/store";
 import {setContent} from "@/store/modules/newQuestion";
-import {useSelector} from "react-redux";
-import {string} from "prop-types";
 
 const Question: NextPage = () => {
   const middleware = "student"
@@ -36,8 +34,6 @@ const Question: NextPage = () => {
         <BackButton />
         <MiddleButton text={"次へ"} href={"tutorselect"} onClickHandler={() => dispatch(setContent(questionContent))}/>
       </Grid>
-
-
     </>
   )
 }

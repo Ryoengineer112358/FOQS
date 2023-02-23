@@ -16,7 +16,7 @@ const QuestionHistory: NextPage = () => {
 
   useEffect(() => {
     axios.get<StudentQuestion[]>('/api/questions?solved_only=true').then(
-      (result) => setQuestions( result.data)
+      result => setQuestions(result.data)
     )
   }, [])
 
