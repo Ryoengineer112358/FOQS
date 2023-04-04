@@ -16,6 +16,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       },
       secondary: {
         main: '#ffffff',
+      },
+      info: {
+        main: '#1976D2',
       }
     }
   })

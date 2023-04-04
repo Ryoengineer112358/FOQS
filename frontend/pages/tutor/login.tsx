@@ -74,14 +74,18 @@ const Login: NextPage = () => {
           {/* Remember Me */}
           <Box>
             <FormControlLabel
-                label="ログインしたままにする"
-                control={
-                  <Checkbox
-                      id="remember_me"
-                      name="remember"
-                      onChange={event => setShouldRemember(event.target.checked)}
-                  />
-                }
+              label="ログインしたままにする"
+              control={
+                <Checkbox
+                  id="remember_me"
+                  name="remember"
+                  color="info"
+                  checked={shouldRemember}
+                  onChange={event =>
+                    setShouldRemember(event.target.checked)
+                  }
+                />
+              }
             />
           </Box>
           <Container>
