@@ -1,6 +1,6 @@
-import {useAuth} from '@/hooks/auth'
-import {FormEventHandler, useEffect, useState} from 'react'
-import {useRouter} from 'next/router'
+import {useAuth} from '@/hooks/auth';
+import {FormEventHandler, useEffect, useState} from 'react';
+import {useRouter} from 'next/router';
 import {NextPage} from "next";
 import Link from "next/link";
 import {Box, Button, Card, Checkbox, FormControlLabel, TextField, Container} from "@mui/material";
@@ -21,8 +21,10 @@ const Login: NextPage = () => {
   const [password, setPassword] = useState('')
   const [shouldRemember, setShouldRemember] = useState(false)
   const [errors, setErrors] = useState([])
+  //ログインページでは不要
   const [status, setStatus] = useState<String|null>(null)
 
+  //ログインページでは不要
   useEffect(() => {
     const reset = router.query.reset
     if (typeof reset === "string" && reset.length > 0 && errors.length === 0) {
@@ -40,7 +42,7 @@ const Login: NextPage = () => {
 
   return (
     <DefaultLayout middleware={middleware}>
-      <Card sx={{p: 3, borderRadius: 8}}>
+      <Card sx={{p: 4, borderRadius: 8}}>
         <Box
             onSubmit={submitForm}
             component="form"
@@ -55,6 +57,7 @@ const Login: NextPage = () => {
                 onChange={event => setEmail(event.target.value)}
                 required
                 autoFocus
+                sx={{ width: "80%" }}
             />
           </Box>
 
@@ -68,11 +71,12 @@ const Login: NextPage = () => {
                 onChange={event => setPassword(event.target.value)}
                 required
                 autoComplete="current-password"
+                sx={{ width: "80%" }}
             />
           </Box>
 
           {/* Remember Me */}
-          <Box>
+          <Box sx={{marginTop: "0.4rem"}}>
             <FormControlLabel
               label="ログインしたままにする"
               control={
@@ -88,12 +92,24 @@ const Login: NextPage = () => {
               }
             />
           </Box>
-          <Container>
-            <Button type="submit" variant="contained">ログイン</Button>
+          <Container sx={{marginTop: "0.4rem"}}>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              sx={{fontSize: '1.2rem', py: '0.8rem', px: '2.4rem'}}
+            >
+              ログイン
+            </Button>
           </Container>
-          <Container>
-            <Link href="/forgot-password">
+          <Container sx={{ marginTop: "0.8rem" }}>
+            <Link href="/student/forgot-password">
               パスワードを忘れた場合
+            </Link>
+          </Container>
+          <Container sx={{ marginTop: "0.8rem" }}>
+            <Link href="/student/register">
+              新規登録
             </Link>
           </Container>
         </Box>

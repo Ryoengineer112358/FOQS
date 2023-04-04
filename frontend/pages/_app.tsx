@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         main: '#ffffff',
       },
       secondary: {
-        main: '#ffffff',
+        main: '#000000',
       },
       info: {
         main: '#1976D2',
