@@ -23,7 +23,7 @@ class StudentSeeder extends Seeder
             'high_school'=>'巣鴨高校',
             'first_choice_university'=>'東京大学',
             'first_choice_faculty'=>'文科三類',
-            'age'=> 26,
+            'birth_date'=> '1996-07-28',
             'gender'=> 0 ,
         ]);
     }

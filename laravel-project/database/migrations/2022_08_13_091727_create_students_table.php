@@ -21,8 +21,9 @@ return new class extends Migration
             $table->string('password', 100);
             $table->string('high_school', 100);
             $table->string('first_choice_university', 100);
-            $table->unsignedTinyInteger('age');
-            $table->tinyInteger('sex');
+            $table->string('first_choice_faculty', 100);
+            $table->date('birth_date');
+            $table->tinyInteger('gender');
             $table->rememberToken();
             $table->timestamps();
             $table->dateTime('quit_at')->nullable();
