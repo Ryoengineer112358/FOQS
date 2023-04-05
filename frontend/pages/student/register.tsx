@@ -3,7 +3,7 @@ import {FormEventHandler, useEffect, useState} from "react";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
 import Link from "next/link";
-import {Box, Button, Card, TextField, Container} from "@mui/material";
+import { Box, Button, Card, Grid, TextField, Container, InputAdornment, Select, MenuItem } from "@mui/material";
 import DefaultLayout from "@/components/defaultLayout";
 
 const Register: NextPage = () => {
@@ -17,10 +17,16 @@ const Register: NextPage = () => {
     loginDestination: loginDestination
   });
 
-  const [name, setName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
+  const [highSchool, setHighSchool] = useState("");
+  const [firstChoiceUniversity, setFirstChoiceUniversity] = useState("");
+  const [firstChoiceFaculty, setFirstChoiceFaculty] = useState("");
+  const [age, setAge] = useState("");
+  const [gender, setGender] = useState("");
   const [errors, setErrors] = useState([]);
   const [status, setStatus] = useState<String | null>(null);
 
@@ -28,10 +34,16 @@ const Register: NextPage = () => {
     event.preventDefault();
 
     register({
-      name,
+      last_name: lastName,
+      first_name: firstName,
       email,
       password,
       password_confirmation: passwordConfirmation,
+      high_school: highSchool,
+      first_choice_university: firstChoiceUniversity,
+      first_choice_faculty: firstChoiceFaculty,
+      age,
+      gender,
       setErrors,
       setStatus
     });
@@ -40,20 +52,33 @@ const Register: NextPage = () => {
   return (
     <DefaultLayout middleware={middleware}>
       <Card sx={{ p: 4, borderRadius: 8 }}>
-        <Box onSubmit={submitForm} component="form">
-          {/* Name */}
-          <Box>
-            <TextField
-              id="name"
-              type="text"
-              value={name}
-              label="名前"
-              onChange={(event) => setName(event.target.value)}
-              required
-              autoFocus
-              sx={{ width: "80%" }}
-            />
-          </Box>
+        {/* 苗字と名前 */}
+        <Box sx={{ marginTop: "0.8rem" }}>
+          <Grid container spacing={1}>
+            <Grid item xs={5}>
+              <TextField
+                id="last_name"
+                type="text"
+                value={lastName}
+                label="苗字"
+                onChange={(event) => setLastName(event.target.value)}
+                required
+                autoFocus
+                sx={{ width: "100%" }}
+              />
+            </Grid>
+            <Grid item xs={5}>
+              <TextField
+                id="first_name"
+                type="text"
+                value={firstName}
+                label="名前"
+                onChange={(event) => setFirstName(event.target.value)}
+                required
+                sx={{ width: "100%" }}
+              />
+            </Grid>
+          </Grid>
 
           {/* Email Address */}
           <Box sx={{ marginTop: "0.8rem" }}>
@@ -94,6 +119,82 @@ const Register: NextPage = () => {
               required
               sx={{ width: "80%" }}
             />
+          </Box>
+
+          {/* 高校名 */}
+          <Box sx={{ marginTop: "0.8rem" }}>
+            <TextField
+              id="high_school"
+              type="text"
+              value={highSchool}
+              label="高校名"
+              onChange={(event) => setHighSchool(event.target.value)}
+              InputProps={{
+                endAdornment: <InputAdornment position="end">高校</InputAdornment>,
+              }}
+              required
+              sx={{ width: "80%" }}
+            />
+          </Box>
+
+          {/* 第一志望大学 */}
+          <Box sx={{ marginTop: "0.8rem" }}>
+            <TextField
+              id="preferred_university"
+              type="text"
+              value={firstChoiceUniversity}
+              label="第一志望大学"
+              onChange={(event) => setFirstChoiceUniversity(event.target.value)}
+              InputProps={{
+                endAdornment: <InputAdornment position="end">大学</InputAdornment>,
+              }}
+              required
+              sx={{ width: "80%" }}
+            />
+          </Box>
+
+          {/* 第一志望学部 */}
+          <Box sx={{ marginTop: "0.8rem" }}>
+            <TextField
+              id="preferred_faculty"
+              type="text"
+              value={firstChoiceFaculty}
+              label="第一志望学部"
+              onChange={(event) => setFirstChoiceFaculty(event.target.value)}
+              InputProps={{
+                endAdornment: <InputAdornment position="end">学部</InputAdornment>,
+              }}
+              required
+              sx={{ width: "80%" }}
+            />
+          </Box>
+
+          {/* 年齢 */}
+          <Box sx={{ marginTop: "0.8rem" }}>
+            <TextField
+              id="age"
+              type="number"
+              value={age}
+              label="年齢"
+              onChange={(event) => setAge(event.target.value)}
+              required
+              sx={{ width: "80%" }}
+            />
+          </Box>
+
+          {/* 性別 */}
+          <Box sx={{ marginTop: "0.8rem" }}>
+            <Select
+              id="gender"
+              value={gender}
+              onChange={(event) => setGender(event.target.value)}
+              required
+              sx={{ width: "80%" }}
+            >
+              <MenuItem value="男">男</MenuItem>
+              <MenuItem value="女">女</MenuItem>
+              <MenuItem value="無回答">無回答</MenuItem>
+            </Select>
           </Box>
 
           <Container sx={{ marginTop: "0.8rem" }}>
