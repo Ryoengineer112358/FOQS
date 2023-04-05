@@ -140,7 +140,7 @@ const Register: NextPage = () => {
           {/* 第一志望大学 */}
           <Box sx={{ marginTop: "0.8rem" }}>
             <TextField
-              id="preferred_university"
+              id="first_choice_university"
               type="text"
               value={firstChoiceUniversity}
               label="第一志望大学"
@@ -156,7 +156,7 @@ const Register: NextPage = () => {
           {/* 第一志望学部 */}
           <Box sx={{ marginTop: "0.8rem" }}>
             <TextField
-              id="preferred_faculty"
+              id="first_choice_faculty"
               type="text"
               value={firstChoiceFaculty}
               label="第一志望学部"
