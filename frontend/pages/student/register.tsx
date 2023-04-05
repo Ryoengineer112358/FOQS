@@ -3,7 +3,7 @@ import {FormEventHandler, useEffect, useState} from "react";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
 import Link from "next/link";
-import { Box, Button, Card, Grid, TextField, Container, InputAdornment, Select, MenuItem } from "@mui/material";
+import { Box, Button, Card, Grid, TextField, Container, FormControl, InputLabel, InputAdornment, Select, MenuItem } from "@mui/material";
 import DefaultLayout from "@/components/defaultLayout";
 
 const Register: NextPage = () => {
@@ -25,7 +25,7 @@ const Register: NextPage = () => {
   const [highSchool, setHighSchool] = useState("");
   const [firstChoiceUniversity, setFirstChoiceUniversity] = useState("");
   const [firstChoiceFaculty, setFirstChoiceFaculty] = useState("");
-  const [age, setAge] = useState("");
+  const [birthDate, setBirthDate] = useState("");
   const [gender, setGender] = useState("");
   const [errors, setErrors] = useState([]);
   const [status, setStatus] = useState<String | null>(null);
@@ -42,7 +42,7 @@ const Register: NextPage = () => {
       high_school: highSchool,
       first_choice_university: firstChoiceUniversity,
       first_choice_faculty: firstChoiceFaculty,
-      age,
+      birth_date: birthDate,
       gender,
       setErrors,
       setStatus
@@ -53,7 +53,7 @@ const Register: NextPage = () => {
     <DefaultLayout middleware={middleware}>
       <Card sx={{ p: 4, borderRadius: 8 }}>
         {/* 苗字と名前 */}
-        <Box sx={{ marginTop: "0.8rem" }}>
+        <Box>
           <Grid container spacing={1}>
             <Grid item xs={5}>
               <TextField
@@ -169,32 +169,46 @@ const Register: NextPage = () => {
             />
           </Box>
 
-          {/* 年齢 */}
+          {/* 生年月日 */}
           <Box sx={{ marginTop: "0.8rem" }}>
             <TextField
-              id="age"
-              type="number"
-              value={age}
-              label="年齢"
-              onChange={(event) => setAge(event.target.value)}
+              id="birth_date"
+              type="date"
+              value={birthDate}
+              label={birthDate ? "生年月日" : ""}
+              onChange={(event) => setBirthDate(event.target.value)}
               required
               sx={{ width: "80%" }}
+              InputLabelProps={{
+                shrink: !!birthDate,
+              }}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    {!birthDate && "生年月日"}
+                  </InputAdornment>
+                ),
+              }}
             />
           </Box>
 
           {/* 性別 */}
           <Box sx={{ marginTop: "0.8rem" }}>
-            <Select
-              id="gender"
-              value={gender}
-              onChange={(event) => setGender(event.target.value)}
-              required
-              sx={{ width: "80%" }}
-            >
-              <MenuItem value="男">男</MenuItem>
-              <MenuItem value="女">女</MenuItem>
-              <MenuItem value="無回答">無回答</MenuItem>
-            </Select>
+            <FormControl fullWidth sx={{ width: "80%" }}>
+              <InputLabel id="gender-label" htmlFor="gender">性別</InputLabel>
+              <Select
+                labelId="gender-label"
+                id="gender"
+                value={gender}
+                onChange={(event) => setGender(event.target.value)}
+                required
+                label="性別"
+              >
+                <MenuItem value="男">男</MenuItem>
+                <MenuItem value="女">女</MenuItem>
+                <MenuItem value="無回答">無回答</MenuItem>
+              </Select>
+            </FormControl>
           </Box>
 
           <Container sx={{ marginTop: "0.8rem" }}>
