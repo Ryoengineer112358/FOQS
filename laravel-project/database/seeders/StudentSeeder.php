@@ -22,9 +22,9 @@ class StudentSeeder extends Seeder
             'password'=>bcrypt('password'),
             'high_school'=>'巣鴨高校',
             'first_choice_university'=>'東京大学',
+            'first_choice_faculty'=>'文科三類',
             'age'=> 26,
-            'sex'=> 0 ,
+            'gender'=> 0 ,
         ]);
     }
 }
-//name, email, password, high_school, first_choice_university, age, sex
