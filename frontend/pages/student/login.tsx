@@ -3,7 +3,7 @@ import {FormEventHandler, useEffect, useState} from 'react';
 import {useRouter} from 'next/router';
 import {NextPage} from "next";
 import Link from "next/link";
-import {Box, Button, Card, Checkbox, FormControlLabel, TextField, Container} from "@mui/material";
+import {Box, Button, Grid, Card, Checkbox, FormControlLabel, TextField, Container} from "@mui/material";
 import DefaultLayout from "@/components/defaultLayout";
 
 const Login: NextPage = () => {
@@ -43,13 +43,14 @@ const Login: NextPage = () => {
   return (
     <DefaultLayout middleware={middleware}>
       <Card sx={{ p: 4, borderRadius: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <Box
+        <Grid
+          container
           onSubmit={submitForm}
           component="form"
           sx={{ width: '100%', maxWidth: '400px' }}
         >
           {/* Email Address */}
-          <Box sx={{ width: '100%' }}>
+          <Grid item xs={12}>
             <TextField
               id="email"
               type="email"
@@ -60,10 +61,10 @@ const Login: NextPage = () => {
               autoFocus
               sx={{ width: "100%" }}
             />
-          </Box>
+          </Grid>
 
           {/* Password */}
-          <Box sx={{ width: '100%', marginTop: "0.8rem" }}>
+          <Grid item xs={12} sx={{ marginTop: "0.8rem" }}>
             <TextField
               id="password"
               type="password"
@@ -74,10 +75,10 @@ const Login: NextPage = () => {
               autoComplete="current-password"
               sx={{ width: "100%" }}
             />
-          </Box>
+          </Grid>
 
           {/* Remember Me */}
-          <Box sx={{ width: '100%', marginTop: "0.8rem", display: 'flex', justifyContent: 'center' }}>
+          <Grid item xs={12} sx={{ marginTop: "0.8rem", display: 'flex', justifyContent: 'center' }}>
             <FormControlLabel
               label="ログインしたままにする"
               control={
@@ -92,8 +93,8 @@ const Login: NextPage = () => {
                 />
               }
             />
-          </Box>
-          <Box sx={{ width: '100%'}}>
+          </Grid>
+          <Grid item xs={12}>
             <Button
               type="submit"
               variant="contained"
@@ -102,8 +103,8 @@ const Login: NextPage = () => {
             >
               ログイン
             </Button>
-          </Box>
-        </Box>
+          </Grid>
+        </Grid>
         <Container sx={{ marginTop: "2rem", display: 'flex', justifyContent: 'center', width: '100%' }}>
           <Link href="/student/forgotpassword">
             パスワードを忘れた場合
