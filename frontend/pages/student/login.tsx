@@ -42,41 +42,42 @@ const Login: NextPage = () => {
 
   return (
     <DefaultLayout middleware={middleware}>
-      <Card sx={{p: 4, borderRadius: 8}}>
+      <Card sx={{ p: 4, borderRadius: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <Box
-            onSubmit={submitForm}
-            component="form"
+          onSubmit={submitForm}
+          component="form"
+          sx={{ width: '100%', maxWidth: '400px' }}
         >
           {/* Email Address */}
-          <Box>
+          <Box sx={{ width: '100%' }}>
             <TextField
-                id="email"
-                type="email"
-                value={email}
-                label="Eメール"
-                onChange={event => setEmail(event.target.value)}
-                required
-                autoFocus
-                sx={{ width: "80%" }}
+              id="email"
+              type="email"
+              value={email}
+              label="Eメール"
+              onChange={(event) => setEmail(event.target.value)}
+              required
+              autoFocus
+              sx={{ width: "100%" }}
             />
           </Box>
 
           {/* Password */}
-          <Box sx={{marginTop: "0.8rem"}}>
+          <Box sx={{ width: '100%', marginTop: "0.8rem" }}>
             <TextField
-                id="password"
-                type="password"
-                value={password}
-                label="パスワード"
-                onChange={event => setPassword(event.target.value)}
-                required
-                autoComplete="current-password"
-                sx={{ width: "80%" }}
+              id="password"
+              type="password"
+              value={password}
+              label="パスワード"
+              onChange={(event) => setPassword(event.target.value)}
+              required
+              autoComplete="current-password"
+              sx={{ width: "100%" }}
             />
           </Box>
 
           {/* Remember Me */}
-          <Box sx={{marginTop: "0.4rem"}}>
+          <Box sx={{ width: '100%', marginTop: "0.8rem", display: 'flex', justifyContent: 'center' }}>
             <FormControlLabel
               label="ログインしたままにする"
               control={
@@ -85,34 +86,34 @@ const Login: NextPage = () => {
                   name="remember"
                   color="info"
                   checked={shouldRemember}
-                  onChange={event =>
+                  onChange={(event) =>
                     setShouldRemember(event.target.checked)
                   }
                 />
               }
             />
           </Box>
-          <Container sx={{marginTop: "0.4rem"}}>
+          <Box sx={{ width: '100%'}}>
             <Button
               type="submit"
               variant="contained"
               color="primary"
-              sx={{fontSize: '1.2rem', py: '0.8rem', px: '2.4rem'}}
+              sx={{ width: '100%', fontSize: '1.2rem', py: '0.8rem', px: '2.4rem', mt: '1rem' }}
             >
               ログイン
             </Button>
-          </Container>
-          <Container sx={{ marginTop: "0.8rem" }}>
-            <Link href="/student/forgotpassword">
-              パスワードを忘れた場合
-            </Link>
-          </Container>
-          <Container sx={{ marginTop: "0.8rem" }}>
-            <Link href="/student/register">
-              新規登録
-            </Link>
-          </Container>
+          </Box>
         </Box>
+        <Container sx={{ marginTop: "2rem", display: 'flex', justifyContent: 'center', width: '100%' }}>
+          <Link href="/student/forgotpassword">
+            パスワードを忘れた場合
+          </Link>
+        </Container>
+        <Container sx={{ marginTop: "0.8rem", display: 'flex', justifyContent: 'center', width: '100%' }}>
+          <Link href="/student/register">
+            新規登録
+          </Link>
+        </Container>
       </Card>
     </DefaultLayout>
   )

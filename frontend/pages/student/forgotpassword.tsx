@@ -36,7 +36,7 @@ const ForgotPassword: NextPage = () => {
           }}
         >
           <Typography
-            variant="h5"
+            variant="h6"
             align="center" // 中央揃えに
             fontWeight="bold"
             sx={{ marginBottom: '1rem' }} // 上下にスペースを空ける
@@ -77,7 +77,7 @@ const ForgotPassword: NextPage = () => {
                 py: '0.8rem',
                 px: '2.4rem',
                 textTransform: 'none',
-                width: '80%', // 幅を80%に
+                width: '100%', // 幅を80%に
               }}
             >
               送信
