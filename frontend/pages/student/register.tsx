@@ -64,7 +64,7 @@ const Register: NextPage = () => {
                   label="苗字"
                   onChange={(event) => setLastName(event.target.value)}
                   required
-                  autoFocus
+                  //autoFocus
                   sx={{ width: "100%" }}
                 />
               </Grid>

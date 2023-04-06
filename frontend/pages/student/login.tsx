@@ -103,7 +103,7 @@ const Login: NextPage = () => {
             </Button>
           </Container>
           <Container sx={{ marginTop: "0.8rem" }}>
-            <Link href="/student/forgot-password">
+            <Link href="/student/forgotpassword">
               パスワードを忘れた場合
             </Link>
           </Container>
