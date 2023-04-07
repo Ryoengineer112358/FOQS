@@ -155,6 +155,16 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'last_name' => '苗字',
+        'first_name' => '名前',
+        'email' => 'メールアドレス',
+        'password' => 'パスワード',
+        'high_school' => '高校名',
+        'first_choice_university' => '第一志望大学',
+        'first_choice_faculty' => '第一志望学部',
+        'birth_date' => '生年月日',
+        'gender' => '性別',
+    ],
 
 ];
