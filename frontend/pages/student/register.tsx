@@ -5,6 +5,7 @@ import { NextPage } from "next";
 import Link from "next/link";
 import { Box, Button, Card, Grid, TextField, Container, FormControl, InputLabel, InputAdornment, Select, MenuItem } from "@mui/material";
 import DefaultLayout from "@/components/defaultLayout";
+import InputError from "@/components/inputError";
 
 const Register: NextPage = () => {
   const middleware = "guest";
@@ -27,7 +28,11 @@ const Register: NextPage = () => {
   const [firstChoiceFaculty, setFirstChoiceFaculty] = useState("");
   const [birthDate, setBirthDate] = useState("");
   const [gender, setGender] = useState("");
-  const [errors, setErrors] = useState([]);
+  interface ValidationErrorMessages {
+    [key: string]: string[];
+  }
+
+  const [errors, setErrors] = useState<ValidationErrorMessages>({});
   const [status, setStatus] = useState<String | null>(null);
 
   const submitForm: FormEventHandler<HTMLFormElement> = (event) => {
@@ -68,6 +73,7 @@ const Register: NextPage = () => {
                     sx={{ width: "100%" }}
                   />
                 </Grid>
+                <InputError messages={errors.last_name} className="mt-2" />
                 <Grid item xs={6}>
                   <TextField
                     id="first_name"
