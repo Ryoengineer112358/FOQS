@@ -3,7 +3,7 @@ import {FormEventHandler, useEffect, useState} from "react";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
 import Link from "next/link";
-import { Box, Button, Card, Grid, TextField, Container, FormControl, InputLabel, InputAdornment, Select, MenuItem } from "@mui/material";
+import { Box, Button, Card, Grid, TextField, Container, FormControl, FormHelperText, InputLabel, InputAdornment, Select, MenuItem } from "@mui/material";
 import DefaultLayout from "@/components/defaultLayout";
 import InputError from "@/components/inputError";
 
@@ -71,9 +71,10 @@ const Register: NextPage = () => {
                     onChange={(event) => setLastName(event.target.value)}
                     required
                     sx={{ width: "100%" }}
+                    error={!!errors.last_name}
                   />
+                  <FormHelperText error>{errors.last_name?.[0]}</FormHelperText>
                 </Grid>
-                <InputError messages={errors.last_name} className="mt-2" />
                 <Grid item xs={6}>
                   <TextField
                     id="first_name"
@@ -83,7 +84,9 @@ const Register: NextPage = () => {
                     onChange={(event) => setFirstName(event.target.value)}
                     required
                     sx={{ width: "100%" }}
+                    error={!!errors.first_name}
                   />
+                  <FormHelperText error>{errors.first_name?.[0]}</FormHelperText>
                 </Grid>
               </Grid>
             </Box>
@@ -99,7 +102,9 @@ const Register: NextPage = () => {
                   onChange={(event) => setEmail(event.target.value)}
                   required
                   sx={{ width: "100%" }}
+                  error={!!errors.email}
                 />
+                <FormHelperText error>{errors.email?.[0]}</FormHelperText>
               </Box>
 
               {/* Password */}
@@ -112,7 +117,9 @@ const Register: NextPage = () => {
                   onChange={(event) => setPassword(event.target.value)}
                   required
                   sx={{ width: "100%" }}
+                  error={!!errors.password}
                 />
+                <FormHelperText error>{errors.password?.[0]}</FormHelperText>
               </Box>
 
               {/* Password Confirmation */}
@@ -127,7 +134,9 @@ const Register: NextPage = () => {
                   }
                   required
                   sx={{ width: "100%" }}
+                  error={!!errors.password}
                 />
+                <FormHelperText error>{errors.password?.[0]}</FormHelperText>
               </Box>
 
               {/* 高校名 */}
@@ -143,7 +152,9 @@ const Register: NextPage = () => {
                   }}
                   required
                   sx={{ width: "100%" }}
+                  error={!!errors.high_school}
                 />
+　　　　　　　　　 <FormHelperText error>{errors.high_school?.[0]}</FormHelperText>
               </Box>
 
               {/* 第一志望大学 */}
@@ -159,7 +170,9 @@ const Register: NextPage = () => {
                   }}
                   required
                   sx={{ width: "100%" }}
+                  error={!!errors.first_choice_university}
                 />
+                <FormHelperText error>{errors.first_choice_university?.[0]}</FormHelperText>
               </Box>
 
               {/* 第一志望学部 */}
@@ -175,7 +188,9 @@ const Register: NextPage = () => {
                   }}
                   required
                   sx={{ width: "100%" }}
+                  error={!!errors.first_choice_faculty}
                 />
+                <FormHelperText error>{errors.first_choice_faculty?.[0]}</FormHelperText>
               </Box>
 
               {/* 生年月日 */}
@@ -198,13 +213,15 @@ const Register: NextPage = () => {
                       </InputAdornment>
                     ),
                   }}
+                  error={!!errors.birth_date}
                 />
+                <FormHelperText error>{errors.birth_date?.[0]}</FormHelperText>
               </Box>
 
               {/* 性別 */}
               <Grid container justifyContent="center" sx={{ marginTop: "0.8rem" }}>
                 <Grid item xs={5}>
-                  <FormControl fullWidth>
+                  <FormControl fullWidth　error={!!errors.gender}>
                     <InputLabel id="gender-label" htmlFor="gender">性別</InputLabel>
                     <Select
                       labelId="gender-label"
@@ -218,6 +235,7 @@ const Register: NextPage = () => {
                       <MenuItem value={1}>女</MenuItem>
                       <MenuItem value={2}>無回答</MenuItem>
                     </Select>
+                    <FormHelperText error>{errors.gender?.[0]}</FormHelperText>
                   </FormControl>
                 </Grid>
               </Grid>
