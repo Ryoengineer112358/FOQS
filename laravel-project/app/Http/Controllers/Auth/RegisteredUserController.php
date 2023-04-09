@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Student;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Auth\Events\Verified;
+use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -48,10 +50,10 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
+        $user->sendEmailVerificationNotification();
+
         Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);
     }
-
-
 }

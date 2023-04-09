@@ -43,10 +43,12 @@ return [
         'students' => [
             'driver' => 'session',
             'provider' => 'students',
+            'verified' => true,
         ],
         'tutors' => [
             'driver' => 'session',
             'provider' => 'tutors',
+            'verified' => true,
         ],
     ],
 
