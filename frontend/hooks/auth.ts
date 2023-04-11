@@ -117,6 +117,7 @@ export const useAuth = ({ middleware, redirectIfAuthenticated, loginDestination 
     else if (middleware === 'tutor' && user && isStudent(user)) router.push('/student')
     else if (middleware === 'student' && user && isTutor(user)) router.push('/tutor')
     else if (window.location.pathname === "/verify-email" && user?.email_verified_at && redirectIfAuthenticated) router.push(redirectIfAuthenticated)
+
   }, [user, error])
 
   return {

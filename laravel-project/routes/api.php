@@ -24,11 +24,13 @@ Route::group(['middleware' => ['auth:students,tutors']], function () {
     Route::get('/myself', function (Request $request) {
         return $request->user();
     });
-    Route::post('/questions/{question}', [QuestionController::class, 'reply']);
-    Route::apiResource('questions', QuestionController::class)->only('index','show');
+    Route::group(['middleware' => ['verified']], function () {
+        Route::post('/questions/{question}', [QuestionController::class, 'reply']);
+        Route::apiResource('questions', QuestionController::class)->only('index', 'show');
+    });
 });
 
-Route::group(['middleware' => ['auth:students']], function () {
+Route::group(['middleware' => ['auth:students', 'verified']], function () {
     Route::get('/tutors', [TutorController::class, 'index']);
 });
 
