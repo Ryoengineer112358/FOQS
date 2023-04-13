@@ -10,7 +10,7 @@ const Top: NextPage = () => {
     <>
       <Home middleware={"student"} />
       <Grid container justifyContent="center">
-        <MiddleButton text="質問履歴" href="student/questionhistory"/>
+        <MiddleButton text="質問履歴" href="student/question-history"/>
         <MiddleButton text="質問する" href={"student/question"}/>
       </Grid>
     </>

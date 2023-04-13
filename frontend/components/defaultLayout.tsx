@@ -21,16 +21,16 @@ type Item = {
 
 const navItemsForStudent: Item[] = [
   {'label' : 'ホーム', 'link': '/student'},
-  {'label' : 'マイページ', 'link': '/student/mypage'},
-  {'label' : '質問履歴', 'link': '/student/questionhistory'},
+  {'label' : 'マイページ', 'link': '/student/my-page'},
+  {'label' : '質問履歴', 'link': '/student/question-history'},
   {'label' : '講師一覧', 'link': '/student/tutors'},
 ]
 
 const navItemsForTutor: Item[] = [
   {'label' : 'ホーム', 'link': '/tutor'},
-  {'label' : 'マイページ', 'link': '/tutor/mypage'},
+  {'label' : 'マイページ', 'link': '/tutor/my-page'},
   {'label' : 'フリー質問一覧', 'link': '/tutor/questions'},
-  {'label' : '回答履歴', 'link': '/tutor/questionhistory'},
+  {'label' : '回答履歴', 'link': '/tutor/question-history'},
 ];
 
 const DefaultLayout = ({ middleware, children }: { middleware: String, children: ReactElement}) => {
