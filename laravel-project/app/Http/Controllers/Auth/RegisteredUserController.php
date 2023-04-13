@@ -27,7 +27,7 @@ class RegisteredUserController extends Controller
         $request->validate([
             'last_name' => 'required|string|max:255',
             'first_name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:255|unique:students',
             'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
             'high_school' => 'required|string|max:255',
             'first_choice_university' => 'required|string|max:255',
@@ -52,6 +52,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        return $user;
     }
 }
