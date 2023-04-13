@@ -50,18 +50,6 @@ const ResendConfirmationEmail: NextPage = () => {
                 もしメールが届かない場合は、迷惑メールフォルダーに入っていないか、入力されたメールアドレスが正しいかご確認いただいた上で、再度お試しください。
               </Typography>
 
-              {/* Email Address */}
-              <Box sx={{ marginBottom: '0.8rem', width: '100%' }}>
-                <TextField
-                  id="email"
-                  type="email"
-                  value={email}
-                  label="メールアドレス"
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  fullWidth
-                />
-              </Box>
 
               <Container sx={{ display: 'flex', justifyContent: 'center' }}>
                 <Button
@@ -83,11 +71,11 @@ const ResendConfirmationEmail: NextPage = () => {
               {status && <p>{status}</p>}
               <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '2rem' }}>
                 <Button
-                  variant=""
-                  color="primary"
+                  variant="text"
+                  color="secondary"
                   onClick={() => logout(middleware)}
                 >
-                  <a>ログインページに戻る</a>
+                  <Typography>ログインページに戻る</Typography>
                 </Button>
               </Box>
             </Box>

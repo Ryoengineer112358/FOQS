@@ -27,5 +27,18 @@ class StudentSeeder extends Seeder
             'birth_date'=> '1996-07-28',
             'gender'=> 0 ,
         ]);
+
+        Student::create([
+            'last_name'=>'EmailVerifyしない',
+            'first_name'=>'ウーマン',
+            'email'=>'dontverifyemail@gmail.com',
+            'password'=>bcrypt('password'),
+            'email_verified_at'=>null,
+            'high_school'=>'開成',
+            'first_choice_university'=>'東京大学',
+            'first_choice_faculty'=>'理科三類',
+            'birth_date'=> '2000-06-30',
+            'gender'=> 1 ,
+        ]);
     }
 }
