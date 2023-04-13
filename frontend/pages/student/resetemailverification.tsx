@@ -9,9 +9,11 @@ import Link from "next/link";
 const ResendConfirmationEmail: NextPage = () => {
   const router = useRouter()
 
-  const { resendEmailVerification } = useAuth({
-    middleware: 'guest',
-    redirectIfAuthenticated: '/'
+  const middleware = 'student';
+
+  const { resendEmailVerification, logout } = useAuth({
+    middleware: middleware,
+    redirectIfAuthenticated: `/${middleware}`
   })
 
   const [email, setEmail] = useState('')
@@ -80,9 +82,13 @@ const ResendConfirmationEmail: NextPage = () => {
               )}
               {status && <p>{status}</p>}
               <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '2rem' }}>
-                <Link href="/student/login">
+                <Button
+                  variant=""
+                  color="primary"
+                  onClick={() => logout(middleware)}
+                >
                   <a>ログインページに戻る</a>
-                </Link>
+                </Button>
               </Box>
             </Box>
           </Card>

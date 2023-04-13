@@ -39,6 +39,7 @@ export const useAuth = ({ middleware, redirectIfAuthenticated, loginDestination 
     axios
         .post('/register', props)
         .then(() => mutate())
+        .then(() => router.push(`/${loginDestination}/resetemailverification`))
         .catch(error => {
           if (error.response.status !== 422) throw error
 
@@ -112,11 +113,12 @@ export const useAuth = ({ middleware, redirectIfAuthenticated, loginDestination 
 
   useEffect(() => {
     // console.log("isStudent " + isStudent(user)); console.log("isTutor " + isTutor(user)); console.log(user);
-    if (middleware === 'guest' && user && !error && redirectIfAuthenticated) router.push(redirectIfAuthenticated)
+    if (user && !user.email_verified_at && !error) router.push(`/${middleware == 'guest' ? loginDestination: middleware}/resetemailverification`)
+    else if (middleware === 'guest' && user && !error && redirectIfAuthenticated) router.push(redirectIfAuthenticated)
     else if (middleware !== 'guest' && error) logout(middleware)
     else if (middleware === 'tutor' && user && isStudent(user)) router.push('/student')
     else if (middleware === 'student' && user && isTutor(user)) router.push('/tutor')
-    else if (window.location.pathname === "/verify-email" && user?.email_verified_at && redirectIfAuthenticated) router.push(redirectIfAuthenticated)
+    else if (window.location.pathname.indexOf('resetemailverification') > -1 && user?.email_verified_at && redirectIfAuthenticated) router.push(redirectIfAuthenticated)
 
   }, [user, error])
 
