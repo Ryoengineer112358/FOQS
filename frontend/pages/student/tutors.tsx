@@ -22,7 +22,7 @@ const Tutors: NextPage = () => {
       <Grid container justifyContent="center">
         <Grid xs={12}>
           {tutors.map(t =>
-              <Tutor key={t.id} text={`${t.last_name} ${t.first_name}`} href={`tutorProfile/${t.id}`} />
+              <Tutor key={t.id} text={`${t.last_name} ${t.first_name}`} href={`tutor-profile/${t.id}`} />
           )}
         </Grid>
         <BackButton />

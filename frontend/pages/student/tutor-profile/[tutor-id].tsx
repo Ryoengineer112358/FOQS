@@ -17,7 +17,7 @@ import {setTutorId} from "@/store/modules/newQuestion";
 const TutorId: NextPage = () => {
 
   const { query, isReady } = useRouter();
-  const {tutorId} = query;
+  const tutorId = query["tutor-id"];
   const middleware = "student"
   const { user } = useAuth({ middleware: middleware })
   const tutors = useSelector((state: State) => state.tutors)
@@ -34,7 +34,7 @@ const TutorId: NextPage = () => {
               <LargeButton
                   text={"この講師に質問する"}
                   onClickHandler={() => dispatch(setTutorId(selectedTutor.id))}
-                  href={(newQuestion && newQuestion.content) ?   '../confirmation' : "../question"}
+                  href={(newQuestion && newQuestion.content) ?   '../../confirmation' : "../../question"}
               />
               <BackButton />
               <HomeButton href={"/student"}/>
