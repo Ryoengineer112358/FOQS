@@ -16,10 +16,10 @@ type Props = {
 
 const Chat = (props: Props) => {
   const { query, isReady } = useRouter();
-  const {questionid} = query;
+  const questionId = query["question-id"];
 
   const fetchMessages = () => {
-    isReady && axios.get<Message[]>(`/api/questions/${questionid}`).then(
+    isReady && axios.get<Message[]>(`/api/questions/${questionId}`).then(
       (result) => setMessages(result.data)
     )
   }
@@ -30,7 +30,7 @@ const Chat = (props: Props) => {
 
   const updateMessages = (newMessage: Message) => {
     setMessages([...messages, newMessage])
-    axios.post(`/api/questions/${questionid}`, {message: newMessage.content}).then(
+    axios.post(`/api/questions/${questionId}`, {message: newMessage.content}).then(
       fetchMessages
     )
   }

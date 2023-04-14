@@ -32,7 +32,7 @@ const Question: NextPage = () => {
           }}
         />
         <BackButton />
-        <MiddleButton text={"次へ"} href={"tutorselect"} onClickHandler={() => dispatch(setContent(questionContent))}/>
+        <MiddleButton text={"次へ"} href={"select-tutor"} onClickHandler={() => dispatch(setContent(questionContent))}/>
       </Grid>
     </>
   )

@@ -9,7 +9,7 @@ import MiddleButton from "@/components/middleButton";
 import LargeButton from "@/components/largeButton";
 import HomeButton from "@/components/homeButton";
 
-const TutorSelect: NextPage = () => {
+const SelectTutor: NextPage = () => {
   const middleware = "student"
   const { user } = useAuth({ middleware: middleware })
 
@@ -29,4 +29,4 @@ const TutorSelect: NextPage = () => {
   )
 }
 
-export default TutorSelect
+export default SelectTutor
