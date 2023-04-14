@@ -1,8 +1,8 @@
 import { useAuth } from '@/hooks/auth'
 import type { NextPage } from 'next'
-import Profile from '@/components/profile'
-import DefaultLayout from '@/components/defaultLayout'
-import HomeButton from '@/components/homeButton'
+import Profile from '@/components/Profile'
+import DefaultLayout from '@/components/DefaultLayout'
+import HomeButton from '@/components/HomeButton'
 import {Grid} from "@mui/material"
 
 const MyPage: NextPage = () => {
@@ -15,7 +15,7 @@ const MyPage: NextPage = () => {
         <div></div>
       </DefaultLayout>
       <Grid container justifyContent="center">
-        <Profile id={1} name={user?.name} property="大学" university="東京大学大学院"/>
+        <Profile name={user?.name} property="大学" university="東京大学大学院"/>
       </Grid>
       <Grid container justifyContent="right">
         <HomeButton href="/tutor" />

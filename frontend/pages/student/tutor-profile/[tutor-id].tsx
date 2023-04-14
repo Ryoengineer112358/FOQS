@@ -2,13 +2,13 @@ import { useAuth } from '@/hooks/auth'
 import type { NextPage } from 'next'
 import {Grid} from "@mui/material";
 import * as React from "react";
-import DefaultLayout from "@/components/defaultLayout";
-import BackButton from "@/components/backButton";
-import LargeButton from "@/components/largeButton";
-import NotFound from "@/components/pages/notFound";
-import Tutor from "@/components/tutor";
-import HomeButton from "@/components/homeButton";
-import Profile from "@/components/profile";
+import DefaultLayout from "@/components/DefaultLayout";
+import BackButton from "@/components/BackButton";
+import LargeButton from "@/components/LargeButton";
+import NotFound from "@/components/Pages/NotFound";
+import Tutor from "@/components/Tutor";
+import HomeButton from "@/components/HomeButton";
+import Profile from "@/components/Profile";
 import {useRouter} from "next/router";
 import {useSelector} from 'react-redux';
 import {State, useAppDispatch} from "@/store";
@@ -34,7 +34,7 @@ const TutorId: NextPage = () => {
               <LargeButton
                   text={"この講師に質問する"}
                   onClickHandler={() => dispatch(setTutorId(selectedTutor.id))}
-                  href={(newQuestion && newQuestion.content) ?   '../../confirmation' : "../../question"}
+                  href={(newQuestion && newQuestion.content) ?   '../confirmation' : "../question"}
               />
               <BackButton />
               <HomeButton href={"/student"}/>
