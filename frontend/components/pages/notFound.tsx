@@ -1,6 +1,6 @@
 import {Grid} from "@mui/material";
 import {Middleware} from "@/types";
-import DefaultLayout from "@/components/defaultLayout";
+import DefaultLayout from "@/components/DefaultLayout";
 import React from "react";
 
 const NotFound = () => {

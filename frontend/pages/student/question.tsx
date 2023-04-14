@@ -2,10 +2,10 @@ import { useAuth } from '@/hooks/auth'
 import type { NextPage } from 'next'
 import {Grid} from "@mui/material";
 import { useState, useEffect } from "react";
-import DefaultLayout from "@/components/defaultLayout";
-import BackButton from "@/components/backButton";
-import Textarea from "@/components/textarea";
-import MiddleButton from "@/components/middleButton";
+import DefaultLayout from "@/components/DefaultLayout";
+import BackButton from "@/components/BackButton";
+import Textarea from "@/components/Textarea";
+import MiddleButton from "@/components/MiddleButton";
 import {useAppDispatch} from "@/store";
 import {setContent} from "@/store/modules/newQuestion";
 

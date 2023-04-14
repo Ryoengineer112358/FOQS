@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import { useAuth } from '@/hooks/auth'
-import DefaultLayout from '@/components/defaultLayout'
-import ChatMessage from '@/components/chatMessage'
-import BackButton from "@/components/backButton";
+import DefaultLayout from '@/components/DefaultLayout'
+import ChatMessage from '@/components/ChatMessage'
+import BackButton from "@/components/BackButton";
 import {Middleware, StudentComment, StudentQuestion, Tutor, TutorAnswer} from "@/types";
 import {Box} from "@mui/material";
 import axios from "@/lib/axios";

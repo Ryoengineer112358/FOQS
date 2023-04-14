@@ -2,12 +2,12 @@ import { useAuth } from '@/hooks/auth'
 import type { NextPage } from 'next'
 import {Grid} from "@mui/material";
 import * as React from "react";
-import DefaultLayout from "@/components/defaultLayout";
-import BackButton from "@/components/backButton";
-import Textarea from "@/components/textarea";
-import MiddleButton from "@/components/middleButton";
-import LargeButton from "@/components/largeButton";
-import HomeButton from "@/components/homeButton";
+import DefaultLayout from "@/components/DefaultLayout";
+import BackButton from "@/components/BackButton";
+import Textarea from "@/components/Textarea";
+import MiddleButton from "@/components/MiddleButton";
+import LargeButton from "@/components/LargeButton";
+import HomeButton from "@/components/HomeButton";
 
 const SelectTutor: NextPage = () => {
   const middleware = "student"

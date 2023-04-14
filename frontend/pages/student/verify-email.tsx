@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { NextPage } from 'next'
 import { useAuth } from '@/hooks/auth'
 import { Box, Button, Card, TextField, Container, Typography, Grid } from '@mui/material'
-import DefaultLayout from '@/components/defaultLayout'
+import DefaultLayout from '@/components/DefaultLayout'
 import Link from "next/link";
 
 const ResendConfirmationEmail: NextPage = () => {

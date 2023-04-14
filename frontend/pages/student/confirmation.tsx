@@ -2,10 +2,10 @@ import { useAuth } from '@/hooks/auth'
 import type { NextPage } from 'next'
 import {Grid} from "@mui/material";
 import * as React from "react";
-import DefaultLayout from "@/components/defaultLayout";
-import BackButton from "@/components/backButton";
-import QuestionContext from "@/components/questionContext";
-import ModalButton from "@/components/modalButton";
+import DefaultLayout from "@/components/DefaultLayout";
+import BackButton from "@/components/BackButton";
+import QuestionContext from "@/components/QuestionContext";
+import ModalButton from "@/components/ModalButton";
 import { useRouter } from 'next/router';
 import {useSelector} from 'react-redux';
 import {State} from "@/store"

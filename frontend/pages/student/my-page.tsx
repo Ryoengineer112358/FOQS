@@ -1,8 +1,8 @@
 import { useAuth } from '@/hooks/auth'
 import type { NextPage } from 'next'
-import Profile from '@/components/profile'
-import DefaultLayout from '@/components/defaultLayout'
-import HomeButton from '@/components/homeButton'
+import Profile from '@/components/Profile'
+import DefaultLayout from '@/components/DefaultLayout'
+import HomeButton from '@/components/HomeButton'
 import {Grid} from "@mui/material"
 
 const MyPage: NextPage = () => {

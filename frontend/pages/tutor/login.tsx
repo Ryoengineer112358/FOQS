@@ -4,7 +4,7 @@ import {useRouter} from 'next/router'
 import {NextPage} from "next";
 import Link from "next/link";
 import {Box, Button, Card, Checkbox, FormControlLabel, TextField, Container} from "@mui/material";
-import DefaultLayout from "@/components/defaultLayout";
+import DefaultLayout from "@/components/DefaultLayout";
 
 const Login: NextPage = () => {
   const middleware = "guest"

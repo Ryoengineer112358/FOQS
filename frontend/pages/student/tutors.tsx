@@ -3,10 +3,10 @@ import type {NextPage} from 'next'
 import {Grid} from "@mui/material";
 import * as React from "react";
 import {useSelector} from 'react-redux'
-import DefaultLayout from "@/components/defaultLayout";
-import BackButton from "@/components/backButton";
-import Tutor from "@/components/tutor";
-import HomeButton from "@/components/homeButton";
+import DefaultLayout from "@/components/DefaultLayout";
+import BackButton from "@/components/BackButton";
+import Tutor from "@/components/Tutor";
+import HomeButton from "@/components/HomeButton";
 import {State} from "@/store"
 
 const Tutors: NextPage = () => {

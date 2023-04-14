@@ -4,8 +4,7 @@ import { useRouter } from "next/router";
 import { NextPage } from "next";
 import Link from "next/link";
 import { Box, Button, Card, Grid, TextField, Container, FormControl, FormHelperText, InputLabel, InputAdornment, Select, MenuItem } from "@mui/material";
-import DefaultLayout from "@/components/defaultLayout";
-import InputError from "@/components/inputError";
+import DefaultLayout from "@/components/DefaultLayout";
 
 const Register: NextPage = () => {
   const middleware = "guest";

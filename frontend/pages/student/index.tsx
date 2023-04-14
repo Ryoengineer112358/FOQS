@@ -1,8 +1,8 @@
 import type { NextPage } from 'next'
 import {Grid} from "@mui/material";
 import * as React from "react";
-import Home from "@/components/pages/home";
-import MiddleButton from "@/components/middleButton";
+import Home from "@/components/Pages/Home";
+import MiddleButton from "@/components/MiddleButton";
 
 const Top: NextPage = () => {
 

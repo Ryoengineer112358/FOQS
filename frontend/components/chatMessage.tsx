@@ -1,8 +1,8 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import SendMessage from './sendMessage';
+import SendMessage from './SendMessage';
 import {StudentQuestion,isStudentQuestion, TutorAnswer, StudentComment, isStudentComment, isTutorAnswer} from '@/types';
-import BackButton from "./backButton";
+import BackButton from "./BackButton";
 
 import student from "../pages/student";
 

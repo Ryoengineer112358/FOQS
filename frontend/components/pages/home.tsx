@@ -4,8 +4,8 @@ import {FormEventHandler, useEffect, useState, ReactElement} from 'react'
 import * as React from "react";
 import axios from "@/lib/axios";
 import {Middleware, StudentQuestion} from "@/types";
-import DefaultLayout from "@/components/defaultLayout";
-import CardMessage from "@/components/cardMessage";
+import DefaultLayout from "@/components/DefaultLayout";
+import CardMessage from "@/components/CardMessage";
 
 type Props = {
   middleware: Middleware;
