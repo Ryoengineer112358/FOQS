@@ -63,7 +63,7 @@ export const useAuth = ({ middleware, redirectIfAuthenticated, loginDestination 
         })
   }
 
-  const forgotPassword = async ({ setErrors, setStatus, email }: any) => {
+  const forgotPassword = async ({ setErrors, setStatus, email, setStatusChanged }: any) => {
     await csrf()
 
     setErrors([])
@@ -71,7 +71,10 @@ export const useAuth = ({ middleware, redirectIfAuthenticated, loginDestination 
 
     axios
         .post('/forgot-password', { email })
-        .then(response => setStatus(response.data.status))
+        .then(response => {
+          setStatus(response.data.status);
+          setStatusChanged(true);
+        })
         .catch(error => {
           if (error.response.status !== 422) throw error
 

@@ -7,24 +7,25 @@ import DefaultLayout from '@/components/DefaultLayout'
 import Link from "next/link";
 
 const ForgotPassword: NextPage = () => {
-  const router = useRouter()
+  const router = useRouter();
 
   const { forgotPassword } = useAuth({
     middleware: 'guest',
-    redirectIfAuthenticated: '/'
-  })
+    redirectIfAuthenticated: '/',
+  });
   interface ValidationErrorMessages {
     [key: string]: string[];
   }
 
-  const [email, setEmail] = useState('')
+  const [email, setEmail] = useState('');
   const [errors, setErrors] = useState<ValidationErrorMessages>({});
-  const [status, setStatus] = useState(null)
+  const [status, setStatus] = useState(null);
+  const [statusChanged, setStatusChanged] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    forgotPassword({ setErrors, setStatus, email })
-  }
+    e.preventDefault();
+    forgotPassword({ setErrors, setStatus, email, setStatusChanged });
+  };
 
   return (
     <DefaultLayout middleware="guest">
@@ -38,22 +39,35 @@ const ForgotPassword: NextPage = () => {
             alignItems: 'center', // 中央揃えに
           }}
         >
-          <Typography
-            variant="h6"
-            align="center" // 中央揃えに
-            fontWeight="bold"
-            sx={{ marginBottom: '1rem' }} // 上下にスペースを空ける
-          >
-            パスワードを忘れた場合
-          </Typography>
+          {!statusChanged && (
+            <Typography
+              variant="h6"
+              align="center" // 中央揃えに
+              fontWeight="bold"
+              sx={{ marginBottom: '1rem' }} // 上下にスペースを空ける
+            >
+              パスワードを忘れた場合
+            </Typography>
+          )}
 
           <Typography
             variant="body1"
             align="center" // 中央揃えに
             sx={{ marginBottom: '1rem', width: '90%', textAlign: 'left' }} // 左右にスペースを空ける
           >
-            登録時に入力したメールアドレスを入力してください。<br />
-            パスワードリセット用のメールが届きますので、そちらから新しいパスワードを設定してください。
+            {statusChanged ? (
+              <>
+                パスワード再設定メールを送信しました。届いたメール内のリンクをクリックして、パスワードの再設定を完了してください。
+                <br />
+                もしメールが届かない場合は、迷惑メールフォルダーに入っていないか、入力されたメールアドレスが正しいかご確認いただいた上で、再度お試しください。
+              </>
+            ) : (
+              <>
+                登録時に入力したメールアドレスを入力してください。
+                <br />
+                パスワードリセット用のメールが届きますので、そちらから新しいパスワードを設定してください。
+              </>
+            )}
           </Typography>
 
           {/* Email Address */}
@@ -87,19 +101,16 @@ const ForgotPassword: NextPage = () => {
               送信
             </Button>
           </Container>
-          
-          {status && <p>メールが送信されました。</p>}
+
           <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '2rem' }}>
             <Link href="/student/login">
               <a>ログインページに戻る</a>
             </Link>
           </Box>
-
         </Box>
       </Card>
     </DefaultLayout>
-  )
-}
+  );
+};
 
-
-export default ForgotPassword
+export default ForgotPassword;
