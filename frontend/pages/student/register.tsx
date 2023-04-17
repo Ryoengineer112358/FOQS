@@ -153,7 +153,7 @@ const Register: NextPage = () => {
                   sx={{ width: "100%" }}
                   error={!!errors.high_school}
                 />
-　　　　　　　　　 <FormHelperText error>{errors.high_school?.[0]}</FormHelperText>
+                <FormHelperText error>{errors.high_school?.[0]}</FormHelperText>
               </Box>
 
               {/* 第一志望大学 */}
