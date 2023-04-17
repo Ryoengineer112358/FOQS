@@ -139,8 +139,8 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'カスタムメッセージ',
+        'email' => [
+            'exists' => '入力されたメールアドレスは登録されていません。',
         ],
     ],
 
