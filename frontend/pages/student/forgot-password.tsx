@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useRouter } from 'next/router'
 import { NextPage } from 'next'
 import { useAuth } from '@/hooks/auth'
-import { Box, Button, Card, TextField, Container, Typography} from '@mui/material'
+import { Box, Button, Card, TextField, Container, Typography, FormHelperText} from '@mui/material'
 import DefaultLayout from '@/components/DefaultLayout'
 import Link from "next/link";
 
@@ -13,9 +13,12 @@ const ForgotPassword: NextPage = () => {
     middleware: 'guest',
     redirectIfAuthenticated: '/'
   })
+  interface ValidationErrorMessages {
+    [key: string]: string[];
+  }
 
   const [email, setEmail] = useState('')
-  const [errors, setErrors] = useState([])
+  const [errors, setErrors] = useState<ValidationErrorMessages>({});
   const [status, setStatus] = useState(null)
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -62,9 +65,10 @@ const ForgotPassword: NextPage = () => {
               label="メールアドレス"
               onChange={(e) => setEmail(e.target.value)}
               required
-              // autoFocus
-              fullWidth // 幅を100%に
+              fullWidth
+              error={!!errors.email}
             />
+            <FormHelperText error>{errors.email?.[0]}</FormHelperText>
           </Box>
 
           <Container sx={{ display: 'flex', justifyContent: 'center' }}>
@@ -83,14 +87,8 @@ const ForgotPassword: NextPage = () => {
               送信
             </Button>
           </Container>
-          {errors.length > 0 && (
-            <ul>
-              {errors.map((error, index) => (
-                <li key={index}>{error}</li>
-              ))}
-            </ul>
-          )}
-          {status && <p>{status}</p>}
+          
+          {status && <p>メールが送信されました。</p>}
           <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '2rem' }}>
             <Link href="/student/login">
               <a>ログインページに戻る</a>
