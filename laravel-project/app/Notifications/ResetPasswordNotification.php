@@ -20,7 +20,7 @@ class ResetPasswordNotification extends ResetPassword
     {
        $resetUrlPath = $this->userType === 'student' ? 'student/reset-password' : 'tutor/reset-password';
 
-       $url = url(config('app.frontend_url') . '/' . $resetUrlPath . '?token=' . $this->token . '&userType' . $this->userType);
+       $url = url(config('app.frontend_url') . '/' . $resetUrlPath . '?token=' . $this->token);
 
         return (new MailMessage)
             ->line('アカウントのパスワードリセットリクエストを受け取りました。')
