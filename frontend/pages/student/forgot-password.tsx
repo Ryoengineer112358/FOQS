@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { NextPage } from 'next'
 import { useAuth } from '@/hooks/auth'
@@ -22,9 +22,29 @@ const ForgotPassword: NextPage = () => {
   const [status, setStatus] = useState(null);
   const [statusChanged, setStatusChanged] = useState(false);
 
+  useEffect(() => {
+    const checkResetPasswordOpened = () => {
+      if (localStorage.getItem("resetPasswordOpened") === "true") {
+        router.push("/student/reset-password");
+      }
+    };
+  
+    window.addEventListener("storage", checkResetPasswordOpened);
+    
+    return () => {
+      window.removeEventListener("storage", checkResetPasswordOpened);
+    };
+  }, []);
+  
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    forgotPassword({ setErrors, setStatus, email, setStatusChanged });
+    forgotPassword({
+      setErrors,
+      setStatus,
+      email,
+      setStatusChanged,
+    });
   };
 
   return (

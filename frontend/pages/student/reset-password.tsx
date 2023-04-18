@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { NextPage } from 'next'
 import { useAuth } from '@/hooks/auth'
@@ -18,6 +18,13 @@ const ResetPassword: NextPage = () => {
   const [passwordConfirmation, setPasswordConfirmation] = useState('')
   const [errors, setErrors] = useState([])
   const [status, setStatus] = useState(null)
+
+  useEffect(() => {
+    localStorage.setItem("resetPasswordOpened", "true");
+    return () => {
+      localStorage.removeItem("resetPasswordOpened");
+    };
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
