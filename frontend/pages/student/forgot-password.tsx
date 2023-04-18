@@ -25,12 +25,15 @@ const ForgotPassword: NextPage = () => {
   useEffect(() => {
     const checkResetPasswordOpened = () => {
       if (localStorage.getItem("resetPasswordOpened") === "true") {
-        router.push("/student/reset-password");
+        const token = localStorage.getItem("resetPasswordToken");
+        if (token) {
+          router.push(`/student/reset-password?token=${token}`);
+        }
       }
     };
   
     window.addEventListener("storage", checkResetPasswordOpened);
-    
+
     return () => {
       window.removeEventListener("storage", checkResetPasswordOpened);
     };

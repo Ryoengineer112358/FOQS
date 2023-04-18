@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { NextPage } from 'next'
+import { NextPage, GetServerSideProps } from 'next'
 import { useAuth } from '@/hooks/auth'
 import { Box, Button, Card, TextField, Container, Typography, Grid } from '@mui/material'
 import DefaultLayout from '@/components/DefaultLayout'
@@ -18,6 +18,22 @@ const ResetPassword: NextPage = () => {
   const [passwordConfirmation, setPasswordConfirmation] = useState('')
   const [errors, setErrors] = useState([])
   const [status, setStatus] = useState(null)
+
+  //getServerSidePropsを使用せずにuseEffectを使用して、tokenがない場合はログインページにリダイレクトする処理を実装する場合
+  // useEffect(() => {
+  //   if (!router.query.token) {
+  //     router.push('/student/login');
+  //   }
+  // }, [router.query.token]);
+
+  useEffect(() => {
+    if (router.query.token) {
+      localStorage.setItem("resetPasswordToken", router.query.token as string);
+    }
+    return () => {
+      localStorage.removeItem("resetPasswordToken");
+    };
+  }, [router.query.token]);
 
   useEffect(() => {
     localStorage.setItem("resetPasswordOpened", "true");
@@ -117,5 +133,23 @@ const ResetPassword: NextPage = () => {
     </DefaultLayout>
   )
 }
+
+//getServerSidePropsを使用して、tokenがない場合はログインページにリダイレクトする処理を実装する場合
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { token } = context.query;
+
+  if (!token) {
+    return {
+      redirect: {
+        destination: '/student/login',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
+};
 
 export default ResetPassword
