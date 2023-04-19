@@ -27,12 +27,16 @@ class NewPasswordController extends Controller
             'token' => ['required'],
             'email' => ['required', 'email'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'userType' => ['required', 'in:student,teacher'],
         ]);
+
+        $userType = $request->input('userType');
+        $userModel = config("auth.providers.{$userType}.model");
 
         // Here we will attempt to reset the user's password. If it is successful we
         // will update the password on an actual user model and persist it to the
         // database. Otherwise we will parse the error and return the response.
-        $status = Password::reset(
+        $status = Password::broker($userType)->reset(
             $request->only('email', 'password', 'password_confirmation', 'token'),
             function ($user) use ($request) {
                 $user->forceFill([
@@ -41,7 +45,8 @@ class NewPasswordController extends Controller
                 ])->save();
 
                 event(new PasswordReset($user));
-            }
+            },
+            $userModel
         );
 
         if ($status != Password::PASSWORD_RESET) {

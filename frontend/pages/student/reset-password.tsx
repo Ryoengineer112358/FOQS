@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { NextPage, GetServerSideProps } from 'next'
 import { useAuth } from '@/hooks/auth'
-import { Box, Button, Card, TextField, Container, Typography, Grid } from '@mui/material'
+import { Box, Button, Card, TextField, Container, Typography, Grid, FormHelperText } from '@mui/material'
 import DefaultLayout from '@/components/DefaultLayout'
 import Link from "next/link";
 
@@ -16,7 +16,10 @@ const ResetPassword: NextPage = () => {
 
   const [newPassword, setNewPassword] = useState('')
   const [passwordConfirmation, setPasswordConfirmation] = useState('')
-  const [errors, setErrors] = useState([])
+  interface ValidationErrorMessages {
+    [key: string]: string[];
+  }
+  const [errors, setErrors] = useState<ValidationErrorMessages>({})
   const [status, setStatus] = useState(null)
 
   //getServerSidePropsを使用せずにuseEffectを使用して、tokenがない場合はログインページにリダイレクトする処理を実装する場合
@@ -44,7 +47,6 @@ const ResetPassword: NextPage = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Implement logic for sending the reset token.
     resetPassword({ setErrors, setStatus, newPassword, passwordConfirmation })
   }
 
@@ -81,7 +83,9 @@ const ResetPassword: NextPage = () => {
                   onChange={(e) => setNewPassword(e.target.value)}
                   required
                   fullWidth
+                  error={!!errors.password}
                 />
+                <FormHelperText error>{errors.password?.[0]}</FormHelperText>
               </Box>
 
               {/* Password Confirmation */}
@@ -94,7 +98,9 @@ const ResetPassword: NextPage = () => {
                   onChange={(e) => setPasswordConfirmation(e.target.value)}
                   required
                   fullWidth
+                  error={!!errors.password}
                 />
+                <FormHelperText error>{errors.password?.[0]}</FormHelperText>
               </Box>
 
               <Container sx={{ display: 'flex', justifyContent: 'center' }}>
@@ -113,14 +119,8 @@ const ResetPassword: NextPage = () => {
                   パスワードをリセット
                 </Button>
               </Container>
-              {errors.length > 0 && (
-                <ul>
-                  {errors.map((error, index) => (
-                    <li key={index}>{error}</li>
-                  ))}
-                </ul>
-              )}
-              {status && <p>{status}</p>}
+              
+              {status && <p>パスワードリセットが完了しました</p>}
               <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '2rem' }}>
                 <Link href="/student/login">
                   <a>ログインページに戻る</a>
