@@ -21,10 +21,11 @@ const ResetPassword: NextPage = () => {
   }
   const [errors, setErrors] = useState<ValidationErrorMessages>({})
   const [status, setStatus] = useState(null)
-
+  const [email, setEmail] = useState('');
+ 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    resetPassword({ setErrors, setStatus, newPassword, passwordConfirmation })
+    resetPassword({ setErrors, setStatus, setEmail, newPassword, passwordConfirmation })
   }
 
   return (
@@ -50,8 +51,22 @@ const ResetPassword: NextPage = () => {
                 パスワードリセット
               </Typography>
 
+              <Box sx={{ marginBottom: '1rem', width: '90%' }}>
+                <TextField
+                  id="email"
+                  type="email"
+                  value={email}
+                  label="メールアドレス"
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  fullWidth
+                  error={!!errors.email}
+                />
+                <FormHelperText error>{errors.email?.[0]}</FormHelperText>
+              </Box>
+
               {/* New Password */}
-              <Box sx={{ marginBottom: '1rem', width: '100%' }}>
+              <Box sx={{ marginBottom: '1rem', width: '90%' }}>
                 <TextField
                   id="new_password"
                   type="password"
@@ -66,7 +81,7 @@ const ResetPassword: NextPage = () => {
               </Box>
 
               {/* Password Confirmation */}
-              <Box sx={{ marginBottom: '1rem', width: '100%' }}>
+              <Box sx={{ marginBottom: '1rem', width: '90%' }}>
                 <TextField
                   id="password_confirmation"
                   type="password"
@@ -86,15 +101,15 @@ const ResetPassword: NextPage = () => {
                   variant="contained"
                   color="primary"
                   sx={{
-                    fontSize: '0.8rem',
-                    py: '0.8rem',
+                    fontSize: '1rem',
+                    py: '1.2rem',
                     px: '2.4rem',
                     textTransform: 'none',
-                    width: '100%',
+                    width: '100%', // 幅を80%に
                   }}
                 >
-                  パスワードをリセット
-                </Button>
+                    パスワードをリセット
+                  </Button>
               </Container>
               
               {status && <p>パスワードリセットが完了しました</p>}
