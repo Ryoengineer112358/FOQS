@@ -29,22 +29,6 @@ const ResetPassword: NextPage = () => {
   //   }
   // }, [router.query.token]);
 
-  useEffect(() => {
-    if (router.query.token) {
-      localStorage.setItem("resetPasswordToken", router.query.token as string);
-    }
-    return () => {
-      localStorage.removeItem("resetPasswordToken");
-    };
-  }, [router.query.token]);
-
-  useEffect(() => {
-    localStorage.setItem("resetPasswordOpened", "true");
-    return () => {
-      localStorage.removeItem("resetPasswordOpened");
-    };
-  }, []);
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     resetPassword({ setErrors, setStatus, newPassword, passwordConfirmation })

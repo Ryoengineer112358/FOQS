@@ -22,24 +22,6 @@ const ForgotPassword: NextPage = () => {
   const [status, setStatus] = useState(null);
   const [statusChanged, setStatusChanged] = useState(false);
 
-  useEffect(() => {
-    const checkResetPasswordOpened = () => {
-      if (localStorage.getItem("resetPasswordOpened") === "true") {
-        const token = localStorage.getItem("resetPasswordToken");
-        if (token) {
-          router.push(`/student/reset-password?token=${token}`);
-        }
-      }
-    };
-  
-    window.addEventListener("storage", checkResetPasswordOpened);
-
-    return () => {
-      window.removeEventListener("storage", checkResetPasswordOpened);
-    };
-  }, []);
-  
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     forgotPassword({
