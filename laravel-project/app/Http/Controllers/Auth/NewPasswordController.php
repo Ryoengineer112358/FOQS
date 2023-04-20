@@ -27,7 +27,7 @@ class NewPasswordController extends Controller
             'token' => ['required'],
             'email' => ['required', 'email'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'userType' => ['required', 'in:student,teacher'],
+            'userType' => ['required', 'in:students,tutors'],
         ]);
 
         $userType = $request->input('userType');

@@ -25,7 +25,7 @@ const ResetPassword: NextPage = () => {
  
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    resetPassword({ setErrors, setStatus, setEmail, newPassword, passwordConfirmation })
+    resetPassword({ setErrors, setStatus, email, newPassword, passwordConfirmation })
   }
 
   return (
@@ -112,7 +112,6 @@ const ResetPassword: NextPage = () => {
                   </Button>
               </Container>
               
-              {status && <p>パスワードリセットが完了しました</p>}
               <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '2rem' }}>
                 <Link href="/student/login">
                   <a>ログインページに戻る</a>

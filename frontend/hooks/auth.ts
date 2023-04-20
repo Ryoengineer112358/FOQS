@@ -82,7 +82,7 @@ export const useAuth = ({ middleware, redirectIfAuthenticated, loginDestination 
         })
   }
 
-  const resetPassword = async ({ setErrors, setStatus, ...props }: any) => {
+  const resetPassword = async ({ setErrors, setStatus, email, newPassword, passwordConfirmation }: any) => {
     await csrf()
 
     setErrors([])
@@ -91,13 +91,16 @@ export const useAuth = ({ middleware, redirectIfAuthenticated, loginDestination 
     axios
         .post('/reset-password', { 
           token: router.query.token,
-          userType: "student", 
-          ...props,
+          userType: "students", 
+          email,
+          password: newPassword,
+          password_confirmation: passwordConfirmation,
         })
         .then(response => router.push(`/${middleware}/login?reset=` + btoa(response.data.status)))
         .catch(error => {
+          //初回のみerror.response.statuがundefinedになってしまう
           if (error.response.status !== 422) throw error
-
+ 
           setErrors(error.response.data.errors)
         })
   }
