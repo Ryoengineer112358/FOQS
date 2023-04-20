@@ -22,13 +22,6 @@ const ResetPassword: NextPage = () => {
   const [errors, setErrors] = useState<ValidationErrorMessages>({})
   const [status, setStatus] = useState(null)
 
-  //getServerSidePropsを使用せずにuseEffectを使用して、tokenがない場合はログインページにリダイレクトする処理を実装する場合
-  // useEffect(() => {
-  //   if (!router.query.token) {
-  //     router.push('/student/login');
-  //   }
-  // }, [router.query.token]);
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     resetPassword({ setErrors, setStatus, newPassword, passwordConfirmation })
