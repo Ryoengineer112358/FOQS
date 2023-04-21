@@ -19,7 +19,7 @@ const ForgotPassword: NextPage = () => {
 
   const [email, setEmail] = useState('');
   const [errors, setErrors] = useState<ValidationErrorMessages>({});
-  const [status, setStatus] = useState(null);
+  const [status, setStatus] = useState('initial');
   const [statusChanged, setStatusChanged] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -80,12 +80,12 @@ const ForgotPassword: NextPage = () => {
             align="center"
             sx={{ marginBottom: '1.2rem', width: '80%', textAlign: 'left', color: 'red', fontWeight: 'bold', fontSize: '1.2rem' }}
           >
-            {statusChanged && status === null && (
+            {status === 'sending' && (
               <>
                 送信中…
               </>
             )}
-            {statusChanged && status !== null && (
+            {status === 'sent' && (
               <>
                 送信完了
               </>

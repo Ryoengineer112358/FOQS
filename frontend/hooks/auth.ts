@@ -67,18 +67,19 @@ export const useAuth = ({ middleware, redirectIfAuthenticated, loginDestination 
     await csrf()
 
     setErrors([])
-    setStatus(null)
+    setStatus('sending')
 
     axios
         .post('/forgot-password', { email })
         .then(response => {
-          setStatus(response.data.status);
+          setStatus('sent');
           setStatusChanged(true);
         })
         .catch(error => {
           if (error.response.status !== 422) throw error
 
           setErrors(error.response.data.errors)
+          setStatus('initial')
         })
   }
 
