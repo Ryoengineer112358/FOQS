@@ -58,11 +58,11 @@ const ForgotPassword: NextPage = () => {
           <Typography
             variant="body1"
             align="center" // 中央揃えに
-            sx={{ marginBottom: '1rem', width: '90%', textAlign: 'left' }} // 左右にスペースを空ける
+            sx={{ marginBottom: '0.8rem', width: '90%', textAlign: 'left' }} // 左右にスペースを空ける
           >
             {statusChanged ? (
               <>
-                パスワード再設定メールを送信しました。届いたメール内のリンクをクリックして、パスワードの再設定を完了してください。
+                届いたメール内のリンクをクリックして、パスワードの再設定を完了してください。
                 <br />
                 もしメールが届かない場合は、迷惑メールフォルダーに入っていないか、入力されたメールアドレスが正しいかご確認いただいた上で、再度お試しください。
               </>
@@ -71,6 +71,23 @@ const ForgotPassword: NextPage = () => {
                 登録時に入力したメールアドレスを入力してください。
                 <br />
                 パスワードリセット用のメールが届きますので、そちらから新しいパスワードを設定してください。
+              </>
+            )}
+          </Typography>
+
+          <Typography
+            variant="body1"
+            align="center"
+            sx={{ marginBottom: '1.2rem', width: '80%', textAlign: 'left', color: 'red', fontWeight: 'bold', fontSize: '1.2rem' }}
+          >
+            {statusChanged && status === null && (
+              <>
+                送信中…
+              </>
+            )}
+            {statusChanged && status !== null && (
+              <>
+                送信完了
               </>
             )}
           </Typography>
