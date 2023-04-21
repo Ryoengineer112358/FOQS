@@ -21,10 +21,8 @@ const Login: NextPage = () => {
   const [password, setPassword] = useState('')
   const [shouldRemember, setShouldRemember] = useState(false)
   const [errors, setErrors] = useState([])
-  //ログインページでは不要
   const [status, setStatus] = useState<String|null>(null)
 
-  //ログインページでは不要
   useEffect(() => {
     const reset = router.query.reset
     if (typeof reset === "string" && reset.length > 0 && errors.length === 0) {
@@ -43,7 +41,10 @@ const Login: NextPage = () => {
   return (
     <DefaultLayout middleware={middleware}>
       <Card sx={{ p: 4, borderRadius: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <p>{status}</p>
+        {status && (
+          <p style={{ fontWeight: 'bold', color: 'red' }}>{status}</p>
+        )}
+
         <Grid
           container
           onSubmit={submitForm}

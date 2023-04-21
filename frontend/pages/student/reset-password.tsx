@@ -101,7 +101,7 @@ const ResetPassword: NextPage = () => {
                   variant="contained"
                   color="primary"
                   sx={{
-                    fontSize: '1rem',
+                    fontSize: '0.9rem',
                     py: '1.2rem',
                     px: '2.4rem',
                     textTransform: 'none',
