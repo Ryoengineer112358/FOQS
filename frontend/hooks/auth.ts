@@ -96,10 +96,8 @@ export const useAuth = ({ middleware, redirectIfAuthenticated, loginDestination 
           password: newPassword,
           password_confirmation: passwordConfirmation,
         })
-        .then(response => router.push(`/${middleware}/login?reset=` + btoa(response.data.status)))
+        .then(response => router.push(`/student/login?reset=` + encodeURI(response.data.status)))
         .catch(error => {
-          console.log(token);
-          //初回のみerror.response.statuがundefinedになってしまう
           if (error.response.status !== 422) throw error
  
           setErrors(error.response.data.errors)

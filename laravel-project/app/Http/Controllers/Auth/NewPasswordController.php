@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
 use Illuminate\Validation\ValidationException;
-use Illuminate\Support\Facades\Log;
 
 class NewPasswordController extends Controller
 {
@@ -49,8 +48,6 @@ class NewPasswordController extends Controller
             },
             $userModel
         );
-
-        Log::info('Password reset status: '.$status);
 
         if ($status != Password::PASSWORD_RESET) {
             throw ValidationException::withMessages([

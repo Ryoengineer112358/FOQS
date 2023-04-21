@@ -3,7 +3,7 @@ import {FormEventHandler, useEffect, useState} from 'react';
 import {useRouter} from 'next/router';
 import {NextPage} from "next";
 import Link from "next/link";
-import {Box, Button, Grid, Card, Checkbox, FormControlLabel, TextField, Container} from "@mui/material";
+import {Box, Button, Grid, Card, Checkbox, FormControlLabel, TextField, Container, FormHelperText} from "@mui/material";
 import DefaultLayout from "@/components/DefaultLayout";
 
 const Login: NextPage = () => {
@@ -28,7 +28,7 @@ const Login: NextPage = () => {
   useEffect(() => {
     const reset = router.query.reset
     if (typeof reset === "string" && reset.length > 0 && errors.length === 0) {
-      setStatus(atob(reset))
+      setStatus(decodeURI(reset))
     } else {
       setStatus(null)
     }
@@ -43,6 +43,7 @@ const Login: NextPage = () => {
   return (
     <DefaultLayout middleware={middleware}>
       <Card sx={{ p: 4, borderRadius: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <p>{status}</p>
         <Grid
           container
           onSubmit={submitForm}
