@@ -25,7 +25,7 @@ const ResetPassword: NextPage = () => {
  
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    resetPassword({ setErrors, setStatus, email, newPassword, passwordConfirmation })
+    resetPassword({ setErrors, setStatus, email, newPassword, passwordConfirmation, token: router.query.token as string })
   }
 
   return (
