@@ -15,18 +15,18 @@ class AuthenticatedSessionController extends Controller
      * @param  \App\Http\Requests\Auth\LoginRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function storeTutor(LoginRequest $request)
+    public function storeStudent(LoginRequest $request)
     {
-        $request->authenticate(Auth::guard("tutors"));
+        $request->authenticate(Auth::guard("students"));
 
         $request->session()->regenerate();
 
         return response()->noContent();
     }
 
-    public function storeStudent(LoginRequest $request)
+    public function storeTutor(LoginRequest $request)
     {
-        $request->authenticate(Auth::guard("students"));
+        $request->authenticate(Auth::guard("tutors"));
 
         $request->session()->regenerate();
 
