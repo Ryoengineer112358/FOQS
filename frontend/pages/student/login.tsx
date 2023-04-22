@@ -20,12 +20,15 @@ const Login: NextPage = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [shouldRemember, setShouldRemember] = useState(false)
-  const [errors, setErrors] = useState([])
+  interface ValidationErrorMessages {
+    [key: string]: string[];
+  }
+  const [errors, setErrors] = useState<ValidationErrorMessages>({});
   const [status, setStatus] = useState<String|null>(null)
 
   useEffect(() => {
     const reset = router.query.reset
-    if (typeof reset === "string" && reset.length > 0 && errors.length === 0) {
+    if (typeof reset === "string" && reset.length > 0 && !Object.keys(errors).length ) {
       setStatus(decodeURI(reset))
     } else {
       setStatus(null)
@@ -37,7 +40,7 @@ const Login: NextPage = () => {
 
     login({ email, password, remember: shouldRemember, setErrors, setStatus })
   }
-
+  
   return (
     <DefaultLayout middleware={middleware}>
       <Card sx={{ p: 4, borderRadius: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -60,9 +63,11 @@ const Login: NextPage = () => {
               label="Eメール"
               onChange={(event) => setEmail(event.target.value)}
               required
-              autoFocus
+              autoComplete='email'
               sx={{ width: "100%" }}
+              error={!!errors.email}
             />
+            <FormHelperText error>{errors.email?.[0]}</FormHelperText>
           </Grid>
 
           {/* Password */}
@@ -76,7 +81,9 @@ const Login: NextPage = () => {
               required
               autoComplete="current-password"
               sx={{ width: "100%" }}
+              error={!!errors.password}
             />
+            <FormHelperText error>{errors.password?.[0]}</FormHelperText>
           </Grid>
 
           {/* Remember Me */}

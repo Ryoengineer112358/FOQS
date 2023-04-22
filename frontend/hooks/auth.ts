@@ -86,7 +86,7 @@ export const useAuth = ({ middleware, redirectIfAuthenticated, loginDestination 
   const resetPassword = async ({ setErrors, setStatus, email, newPassword, passwordConfirmation, token }: any) => {
     await csrf()
 
-    setErrors([])
+    setErrors({})
     setStatus(null)
 
     axios
