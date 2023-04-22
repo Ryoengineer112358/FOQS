@@ -40,7 +40,7 @@ const Login: NextPage = () => {
 
     login({ email, password, remember: shouldRemember, setErrors, setStatus })
   }
-  
+
   return (
     <DefaultLayout middleware={middleware}>
       <Card sx={{ p: 4, borderRadius: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -67,7 +67,6 @@ const Login: NextPage = () => {
               sx={{ width: "100%" }}
               error={!!errors.email}
             />
-            <FormHelperText error>{errors.email?.[0]}</FormHelperText>
           </Grid>
 
           {/* Password */}
@@ -81,9 +80,9 @@ const Login: NextPage = () => {
               required
               autoComplete="current-password"
               sx={{ width: "100%" }}
-              error={!!errors.password}
+              error={!!errors.email}
             />
-            <FormHelperText error>{errors.password?.[0]}</FormHelperText>
+            <FormHelperText error>{errors.email?.[0]}</FormHelperText>
           </Grid>
 
           {/* Remember Me */}

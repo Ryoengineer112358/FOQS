@@ -50,7 +50,7 @@ export const useAuth = ({ middleware, redirectIfAuthenticated, loginDestination 
   const login = async ({ setErrors, setStatus, ...props }: any) => {
     await csrf()
 
-    setErrors([])
+    setErrors({})
     setStatus(null)
 
     axios
