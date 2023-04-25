@@ -1,13 +1,10 @@
 import React, { useState } from 'react'
-import { useRouter } from 'next/router'
 import { NextPage } from 'next'
 import { useAuth } from '@/hooks/auth'
 import { Box, Button, Card, TextField, Container, Typography, Grid } from '@mui/material'
 import DefaultLayout from '@/components/DefaultLayout'
-import Link from "next/link";
 
-const ResendConfirmationEmail: NextPage = () => {
-  const router = useRouter()
+const VerifyEmail: NextPage = () => {
 
   const middleware = 'student';
 
@@ -16,13 +13,12 @@ const ResendConfirmationEmail: NextPage = () => {
     redirectIfAuthenticated: `/${middleware}`
   })
 
-  const [email, setEmail] = useState('')
-  const [errors, setErrors] = useState([])
-  const [status, setStatus] = useState(null)
+  const [errors, setErrors] = useState({})
+  const [status, setStatus] = useState('initial')
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    resendEmailVerification({ setErrors, setStatus, email })
+    resendEmailVerification({ setErrors, setStatus })
   }
 
   return (
@@ -43,13 +39,31 @@ const ResendConfirmationEmail: NextPage = () => {
               <Typography
                 variant="body1"
                 align="center"
-                sx={{ marginBottom: '1rem', width: '90%', textAlign: 'left' }}
+                sx={{ marginBottom: '0.4rem', width: '90%', textAlign: 'left' }}
               >
                 メールアドレス確認のため、メールを送信しました。<br />
-                ご登録いただいたメールアドレス宛に届く確認メール内のリンクをクリックし、メールアドレスの認証を完了してください。<br />
+                確認メールの内のリンクをクリックし、メールアドレスの認証を完了してください。<br />
                 もしメールが届かない場合は、迷惑メールフォルダーに入っていないか、入力されたメールアドレスが正しいかご確認いただいた上で、再度お試しください。
               </Typography>
 
+              {((status === 'sending') || (status === 'sent')) && (
+                <Typography
+                  variant="body1"
+                  align="center"
+                  sx={{ marginTop: '0.4rem', marginBottom: '0.4rem', width: '80%', textAlign: 'left', color: 'red', fontWeight: 'bold', fontSize: '1.2rem' }}
+                >
+                  {status === 'sending' && (
+                    <>
+                      送信中…
+                    </>
+                  )}
+                  {status === 'sent' && (
+                    <>
+                      送信完了
+                    </>
+                  )}
+                </Typography>
+              )}
 
               <Container sx={{ display: 'flex', justifyContent: 'center' }}>
                 <Button
@@ -61,14 +75,7 @@ const ResendConfirmationEmail: NextPage = () => {
                   再送信
                 </Button>
               </Container>
-              {errors.length > 0 && (
-                <ul>
-                  {errors.map((error, index) => (
-                    <li key={index}>{error}</li>
-                  ))}
-                </ul>
-              )}
-              {status && <p>{status}</p>}
+              
               <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '2rem' }}>
                 <Button
                   variant="text"
@@ -86,4 +93,4 @@ const ResendConfirmationEmail: NextPage = () => {
   )
 }
 
-export default ResendConfirmationEmail
+export default VerifyEmail

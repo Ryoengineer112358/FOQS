@@ -106,9 +106,12 @@ export const useAuth = ({ middleware, redirectIfAuthenticated, loginDestination 
   }
 
   const resendEmailVerification = ({ setStatus }: any) => {
+
+    setStatus('sending')
+    
     axios
         .post('/email/verification-notification')
-        .then(response => setStatus(response.data.status))
+        .then(response => setStatus('sent'))
   }
 
   const logout = async (middleware: Middleware) => {
