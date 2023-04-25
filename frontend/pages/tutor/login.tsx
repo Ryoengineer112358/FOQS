@@ -1,78 +1,100 @@
-import {useAuth} from '@/hooks/auth'
-import {FormEventHandler, useEffect, useState} from 'react'
-import {useRouter} from 'next/router'
-import {NextPage} from "next";
-import Link from "next/link";
-import {Box, Button, Card, Checkbox, FormControlLabel, TextField, Container} from "@mui/material";
-import DefaultLayout from "@/components/DefaultLayout";
+import { useAuth } from '@/hooks/auth';
+import { FormEventHandler, useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import { NextPage } from 'next';
+import Link from 'next/link';
+import {Button, Grid, Card, Checkbox, FormControlLabel, TextField, Container, FormHelperText} from '@mui/material';
+import DefaultLayout from '@/components/DefaultLayout';
 
 const Login: NextPage = () => {
-  const middleware = "guest"
-  const loginDestination = 'tutor'
-  const router = useRouter()
+  const middleware = 'guest';
+  const loginDestination = 'tutor';
+  const router = useRouter();
 
   const { login } = useAuth({
     middleware: middleware,
     redirectIfAuthenticated: `/${loginDestination}`,
-    loginDestination: loginDestination
-  })
+    loginDestination: loginDestination,
+  });
 
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [shouldRemember, setShouldRemember] = useState(false)
-  const [errors, setErrors] = useState([])
-  const [status, setStatus] = useState<String|null>(null)
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [shouldRemember, setShouldRemember] = useState(false);
+  interface ValidationErrorMessages {
+    [key: string]: string[];
+  }
+  const [errors, setErrors] = useState<ValidationErrorMessages>({});
+  const [status, setStatus] = useState<String | null>(null);
 
   useEffect(() => {
-    const reset = router.query.reset
-    if (typeof reset === "string" && reset.length > 0 && errors.length === 0) {
-      setStatus(atob(reset))
+    const reset = router.query.reset;
+    if (typeof reset === 'string' && reset.length > 0 && !Object.keys(errors).length) {
+      setStatus(decodeURI(reset));
     } else {
-      setStatus(null)
+      setStatus(null);
     }
-  })
+  });
 
   const submitForm: FormEventHandler<HTMLFormElement> = (event) => {
-    event.preventDefault()
+    event.preventDefault();
 
-    login({ email, password, remember: shouldRemember, setErrors, setStatus })
-  }
+    login({ email, password, remember: shouldRemember, setErrors, setStatus });
+  };
 
   return (
     <DefaultLayout middleware={middleware}>
-      <Card sx={{p: 3, borderRadius: 8}}>
-        <Box
-            onSubmit={submitForm}
-            component="form"
+      <Card
+        sx={{
+          p: 4,
+          borderRadius: 8,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        {status && (
+          <p style={{ fontWeight: 'bold', color: 'red' }}>{status}</p>
+        )}
+
+        <Grid
+          container
+          onSubmit={submitForm}
+          component="form"
+          sx={{ width: '100%', maxWidth: '400px' }}
         >
           {/* Email Address */}
-          <Box>
+          <Grid item xs={12}>
             <TextField
-                id="email"
-                type="email"
-                value={email}
-                label="Eメール"
-                onChange={event => setEmail(event.target.value)}
-                required
-                autoFocus
+              id="email"
+              type="email"
+              value={email}
+              label="Eメール"
+              onChange={(event) => setEmail(event.target.value)}
+              required
+              autoComplete="email"
+              sx={{ width: '100%' }}
+              error={!!errors.email}
             />
-          </Box>
+          </Grid>
 
           {/* Password */}
-          <Box sx={{marginTop: "0.8rem"}}>
+          <Grid item xs={12} sx={{ marginTop: '0.8rem' }}>
             <TextField
-                id="password"
-                type="password"
-                value={password}
-                label="パスワード"
-                onChange={event => setPassword(event.target.value)}
-                required
-                autoComplete="current-password"
+              id="password"
+              type="password"
+              value={password}
+              label="パスワード"
+              onChange={(event) => setPassword(event.target.value)}
+              required
+              autoComplete="current-password"
+              sx={{ width: '100%' }}
+              error={!!errors.email}
             />
-          </Box>
+            <FormHelperText error>{errors.email?.[0]}</FormHelperText>
+          </Grid>
 
           {/* Remember Me */}
-          <Box>
+          <Grid item xs={12} sx={{ marginTop: '0.8rem', display: 'flex', justifyContent: 'center' }}>
             <FormControlLabel
               label="ログインしたままにする"
               control={
@@ -81,25 +103,37 @@ const Login: NextPage = () => {
                   name="remember"
                   color="info"
                   checked={shouldRemember}
-                  onChange={event =>
+                  onChange={(event) =>
                     setShouldRemember(event.target.checked)
                   }
                 />
               }
             />
-          </Box>
-          <Container>
-            <Button type="submit" variant="contained">ログイン</Button>
-          </Container>
-          <Container>
-            <Link href="/forgot-password">
-              パスワードを忘れた場合
-            </Link>
-          </Container>
-        </Box>
+          </Grid>
+          <Grid item xs={12}>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              sx={{ width: '100%', fontSize: '1.2rem', py: '0.8rem', px: '2.4rem', mt: '1rem' }}
+            >
+              ログイン
+            </Button>
+          </Grid>
+        </Grid>
+        <Container sx={{ marginTop: '2rem', display: 'flex', justifyContent: 'center', width: '100%' }}>
+          <Link href="/tutor/forgot-password">
+            パスワードを忘れた場合
+          </Link>
+        </Container>
+        <Container sx={{ marginTop: '0.8rem', display: 'flex', justifyContent: 'center', width: '100%' }}>
+          <Link href="/tutor/register">
+            新規登録
+          </Link>
+        </Container>
       </Card>
     </DefaultLayout>
   )
 }
 
-export default Login
+export default Login;

@@ -3,7 +3,7 @@ import {FormEventHandler, useEffect, useState} from 'react';
 import {useRouter} from 'next/router';
 import {NextPage} from "next";
 import Link from "next/link";
-import {Box, Button, Grid, Card, Checkbox, FormControlLabel, TextField, Container, FormHelperText} from "@mui/material";
+import {Button, Grid, Card, Checkbox, FormControlLabel, TextField, Container, FormHelperText} from "@mui/material";
 import DefaultLayout from "@/components/DefaultLayout";
 
 const Login: NextPage = () => {
