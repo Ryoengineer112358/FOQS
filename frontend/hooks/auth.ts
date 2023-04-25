@@ -34,7 +34,7 @@ export const useAuth = ({ middleware, redirectIfAuthenticated, loginDestination 
   const register = async ({ setErrors, ...props }: any) => {
     await csrf()
 
-    setErrors([])
+    setErrors({})
 
     axios
         .post('/register', props)
@@ -66,7 +66,7 @@ export const useAuth = ({ middleware, redirectIfAuthenticated, loginDestination 
   const forgotPassword = async ({ setErrors, setStatus, email, setStatusChanged }: any) => {
     await csrf()
 
-    setErrors([])
+    setErrors({})
     setStatus('sending')
 
     axios
