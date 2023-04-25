@@ -1,6 +1,6 @@
-export type Middleware = "student" | "tutor" | "guest"
+export type Middleware = "student" | "tutor" | "guest";
 
-export interface StudentQuestion {
+export type StudentQuestion = {
   id: number,
   content: string,
   student_id: number,
@@ -9,12 +9,12 @@ export interface StudentQuestion {
   student_comments: StudentComment[],
   created_at: Date,
   updated_at: Date,
-}
+};
 export function isStudentQuestion(arg: any): arg is StudentQuestion {
   return arg.student_id !== undefined;
-}
+};
 
-export interface TutorAnswer {
+export type TutorAnswer = {
   id: number,
   content: string,
   tutor_id: number,
@@ -22,12 +22,12 @@ export interface TutorAnswer {
   created_at: Date,
   updated_at: Date,
   sender_role: "tutor" | "student",
-}
+};
 export function isTutorAnswer(arg: any): arg is StudentQuestion {
   return arg.student_question_id !== undefined && arg.sender_role == "tutor";
-}
+};
 
-export interface StudentComment {
+export type StudentComment = {
   id: number,
   content: string,
   student_question_id: number,
@@ -35,12 +35,12 @@ export interface StudentComment {
   created_at: Date,
   updated_at: Date,
   sender_role: "tutor" | "student",
-}
+};
 export function isStudentComment(arg: any): arg is StudentQuestion {
   return arg.student_question_id !== undefined && arg.sender_role == "student";
-}
+};
 
-export interface Tutor {
+export type Tutor = {
   id: number,
   first_name: string,
   last_name: string,
@@ -51,12 +51,12 @@ export interface Tutor {
   quit_at?: Date,
   created_at: Date,
   updated_at: Date,
-}
+};
 export function isTutor(arg: any): arg is Tutor {
   return arg.university !== undefined;
-}
+};
 
-export interface Student {
+export type Student = {
   id: number,
   first_name: string,
   last_name: string,
@@ -68,7 +68,7 @@ export interface Student {
   quit_at?: Date,
   created_at: Date,
   updated_at: Date,
-}
+};
 export function isStudent(arg: any): arg is Student {
   return arg.first_choice_university !== undefined;
-}
+};

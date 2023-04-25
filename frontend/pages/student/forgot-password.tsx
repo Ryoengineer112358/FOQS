@@ -13,9 +13,9 @@ const ForgotPassword: NextPage = () => {
     middleware: 'guest',
     redirectIfAuthenticated: '/',
   });
-  interface ValidationErrorMessages {
+  type ValidationErrorMessages = {
     [key: string]: string[];
-  }
+  };
 
   const [email, setEmail] = useState('');
   const [errors, setErrors] = useState<ValidationErrorMessages>({});

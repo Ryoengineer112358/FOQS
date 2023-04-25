@@ -27,9 +27,9 @@ const Register: NextPage = () => {
   const [firstChoiceFaculty, setFirstChoiceFaculty] = useState("");
   const [birthDate, setBirthDate] = useState("");
   const [gender, setGender] = useState("");
-  interface ValidationErrorMessages {
+  type ValidationErrorMessages = {
     [key: string]: string[];
-  }
+  };
 
   const [errors, setErrors] = useState<ValidationErrorMessages>({});
   const [status, setStatus] = useState<String | null>(null);

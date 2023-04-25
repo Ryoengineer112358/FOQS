@@ -16,9 +16,9 @@ const ResetPassword: NextPage = () => {
 
   const [newPassword, setNewPassword] = useState('')
   const [passwordConfirmation, setPasswordConfirmation] = useState('')
-  interface ValidationErrorMessages {
+  type ValidationErrorMessages = {
     [key: string]: string[];
-  }
+  };
   const [errors, setErrors] = useState<ValidationErrorMessages>({})
   const [status, setStatus] = useState(null)
   const [email, setEmail] = useState('');

@@ -20,9 +20,9 @@ const Login: NextPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [shouldRemember, setShouldRemember] = useState(false);
-  interface ValidationErrorMessages {
+  type ValidationErrorMessages = {
     [key: string]: string[];
-  }
+  };
   const [errors, setErrors] = useState<ValidationErrorMessages>({});
   const [status, setStatus] = useState<String | null>(null);
 
