@@ -3,7 +3,7 @@ import { useAuth } from '@/hooks/auth'
 import DefaultLayout from '@/components/DefaultLayout'
 import ChatMessage from '@/components/ChatMessage'
 import BackButton from "@/components/BackButton";
-import {Middleware, StudentComment, StudentQuestion, Tutor, TutorAnswer} from "@/types";
+import type {Middleware, StudentComment, StudentQuestion, Tutor, TutorAnswer} from "@/types";
 import {Box} from "@mui/material";
 import axios from "@/lib/axios";
 import { useRouter} from "next/router";

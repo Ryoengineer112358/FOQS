@@ -52,16 +52,8 @@ const VerifyEmail: NextPage = () => {
                   align="center"
                   sx={{ marginTop: '0.4rem', marginBottom: '0.4rem', width: '80%', textAlign: 'left', color: 'red', fontWeight: 'bold', fontSize: '1.2rem' }}
                 >
-                  {status === 'sending' && (
-                    <>
-                      送信中…
-                    </>
-                  )}
-                  {status === 'sent' && (
-                    <>
-                      送信完了
-                    </>
-                  )}
+                  {status === 'sending' && <>送信中…</>}
+                  {status === 'sent' && <>送信完了</>}
                 </Typography>
               )}
 
