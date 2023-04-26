@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
 use Illuminate\Validation\ValidationException;
+use App\Models\Student;
+use App\Models\Tutor;
 
 class NewPasswordController extends Controller
 {
@@ -27,11 +29,21 @@ class NewPasswordController extends Controller
             'token' => ['required'],
             'email' => ['required', 'email'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'userType' => ['required', 'in:students,tutors'],
+            //'userType' => ['required', 'in:students,tutors'],
         ]);
-
-        $userType = $request->input('userType');
-        $userModel = config("auth.providers.{$userType}.model");
+        if (Student::where('email', $request->email)->exists()) {
+            $userType = 'students';
+            $userModel = config("auth.providers.{$userType}.model");
+        } elseif (Tutor::where('email', $request->email)->exists()) {
+            $userType = 'tutors';
+            $userModel = config("auth.providers.{$userType}.model");
+        } else {
+            throw ValidationException::withMessages([
+                'email' => [__('passwords.user')],
+            ]);
+        }
+        //$userType = $request->input('userType');
+        //$userModel = config("auth.providers.{$userType}.model");
 
         // Here we will attempt to reset the user's password. If it is successful we
         // will update the password on an actual user model and persist it to the
@@ -54,7 +66,8 @@ class NewPasswordController extends Controller
                 'email' => [__($status)],
             ]);
         }
+        //$userTypeの最後の文字を消去して、単数形にする
+        return response()->json(['status' => __($status), 'userType' => substr($userType, 0, -1) ]);
 
-        return response()->json(['status' => __($status)]);
     }
 }

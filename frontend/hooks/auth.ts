@@ -92,12 +92,11 @@ export const useAuth = ({ middleware, redirectIfAuthenticated, loginDestination 
     axios
         .post('/reset-password', { 
           token,
-          userType: "students", 
           email,
           password: newPassword,
           password_confirmation: passwordConfirmation,
         })
-        .then(response => router.push(`/student/login?reset=` + encodeURI(response.data.status)))
+        .then(response => router.push(`/${response.data.userType}/login?reset=${encodeURI(response.data.status)}`))
         .catch(error => {
           if (error.response.status !== 422) throw error
  
