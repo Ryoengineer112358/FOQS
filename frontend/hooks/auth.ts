@@ -31,19 +31,26 @@ export const useAuth = ({ middleware, redirectIfAuthenticated, loginDestination 
 
   const csrf = () => axios.get('/sanctum/csrf-cookie')
 
-  const register = async ({ setErrors, ...props }: any) => {
+  const register = async ({ setErrors, setStatus, ...props }: any) => {
     await csrf()
 
     setErrors({})
+    setStatus('registering')
 
     axios
         .post('/register', props)
-        .then(() => mutate())
-        .then(() => router.push(`/${loginDestination}/verify-email`))
+        .then(() => {
+          setStatus('registered')
+          mutate()
+          setTimeout(() => {
+            router.push(`/${loginDestination}/verify-email`)
+          }, 1000);
+        })
         .catch(error => {
           if (error.response.status !== 422) throw error
 
           setErrors(error.response.data.errors)
+          setStatus('initial')
         })
   }
 

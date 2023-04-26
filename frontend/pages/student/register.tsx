@@ -3,7 +3,7 @@ import {FormEventHandler, useEffect, useState} from "react";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
 import Link from "next/link";
-import { Box, Button, Card, Grid, TextField, Container, FormControl, FormHelperText, InputLabel, InputAdornment, Select, MenuItem } from "@mui/material";
+import { Box, Button, Card, Grid, TextField, Container, FormControl, FormHelperText, InputLabel, InputAdornment, Select, MenuItem, Typography } from "@mui/material";
 import DefaultLayout from "@/components/DefaultLayout";
 
 const Register: NextPage = () => {
@@ -32,7 +32,7 @@ const Register: NextPage = () => {
   };
 
   const [errors, setErrors] = useState<ValidationErrorMessages>({});
-  const [status, setStatus] = useState<String | null>(null);
+  const [status, setStatus] = useState<String>('initial');
 
   const submitForm: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
@@ -220,7 +220,7 @@ const Register: NextPage = () => {
               {/* 性別 */}
               <Grid container justifyContent="center" sx={{ marginTop: "0.8rem" }}>
                 <Grid item xs={5}>
-                  <FormControl fullWidth　error={!!errors.gender}>
+                  <FormControl fullWidth error={!!errors.gender}>
                     <InputLabel id="gender-label" htmlFor="gender">性別</InputLabel>
                     <Select
                       labelId="gender-label"
@@ -239,6 +239,26 @@ const Register: NextPage = () => {
                 </Grid>
               </Grid>
             </Grid>
+
+            {((status === 'registering') || (status === 'registered') || (Object.keys(errors).length > 0)) && (
+              <Typography
+                variant="body1"
+                align="center"
+                sx={{
+                  marginTop: "1.2rem",
+                  marginBottom: "0.4rem",
+                  width: "80%",
+                  textAlign: "left",
+                  color: "red",
+                  fontWeight: "bold",
+                  fontSize: "1.2rem",
+                }}
+              >
+                {status === 'registering' && <>登録中…</>}
+                {status === 'registered' && <>登録完了！</>}
+                {Object.keys(errors).length > 0 && <>登録失敗</>}
+              </Typography>
+            )}
 
             <Grid item xs={12} sx={{marginTop: '0.8rem'}}>
               <Button
