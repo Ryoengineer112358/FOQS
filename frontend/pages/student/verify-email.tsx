@@ -12,8 +12,10 @@ const VerifyEmail: NextPage = () => {
     middleware: middleware,
     redirectIfAuthenticated: `/${middleware}`
   })
-
-  const [errors, setErrors] = useState({})
+  type ValidationErrorMessages = {
+    [key: string]: string[];
+  }
+  const [errors, setErrors] = useState<ValidationErrorMessages>({})
   const [status, setStatus] = useState('initial')
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -54,6 +56,23 @@ const VerifyEmail: NextPage = () => {
                 >
                   {status === 'sending' && <>送信中…</>}
                   {status === 'sent' && <>送信完了</>}
+                </Typography>
+              )}
+              {errors.message && (
+                <Typography
+                  variant="body1"
+                  align="center"
+                  sx={{
+                    marginTop: "0.4rem",
+                    marginBottom: "0.4rem",
+                    width: "90%",
+                    textAlign: "left",
+                    color: "red",
+                    fontWeight: "bold",
+                    fontSize: "1rem",
+                  }}
+                >
+                  {errors.message}
                 </Typography>
               )}
 

@@ -111,13 +111,22 @@ export const useAuth = ({ middleware, redirectIfAuthenticated, loginDestination 
         })
   }
 
-  const resendEmailVerification = ({ setStatus }: any) => {
+  const resendEmailVerification = ({ setStatus, setErrors }: any) => {
 
+    setErrors({})
     setStatus('sending')
     
     axios
         .post('/email/verification-notification')
         .then(response => setStatus('sent'))
+        .catch(error => {
+          if (error.response.status === 429) {
+            setErrors({message: 'しばらく時間をおいてから再度お試しください。'})
+          } else {
+            setErrors({message: 'エラーが発生しました。再度お試しください。'})
+          }
+          setStatus('initial')
+        });
   }
 
   const logout = async (middleware: Middleware) => {
