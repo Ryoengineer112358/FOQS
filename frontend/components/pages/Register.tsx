@@ -45,7 +45,7 @@ const Register = (props: Props) => {
     event.preventDefault();
 
     register({
-      user_type: props.registerDestination,
+      user_type: props.userType,
       last_name: lastName,
       first_name: firstName,
       email,
@@ -128,7 +128,6 @@ const Register = (props: Props) => {
                   sx={{ width: "100%" }}
                   error={!!errors.password}
                 />
-                <FormHelperText error>{errors.password?.[0]}</FormHelperText>
               </Box>
 
               {/* Password Confirmation */}
