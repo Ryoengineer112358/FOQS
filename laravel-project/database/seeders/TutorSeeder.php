@@ -20,9 +20,11 @@ class TutorSeeder extends Seeder
             'first_name'=>'俊彬',
             'email'=>'gototoshiaki@gmail.com',
             'password'=>bcrypt('password'),
+            'email_verified_at'=>now(),
             'university'=>'京都大学',
-            'age'=>25,
-            'sex'=> 0,
+            'faculty'=>'法学部',
+            'birth_date'=>'1997-02-06',
+            'gender'=> 0 ,
         ]);
 
         Tutor::create([
@@ -30,9 +32,11 @@ class TutorSeeder extends Seeder
             'first_name'=>'皓',
             'email'=>'sudaakira@gmail.com',
             'password'=>bcrypt('password'),
+            'email_verified_at'=>now(),
             'university'=>'東京大学',
-            'age'=>26,
-            'sex'=> 0,
+            'faculty'=>'法学部',
+            'birth_date'=>'1997-02-21',
+            'gender'=> 0 ,
         ]);
     }
 }
