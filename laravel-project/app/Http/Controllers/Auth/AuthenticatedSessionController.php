@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\Response;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -15,18 +16,22 @@ class AuthenticatedSessionController extends Controller
      * @param  \App\Http\Requests\Auth\LoginRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function storeStudent(LoginRequest $request)
+    public function store(LoginRequest $request)
     {
-        $request->authenticate(Auth::guard("students"));
+        $userType = $request->input('user_type');
 
-        $request->session()->regenerate();
+        switch ($userType) {
+            case 'student':
+                $request->authenticate(Auth::guard("students"));
+                break;
 
-        return response()->noContent();
-    }
+            case 'tutor':
+                $request->authenticate(Auth::guard("tutors"));
+                break;
 
-    public function storeTutor(LoginRequest $request)
-    {
-        $request->authenticate(Auth::guard("tutors"));
+            default:
+                return response()->json(['message' => 'Invalid user type'], Response::HTTP_BAD_REQUEST);
+        }
 
         $request->session()->regenerate();
 

@@ -7,12 +7,12 @@ import DefaultLayout from "@/components/DefaultLayout";
 import type { Middleware } from "@/types";
 
 type Props = {
-    loginDestination: Middleware
+    userType: Middleware
 }
 
 const Login = (props: Props) => {
   const middleware = "guest"
-  const loginDestination = props.loginDestination
+  const loginDestination = props.userType
   const router = useRouter()
 
   const { login } = useAuth({
@@ -42,7 +42,14 @@ const Login = (props: Props) => {
   const submitForm: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault()
 
-    login({ email, password, remember: shouldRemember, setErrors, setStatus })
+    login({
+      user_type: props.userType,
+      email,
+      password,
+      remember: shouldRemember,
+      setErrors,
+      setStatus
+    })
   }
 
   return (
@@ -118,12 +125,12 @@ const Login = (props: Props) => {
           </Grid>
         </Grid>
         <Container sx={{ marginTop: "2rem", display: 'flex', justifyContent: 'center', width: '100%' }}>
-          <Link href={`/${props.loginDestination}/forgot-password`}>
+          <Link href={`/${props.userType}/forgot-password`}>
             パスワードを忘れた場合
           </Link>
         </Container>
         <Container sx={{ marginTop: "0.8rem", display: 'flex', justifyContent: 'center', width: '100%' }}>
-          <Link href={`/${props.loginDestination}/register`}>
+          <Link href={`/${props.userType}/register`}>
             新規登録
           </Link>
         </Container>

@@ -61,7 +61,7 @@ export const useAuth = ({ middleware, redirectIfAuthenticated, loginDestination 
     setStatus(null)
 
     axios
-        .post(`/${loginDestination}/login`, props)
+        .post('/login', props)
         .then(() => mutate())
         .catch(error => {
           if (error.response.status !== 422) throw error
@@ -111,13 +111,13 @@ export const useAuth = ({ middleware, redirectIfAuthenticated, loginDestination 
         })
   }
 
-  const resendEmailVerification = ({ setStatus, setErrors }: any) => {
+  const resendEmailVerification = ({ setStatus, setErrors, middleware }: any) => {
 
     setErrors({})
     setStatus('sending')
     
     axios
-        .post('/email/verification-notification')
+        .post('/email/verification-notification', {user_type: middleware})
         .then(response => setStatus('sent'))
         .catch(error => {
           if (error.response.status === 429) {
