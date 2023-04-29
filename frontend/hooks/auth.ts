@@ -111,13 +111,13 @@ export const useAuth = ({ middleware, redirectIfAuthenticated, loginDestination 
         })
   }
 
-  const resendEmailVerification = ({ setStatus, setErrors, middleware }: any) => {
+  const resendEmailVerification = ({ setStatus, setErrors, user_type }: any) => {
 
     setErrors({})
     setStatus('sending')
     
     axios
-        .post('/email/verification-notification', {user_type: middleware})
+        .post('/email/verification-notification', {user_type})
         .then(response => setStatus('sent'))
         .catch(error => {
           if (error.response.status === 429) {
