@@ -122,7 +122,7 @@ return [
     'starts_with' => ':attributeは、次のいずれかで始まらなければなりません: :values。',
     'string' => ':attributeは、文字列でなければなりません。',
     'timezone' => ':attributeは、有効なタイムゾーンでなければなりません。',
-    'unique' => ':このattributeは既に使用されています。',
+    'unique' => 'この:attributeは既に使用されています。',
     'uploaded' => ':attributeのアップロードに失敗しました。',
     'url' => ':attributeの形式が無効です。',
     'uuid' => ':attributeは、有効なUUIDでなければなりません。',
