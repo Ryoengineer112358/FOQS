@@ -3,12 +3,12 @@ import {FormEventHandler, useEffect, useState} from "react";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
 import Link from "next/link";
-import { Box, Button, Card, Grid, TextField, Container, FormControl, FormHelperText, InputLabel, InputAdornment, Select, MenuItem } from "@mui/material";
+import { Box, Button, Card, Grid, TextField, Container, FormControl, FormHelperText, InputLabel, InputAdornment, Select, MenuItem, Typography } from "@mui/material";
 import DefaultLayout from "@/components/DefaultLayout";
 
 const Register: NextPage = () => {
   const middleware = "guest";
-  const loginDestination = "student";
+  const loginDestination = "tutor";
   const router = useRouter();
 
   const { register } = useAuth({
@@ -22,9 +22,8 @@ const Register: NextPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
-  const [highSchool, setHighSchool] = useState("");
-  const [firstChoiceUniversity, setFirstChoiceUniversity] = useState("");
-  const [firstChoiceFaculty, setFirstChoiceFaculty] = useState("");
+  const [university, setUniversity] = useState("");
+  const [faculty, setFaculty] = useState("");
   const [birthDate, setBirthDate] = useState("");
   const [gender, setGender] = useState("");
   type ValidationErrorMessages = {
@@ -32,20 +31,20 @@ const Register: NextPage = () => {
   };
 
   const [errors, setErrors] = useState<ValidationErrorMessages>({});
-  const [status, setStatus] = useState<String | null>(null);
+  const [status, setStatus] = useState<String>('initial');
 
   const submitForm: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
 
     register({
+      user_type: 'tutor',
       last_name: lastName,
       first_name: firstName,
       email,
       password,
       password_confirmation: passwordConfirmation,
-      high_school: highSchool,
-      first_choice_university: firstChoiceUniversity,
-      first_choice_faculty: firstChoiceFaculty,
+      university: university,
+      faculty: faculty,
       birth_date: birthDate,
       gender,
       setErrors,
@@ -138,32 +137,14 @@ const Register: NextPage = () => {
                 <FormHelperText error>{errors.password?.[0]}</FormHelperText>
               </Box>
 
-              {/* 高校名 */}
+              {/* 大学 */}
               <Box sx={{ marginTop: "0.8rem" }}>
                 <TextField
-                  id="high_school"
+                  id="university"
                   type="text"
-                  value={highSchool}
-                  label="高校名"
-                  onChange={(event) => setHighSchool(event.target.value)}
-                  InputProps={{
-                    endAdornment: <InputAdornment position="end">高校</InputAdornment>,
-                  }}
-                  required
-                  sx={{ width: "100%" }}
-                  error={!!errors.high_school}
-                />
-                <FormHelperText error>{errors.high_school?.[0]}</FormHelperText>
-              </Box>
-
-              {/* 第一志望大学 */}
-              <Box sx={{ marginTop: "0.8rem" }}>
-                <TextField
-                  id="first_choice_university"
-                  type="text"
-                  value={firstChoiceUniversity}
-                  label="第一志望大学"
-                  onChange={(event) => setFirstChoiceUniversity(event.target.value)}
+                  value={university}
+                  label="所属（卒業）大学"
+                  onChange={(event) => setUniversity(event.target.value)}
                   InputProps={{
                     endAdornment: <InputAdornment position="end">大学</InputAdornment>,
                   }}
@@ -177,11 +158,11 @@ const Register: NextPage = () => {
               {/* 第一志望学部 */}
               <Box sx={{ marginTop: "0.8rem" }}>
                 <TextField
-                  id="first_choice_faculty"
+                  id="faculty"
                   type="text"
-                  value={firstChoiceFaculty}
-                  label="第一志望学部"
-                  onChange={(event) => setFirstChoiceFaculty(event.target.value)}
+                  value={faculty}
+                  label="所属（卒業）学部"
+                  onChange={(event) => setFaculty(event.target.value)}
                   InputProps={{
                     endAdornment: <InputAdornment position="end">学部</InputAdornment>,
                   }}
@@ -239,6 +220,26 @@ const Register: NextPage = () => {
                 </Grid>
               </Grid>
             </Grid>
+
+            {((status === 'registering') || (status === 'registered') || (Object.keys(errors).length > 0)) && (
+              <Typography
+                variant="body1"
+                align="center"
+                sx={{
+                  marginTop: "1.2rem",
+                  marginBottom: "0.4rem",
+                  width: "80%",
+                  textAlign: "left",
+                  color: "red",
+                  fontWeight: "bold",
+                  fontSize: "1.2rem",
+                }}
+              >
+                {status === 'registering' && <>登録中…</>}
+                {status === 'registered' && <>登録完了！</>}
+                {Object.keys(errors).length > 0 && <>登録失敗</>}
+              </Typography>
+            )}
 
             <Grid item xs={12} sx={{marginTop: '0.8rem'}}>
               <Button

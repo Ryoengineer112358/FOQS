@@ -38,6 +38,7 @@ const Register: NextPage = () => {
     event.preventDefault();
 
     register({
+      user_type: 'student',
       last_name: lastName,
       first_name: firstName,
       email,
@@ -138,7 +139,7 @@ const Register: NextPage = () => {
                 <FormHelperText error>{errors.password?.[0]}</FormHelperText>
               </Box>
 
-              {/* 高校名 */}
+              {/* 高校 */}
               <Box sx={{ marginTop: "0.8rem" }}>
                 <TextField
                   id="high_school"
