@@ -70,14 +70,14 @@ export const useAuth = ({ middleware, redirectIfAuthenticated, loginDestination 
         })
   }
 
-  const forgotPassword = async ({ setErrors, setStatus, email, setStatusChanged }: any) => {
+  const forgotPassword = async ({ setErrors, setStatus, setStatusChanged, ...props }: any) => {
     await csrf()
 
     setErrors({})
     setStatus('sending')
 
     axios
-        .post('/forgot-password', { email })
+        .post('/forgot-password', props )
         .then(response => {
           setStatus('sent');
           setStatusChanged(true);
@@ -90,19 +90,14 @@ export const useAuth = ({ middleware, redirectIfAuthenticated, loginDestination 
         })
   }
 
-  const resetPassword = async ({ setErrors, setStatus, email, newPassword, passwordConfirmation, token }: any) => {
+  const resetPassword = async ({ setErrors, setStatus, ...props }: any) => {
     await csrf()
 
     setErrors({})
     setStatus(null)
 
     axios
-        .post('/reset-password', { 
-          token,
-          email,
-          password: newPassword,
-          password_confirmation: passwordConfirmation,
-        })
+        .post('/reset-password', props )
         .then(response => router.push(`/${response.data.userType}/login?reset=password-reset`))
         .catch(error => {
           if (error.response.status !== 422) throw error

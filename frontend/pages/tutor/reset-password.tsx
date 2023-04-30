@@ -1,11 +1,11 @@
-import type {NextPage} from "next";
+import type { NextPage } from "next";
 import * as ResetPasswordComponent from "@/components/Pages/ResetPassword";
 import { withTokenRedirect } from "@/utils";
 
 const ResetPassword: NextPage = () => {
-  return <ResetPasswordComponent.default userType="student" />
+  return <ResetPasswordComponent.default userType="tutor" />
 }
 
-export const getServerSideProps = withTokenRedirect("student");
+export const getServerSideProps = withTokenRedirect("tutor");
 
 export default ResetPassword
