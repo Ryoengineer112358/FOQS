@@ -32,8 +32,8 @@ const Login = (props: Props) => {
 
   useEffect(() => {
     const reset = router.query.reset
-    if (typeof reset === "string" && reset.length > 0 && !Object.keys(errors).length ) {
-      setStatus(decodeURI(reset))
+    if (reset === 'password-reset') {
+      setStatus('パスワードをリセットしました。')
     } else {
       setStatus(null)
     }
