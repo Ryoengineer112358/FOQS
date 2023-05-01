@@ -55,7 +55,7 @@ class NewPasswordController extends Controller
                 'email' => [__($status)],
             ]);
         }
-        return response()->json(['status' => __($status), 'userType' => $request->user_type ]);
+        return response()->json(['status' => __($status)]);
 
     }
 }
