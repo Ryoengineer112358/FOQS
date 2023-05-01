@@ -9,20 +9,3 @@ export function convertDateTypeOnObject(obj: any) {
   }
   return obj
 }
-
-export const withTokenRedirect = (userType: string): GetServerSideProps => async (context) => {
-  const { token } = context.query;
-
-  if (!token) {
-    return {
-      redirect: {
-        destination: `/${userType}/login`,
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: {},
-  };
-};

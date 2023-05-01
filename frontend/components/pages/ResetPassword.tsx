@@ -5,6 +5,7 @@ import { Box, Button, Card, TextField, Container, Typography, Grid, FormHelperTe
 import DefaultLayout from '@/components/DefaultLayout'
 import Link from "next/link";
 import type { Middleware } from "@/types";
+import { GetServerSideProps } from 'next'
 
 type Props = {
     userType: Middleware
@@ -136,5 +137,22 @@ const ResetPassword = (props: Props) => {
     </DefaultLayout>
   )
 }
+
+export const redirectIfWithoutToken = (userType: string): GetServerSideProps => async (context) => {
+  const { token } = context.query;
+
+  if (!token) {
+    return {
+      redirect: {
+        destination: `/${userType}/login`,
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
+};
 
 export default ResetPassword
