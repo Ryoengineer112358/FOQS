@@ -80,7 +80,9 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        Auth::login($user);
+        $guard = Auth::guard($userType . 's');
+
+        $guard->login($user);
 
         return $user;
     }
