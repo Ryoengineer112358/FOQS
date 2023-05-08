@@ -28,7 +28,7 @@ const QuestionHistory: NextPage = () => {
       <Grid container justifyContent="center">
         <Grid xs={12}>
           {questions.map(x =>
-            <CardMessage key={x.id} text={x.content} href={`${middleware}/chat/${x.id}`} />
+            <CardMessage key={x.id} text={x.content} href={`/${middleware}/chat/${x.id}`} />
           )}
         </Grid>
       </Grid>
