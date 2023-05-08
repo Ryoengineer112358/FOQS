@@ -28,10 +28,11 @@ class QuestionController extends Controller
             $query = StudentQuestion::where('tutor_id', \Auth::id());
         }
 
+
         if ($request->solved_only) {
             $query = $query->whereNotNull('solved_at');
         } else {
-            $query = $query->with(
+            $query = $query->whereNull('solved_at')->with(
                 [
                     'tutor_answers' => function ($query) {
                         $query->orderBy('created_at', 'desc');
@@ -82,14 +83,23 @@ class QuestionController extends Controller
      */
     public function show(StudentQuestion $question)
     {
-        \Log::info(collect([$question]));
-        $tutorAnswers = TutorAnswer::where('tutor_id', $question->tutor_id)->get()->each(fn($x) => $x->sender_role = 'tutor');
-//        \Log::info($tutorAnswers);
-        $studentComments = StudentComment::where('tutor_id', $question->tutor_id)->get()->each(fn($x) => $x->sender_role = 'student');
-//        \Log::info($studentComments);
-        $messages = collect([$question])->concat($tutorAnswers)->concat($studentComments)->sortBy('created_at')->values();
-//        \Log::info($messages);
-        return $messages;
+        $tutorAnswers = TutorAnswer::where('tutor_id', $question->tutor_id)
+                                    ->get()
+                                    ->each(fn($x) => $x->sender_role = 'tutor');
+
+        $studentComments = StudentComment::where('tutor_id', $question->tutor_id)
+                                    ->get()
+                                    ->each(fn($x) => $x->sender_role = 'student');
+
+        $replies = ($tutorAnswers)
+                    ->concat($studentComments)
+                    ->sortBy('created_at')
+                    ->values();
+
+        return compact($replies, $question);
+
+        //フロントエンド側でタイプスクリプトの型定義から必要
+        //→$questionのsolved_atカラムがNULLかどうかでフロントエンド側の文章入力欄と送信ボタンの表示非表示を決める
     }
 
     /**
