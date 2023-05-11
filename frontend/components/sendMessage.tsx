@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import { Input } from '@mui/material';
 import SendIcon from "@mui/icons-material/Send"
+import { defaultMessage } from '@/types';
 
 type Props = {
   sendFunction: Function;
@@ -19,13 +20,8 @@ function SendMessage(props: Props) {
       return;
     }
     props.sendFunction({
-      id: 0,
+      ...defaultMessage,
       content: message,
-      tutor_id: 0,
-      student_question_id: 0,
-      created_at: new Date(),
-      updated_at: new Date(),
-      sender_role: props.sender_role,
     })
     //ここにDBとのやりとりを記載
 

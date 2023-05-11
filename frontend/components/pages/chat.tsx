@@ -7,8 +7,8 @@ import type {Middleware, StudentComment, StudentQuestion, Tutor, TutorAnswer} fr
 import {Box} from "@mui/material";
 import axios from "@/lib/axios";
 import { useRouter} from "next/router";
-
-type Message = StudentQuestion | TutorAnswer | StudentComment
+import { defaultMessage } from '@/types';
+import { convertDateTypeOnObject } from '@/utils';
 
 type Props = {
   middleware: Middleware;
@@ -19,17 +19,22 @@ const Chat = (props: Props) => {
   const questionId = query["question-id"];
 
   const fetchMessages = () => {
-    isReady && axios.get<Message[]>(`/api/questions/${questionId}`).then(
-      (result) => setMessages(result.data)
+    isReady && axios.get<StudentQuestion>(`/api/questions/${questionId}`).then(
+      (result) => setQuestion(convertDateTypeOnObject(result.data))
     )
   }
 
   useEffect(fetchMessages, [isReady])
   const { user } = useAuth({ middleware: props.middleware })
-  const [messages, setMessages] = useState<Array<Message>>([]);
+  const [question, setQuestion] = useState<StudentQuestion>({...defaultMessage, student_id: 0, tutor_answers: [], student_comments: []});
+  
 
-  const updateMessages = (newMessage: Message) => {
-    setMessages([...messages, newMessage])
+  const updateMessages = (newMessage: StudentComment | TutorAnswer) => {
+    const isStudent = props.middleware === "student"
+    const isTutor = props.middleware === "tutor"
+    setQuestion({...question,
+      student_comments: isStudent? [...question.student_comments, newMessage] : question.student_comments,
+      tutor_answers: isTutor? [...question.tutor_answers, newMessage] : question.tutor_answers})
     axios.post(`/api/questions/${questionId}`, {message: newMessage.content}).then(
       fetchMessages
     )
@@ -40,7 +45,7 @@ const Chat = (props: Props) => {
       <DefaultLayout middleware={props.middleware}>
         <div></div>
       </DefaultLayout>
-      <ChatMessage middleware={props.middleware} messages={messages} sendFunction={updateMessages}/>
+      <ChatMessage middleware={props.middleware} question={question} sendFunction={updateMessages}/>
       <Box sx={{position: 'sticky', bottom: 0}}>
         <BackButton />
       </Box>
