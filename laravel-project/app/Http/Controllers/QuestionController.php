@@ -46,11 +46,6 @@ class QuestionController extends Controller
 
         $questions = $query->orderByDesc('updated_at')->get();
 
-        foreach ($questions as $question) {
-            $question->tutor_answers = $question->tutor_answers->sortByDesc("created_at");
-            $question->student_comments = $question->student_comments->sortByDesc("created_at");
-        }
-
         return $questions;
     }
 
@@ -83,23 +78,19 @@ class QuestionController extends Controller
      */
     public function show(StudentQuestion $question)
     {
-        $tutorAnswers = TutorAnswer::where('tutor_id', $question->tutor_id)
-                                    ->get()
-                                    ->each(fn($x) => $x->sender_role = 'tutor');
+        $question->load([
+            'tutor_answers' => function ($query) use ($question) {
+                $query->where('tutor_id', $question->tutor_id)
+                    ->orderBy('created_at', 'asc');
+            },
+            'student_comments' => function ($query) use ($question) {
+                $query->where('tutor_id', $question->tutor_id)
+                        ->orderBy('created_at', 'asc');
+            },
+        ]);
 
-        $studentComments = StudentComment::where('tutor_id', $question->tutor_id)
-                                    ->get()
-                                    ->each(fn($x) => $x->sender_role = 'student');
+        return ($question);
 
-        $replies = ($tutorAnswers)
-                    ->concat($studentComments)
-                    ->sortBy('created_at')
-                    ->values();
-
-        return compact($replies, $question);
-
-        //フロントエンド側でタイプスクリプトの型定義から必要
-        //→$questionのsolved_atカラムがNULLかどうかでフロントエンド側の文章入力欄と送信ボタンの表示非表示を決める
     }
 
     /**
