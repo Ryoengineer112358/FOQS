@@ -1,5 +1,14 @@
 export type Middleware = "student" | "tutor" | "guest";
 
+export const defaultMessage = {
+  id: 0,
+      content: '',
+      tutor_id: 0,
+      student_question_id: 0,
+      created_at: new Date(),
+      updated_at: new Date(),
+}
+
 export type StudentQuestion = {
   id: number,
   content: string,
@@ -7,6 +16,7 @@ export type StudentQuestion = {
   tutor_id?: number,
   tutor_answers: TutorAnswer[],
   student_comments: StudentComment[],
+  solved_at?: Date,
   created_at: Date,
   updated_at: Date,
 };
@@ -21,7 +31,6 @@ export type TutorAnswer = {
   student_question_id: number,
   created_at: Date,
   updated_at: Date,
-  sender_role: "tutor" | "student",
 };
 export function isTutorAnswer(arg: any): arg is StudentQuestion {
   return arg.student_question_id !== undefined && arg.sender_role == "tutor";
@@ -34,7 +43,6 @@ export type StudentComment = {
   tutor_id: number,
   created_at: Date,
   updated_at: Date,
-  sender_role: "tutor" | "student",
 };
 export function isStudentComment(arg: any): arg is StudentQuestion {
   return arg.student_question_id !== undefined && arg.sender_role == "student";
