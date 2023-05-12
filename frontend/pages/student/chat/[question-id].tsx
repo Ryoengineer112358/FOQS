@@ -1,9 +1,9 @@
 import type { NextPage } from 'next'
-import Chat from "@/components/Pages/Chat";
+import * as ChatComponent from "@/components/Pages/Chat";
 
-const ChatPage: NextPage = () => {
+const Chat: NextPage = () => {
 
-  return <Chat middleware={"student"} />
+  return <ChatComponent.default middleware={"student"} />
 }
 
-export default ChatPage
+export default Chat

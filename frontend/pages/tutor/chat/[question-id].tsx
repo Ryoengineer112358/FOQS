@@ -1,10 +1,9 @@
-import React from 'react'
 import type { NextPage } from 'next'
-import Chat from "../../../components/Pages/Chat";
+import * as ChatComponent from "@/components/Pages/Chat";
 
-const ChatPage: NextPage = () => {
+const Chat: NextPage = () => {
 
-  return <Chat middleware={"tutor"} />
+  return <ChatComponent.default middleware={"tutor"} />
 }
 
-export default ChatPage
+export default Chat
