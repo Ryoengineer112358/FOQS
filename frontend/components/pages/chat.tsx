@@ -45,9 +45,11 @@ const Chat = (props: Props) => {
       <DefaultLayout middleware={props.middleware}>
         <div></div>
       </DefaultLayout>
-      <ChatMessage middleware={props.middleware} question={question} sendFunction={updateMessages}/>
-      <Box sx={{position: 'sticky', bottom: 0}}>
-        <BackButton />
+      <Box sx={{ overflowY: 'scroll', paddingBottom: '20px' }}>
+        <ChatMessage middleware={props.middleware} question={question} sendFunction={updateMessages}/>
+        <Box sx={{position: 'sticky', bottom: 0}}>
+          <BackButton />
+        </Box>
       </Box>
     </>
   )
