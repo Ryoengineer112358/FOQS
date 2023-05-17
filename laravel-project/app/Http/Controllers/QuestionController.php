@@ -155,4 +155,12 @@ class QuestionController extends Controller
             }
         });
     }
+
+    public function solve(StudentQuestion $question)
+    {
+        $question->solved_at = now();
+        $question->save();
+
+        return response()->json($question);
+    }
 }

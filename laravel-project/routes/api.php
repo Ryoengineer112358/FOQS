@@ -26,6 +26,7 @@ Route::group(['middleware' => ['auth:students,tutors']], function () {
     });
     Route::group(['middleware' => ['verified']], function () {
         Route::post('/questions/{question}', [QuestionController::class, 'reply']);
+        Route::post('/questions/{question}/solve', [QuestionController::class, 'solve']);
         Route::apiResource('questions', QuestionController::class)->only('index', 'show');
     });
 });
