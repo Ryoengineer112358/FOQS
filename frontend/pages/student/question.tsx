@@ -27,19 +27,27 @@ const Question: NextPage = () => {
         <div></div>
       </DefaultLayout>
       <Grid container justifyContent="center">
-        <Textarea
-          value={questionContent}
-          changeHandler={(value: string) => {
-            setQuestionContent(value);
-            localStorage.setItem("questionContent", value)
-          }}
-        />
-        <BackButton />
-        <MiddleButton
-          text={"次へ"}
-          onClickHandler={() => dispatch(setContent(questionContent))}
-          href={( newQuestion?.tutorId ) ? "select-tutor" : "confirmation"}
-        />
+        <Grid item xs={12} md={8} marginBottom={1}>
+          <Textarea
+            value={questionContent}
+            changeHandler={(value: string) => {
+              setQuestionContent(value);
+              localStorage.setItem("questionContent", value)
+            }}
+          />
+        </Grid>
+        <Grid container item justifyContent="center" spacing={1}>
+          <Grid item xs={6} md={2}>
+            <BackButton />
+          </Grid>
+          <Grid item xs={6} md={2}>
+            <MiddleButton
+              text={"次へ"}
+              onClickHandler={() => dispatch(setContent(questionContent))}
+              href={( newQuestion?.tutorId ) ? "confirmation" : "tutor-option"}
+            />
+          </Grid>
+        </Grid>
       </Grid>
     </>
   )

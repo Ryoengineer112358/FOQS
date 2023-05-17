@@ -10,14 +10,13 @@ const Textarea = (props: Props) => {
   return (
     <TextareaAutosize
       maxRows={100}
-      aria-label="maximum height"
       placeholder="ここに質問を入力してください"
       onChange={(e: any) => props.changeHandler(e.target.value)}
       value={props.value}
       style={{
         padding: 10,
-        width: 360,
-        height: 320,
+        width: "100%",
+        height: 480,
         borderRadius: 30
       }}
     />
