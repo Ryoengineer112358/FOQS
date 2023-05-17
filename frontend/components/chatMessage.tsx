@@ -35,9 +35,13 @@ function ChatMessage(props: Props) {
             )
         return (
           <div className="msgs">
-            <div className={`msg ${props.middleware === "student" ? "sent" : "received"}`}>
-              <p>{props.question.content}</p>
-            </div>
+            {props.question.content ? (
+              <div>
+              <div className={`msg ${props.middleware === "student" ? "sent" : "received"}`}>
+                <p>{props.question.content}</p>
+              </div>
+              </div>
+            ) : <></>}
             {messages.map(message => (
               <div key={message.id}>
                 <div className={`msg ${message.className}`}>
