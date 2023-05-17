@@ -8,10 +8,13 @@ import Textarea from "@/components/Textarea";
 import MiddleButton from "@/components/MiddleButton";
 import LargeButton from "@/components/LargeButton";
 import HomeButton from "@/components/HomeButton";
+import {useAppDispatch} from "@/store";
+import {setTutorId} from "@/store/modules/newQuestion";
 
-const SelectTutor: NextPage = () => {
+const TutorOption: NextPage = () => {
   const middleware = "student"
   const { user } = useAuth({ middleware: middleware })
+  const dispatch = useAppDispatch()
 
   return (
     <>
@@ -20,7 +23,10 @@ const SelectTutor: NextPage = () => {
       </DefaultLayout>
       <Grid container justifyContent="center">
         <LargeButton text={"質問する講師を選択"} href={"tutors"} />
-        <LargeButton text={"講師を選択しないで質問"} href={"confirmation"} />
+        <MiddleButton
+          text={"講師を選択しないで質問"}
+          onClickHandler={() => dispatch(setTutorId(null))}
+          href={"confirmation"} />
         <BackButton />
       </Grid>
 
@@ -29,4 +35,4 @@ const SelectTutor: NextPage = () => {
   )
 }
 
-export default SelectTutor
+export default TutorOption
