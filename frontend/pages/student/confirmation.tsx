@@ -14,22 +14,32 @@ const Confirmation: NextPage = () => {
   const router = useRouter()
   const middleware = "student"
   const { user } = useAuth({ middleware: middleware })
-  const newQuestion = useSelector((state: State) => state.newQuestion)!;
+  const newQuestion = useSelector((state: State) => state.newQuestion);
   const tutors = useSelector((state: State) => state.tutors);
 
+  React.useEffect(() => {
+    if (!newQuestion?.content) {
+      const timer = setTimeout(() => {
+        router.push(`/${middleware}`)
+      }, 2000)
+      return () => clearTimeout(timer)
+    }
+  }, [newQuestion, router, middleware])
 
   return (
     <>
       <DefaultLayout middleware={middleware}>
         <div></div>
       </DefaultLayout>
+      {newQuestion?.content ? (
       <Grid container justifyContent="center">
         <h1 style={{color: "white", margin: 0}}>質問内容</h1>
-        <QuestionContext content={newQuestion.content}　/>
-        <h1 style={{color: "white", textAlign: "center", marginBottom: 0}}>質問講師</h1>
-        <h2 style={{color: "white", textAlign: "center", margin: 0}}>
-          {newQuestion.tutorId ? tutors.find(t => t.id == newQuestion.tutorId)!.last_name : "なし"}
-        </h2>
+            <QuestionContext content={newQuestion.content}　/>
+            <h1 style={{color: "white", textAlign: "center", marginBottom: 0}}>質問講師</h1>
+            <h2 style={{color: "white", textAlign: "center", margin: 0}}>
+              {tutors.length == 0 ? "": (
+              newQuestion.tutorId ? tutors.find(t => t.id == newQuestion.tutorId)!.last_name : "なし")}
+            </h2>
         <BackButton />
         <ModalButton
           firstbuttontext={"質問する"}
@@ -37,7 +47,7 @@ const Confirmation: NextPage = () => {
           finalbuttontext={"質問する"}
           clickHandler={() => {router.push(`/${middleware}`)}}
         />
-      </Grid>
+      </Grid>) : ""}
     </>
   )
 }
