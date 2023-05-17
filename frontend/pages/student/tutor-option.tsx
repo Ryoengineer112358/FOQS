@@ -21,13 +21,21 @@ const TutorOption: NextPage = () => {
       <DefaultLayout middleware={middleware}>
         <div></div>
       </DefaultLayout>
+      <Grid container justifyContent="center" spacing={1} marginTop={1} marginBottom={2}>
+        <Grid item xs={10} md={4}>
+          <MiddleButton text={"質問する講師を選択"} href={"tutors"} />
+        </Grid>
+        <Grid item xs={10} md={4}>
+          <MiddleButton
+            text={"講師を選択しないで質問"}
+            onClickHandler={() => dispatch(setTutorId(null))}
+            href={"confirmation"} />
+        </Grid>
+      </Grid>
       <Grid container justifyContent="center">
-        <LargeButton text={"質問する講師を選択"} href={"tutors"} />
-        <MiddleButton
-          text={"講師を選択しないで質問"}
-          onClickHandler={() => dispatch(setTutorId(null))}
-          href={"confirmation"} />
+        <Grid item xs={6} md={3}>
         <BackButton />
+        </Grid>
       </Grid>
 
 
