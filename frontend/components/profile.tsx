@@ -11,7 +11,7 @@ const Profile = (props: Props) => {
   return (
     <Box
       sx={{
-        width: 360,
+        width: '100%',
         height: 300,
         p: 2,
         backgroundColor: 'primary.main',

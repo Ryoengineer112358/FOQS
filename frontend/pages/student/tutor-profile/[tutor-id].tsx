@@ -4,10 +4,8 @@ import {Grid} from "@mui/material";
 import * as React from "react";
 import DefaultLayout from "@/components/DefaultLayout";
 import BackButton from "@/components/BackButton";
-import LargeButton from "@/components/LargeButton";
+import MiddleButton from "@/components/MiddleButton";
 import NotFound from "@/components/Pages/NotFound";
-import Tutor from "@/components/Tutor";
-import HomeButton from "@/components/HomeButton";
 import Profile from "@/components/Profile";
 import {useRouter} from "next/router";
 import {useSelector} from 'react-redux';
@@ -30,14 +28,19 @@ const TutorId: NextPage = () => {
         {selectedTutor
             ?
             <Grid container justifyContent="center">
-              <Profile name={selectedTutor.last_name} property={"大学"} university={selectedTutor.university} />
-              <LargeButton
-                  text={"この講師に質問する"}
-                  onClickHandler={() => dispatch(setTutorId(selectedTutor.id))}
-                  href={(newQuestion?.content) ?   '../confirmation' : "../question"}
-              />
-              <BackButton />
-              <HomeButton href={"/student"}/>
+              <Grid item xs={12}>
+                <Profile name={selectedTutor.last_name} property={"大学"} university={selectedTutor.university} />
+              </Grid>
+              <Grid item xs={10} marginTop={2} marginBottom={2}>
+                <MiddleButton
+                    text={"この講師に質問する"}
+                    onClickHandler={() => dispatch(setTutorId(selectedTutor.id))}
+                    href={(newQuestion?.content) ?   '../confirmation' : "../question"}
+                />
+              </Grid>
+              <Grid item xs={6} marginBottom={2}>
+                <BackButton />
+              </Grid>
             </Grid>
             : (isReady && tutors.length > 0 ?
                 <NotFound/>: <></>)
