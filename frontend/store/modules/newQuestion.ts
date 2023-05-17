@@ -13,13 +13,16 @@ const slice = createSlice({
   reducers: {
     setContent: (state, action) => {
       return { content: action.payload, tutorId: state?.tutorId }
-      // return {content: action.payload};
     },
     setTutorId: (state, action) => {
+      //ローカルストレージに保存
+      if (action.payload === null) {
+        localStorage.removeItem('tutorId')
+      } else {
+        localStorage.setItem('tutorId', action.payload.toString())
+      }
+
       return { content: state?.content ?? '', tutorId: action.payload }
-      // return state ?
-      //   {content: state.content, tutorId: action.payload}
-      // : {content: "", tutorId: action.payload};
     },
   }
 });
