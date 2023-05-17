@@ -8,11 +8,14 @@ import Textarea from "@/components/Textarea";
 import MiddleButton from "@/components/MiddleButton";
 import {useAppDispatch} from "@/store";
 import {setContent} from "@/store/modules/newQuestion";
+import {useSelector} from 'react-redux';
+import {State} from "@/store"
 
 const Question: NextPage = () => {
   const middleware = "student"
   const { user } = useAuth({ middleware: middleware })
   const [ questionContent, setQuestionContent ] = useState("");
+  const newQuestion = useSelector((state: State) => state.newQuestion)
   const dispatch = useAppDispatch()
   useEffect(() => {
     setQuestionContent(localStorage.getItem("questionContent") ?? "")
@@ -32,7 +35,11 @@ const Question: NextPage = () => {
           }}
         />
         <BackButton />
-        <MiddleButton text={"次へ"} href={"select-tutor"} onClickHandler={() => dispatch(setContent(questionContent))}/>
+        <MiddleButton
+          text={"次へ"}
+          onClickHandler={() => dispatch(setContent(questionContent))}
+          href={( newQuestion?.tutorId ) ? "select-tutor" : "confirmation"}
+        />
       </Grid>
     </>
   )
