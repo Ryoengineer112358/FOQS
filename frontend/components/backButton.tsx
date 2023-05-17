@@ -12,10 +12,7 @@ const BackButton = () => {
         variant="outlined"
         onClick={() => history.back()}
         sx={{
-          mt: 3,
-          mr: 1,
-          ml: 1,
-          width: 160,
+          width: '100%',
           height: 80,
           borderRadius: 100,
         }}
