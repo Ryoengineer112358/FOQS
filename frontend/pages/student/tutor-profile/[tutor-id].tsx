@@ -34,7 +34,7 @@ const TutorId: NextPage = () => {
               <LargeButton
                   text={"この講師に質問する"}
                   onClickHandler={() => dispatch(setTutorId(selectedTutor.id))}
-                  href={(newQuestion && newQuestion.content) ?   '../confirmation' : "../question"}
+                  href={(newQuestion?.content) ?   '../confirmation' : "../question"}
               />
               <BackButton />
               <HomeButton href={"/student"}/>
