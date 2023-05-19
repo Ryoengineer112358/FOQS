@@ -11,6 +11,8 @@ type Props = {
   loginDestination?: string
 }
 
+export const csrf = () => axios.get('/sanctum/csrf-cookie')
+
 export const useAuth = ({ middleware, redirectIfAuthenticated, loginDestination }: Props) => {
   const router = useRouter()
 
@@ -28,8 +30,6 @@ export const useAuth = ({ middleware, redirectIfAuthenticated, loginDestination 
             router.push('/verify-email')
           })},
   )
-
-  const csrf = () => axios.get('/sanctum/csrf-cookie')
 
   const register = async ({ setErrors, setStatus, ...props }: any) => {
     await csrf()
