@@ -28,10 +28,10 @@ const Home = (props: Props) => {
         <div></div>
       </DefaultLayout>
       <Grid container justifyContent="center">
-        <Grid xs={12}>
+        <Grid item xs={12}>
           <h2 style={{color: "white", textAlign: "center"}}>{user?.last_name}さん、こんにちは！</h2>
         </Grid>
-        <Grid xs={12} md={10}>
+        <Grid item xs={12} md={10}>
           {questions.map(x =>
             <CardMessage key={x.id} text={(() => {
               if(x.tutor_answers.length == 0 && x.student_comments.length == 0) {

@@ -34,11 +34,9 @@ const TutorOption: NextPage = () => {
       </Grid>
       <Grid container justifyContent="center">
         <Grid item xs={6} md={3}>
-        <BackButton />
+          <BackButton />
         </Grid>
       </Grid>
-
-
     </>
   )
 }

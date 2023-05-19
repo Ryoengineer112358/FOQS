@@ -70,7 +70,7 @@ const Register = (props: Props) => {
           <Grid container justifyContent="center">
             {/* 苗字と名前 */}
             <Box>
-              <Grid container spacing={1}>
+              <Grid item container spacing={1}>
                 <Grid item xs={6}>
                   <TextField
                     id="last_name"
@@ -271,7 +271,7 @@ const Register = (props: Props) => {
               </Box>
 
               {/* 性別 */}
-              <Grid container justifyContent="center" sx={{ marginTop: "0.8rem" }}>
+              <Grid item container justifyContent="center" sx={{ marginTop: "0.8rem" }}>
                 <Grid item xs={5}>
                   <FormControl fullWidth error={!!errors.gender}>
                     <InputLabel id="gender-label" htmlFor="gender">性別</InputLabel>

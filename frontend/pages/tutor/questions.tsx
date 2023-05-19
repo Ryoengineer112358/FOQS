@@ -16,7 +16,7 @@ const QuestionHistory: NextPage = () => {
         <div></div>
       </DefaultLayout>
       <Grid container justifyContent="center">
-        <Grid xs={12}>
+        <Grid item xs={12}>
           <CardMessage text="画像の問題について質問です" href="/tutor/confirmation"/>
           <CardMessage text="画像の問題について質問です" href={""}/>
           <CardMessage text="画像の問題について質問です" href={""}/>

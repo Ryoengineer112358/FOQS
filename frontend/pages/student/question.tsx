@@ -36,7 +36,7 @@ const Question: NextPage = () => {
             }}
           />
         </Grid>
-        <Grid container item justifyContent="center" spacing={1}>
+        <Grid item container justifyContent="center" spacing={1}>
           <Grid item xs={6} md={2}>
             <BackButton />
           </Grid>
