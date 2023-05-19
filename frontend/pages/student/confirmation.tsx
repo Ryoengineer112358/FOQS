@@ -8,7 +8,9 @@ import QuestionContent from "@/components/QuestionContent";
 import ModalButton from "@/components/ModalButton";
 import { useRouter } from 'next/router';
 import {useSelector} from 'react-redux';
-import {State} from "@/store"
+import {State, useAppDispatch} from "@/store"
+import { submitQuestion } from '@/store/modules/newQuestion';
+import { unwrapResult } from '@reduxjs/toolkit';
 
 const Confirmation: NextPage = () => {
   const router = useRouter()
@@ -16,6 +18,7 @@ const Confirmation: NextPage = () => {
   const { user } = useAuth({ middleware: middleware })
   const newQuestion = useSelector((state: State) => state.newQuestion);
   const tutors = useSelector((state: State) => state.tutors);
+  const dispatch = useAppDispatch()
 
   React.useEffect(() => {
     if (!newQuestion?.content) {
@@ -26,6 +29,15 @@ const Confirmation: NextPage = () => {
     }
   }, [newQuestion, router, middleware])
 
+  const onSubmit = async () => {
+    try {
+      const resultAction = await dispatch(submitQuestion());
+      unwrapResult(resultAction);
+      router.push(`/${middleware}`);
+    } catch (rejectedValueOrSerializedError) {
+      // エラー処理を実装する
+    }
+  }
   return (
     <>
       <DefaultLayout middleware={middleware}>
@@ -45,7 +57,7 @@ const Confirmation: NextPage = () => {
           firstbuttontext={"質問する"}
           modaltext={"規約事項を守って質問を行ってください\n質問は取り消すことができません"}
           finalbuttontext={"質問する"}
-          clickHandler={() => {router.push(`/${middleware}`)}}
+          clickHandler={onSubmit}
         />
       </Grid>) : ""}
     </>
