@@ -67,7 +67,13 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $question = StudentQuestion::create([
+            'student_id' => \Auth::id(),
+            'tutor_id' => $request->tutor_id,
+            'content' => $request->content,
+        ]);
+
+        return response($question, 201);
     }
 
     /**
