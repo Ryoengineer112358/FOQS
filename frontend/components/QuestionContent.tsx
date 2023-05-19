@@ -5,7 +5,7 @@ type Props = {
   content: string,
 }
 
-const QuestionContext = (props: Props) => {
+const QuestionContent = (props: Props) => {
   return (
     <>
       <Box
@@ -23,4 +23,4 @@ const QuestionContext = (props: Props) => {
   );
 }
 
-export default QuestionContext;
+export default QuestionContent;

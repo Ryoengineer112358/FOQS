@@ -4,7 +4,7 @@ import {Grid} from "@mui/material";
 import * as React from "react";
 import DefaultLayout from "@/components/DefaultLayout";
 import BackButton from "@/components/BackButton";
-import QuestionContext from "@/components/QuestionContext";
+import QuestionContent from "@/components/QuestionContent";
 import ModalButton from "@/components/ModalButton";
 import { useRouter } from 'next/router';
 import {useSelector} from 'react-redux';
@@ -34,7 +34,7 @@ const Confirmation: NextPage = () => {
       {newQuestion?.content ? (
       <Grid container justifyContent="center">
         <h1 style={{color: "white", margin: 0}}>質問内容</h1>
-            <QuestionContext content={newQuestion.content}　/>
+            <QuestionContent content={newQuestion.content} />
             <h1 style={{color: "white", textAlign: "center", marginBottom: 0}}>質問講師</h1>
             <h2 style={{color: "white", textAlign: "center", margin: 0}}>
               {tutors.length == 0 ? "": (
