@@ -16,7 +16,7 @@ const Tutor = (props: Props) => {
           sx={{
             mt: 2,
             p: 1,
-            height: 60,
+            height: 80,
             borderRadius: 100,
           }}
         >
