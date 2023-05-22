@@ -51,8 +51,14 @@ function ChatMessage(props: Props) {
           </div>
         )
       })()}
-      {(props.question.solved_at)? <></> : <SendMessage sendFunction={props.sendFunction} sender_role={props.middleware}/>
-      }
+      {props.question.student_id !== 0 && (
+        (props.question.solved_at)
+        ? <></>
+        : <SendMessage
+            sendFunction={props.sendFunction}
+            sender_role={props.middleware}
+          />
+      )}
    </>
   )
 }
