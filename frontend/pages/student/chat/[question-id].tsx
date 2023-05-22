@@ -47,7 +47,8 @@ const Chat: NextPage = () => {
               </Grid>
             </>
           ) : (
-          <>
+            <>
+          <Grid item container justifyContent="center" spacing={0.5} marginTop={1} marginBottom={1}>
             <Grid item xs={4} md={2}>
               <BackButton />
             </Grid>
@@ -57,9 +58,12 @@ const Chat: NextPage = () => {
             <Grid item xs={4} md={2}>
               <MiddleButton text={"追加で質問する"} href={"select-tutor"} />
             </Grid>
-            <Grid item xs={8} md={2}>
+          </Grid>
+          <Grid item container justifyContent="center">
+            <Grid item xs={8} md={4}>
               <MiddleButton text={"質問を終了する"} href={"student"} onClickHandler={handleSolveQuestion}/>
             </Grid>
+          </Grid>
           </>
           ))}
         </Grid>
