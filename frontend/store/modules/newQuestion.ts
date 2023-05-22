@@ -46,7 +46,11 @@ const slice = createSlice({
     clearNewQuestion: () => initialState,
   },
   extraReducers: (builder) => {
-    builder.addCase(submitQuestion.fulfilled, () => initialState)
+    builder.addCase(submitQuestion.fulfilled, () => {
+      localStorage.removeItem('questionContent')
+      localStorage.removeItem('tutorId')
+      return initialState
+  })
   },
 });
 // Action Creators
