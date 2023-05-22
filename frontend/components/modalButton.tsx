@@ -28,16 +28,13 @@ const ModalButton = (props: Props) => {
   const handleClose = () => setOpen(false);
 
   return (
-    <div>
+    <Grid item xs={8} md={4}>
       <Button
         onClick={handleOpen}
         variant="outlined"
         sx={{
-          mt: 3,
-          mr: 1,
-          ml: 1,
-          width: 160,
           height: 80,
+          width: "100%",
           borderRadius: 100,
         }}
       >
@@ -50,7 +47,7 @@ const ModalButton = (props: Props) => {
         <Box
           sx={{
             position: 'absolute' as 'absolute',
-            top: '35%',
+            top: '45%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
             width: 360,
@@ -64,46 +61,67 @@ const ModalButton = (props: Props) => {
             {props.modaltext}
           </Typography>
           <Grid container justifyContent="center">
-            <Button
-              variant="outlined"
-              onClick={handleClose}
-              sx={{
-                mt: 4,
-                mr: 1,
-                ml: 1,
-                width: 120,
-                height: 60,
-                borderRadius: 100,
-                color: '#000000',
-                border: '2px solid #000000',
-                textAlign: "center",
-              }}
-            >
-              戻る
-            </Button>
-              <Button
-                onClick={() => props.clickHandler()}
-                variant="outlined"
-                sx={{
-                  mt: 4,
-                  mr: 1,
-                  ml: 1,
-                  width: 120,
-                  height: 60,
-                  borderRadius: 100,
-                  color: 'white',
-                  border: '2px solid #000000',
-                  textAlign: "center",
-                  backgroundColor: "red"
-                  // backgroundColor: "#85e14b"
-                }}
-              >
-                {props.finalbuttontext}
-              </Button>
+          <Button
+            variant="outlined"
+            onClick={handleClose}
+            sx={{
+              mt: 4,
+              mr: 1,
+              ml: 1,
+              width: 120,
+              height: 60,
+              borderRadius: 100,
+              color: '#000000',
+              border: '2px solid #000000',
+              textAlign: "center",
+              '&:hover': {
+                backgroundColor: '#F5F5F5',
+                borderColor: '#000000',
+              },
+              '&:active': {
+                borderColor: '#000000',
+                backgroundColor: '#E0E0E0',
+              },
+              '&:focus': {
+                borderColor: '#000000',
+              }
+            }}
+          >
+            戻る
+          </Button>
+          <Button
+            onClick={() => props.clickHandler()}
+            variant="outlined"
+            sx={{
+              mt: 4,
+              mr: 1,
+              ml: 1,
+              width: 120,
+              height: 60,
+              borderRadius: 100,
+              color: 'white',
+              border: '2px solid #000000',
+              textAlign: "center",
+              backgroundColor: "red",
+              '&:hover': {
+                backgroundColor: '#FF3333', 
+                borderColor: '#000000',
+              },
+              '&:active': {
+                borderColor: '#000000',
+                backgroundColor: '#CC0000',
+              },
+              '&:focus': {
+                borderColor: '#000000',
+              }
+            }}
+          >
+            {props.finalbuttontext}
+          </Button>
           </Grid>
         </Box>
       </Modal>
-    </div>
+    </Grid>
   );
 }
 
