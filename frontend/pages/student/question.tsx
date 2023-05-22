@@ -14,11 +14,16 @@ import {State} from "@/store"
 const Question: NextPage = () => {
   const middleware = "student"
   const { user } = useAuth({ middleware: middleware })
-  const [ questionContent, setQuestionContent ] = useState("");
   const newQuestion = useSelector((state: State) => state.newQuestion)
   const dispatch = useAppDispatch()
+  
+  const onChangeQuestionContent = (value: string) => {
+    dispatch(setContent(value));
+  }
+
   useEffect(() => {
-    setQuestionContent(localStorage.getItem("questionContent") ?? "")
+    const quetionContent = localStorage.getItem("questionContent") || ""
+    dispatch(setContent(quetionContent !== "null" ? quetionContent : ""))
   }, []);
 
   return (
@@ -29,11 +34,8 @@ const Question: NextPage = () => {
       <Grid container justifyContent="center">
         <Grid item xs={12} md={8} marginBottom={1}>
           <Textarea
-            value={questionContent}
-            changeHandler={(value: string) => {
-              setQuestionContent(value);
-              localStorage.setItem("questionContent", value)
-            }}
+            value={newQuestion?.content ?? ""}
+            changeHandler={onChangeQuestionContent}
           />
         </Grid>
         <Grid item container justifyContent="center" spacing={1}>
@@ -43,7 +45,7 @@ const Question: NextPage = () => {
           <Grid item xs={6} md={2}>
             <MiddleButton
               text={"次へ"}
-              onClickHandler={() => dispatch(setContent(questionContent))}
+              onClickHandler={() => dispatch(setContent(newQuestion?.content))}
               href={( newQuestion?.tutorId ) ? "confirmation" : "tutor-option"}
             />
           </Grid>

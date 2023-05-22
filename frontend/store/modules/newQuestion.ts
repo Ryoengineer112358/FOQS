@@ -31,6 +31,7 @@ const slice = createSlice({
   initialState: null as NewQuestion | null,
   reducers: {
     setContent: (state, action) => {
+      localStorage.setItem('questionContent', action.payload)
       return { content: action.payload, tutorId: state?.tutorId }
     },
     setTutorId: (state, action) => {
