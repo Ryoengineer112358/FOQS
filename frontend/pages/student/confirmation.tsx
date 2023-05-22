@@ -9,7 +9,7 @@ import ModalButton from "@/components/ModalButton";
 import { useRouter } from 'next/router';
 import {useSelector} from 'react-redux';
 import {State, useAppDispatch} from "@/store"
-import { submitQuestion } from '@/store/modules/newQuestion';
+import { clearNewQuestion, submitQuestion } from '@/store/modules/newQuestion';
 import { unwrapResult } from '@reduxjs/toolkit';
 
 const Confirmation: NextPage = () => {
@@ -33,6 +33,7 @@ const Confirmation: NextPage = () => {
     try {
       const resultAction = await dispatch(submitQuestion());
       unwrapResult(resultAction);
+      dispatch(clearNewQuestion());
       router.push(`/${middleware}`);
     } catch (rejectedValueOrSerializedError) {
       // エラー処理を実装する
