@@ -50,12 +50,13 @@ export function isStudentComment(arg: any): arg is StudentQuestion {
 
 export type Tutor = {
   id: number,
-  first_name: string,
   last_name: string,
+  first_name: string,
   email: string,
   university: string,
-  age: number,
-  sex: number,
+  faculty: string,
+  birth_date: Date,
+  gender: number,
   quit_at?: Date,
   created_at: Date,
   updated_at: Date,
