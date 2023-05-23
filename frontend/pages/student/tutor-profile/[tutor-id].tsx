@@ -6,7 +6,7 @@ import DefaultLayout from "@/components/DefaultLayout";
 import BackButton from "@/components/BackButton";
 import MiddleButton from "@/components/MiddleButton";
 import NotFound from "@/components/Pages/NotFound";
-import Profile from "@/components/Profile";
+import TutorProfile from "@/components/TutorProfile";
 import {useRouter} from "next/router";
 import {useSelector} from 'react-redux';
 import {State, useAppDispatch} from "@/store";
@@ -29,7 +29,11 @@ const TutorId: NextPage = () => {
             ?
             <Grid container justifyContent="center">
               <Grid item xs={12}>
-                <Profile name={selectedTutor.last_name} property={"大学"} university={selectedTutor.university} />
+                <TutorProfile
+                  name={selectedTutor.last_name}
+                  university={selectedTutor.university}
+                  faculty={selectedTutor.faculty}
+                />
               </Grid>
               <Grid item xs={10} marginTop={2} marginBottom={2}>
                 <MiddleButton
