@@ -4,7 +4,7 @@ import { Student, Tutor, isStudent, isTutor} from '@/types';
 
 type Props = Student | Tutor
 
-const Profile = (props: Props) => {
+const UserInfo = (props: Props) => {
   const birthDate = new Date(props.birth_date)
   const birthDateString = birthDate.toLocaleDateString('ja-JP', {
     year: 'numeric',
@@ -63,4 +63,4 @@ const Profile = (props: Props) => {
   );
 }
 
-export default Profile;
+export default UserInfo;

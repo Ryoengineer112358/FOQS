@@ -1,5 +1,5 @@
 import { useAuth } from '@/hooks/auth'
-import Profile from '@/components/Profile'
+import UserInfo from '@/components/UserInfo'
 import DefaultLayout from '@/components/DefaultLayout'
 import HomeButton from '@/components/HomeButton'
 import {Grid} from "@mui/material"
@@ -31,7 +31,7 @@ const MyPage = (props: Props) => {
       </DefaultLayout>
       <Grid container justifyContent="center">
         <Grid item xs={12} sm={6} md={4}>
-          {userInfo && <Profile {...userInfo}/>}
+          {userInfo && <UserInfo {...userInfo}/>}
         </Grid>
       </Grid>
       <Grid container justifyContent='right'>
