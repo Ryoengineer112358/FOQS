@@ -60,23 +60,25 @@ const Confirmation: NextPage = () => {
           />
         </Grid>
         <Grid container justifyContent="center" spacing={0.5} marginTop={3}>
-          <Grid item xs={4} md={2}>
+          <Grid item xs={4} sm={3} md={2}>
             <BackButton />
           </Grid>
-          <Grid item xs={4} md={2}>
+          <Grid item xs={4} sm={3} md={2}>
             <MiddleButton text='質問を変更する' href='question' />
           </Grid>
-          <Grid item xs={4} md={2}>
+          <Grid item xs={4} sm={3} md={2}>
             <MiddleButton text='講師を変更する' href='tutor-option' />
           </Grid>
         </Grid>
         <Grid container justifyContent="center" marginTop={2} marginBottom={3}>
-          <ModalButton
-            firstbuttontext={"質問する"}
-            modaltext={"規約事項を守って質問を行ってください\n質問は取り消すことができません"}
-            finalbuttontext={"質問する"}
-            clickHandler={onSubmit}
-          />
+          <Grid item xs={8} sm={6} md={4}>
+            <ModalButton
+              firstbuttontext={"質問する"}
+              modaltext={"規約事項を守って質問を行ってください\n質問は取り消すことができません"}
+              finalbuttontext={"質問する"}
+              clickHandler={onSubmit}
+            />
+          </Grid>
         </Grid>
       </Grid>) : ""}
     </>
