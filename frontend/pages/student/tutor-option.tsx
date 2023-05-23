@@ -7,7 +7,6 @@ import BackButton from "@/components/BackButton";
 import Textarea from "@/components/Textarea";
 import MiddleButton from "@/components/MiddleButton";
 import LargeButton from "@/components/LargeButton";
-import HomeButton from "@/components/HomeButton";
 import {useAppDispatch} from "@/store";
 import {setTutorId} from "@/store/modules/newQuestion";
 

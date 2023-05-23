@@ -17,8 +17,8 @@ const MyPage: NextPage = () => {
       <Grid container justifyContent="center">
         <Profile name={user?.name} property="大学" university="東京大学大学院"/>
       </Grid>
-      <Grid container justifyContent="right">
-        <HomeButton href="/tutor" />
+      <Grid container justifyContent='right'>
+        <HomeButton href='/tutor' />
       </Grid>
     </>
   )

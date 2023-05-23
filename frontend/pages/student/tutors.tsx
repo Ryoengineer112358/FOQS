@@ -6,7 +6,6 @@ import {useSelector} from 'react-redux'
 import DefaultLayout from "@/components/DefaultLayout";
 import BackButton from "@/components/BackButton";
 import Tutor from "@/components/Tutor";
-import HomeButton from "@/components/HomeButton";
 import {State} from "@/store"
 
 const Tutors: NextPage = () => {
