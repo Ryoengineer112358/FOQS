@@ -20,6 +20,7 @@ type Props = {
   modaltext: string;
   finalbuttontext: string;
   clickHandler: Function;
+  ratingComponent?: React.ReactNode;
 }
 
 const ModalButton = (props: Props) => {
@@ -28,7 +29,7 @@ const ModalButton = (props: Props) => {
   const handleClose = () => setOpen(false);
 
   return (
-    <Grid item xs={8} md={4}>
+    <Grid item xs={12}>
       <Button
         onClick={handleOpen}
         variant="outlined"
@@ -46,6 +47,7 @@ const ModalButton = (props: Props) => {
       >
         <Box
           sx={{
+            textAlign: "center",
             position: 'absolute' as 'absolute',
             top: '45%',
             left: '50%',
@@ -57,22 +59,24 @@ const ModalButton = (props: Props) => {
             boxShadow: 24,
             p: 4,
           }}>
-          <Typography >
+          <Typography sx={{ fontWeight: 600}}>
             {props.modaltext}
           </Typography>
+          {props.ratingComponent &&
+            <Box sx={{mt: 3}}>{props.ratingComponent}</Box>}
           <Grid container justifyContent="center">
           <Button
             variant="outlined"
             onClick={handleClose}
             sx={{
-              mt: 4,
+              mt: 3,
               mr: 1,
               ml: 1,
               width: 120,
               height: 60,
               borderRadius: 100,
               color: '#000000',
-              border: '2px solid #000000',
+              border: '1px solid #000000',
               textAlign: "center",
               '&:hover': {
                 backgroundColor: '#F5F5F5',
@@ -93,14 +97,14 @@ const ModalButton = (props: Props) => {
             onClick={() => props.clickHandler()}
             variant="outlined"
             sx={{
-              mt: 4,
+              mt: 3,
               mr: 1,
               ml: 1,
               width: 120,
               height: 60,
               borderRadius: 100,
               color: 'white',
-              border: '2px solid #000000',
+              border: '1px solid #000000',
               textAlign: "center",
               backgroundColor: "red",
               '&:hover': {
