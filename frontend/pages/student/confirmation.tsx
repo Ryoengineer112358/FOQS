@@ -64,10 +64,10 @@ const Confirmation: NextPage = () => {
             <BackButton />
           </Grid>
           <Grid item xs={4} md={2}>
-            <MiddleButton text={"質問を変更する"} href={"../question"} />
+            <MiddleButton text='質問を変更する' href='question' />
           </Grid>
           <Grid item xs={4} md={2}>
-            <MiddleButton text={"講師を変更する"} href={"../tutor-option"} />
+            <MiddleButton text='講師を変更する' href='tutor-option' />
           </Grid>
         </Grid>
         <Grid container justifyContent="center" marginTop={2} marginBottom={3}>
