@@ -14,16 +14,7 @@ type Props = {
 
 const MyPage = (props: Props) => {
   const { user } = useAuth({ middleware: props.middleware })
-  const [userInfo, setUserInfo] = useState<Student | Tutor | null>(null)
-
-  useEffect(() => {
-    if (user) {
-      axios.get<Student | Tutor>(`/api/myself`).then(
-        response => setUserInfo(response.data)
-      )
-    }
-  }, [user])
-
+  
   return (
     <>
       <DefaultLayout middleware={props.middleware}>
@@ -31,7 +22,7 @@ const MyPage = (props: Props) => {
       </DefaultLayout>
       <Grid container justifyContent="center">
         <Grid item xs={12} sm={6} md={4}>
-          {userInfo && <UserInfo {...userInfo}/>}
+          {user && <UserInfo {...user}/>}
         </Grid>
       </Grid>
       <Grid container justifyContent='right'>

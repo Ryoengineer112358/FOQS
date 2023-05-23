@@ -16,7 +16,7 @@ export const csrf = () => axios.get('/sanctum/csrf-cookie')
 export const useAuth = ({ middleware, redirectIfAuthenticated, loginDestination }: Props) => {
   const router = useRouter()
 
-  const { data: user, error, mutate } = useSWR('/api/user', () => {
+  const { data: user, error, mutate } = useSWR<Student | Tutor>('/api/user', () => {
       const url = '/api/myself'
       return axios
           .get(url)
