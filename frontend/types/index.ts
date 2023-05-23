@@ -60,6 +60,7 @@ export type Tutor = {
   quit_at?: Date,
   created_at: Date,
   updated_at: Date,
+  email_verified_at?: Date,
 };
 export function isTutor(arg: any): arg is Tutor {
   return arg.university !== undefined;
@@ -78,6 +79,7 @@ export type Student = {
   quit_at?: Date,
   created_at: Date,
   updated_at: Date,
+  email_verified_at?: Date,
 };
 export function isStudent(arg: any): arg is Student {
   return arg.first_choice_university !== undefined;
