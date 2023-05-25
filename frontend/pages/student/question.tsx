@@ -31,8 +31,8 @@ const Question: NextPage = () => {
       <DefaultLayout middleware={middleware}>
         <div></div>
       </DefaultLayout>
-      <Grid container justifyContent="center">
-        <Grid item xs={12} md={8} marginBottom={1}>
+      <Grid container justifyContent="center" marginBottom={3}>
+        <Grid item xs={12} md={8} marginBottom={2}>
           <Textarea
             value={newQuestion?.content ?? ""}
             changeHandler={onChangeQuestionContent}
