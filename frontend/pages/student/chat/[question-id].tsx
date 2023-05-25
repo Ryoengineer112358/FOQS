@@ -76,10 +76,20 @@ const Chat: NextPage = () => {
               <BackButton />
             </Grid>
             <Grid item xs={4} sm={3} md={2}>
-              <MiddleButton text={"質問を取り消す"} href={""} />
+              <ModalButton
+                firstbuttontext='質問を取り消す'
+                modaltext={'質問を取り消した場合でも、\nチケットの返却はありません'}
+                finalbuttontext='質問を取り消す'
+                clickHandler={() => router.push("/student")}
+              />
             </Grid>
             <Grid item xs={4} sm={3} md={2}>
-              <MiddleButton text={"追加で質問する"} href={"select-tutor"} />
+              <ModalButton
+                firstbuttontext='追加で質問する'
+                modaltext={"チケットを追加で1枚使うことで、このまま質問を続けることができます\n※講師の本日の質問受付数が上限に達している場合、質問できません"}
+                finalbuttontext='追加で質問する'
+                clickHandler={() => router.push("/student")}
+              />
             </Grid>
           </Grid>
           <Grid item container justifyContent="center">

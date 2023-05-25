@@ -27,6 +27,13 @@ const ModalButton = (props: Props) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const lines = props.modaltext
+    .split('\n')
+    .map((line, i) => (
+      <p key={i} style={{lineHeight: "1.2"}}>
+        {line}
+      </p>
+    ))
 
   return (
     <Grid item xs={12}>
@@ -59,8 +66,8 @@ const ModalButton = (props: Props) => {
             boxShadow: 24,
             p: 4,
           }}>
-          <Typography sx={{ fontWeight: 600}}>
-            {props.modaltext}
+          <Typography sx={{ fontWeight: 600, fontSize: 16}}>
+            {lines}
           </Typography>
           {props.ratingComponent &&
             <Box sx={{mt: 3}}>{props.ratingComponent}</Box>}
