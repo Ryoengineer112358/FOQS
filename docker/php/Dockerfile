@@ -3,8 +3,13 @@ FROM php:8.1-fpm
 #COPY php.ini /usr/local/etc/php/ 左記消去(COPYは下に新たに記載)
 
 RUN apt-get update \
-  && apt-get install -y zlib1g-dev mariadb-client vim libzip-dev \
-  && docker-php-ext-install zip pdo_mysql
+  && apt-get install -y zlib1g-dev mariadb-client vim libzip-dev libfreetype6-dev libjpeg62-turbo-dev libpng-dev \ 
+  && docker-php-ext-install zip pdo_mysql \
+  && docker-php-ext-install -j$(nproc) iconv exif \
+  && docker-php-ext-configure gd --with-freetype --with-jpeg \
+  && docker-php-ext-install -j$(nproc) gd \
+  && pecl install imagick \
+  && docker-php-ext-enable imagick
 
 #Composer install
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
