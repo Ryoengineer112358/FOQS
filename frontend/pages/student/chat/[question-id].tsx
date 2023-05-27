@@ -99,7 +99,7 @@ const Chat: NextPage = () => {
                 modaltext='講師を評価して質問を終了してください'
                 finalbuttontext='評価して終了'
                 clickHandler={handleSolveQuestion}
-                ratingComponent={ratingComponent}
+                additionalElement={ratingComponent}
               />
             </Grid>
           </Grid>
