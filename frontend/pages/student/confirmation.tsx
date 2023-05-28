@@ -54,7 +54,7 @@ const Confirmation: NextPage = () => {
         <Grid item xs={12} md={6}>
           <QuestionContent
             content={newQuestion.content}
-            name={selectedTutor?.last_name || null}
+            tutor_name={selectedTutor?.last_name || null}
             university={selectedTutor?.university || null}
             faculty={selectedTutor?.faculty || null}
           />

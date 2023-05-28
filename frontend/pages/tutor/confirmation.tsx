@@ -20,17 +20,29 @@ const Confirmation: NextPage = () => {
         <div></div>
       </DefaultLayout>
       <Grid container justifyContent="center">
-        <h1 style={{color: "white", margin: 0}}>質問内容</h1>
-        <QuestionContent content={"画像の問題について質問です"} />
-        <h1 style={{color: "white", textAlign: "center", marginBottom: 0}}>質問者：高島さん</h1>
-        <h1 style={{color: "white", textAlign: "center", margin: 0}}>志望大学：東京大学</h1>
-        <BackButton />
-        <ModalButton
-          firstbuttontext={"質問を取得する"}
-          modaltext={"一度質問を取得すると、取り消すことができません"}
-          finalbuttontext={"取得する"}
-          clickHandler={() => {router.push(`/${middleware}/chat`)}}
-        />
+        <Grid item xs={12} sm={10} md={8}>
+          <QuestionContent
+            content={"画像の問題について質問です"}
+            student_name={"高島"}
+            first_choice_university={"東京大学"}
+            first_choice_faculty={"文科Ⅲ類"}
+          />
+        </Grid>
+      </Grid>
+      <Grid container justifyContent='center' marginTop={3}>
+        <Grid item xs={8} sm={6} md={4}>
+          <ModalButton
+            firstbuttontext={"質問を取得する"}
+            modaltext={"一度質問を取得すると、取り消すことができません"}
+            finalbuttontext={"取得する"}
+            clickHandler={() => {router.push(`/${middleware}/chat`)}}
+          />
+        </Grid>
+      </Grid>
+      <Grid container justifyContent='center' marginTop={2} marginBottom={3}>
+        <Grid item xs={6} sm={4} md={2}>
+          <BackButton />
+        </Grid>
       </Grid>
     </>
   )
