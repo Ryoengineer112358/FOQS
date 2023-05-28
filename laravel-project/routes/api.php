@@ -37,4 +37,6 @@ Route::group(['middleware' => ['auth:students', 'verified']], function () {
     Route::delete('/questions/{question}', [QuestionController::class, 'destroy']);
 });
 
-
+Route::group(['middleware' => ['auth:tutors', 'verified']], function () {
+    Route::get('/unassigned-questions', [QuestionController::class, 'getUnassignedQuestions']);
+});

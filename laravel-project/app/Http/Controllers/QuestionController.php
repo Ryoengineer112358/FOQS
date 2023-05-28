@@ -172,4 +172,13 @@ class QuestionController extends Controller
 
         return response()->json($question);
     }
+
+    public function getUnassignedQuestions()
+    {
+        $questions = StudentQuestion::whereNull('tutor_id')
+                                    ->orderByDesc('created_at')
+                                    ->get();
+
+        return $questions;
+    }
 }

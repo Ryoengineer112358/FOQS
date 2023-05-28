@@ -5,10 +5,19 @@ import * as React from "react";
 import DefaultLayout from "@/components/DefaultLayout";
 import CardMessage from "@/components/CardMessage";
 import HomeButton from "@/components/HomeButton";
+import { useEffect, useState } from 'react';
+import { StudentQuestion } from '@/types';
+import axios from '@/lib/axios';
 
 const UnassignedQuestions: NextPage = () => {
   const middleware = "tutor"
   const { user } = useAuth({ middleware: middleware })
+  const [questions, setQuestions] = useState<Array<StudentQuestion>>([])
+
+  useEffect(() => {
+    axios.get<StudentQuestion[]>('/api/unassigned-questions')
+      .then(response => setQuestions(response.data))
+  }, [])
 
   return (
     <>
@@ -17,11 +26,8 @@ const UnassignedQuestions: NextPage = () => {
       </DefaultLayout>
       <Grid container justifyContent="center">
         <Grid item xs={12} sm={10} md={8}>
-          <CardMessage text="画像の問題について質問です" href="/tutor/confirmation"/>
-          <CardMessage text="画像の問題について質問です" href={""}/>
-          <CardMessage text="画像の問題について質問です" href={""}/>
-          <CardMessage text="画像の問題について質問です" href={""}/>
-          <CardMessage text="画像の問題について質問です" href={""}/>
+          {questions.map(x =>
+            <CardMessage key={x.id} text={x.content} href={'/tutor'} />)}
         </Grid>
       </Grid>
       <Grid container justifyContent='right'>
