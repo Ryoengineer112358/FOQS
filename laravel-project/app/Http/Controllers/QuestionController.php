@@ -128,9 +128,12 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(StudentQuestion $question)
     {
-        //
+        $question->delete();
+        return response()->json([
+            'message' => '質問が正常に削除されました',
+        ], 200);
     }
 
     public function reply(Request $request, StudentQuestion $question)

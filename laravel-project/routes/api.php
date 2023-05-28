@@ -34,6 +34,7 @@ Route::group(['middleware' => ['auth:students,tutors']], function () {
 Route::group(['middleware' => ['auth:students', 'verified']], function () {
     Route::get('/tutors', [TutorController::class, 'index']);
     Route::post('/questions', [QuestionController::class, 'store']);
+    Route::delete('/questions/{question}', [QuestionController::class, 'destroy']);
 });
 
 

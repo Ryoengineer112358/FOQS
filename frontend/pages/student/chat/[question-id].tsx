@@ -41,6 +41,15 @@ const Chat: NextPage = () => {
     }
   }
 
+  const handleDeleteQuestion = async () => {
+    try {
+      isReady && await axios.delete(`/api/questions/${questionId}`)
+      router.push("/student")
+    } catch (err) {
+      setError('通信エラーが発生しました')
+    }
+  }
+
   const ratingComponent = (
     <>
       <Rating
@@ -93,7 +102,7 @@ const Chat: NextPage = () => {
                 firstbuttontext='質問を取り消す'
                 modaltext={'質問を取り消した場合でも、\nチケットの返却はありません'}
                 finalbuttontext='質問を取り消す'
-                clickHandler={() => router.push("/student")}
+                clickHandler={handleDeleteQuestion}
               />
             </Grid>
             <Grid item xs={4} sm={3} md={2}>
