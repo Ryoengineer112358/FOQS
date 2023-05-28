@@ -20,7 +20,7 @@ type Props = {
   modaltext: string;
   finalbuttontext: string;
   clickHandler: Function;
-  ratingComponent?: React.ReactNode;
+  additionalElement?: React.ReactNode;
 }
 
 const ModalButton = (props: Props) => {
@@ -69,14 +69,13 @@ const ModalButton = (props: Props) => {
           <Typography sx={{ fontWeight: 600, fontSize: 16}}>
             {lines}
           </Typography>
-          {props.ratingComponent &&
-            <Box sx={{mt: 3}}>{props.ratingComponent}</Box>}
+          {props.additionalElement && props.additionalElement}
           <Grid container justifyContent="center">
           <Button
             variant="outlined"
             onClick={handleClose}
             sx={{
-              mt: 3,
+              mt: 2,
               mr: 1,
               ml: 1,
               width: 120,
@@ -104,7 +103,7 @@ const ModalButton = (props: Props) => {
             onClick={() => props.clickHandler()}
             variant="outlined"
             sx={{
-              mt: 3,
+              mt: 2,
               mr: 1,
               ml: 1,
               width: 120,
