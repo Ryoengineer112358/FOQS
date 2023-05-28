@@ -6,7 +6,6 @@ import DefaultLayout from "@/components/DefaultLayout";
 import BackButton from "@/components/BackButton";
 import Textarea from "@/components/Textarea";
 import MiddleButton from "@/components/MiddleButton";
-import LargeButton from "@/components/LargeButton";
 import {useAppDispatch} from "@/store";
 import {setTutorId} from "@/store/modules/newQuestion";
 
