@@ -50,9 +50,3 @@ services:
     #context: .：コンテキストをルートディレクトリに設定
     #volumes：自分のパソコンの中のファイルを、Dockerの環境に接続する命令
     #environment：環境変数
-
-  mailcatcher:
-    image: schickling/mailcatcher
-    ports:
-      - "1080:1080"
-      - "1025:1025"
