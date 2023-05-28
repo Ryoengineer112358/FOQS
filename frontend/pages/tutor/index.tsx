@@ -11,7 +11,7 @@ const Top: NextPage = () => {
       <Home middleware={"tutor"} />
       <Grid container justifyContent="center" marginTop={2} marginBottom={3}>
         <Grid item xs={8} sm={6} md={4}>
-          <MiddleButton text="質問を見つける" href="tutor/questions"/>
+          <MiddleButton text="質問を見つける" href="tutor/unassigned-questions"/>
         </Grid>
       </Grid>
     </>

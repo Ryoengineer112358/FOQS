@@ -6,7 +6,7 @@ import DefaultLayout from "@/components/DefaultLayout";
 import CardMessage from "@/components/CardMessage";
 import HomeButton from "@/components/HomeButton";
 
-const QuestionHistory: NextPage = () => {
+const UnassignedQuestions: NextPage = () => {
   const middleware = "tutor"
   const { user } = useAuth({ middleware: middleware })
 
@@ -16,7 +16,7 @@ const QuestionHistory: NextPage = () => {
         <div></div>
       </DefaultLayout>
       <Grid container justifyContent="center">
-        <Grid item xs={12}>
+        <Grid item xs={12} sm={10} md={8}>
           <CardMessage text="画像の問題について質問です" href="/tutor/confirmation"/>
           <CardMessage text="画像の問題について質問です" href={""}/>
           <CardMessage text="画像の問題について質問です" href={""}/>
@@ -31,4 +31,4 @@ const QuestionHistory: NextPage = () => {
   )
 }
 
-export default QuestionHistory
+export default UnassignedQuestions

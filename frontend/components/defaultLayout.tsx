@@ -29,7 +29,7 @@ const navItemsForStudent: Item[] = [
 const navItemsForTutor: Item[] = [
   {'label' : 'ホーム', 'link': '/tutor'},
   {'label' : 'マイページ', 'link': '/tutor/my-page'},
-  {'label' : 'フリー質問一覧', 'link': '/tutor/questions'},
+  {'label' : 'フリー質問一覧', 'link': '/tutor/unassigned-questions'},
   {'label' : '回答履歴', 'link': '/tutor/question-history'},
 ];
 
