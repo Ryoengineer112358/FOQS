@@ -14,7 +14,7 @@ const Top: NextPage = () => {
           <MiddleButton text="質問履歴" href="student/question-history"/>
         </Grid>
         <Grid item xs={6} sm={4} md={3}>
-          <MiddleButton text="質問する" href={"student/question"}/>
+          <MiddleButton text="質問する" href={"student/create-question"}/>
         </Grid>
       </Grid>
     </>

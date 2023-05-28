@@ -11,7 +11,7 @@ import {setContent} from "@/store/modules/newQuestion";
 import {useSelector} from 'react-redux';
 import {State} from "@/store"
 
-const Question: NextPage = () => {
+const CreateQuestion: NextPage = () => {
   const middleware = "student"
   const { user } = useAuth({ middleware: middleware })
   const newQuestion = useSelector((state: State) => state.newQuestion)
@@ -55,4 +55,4 @@ const Question: NextPage = () => {
   )
 }
 
-export default Question
+export default CreateQuestion

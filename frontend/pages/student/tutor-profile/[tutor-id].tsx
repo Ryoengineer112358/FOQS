@@ -39,7 +39,7 @@ const TutorId: NextPage = () => {
                 <MiddleButton
                     text={"この講師に質問する"}
                     onClickHandler={() => dispatch(setTutorId(selectedTutor.id))}
-                    href={(newQuestion?.content) ?   '../confirmation' : "../question"}
+                    href={(newQuestion?.content) ?   '../confirmation' : "../create-question"}
                 />
               </Grid>
               <Grid item xs={6} marginBottom={2}>
