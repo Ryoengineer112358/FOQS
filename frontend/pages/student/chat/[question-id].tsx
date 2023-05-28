@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import * as ChatComponent from "@/components/Pages/Chat";
 import MiddleButton from '@/components/MiddleButton';
 import BackButton from '@/components/BackButton';
-import {Grid} from "@mui/material";
+import {Grid, Typography} from "@mui/material";
 import { useRouter } from "next/router";
 import axios from '@/lib/axios';
 import { useState, useEffect } from 'react';
@@ -17,6 +17,7 @@ const Chat: NextPage = () => {
   const questionId = query["question-id"]
   const [question, setQuestion] = useState<StudentQuestion>({...defaultMessage, student_id: 0, tutor_answers: [], student_comments: []})
   const [ratingValue, setRatingValue] = useState<number | null>(0)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     if (isReady) {
@@ -28,7 +29,7 @@ const Chat: NextPage = () => {
 
   const handleSolveQuestion = async () => {
     if (!ratingValue) {
-      alert('評価を入力してください')
+      setError('評価を入力してください')
       return
     }
 
@@ -36,20 +37,32 @@ const Chat: NextPage = () => {
       isReady && await axios.post(`/api/questions/${questionId}/solve`)
       router.push("/student")
     } catch (err) {
-      console.log(err)
+      setError('通信エラーが発生しました')
     }
   }
 
   const ratingComponent = (
-    <Rating
-      name='rating-tutor'
-      size='large'
-      sx={{ fontSize: '3rem' }}
-      value={ratingValue}
-      onChange={(event, newValue: number | null) => {
-        setRatingValue(newValue);
-      }}
-    />
+    <>
+      <Rating
+        name='rating-tutor'
+        size='large'
+        sx={{ fontSize: '3rem' }}
+        value={ratingValue}
+        onChange={(event, newValue: number | null) => {
+          setRatingValue(newValue);
+          setError(null);
+        }}
+      />
+      {error && (
+        <Typography
+          variant="body1" 
+          align="center" 
+          sx={{ fontWeight: 'bold', fontSize: '1.2rem', color: 'red' }}
+        >
+          {error}
+        </Typography>
+      )}
+    </>
   )
 
   return (
