@@ -39,4 +39,5 @@ Route::group(['middleware' => ['auth:students', 'verified']], function () {
 
 Route::group(['middleware' => ['auth:tutors', 'verified']], function () {
     Route::get('/unassigned-questions', [QuestionController::class, 'getUnassignedQuestions']);
+    Route::put('/questions/{question}', [QuestionController::class, 'update']);
 });

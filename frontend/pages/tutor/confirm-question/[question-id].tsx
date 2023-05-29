@@ -60,7 +60,15 @@ const ConfirmQuestion: NextPage = () => {
               firstbuttontext={"質問を取得する"}
               modaltext={"一度質問を取得すると、取り消すことができません"}
               finalbuttontext={"取得する"}
-              clickHandler={() => {router.push(`/${middleware}/chat`)}}
+              clickHandler={() => {
+                axios.put<StudentQuestion>(`/api/questions/${question.id}`)
+                .then(() => {
+                  router.push('/tutor')
+                })
+                .catch(error => {
+                  console.error(error);
+                })
+              }}
             />
           </Grid>
         </Grid>

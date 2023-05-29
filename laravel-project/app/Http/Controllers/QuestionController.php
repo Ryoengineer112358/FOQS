@@ -118,9 +118,14 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, StudentQuestion $question)
     {
-        //
+        $tutorAuth = \Auth::guard('tutors')->check();
+        if ($tutorAuth) {
+            $question->tutor_id = \Auth::id();
+            $question->save();
+        }
+        return response($question, 200);
     }
 
     /**
