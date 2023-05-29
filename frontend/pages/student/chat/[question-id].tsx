@@ -15,7 +15,27 @@ const Chat: NextPage = () => {
   const router = useRouter()
   const { query, isReady } = router
   const questionId = query["question-id"]
-  const [question, setQuestion] = useState<StudentQuestion>({...defaultMessage, student_id: 0, tutor_answers: [], student_comments: []})
+  const [question, setQuestion] = useState<StudentQuestion>({
+    ...defaultMessage,
+    student_id: 0,
+    tutor_answers: [],
+    student_comments: [],
+    student: {
+      id: 0,
+      first_name: "",
+      last_name: "",
+      email: "",
+      high_school: "",
+      first_choice_university: "",
+      first_choice_faculty: "",
+      birth_date: new Date,
+      gender: 0,
+      quit_at: new Date,
+      created_at: new Date,
+      updated_at: new Date,
+      email_verified_at: new Date,
+    }
+  })
   const [ratingValue, setRatingValue] = useState<number | null>(0)
   const [error, setError] = useState<string | null>(null)
 

@@ -14,11 +14,12 @@ export type StudentQuestion = {
   content: string,
   student_id: number,
   tutor_id?: number,
-  tutor_answers: TutorAnswer[],
-  student_comments: StudentComment[],
   solved_at?: Date,
   created_at: Date,
   updated_at: Date,
+  tutor_answers: TutorAnswer[],
+  student_comments: StudentComment[],
+  student: Student,
 };
 export function isStudentQuestion(arg: any): arg is StudentQuestion {
   return arg.student_id !== undefined;
