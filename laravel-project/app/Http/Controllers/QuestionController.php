@@ -93,6 +93,7 @@ class QuestionController extends Controller
                 $query->where('tutor_id', $question->tutor_id)
                         ->orderBy('created_at', 'asc');
             },
+            'student',
         ]);
 
         return ($question);
