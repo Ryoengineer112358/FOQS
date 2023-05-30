@@ -1,4 +1,6 @@
 import {TextareaAutosize} from "@mui/material";
+import { useRef } from "react";
+import ImageIcon from '@mui/icons-material/Image';
 
 type Props = {
   value: string;
@@ -7,7 +9,10 @@ type Props = {
 
 const Textarea = (props: Props) => {
 
+  const inputRef = useRef<HTMLInputElement>(null);
+
   return (
+    <>
     <TextareaAutosize
       maxRows={100}
       placeholder="ここに質問を入力してください"
@@ -20,6 +25,14 @@ const Textarea = (props: Props) => {
         borderRadius: 30
       }}
     />
+    <ImageIcon
+      onClick={() => {
+        inputRef.current?.click();
+      }
+      }
+    />
+    <input type='file' hidden ref={inputRef} accept='image/*' capture='user' multiple />
+    </>
   )
 }
 
