@@ -21,11 +21,6 @@ const CreateQuestion: NextPage = () => {
     dispatch(setContent(value));
   }
 
-  useEffect(() => {
-    const quetionContent = localStorage.getItem("questionContent") || ""
-    dispatch(setContent(quetionContent !== "null" ? quetionContent : ""))
-  }, []);
-
   return (
     <>
       <DefaultLayout middleware={middleware}>
