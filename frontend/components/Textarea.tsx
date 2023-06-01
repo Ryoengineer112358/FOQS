@@ -17,12 +17,13 @@ const Textarea = (props: Props) => {
   const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const files = Array.from(e.target.files);
+      const objectUrls = [] as string[];
       files.forEach(file => {
         if (file.type.match('image.*')) {
-          const objectUrl = URL.createObjectURL(file);
-          setImageSrcs(prevImageSrcs => [...prevImageSrcs, objectUrl]);
+          objectUrls.push(URL.createObjectURL(file));
         }
       })
+      setImageSrcs(objectUrls);
     }
     e.target.value = '';
   };
