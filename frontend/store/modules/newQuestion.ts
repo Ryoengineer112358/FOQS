@@ -5,6 +5,7 @@ import { csrf } from "@/hooks/auth";
 
 export type NewQuestion = {
   content: string;
+  images: string[];
   tutorId?: number;
 }
 
@@ -32,7 +33,10 @@ const slice = createSlice({
   reducers: {
     setContent: (state, action) => {
       localStorage.setItem('questionContent', action.payload)
-      return { content: action.payload, tutorId: state?.tutorId }
+      return { content: action.payload, images: state?.images ?? [], tutorId: state?.tutorId }
+    },
+    setImages: (state, action) => {
+      return { content: state?.content ?? '', images: action.payload, tutorId: state?.tutorId }
     },
     setTutorId: (state, action) => {
       //ローカルストレージに保存
@@ -42,7 +46,7 @@ const slice = createSlice({
         localStorage.setItem('tutorId', action.payload.toString())
       }
 
-      return { content: state?.content ?? '', tutorId: action.payload }
+      return { content: state?.content ?? '', images: state?.images ?? [], tutorId: action.payload }
     },
     clearNewQuestion: () => initialState,
   },
@@ -55,6 +59,6 @@ const slice = createSlice({
   },
 });
 // Action Creators
-export const {setContent, setTutorId, clearNewQuestion} = slice.actions;
+export const {setContent, setImages, setTutorId, clearNewQuestion} = slice.actions;
 
 export default slice.reducer;
