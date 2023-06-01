@@ -23,7 +23,7 @@ const Textarea = (props: Props) => {
           objectUrls.push(URL.createObjectURL(file));
         }
       })
-      setImageSrcs(objectUrls);
+      setImageSrcs(prevImageSrcs => [...prevImageSrcs, ...objectUrls]);
     }
     e.target.value = '';
   };
