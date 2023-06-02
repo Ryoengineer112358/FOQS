@@ -17,10 +17,13 @@ export const submitQuestion = createAsyncThunk(
     const state = getState() as { newQuestion: NewQuestion }
     if (state?.newQuestion) {
       await csrf()
-      const response = await axios.post('/api/questions', {
-        text: state.newQuestion.text,
-        tutor_id: state.newQuestion.tutorId,
-      })
+      const params = new FormData()
+      params.append('text', state.newQuestion.text)
+      params.append('tutor_id', state.newQuestion.tutorId?.toString() ?? '')
+      const image = await fetch(state.newQuestion.images[0]).then(res => res.blob())
+      params.append('image', image)
+      const response = await axios.post('/api/questions', params)
+      
       return response.data
     }
   }
@@ -56,7 +59,10 @@ const slice = createSlice({
       localStorage.removeItem('tutorId')
       return initialState
   })
-  },
+    builder.addCase(submitQuestion.rejected, (state, action) => {
+      console.log(action.error)
+      return state
+  })}
 });
 // Action Creators
 export const {setText, setImages, setTutorId, clearNewQuestion} = slice.actions;
