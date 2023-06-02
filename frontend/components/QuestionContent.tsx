@@ -1,12 +1,12 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
+import { State } from "@/store"
+import { useSelector } from 'react-redux';
 
 type Props = {
   text: string,
   images: string[],
-  tutor_name?: string | null,
-  university?: string | null,
-  faculty?: string | null,
+  tutor_id?: number | null,
   student_name?: string | null,
   first_choice_university?: string | null,
   first_choice_faculty?: string | null,
@@ -15,16 +15,24 @@ type Props = {
 const QuestionContent = ({
   text,
   images,
-  tutor_name,
-  university,
-  faculty,
+  tutor_id,
   student_name,
   first_choice_university,
   first_choice_faculty
 }: Props) => {
-  const tutorInfo = (tutor_name && university && faculty) 
-    ? `${tutor_name}先生（${university}${faculty}）` 
-    : "なし（フリーで質問）";
+
+  const tutors = useSelector((state: State) => state.tutors);
+  const selectedTutor = tutor_id
+    ? tutors.find(t => t.id == tutor_id)
+    : null;
+
+  const tutorInfo = tutors.length === 0
+    ? ""
+    : (
+      selectedTutor  
+      ? `${selectedTutor.last_name}先生（${selectedTutor.university}${selectedTutor.faculty}）` 
+      : "なし（フリーで質問）"
+    );
 
   const studentInfo = (student_name && first_choice_university && first_choice_faculty)
     ? `${student_name}さん（${first_choice_university}${first_choice_faculty}志望）`
@@ -50,7 +58,12 @@ const QuestionContent = ({
         <img key={index} src={image} alt={`Image ${index}`} style={{width: '100%', marginTop: '15px'}} />
       ))}
       <h1 style={{color: "white", textAlign: "center", marginBottom: 0}}>
-        {student_name ? "質問した生徒" : "質問する講師"}
+        {tutors.length === 0
+          ? ""
+          : student_name
+            ? "質問した生徒"
+            : "質問する講師"
+        }
       </h1>
       <h2 style={{color: "white", textAlign: "center", margin: 0}}>
         {student_name ? studentInfo : tutorInfo}

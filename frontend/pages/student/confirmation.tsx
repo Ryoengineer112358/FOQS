@@ -18,12 +18,7 @@ const Confirmation: NextPage = () => {
   const middleware = "student"
   const { user } = useAuth({ middleware: middleware })
   const newQuestion = useSelector((state: State) => state.newQuestion);
-  const tutors = useSelector((state: State) => state.tutors);
   const dispatch = useAppDispatch()
-
-  const selectedTutor = newQuestion?.tutorId
-    ? tutors.find(t => t.id == newQuestion?.tutorId)
-    : null
 
   React.useEffect(() => {
     if (!newQuestion?.text) {
@@ -55,9 +50,7 @@ const Confirmation: NextPage = () => {
           <QuestionContent
             text={newQuestion.text}
             images={newQuestion.images}
-            tutor_name={selectedTutor?.last_name || null}
-            university={selectedTutor?.university || null}
-            faculty={selectedTutor?.faculty || null}
+            tutor_id={newQuestion?.tutorId}
           />
         </Grid>
         <Grid container justifyContent="center" spacing={0.5} marginTop={3}>
