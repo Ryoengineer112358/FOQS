@@ -67,6 +67,10 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
+        $request->file('image')->store('public/questions');
+        //imagesディレクトリに保存する
+        //student_questionsの画像であると明記する
+        //idをつけて保存する
         $question = StudentQuestion::create([
             'student_id' => \Auth::id(),
             'tutor_id' => $request->tutor_id,
