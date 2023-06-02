@@ -2,7 +2,8 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 
 type Props = {
-  content: string,
+  text: string,
+  images: string[],
   tutor_name?: string | null,
   university?: string | null,
   faculty?: string | null,
@@ -12,7 +13,8 @@ type Props = {
 }
 
 const QuestionContent = ({
-  content,
+  text,
+  images,
   tutor_name,
   university,
   faculty,
@@ -30,22 +32,28 @@ const QuestionContent = ({
 
   return (
     <>
-      <h1 style={{color: "white", textAlign: "center", margin: 0}}>質問内容</h1>
+      <h1 style={{color: "white", textAlign: "center", margin: 0 }}>質問内容</h1>
       <Box
         sx={{
-          height: 360,
+          marginTop: '8px',
+          marginBottom: '8px',
+          minHeight: '5rem',
+          height: 'auto',
           p: 1,
           backgroundColor: 'primary.main',
-          borderRadius: 8,
+          borderRadius: 6,
         }}
       >
-        {content}
+        {text}
       </Box>
+      {images.map((image, index) => (
+        <img key={index} src={image} alt={`Image ${index}`} style={{width: '100%', marginTop: '15px'}} />
+      ))}
       <h1 style={{color: "white", textAlign: "center", marginBottom: 0}}>
-        {tutor_name ? "質問する講師" : student_name ? "質問した生徒" : ""}
+        {student_name ? "質問した生徒" : "質問する講師"}
       </h1>
       <h2 style={{color: "white", textAlign: "center", margin: 0}}>
-        {tutor_name ? tutorInfo : student_name ? studentInfo : ""}
+        {student_name ? studentInfo : tutorInfo}
       </h2>
     </>
   );
