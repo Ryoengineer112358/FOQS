@@ -4,10 +4,10 @@ import {Grid} from "@mui/material";
 import { useState, useEffect } from "react";
 import DefaultLayout from "@/components/DefaultLayout";
 import BackButton from "@/components/BackButton";
-import Textarea from "@/components/Textarea";
+import QuestionInputArea from "@/components/QuestionInputArea";
 import MiddleButton from "@/components/MiddleButton";
 import {useAppDispatch} from "@/store";
-import {setContent} from "@/store/modules/newQuestion";
+import {setText, setImages} from "@/store/modules/newQuestion";
 import {useSelector} from 'react-redux';
 import {State} from "@/store"
 
@@ -18,7 +18,11 @@ const CreateQuestion: NextPage = () => {
   const dispatch = useAppDispatch()
   
   const onChangeQuestionContent = (value: string) => {
-    dispatch(setContent(value));
+    dispatch(setText(value));
+  }
+
+  const onChangeQuestionImages = (value: string[]) => {
+    dispatch(setImages(value));
   }
 
   return (
@@ -28,9 +32,11 @@ const CreateQuestion: NextPage = () => {
       </DefaultLayout>
       <Grid container justifyContent="center" marginBottom={3}>
         <Grid item xs={12} md={8} marginBottom={2}>
-          <Textarea
-            value={newQuestion?.content ?? ""}
-            changeHandler={onChangeQuestionContent}
+          <QuestionInputArea
+            text={newQuestion?.text ?? ""}
+            images={newQuestion?.images ?? []}
+            textChangeHandler={onChangeQuestionContent}
+            imagesChangeHandler={onChangeQuestionImages}
           />
         </Grid>
         <Grid item container justifyContent="center" spacing={1}>
@@ -40,7 +46,7 @@ const CreateQuestion: NextPage = () => {
           <Grid item xs={6} md={2}>
             <MiddleButton
               text={"次へ"}
-              onClickHandler={() => dispatch(setContent(newQuestion?.content))}
+              onClickHandler={() => dispatch(setText(newQuestion?.text))}
               href={( newQuestion?.tutorId ) ? "confirmation" : "tutor-option"}
             />
           </Grid>

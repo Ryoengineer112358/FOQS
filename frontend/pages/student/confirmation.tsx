@@ -26,7 +26,7 @@ const Confirmation: NextPage = () => {
     : null
 
   React.useEffect(() => {
-    if (!newQuestion?.content) {
+    if (!newQuestion?.text) {
       const timer = setTimeout(() => {
         router.push(`/${middleware}`)
       }, 2000)
@@ -49,11 +49,12 @@ const Confirmation: NextPage = () => {
       <DefaultLayout middleware={middleware}>
         <div></div>
       </DefaultLayout>
-      {newQuestion?.content ? (
+      {newQuestion?.text ? (
       <Grid container justifyContent="center">
         <Grid item xs={12} md={6}>
           <QuestionContent
-            content={newQuestion.content}
+            text={newQuestion.text}
+            images={newQuestion.images}
             tutor_name={selectedTutor?.last_name || null}
             university={selectedTutor?.university || null}
             faculty={selectedTutor?.faculty || null}
