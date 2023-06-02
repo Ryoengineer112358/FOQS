@@ -12,6 +12,7 @@ export const defaultMessage = {
 export type StudentQuestion = {
   id: number,
   content: string,
+  images?: string[],
   student_id: number,
   tutor_id?: number,
   solved_at?: Date,
