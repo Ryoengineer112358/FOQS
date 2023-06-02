@@ -5,14 +5,16 @@ import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined';
 import CloseIcon from '@mui/icons-material/Close';
 
 type Props = {
-  value: string;
-  changeHandler: Function;
+  text: string;
+  images: string[];
+  textChangeHandler: Function;
+  imagesChangeHandler: Function;
 }
 
-const Textarea = (props: Props) => {
+const QuestionInputArea = (props: Props) => {
   const cameraRef = useRef<HTMLInputElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  const [imageSrcs, setImageSrcs] = useState<string[]>([]);
+  const [imageSrcs, setImageSrcs] = useState<string[]>(props.images);
 
   const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -23,14 +25,22 @@ const Textarea = (props: Props) => {
           objectUrls.push(URL.createObjectURL(file));
         }
       })
-      setImageSrcs(prevImageSrcs => [...prevImageSrcs, ...objectUrls]);
+      setImageSrcs(prevImageSrcs => {
+        const newImageSrcs = [...prevImageSrcs, ...objectUrls];
+        props.imagesChangeHandler(newImageSrcs);
+        return newImageSrcs;
+      });
     }
     e.target.value = '';
   };
 
   const onRemoveImage = (index: number) => {
     URL.revokeObjectURL(imageSrcs[index]);
-    setImageSrcs(prevImageSrcs => prevImageSrcs.filter((src, i) => i !== index));
+    setImageSrcs(prevImageSrcs => {
+      const newImageSrcs = prevImageSrcs.filter((src, i) => i !== index);
+      props.imagesChangeHandler(newImageSrcs);
+      return newImageSrcs;
+    });
   };
 
   return (
@@ -40,8 +50,8 @@ const Textarea = (props: Props) => {
           minRows={5}
           maxRows={100}
           placeholder="ここに質問を入力してください。右下のアイコンをクリックすると画像を追加できます。"
-          onChange={(e: any) => props.changeHandler(e.target.value)}
-          value={props.value}
+          onChange={(e: any) => props.textChangeHandler(e.target.value)}
+          value={props.text}
           style={{
             fontSize: 16,
             padding: 10,
@@ -69,9 +79,13 @@ const Textarea = (props: Props) => {
         <input type='file' hidden ref={inputRef} onChange={onFileChange} accept='image/*' multiple />
       </Box>
       {imageSrcs.map((src, index) => (
-        <Box key={index} width="100%">
-          <IconButton onClick={() => onRemoveImage(index)}>
-            <CloseIcon />
+        <Box key={index} width="100%" textAlign="center" position="relative" marginTop={4}>
+          <IconButton 
+            onClick={() => onRemoveImage(index)}
+            style={{position: "absolute", top: -40, left: 0}}
+            sx={{color: 'black'}}
+          >
+            <CloseIcon style={{fontSize: 30}} />
           </IconButton>
           <img src={src} alt="preview" style={{maxWidth: '100%'}} />
         </Box>
@@ -80,4 +94,4 @@ const Textarea = (props: Props) => {
   )
 }
 
-export default Textarea;
+export default QuestionInputArea;
