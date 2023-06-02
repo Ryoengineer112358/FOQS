@@ -10,7 +10,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import {State, useAppDispatch} from "@/store";
 import {fetchTutors} from "@/store/modules/tutors";
 import {useSelector} from "react-redux";
-import {setContent, setTutorId} from "@/store/modules/newQuestion";
+import {setText, setTutorId} from "@/store/modules/newQuestion";
 
 const drawerWidth = "80%";
 
@@ -40,7 +40,7 @@ const DefaultLayout = ({ middleware, children }: { middleware: String, children:
   useEffect(() => {
     // 生徒でログインしている場合は講師一覧を初回取得
     if (middleware == "student") {
-      dispatch(setContent(localStorage.getItem("questionContent")))
+      dispatch(setText(localStorage.getItem("questionText")))
       if (tutors.length == 0) dispatch(fetchTutors())
       dispatch(setTutorId(localStorage.getItem("tutorId")))
     }

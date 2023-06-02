@@ -4,7 +4,7 @@ import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import { csrf } from "@/hooks/auth";
 
 export type NewQuestion = {
-  content: string;
+  text: string;
   images: string[];
   tutorId?: number;
 }
@@ -18,7 +18,7 @@ export const submitQuestion = createAsyncThunk(
     if (state?.newQuestion) {
       await csrf()
       const response = await axios.post('/api/questions', {
-        content: state.newQuestion.content,
+        text: state.newQuestion.text,
         tutor_id: state.newQuestion.tutorId,
       })
       return response.data
@@ -31,12 +31,12 @@ const slice = createSlice({
   name: 'newQuestion',
   initialState: null as NewQuestion | null,
   reducers: {
-    setContent: (state, action) => {
-      localStorage.setItem('questionContent', action.payload)
-      return { content: action.payload, images: state?.images ?? [], tutorId: state?.tutorId }
+    setText: (state, action) => {
+      localStorage.setItem('questionText', action.payload)
+      return { text: action.payload, images: state?.images ?? [], tutorId: state?.tutorId }
     },
     setImages: (state, action) => {
-      return { content: state?.content ?? '', images: action.payload, tutorId: state?.tutorId }
+      return { text: state?.text ?? '', images: action.payload, tutorId: state?.tutorId }
     },
     setTutorId: (state, action) => {
       //ローカルストレージに保存
@@ -46,19 +46,19 @@ const slice = createSlice({
         localStorage.setItem('tutorId', action.payload.toString())
       }
 
-      return { content: state?.content ?? '', images: state?.images ?? [], tutorId: action.payload }
+      return { text: state?.text ?? '', images: state?.images ?? [], tutorId: action.payload }
     },
     clearNewQuestion: () => initialState,
   },
   extraReducers: (builder) => {
     builder.addCase(submitQuestion.fulfilled, () => {
-      localStorage.removeItem('questionContent')
+      localStorage.removeItem('questionText')
       localStorage.removeItem('tutorId')
       return initialState
   })
   },
 });
 // Action Creators
-export const {setContent, setImages, setTutorId, clearNewQuestion} = slice.actions;
+export const {setText, setImages, setTutorId, clearNewQuestion} = slice.actions;
 
 export default slice.reducer;

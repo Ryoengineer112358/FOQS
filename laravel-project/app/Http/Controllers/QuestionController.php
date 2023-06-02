@@ -70,7 +70,7 @@ class QuestionController extends Controller
         $question = StudentQuestion::create([
             'student_id' => \Auth::id(),
             'tutor_id' => $request->tutor_id,
-            'content' => $request->content,
+            'content' => $request->text,
         ]);
 
         return response($question, 201);

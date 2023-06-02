@@ -47,7 +47,8 @@ const ConfirmQuestion: NextPage = () => {
         <Grid container justifyContent="center">
           <Grid item xs={12} sm={10} md={8}>
             <QuestionContent
-              content={question?.content || ""}
+              text={question?.content || ""}
+              images={question?.images || []}
               student_name={question?.student.last_name || ""}
               first_choice_university={question?.student.first_choice_university || ""}
               first_choice_faculty={question?.student.first_choice_faculty || ""}
