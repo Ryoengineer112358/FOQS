@@ -23,7 +23,20 @@ export const submitQuestion = createAsyncThunk(
       
       const imagesPromises = state.newQuestion.images.map(async (imgUrl, index) => {
         const imageBlob = await fetch(imgUrl).then(res => res.blob())
-        const fileName = `image_${Date.now()}_${index}.jpg`;
+
+        let ext;
+        switch (imageBlob.type) {
+          case 'image/jpeg':
+            ext = 'jpg'
+            break;
+          case 'image/png':
+            ext = 'png'
+            break;
+          default:
+            ext = 'jpg';
+        }
+
+        const fileName = `image_${Date.now()}_${index}.${ext}`;
         params.append(`images[${index}]`, imageBlob, fileName)
       })
       await Promise.all(imagesPromises)
