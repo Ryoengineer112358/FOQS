@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->string('image_pass');
+            $table->string('image_path');
             $table->timestamps();
             $table->unsignedBigInteger('imageable_id');
-            $table->unsignedInteger('imageable_type');
+            $table->string('imageable_type');
         });
     }
 
