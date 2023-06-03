@@ -17,13 +17,15 @@ return new class extends Migration
             $table->id();
             $table->string('last_name', 100);
             $table->string('first_name', 100);
-            $table->string('email', 100);
+            $table->string('email', 100)->unique();
             $table->string('password', 100);
             $table->string('university', 100);
-            $table->unsignedTinyInteger('age');
-            $table->tinyInteger('sex');
+            $table->string('faculty', 100);
+            $table->date('birth_date');
+            $table->tinyInteger('gender');
             $table->rememberToken();
             $table->timestamps();
+            $table->timestamp('email_verified_at')->nullable();
             $table->dateTime('quit_at')->nullable();
         });
     }

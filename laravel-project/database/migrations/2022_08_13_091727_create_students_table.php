@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('last_name', 100);
             $table->string('first_name', 100);
-            $table->string('email', 100);
+            $table->string('email', 100)->unique();
             $table->string('password', 100);
             $table->string('high_school', 100);
             $table->string('first_choice_university', 100);
@@ -26,6 +26,7 @@ return new class extends Migration
             $table->tinyInteger('gender');
             $table->rememberToken();
             $table->timestamps();
+            $table->timestamp('email_verified_at')->nullable();
             $table->dateTime('quit_at')->nullable();
         });
     }
