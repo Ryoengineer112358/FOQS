@@ -17,15 +17,17 @@ return new class extends Migration
             $table->id();
             $table->text('text');
             $table->timestamps();
-            $table->timestamp('solved_at')->nullable();
+            $table->boolean('tutor_checked')->nullable();
+            $table->timestamp('closed_at')->nullable();
+            $table->unsignedTinyInteger('tutor_rating')->nullable();
             $table
                 ->foreignId('student_id')
                 ->constrained()
                 ->cascadeOnDelete();
             $table
                 ->foreignId('tutor_id')
-                ->constrained()
-                ->nullable();
+                ->nullable()
+                ->constrained();
         });
     }
 
