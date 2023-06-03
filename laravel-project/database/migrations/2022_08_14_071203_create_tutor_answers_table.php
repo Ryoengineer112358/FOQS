@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('tutor_answers', function (Blueprint $table) {
             $table->id();
-            $table->text('content');
+            $table->text('text');
             $table->timestamps();
             $table
                 ->foreignId('tutor_id')
