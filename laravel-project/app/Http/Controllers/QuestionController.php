@@ -70,7 +70,7 @@ class QuestionController extends Controller
         $question = StudentQuestion::create([
             'student_id' => \Auth::id(),
             'tutor_id' => $request->tutor_id,
-            'content' => $request->text,
+            'text' => $request->text,
         ]);
 
         if($request->hasfile('images')){
@@ -166,7 +166,7 @@ class QuestionController extends Controller
 
             if ($studentAuth) {
                 StudentComment::create([
-                    'content' => $request->message,
+                    'text' => $request->message,
                     'student_question_id' => $question->id,
                     'tutor_id' => $question->tutor_id,
                 ]);
@@ -174,7 +174,7 @@ class QuestionController extends Controller
 
             if ($tutorAuth) {
                 TutorAnswer::create([
-                    'content' => $request->message,
+                    'text' => $request->message,
                     'student_question_id' => $question->id,
                     'tutor_id' => $question->tutor_id,
                 ]);

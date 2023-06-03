@@ -16,13 +16,13 @@ class StudentCommentSeeder extends Seeder
     public function run()
     {
         StudentComment::create([
-            'content'=>'理解しました。ありがとうございました！！',
+            'text'=>'理解しました。ありがとうございました！！',
             'student_question_id'=>1,
             'tutor_id'=>1,
         ]);
 
         StudentComment::create([
-            'content'=>'「You」ではなく「We」ではダメなのですか？',
+            'text'=>'「You」ではなく「We」ではダメなのですか？',
             'student_question_id'=>2,
             'tutor_id'=>2,
         ]);

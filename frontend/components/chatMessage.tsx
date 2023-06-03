@@ -35,17 +35,17 @@ function ChatMessage(props: Props) {
             )
         return (
           <div className="msgs">
-            {props.question.content ? (
+            {props.question.text ? (
               <div>
               <div className={`msg ${props.middleware === "student" ? "sent" : "received"}`}>
-                <p>{props.question.content}</p>
+                <p>{props.question.text}</p>
               </div>
               </div>
             ) : <></>}
             {messages.map(message => (
               <div key={message.id}>
                 <div className={`msg ${message.className}`}>
-                  <p>{message.content}</p>
+                  <p>{message.text}</p>
                 </div>
               </div>))}
           </div>

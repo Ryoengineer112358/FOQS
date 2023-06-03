@@ -35,7 +35,7 @@ const Chat = (props: Props) => {
     setQuestion({...question,
       student_comments: isStudent? [...question.student_comments, newMessage] : question.student_comments,
       tutor_answers: isTutor? [...question.tutor_answers, newMessage] : question.tutor_answers})
-    axios.post(`/api/questions/${questionId}`, {message: newMessage.content}).then(
+    axios.post(`/api/questions/${questionId}`, {message: newMessage.text}).then(
       fetchMessages
     )
   }

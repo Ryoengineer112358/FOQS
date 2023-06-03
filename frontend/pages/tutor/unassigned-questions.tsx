@@ -29,7 +29,7 @@ const UnassignedQuestions: NextPage = () => {
           {questions.map(x =>
             <CardMessage
               key={x.id}
-              text={x.content}
+              text={x.text}
               href={`confirm-question/${x.id}`} />)}
         </Grid>
       </Grid>

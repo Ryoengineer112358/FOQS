@@ -35,13 +35,13 @@ const Home = (props: Props) => {
           {questions.map(x =>
             <CardMessage key={x.id} text={(() => {
               if(x.tutor_answers.length == 0 && x.student_comments.length == 0) {
-                return x.content;
+                return x.text;
               } else if (x.tutor_answers.length == 0) {
-                return x.student_comments[0].content;
+                return x.student_comments[0].text;
               } else if (x.student_comments.length == 0) {
-                return x.tutor_answers[0].content;
+                return x.tutor_answers[0].text;
               } else {
-                return x.tutor_answers[0].created_at > x.student_comments[0].created_at ? x.tutor_answers[0].content : x.student_comments[0].content;
+                return x.tutor_answers[0].created_at > x.student_comments[0].created_at ? x.tutor_answers[0].text : x.student_comments[0].text;
               }
             })()
             } href={`${props.middleware}/chat/${x.id}`} />
