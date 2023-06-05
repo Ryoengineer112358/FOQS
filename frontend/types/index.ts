@@ -20,7 +20,7 @@ export type StudentQuestion = {
   updated_at: Date,
   tutor_answers: TutorAnswer[],
   student_comments: StudentComment[],
-  student: Student,
+  student?: Student,
 };
 export function isStudentQuestion(arg: any): arg is StudentQuestion {
   return arg.student_id !== undefined;
