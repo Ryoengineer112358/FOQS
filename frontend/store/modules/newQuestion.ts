@@ -10,7 +10,11 @@ export type NewQuestion = {
   tutorId?: number;
 }
 
-const initialState: NewQuestion | null = null
+const initialState: NewQuestion = {
+  text: '',
+  images: [],
+  tutorId: undefined,
+}
 
 export const submitQuestion = createAsyncThunk(
   'newQuestion/submitQuestion',
@@ -51,18 +55,18 @@ export const submitQuestion = createAsyncThunk(
 // Reducers
 const slice = createSlice({
   name: 'newQuestion',
-  initialState: null as NewQuestion | null,
+  initialState: initialState,
   reducers: {
     setText: (state, action) => {
       localStorage.setItem('questionText', action.payload)
-      return { text: action.payload, images: state?.images ?? [], tutorId: state?.tutorId }
+      return { text: action.payload, images: state.images, tutorId: state.tutorId }
     },
     setImages: (state, action) => {
       action.payload.map(async (imgUrl: string, index: number) => {
         const imageBlob = await fetch(imgUrl).then(res => res.blob())
         await set(index, imageBlob)
       })
-      return { text: state?.text ?? '', images: action.payload, tutorId: state?.tutorId }
+      return { text: state.text, images: action.payload, tutorId: state.tutorId }
     },
     setTutorId: (state, action) => {
       //ローカルストレージに保存
@@ -72,15 +76,17 @@ const slice = createSlice({
         localStorage.setItem('tutorId', action.payload.toString())
       }
 
-      return { text: state?.text ?? '', images: state?.images ?? [], tutorId: action.payload }
+      return { text: state.text, images: state.images, tutorId: action.payload }
     },
-    clearNewQuestion: () => initialState,
+    clearNewQuestion: () => {
+      return {...initialState}
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(submitQuestion.fulfilled, () => {
       localStorage.removeItem('questionText')
       localStorage.removeItem('tutorId')
-      return initialState
+      return {...initialState}
   })
     builder.addCase(submitQuestion.rejected, (state, action) => {
       console.log(action.error)

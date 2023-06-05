@@ -40,9 +40,15 @@ const DefaultLayout = ({ middleware, children }: { middleware: String, children:
   useEffect(() => {
     // 生徒でログインしている場合は講師一覧を初回取得
     if (middleware == "student") {
-      dispatch(setText(localStorage.getItem("questionText")))
+      const questionText = localStorage.getItem("questionText");
+      if (questionText !== null) {
+        dispatch(setText(questionText));
+      }
       if (tutors.length == 0) dispatch(fetchTutors())
-      dispatch(setTutorId(localStorage.getItem("tutorId")))
+      const tutorId = localStorage.getItem("tutorId");
+      if (tutorId !== null) {
+        dispatch(setTutorId(Number(tutorId)));
+      }
     }
   }, []);
 
