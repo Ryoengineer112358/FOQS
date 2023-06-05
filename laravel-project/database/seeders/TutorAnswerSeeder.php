@@ -16,7 +16,13 @@ class TutorAnswerSeeder extends Seeder
     public function run()
     {
         TutorAnswer::create([
-            'text'=>'写真確認お願いします！',
+            'text'=>'問題確認しました。少々お待ちください。',
+            'tutor_id'=>1,
+            'student_question_id'=>1,
+        ]);
+
+        TutorAnswer::create([
+            'text'=>'できました！写真確認お願いします！',
             'tutor_id'=>1,
             'student_question_id'=>1,
         ]);

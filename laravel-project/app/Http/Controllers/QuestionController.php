@@ -30,9 +30,9 @@ class QuestionController extends Controller
 
 
         if ($request->solved_only) {
-            $query = $query->whereNotNull('solved_at');
+            $query = $query->whereNotNull('closed_at');
         } else {
-            $query = $query->whereNull('solved_at')->with(
+            $query = $query->whereNull('closed_at')->with(
                 [
                     'tutor_answers' => function ($query) {
                         $query->orderBy('created_at', 'desc');
@@ -184,7 +184,7 @@ class QuestionController extends Controller
 
     public function solve(StudentQuestion $question)
     {
-        $question->solved_at = now();
+        $question->closed_at = now();
         $question->save();
 
         return response()->json($question);
