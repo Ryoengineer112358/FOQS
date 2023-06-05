@@ -15,7 +15,7 @@ export type StudentQuestion = {
   images?: string[],
   student_id: number,
   tutor_id?: number,
-  solved_at?: Date,
+  closed_at?: Date,
   created_at: Date,
   updated_at: Date,
   tutor_answers: TutorAnswer[],

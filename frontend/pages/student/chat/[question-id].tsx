@@ -99,7 +99,7 @@ const Chat: NextPage = () => {
       <ChatComponent.default middleware={"student"} />
       {question.student_id !==0 && (
         <Grid container justifyContent="center" spacing={1} marginTop={2} marginBottom={3}>
-          {question && (question.solved_at ? (
+          {question && (question.closed_at ? (
             <>
               <Grid item xs={7} sm={5} md={3}>
                 <MiddleButton

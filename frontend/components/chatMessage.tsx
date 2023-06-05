@@ -52,7 +52,7 @@ function ChatMessage(props: Props) {
         )
       })()}
       {props.question.student_id !== 0 && (
-        (props.question.solved_at)
+        (props.question.closed_at)
         ? <></>
         : <SendMessage
             sendFunction={props.sendFunction}

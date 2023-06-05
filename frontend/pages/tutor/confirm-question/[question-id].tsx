@@ -25,7 +25,7 @@ const ConfirmQuestion: NextPage = () => {
       axios.get<StudentQuestion>(`/api/questions/${questionId}`)
       .then(response => {
         const questionData = response.data;
-        if ( questionData.tutor_id === null && questionData.solved_at === null) {
+        if ( questionData.tutor_id === null && questionData.closed_at === null) {
           setQuestion(questionData);
         } else {
           router.push('/tutor/unassigned-questions');
@@ -42,12 +42,12 @@ const ConfirmQuestion: NextPage = () => {
       <DefaultLayout middleware={middleware}>
         <div></div>
       </DefaultLayout>
-      {question?.content ? (
+      {question?.text ? (
       <>
         <Grid container justifyContent="center">
           <Grid item xs={12} sm={10} md={8}>
             <QuestionContent
-              text={question?.content || ""}
+              text={question?.text || ""}
               images={question?.images || []}
               student_name={question?.student.last_name || ""}
               first_choice_university={question?.student.first_choice_university || ""}
