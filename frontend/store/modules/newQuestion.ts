@@ -1,4 +1,5 @@
 import { Tutor } from "@/types";
+import { set, setMany, get, getMany } from 'idb-keyval';
 import axios from "@/lib/axios";
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import { csrf } from "@/hooks/auth";
@@ -57,6 +58,10 @@ const slice = createSlice({
       return { text: action.payload, images: state?.images ?? [], tutorId: state?.tutorId }
     },
     setImages: (state, action) => {
+      action.payload.map(async (imgUrl: string, index: number) => {
+        const imageBlob = await fetch(imgUrl).then(res => res.blob())
+        await set(index, imageBlob)
+      })
       return { text: state?.text ?? '', images: action.payload, tutorId: state?.tutorId }
     },
     setTutorId: (state, action) => {
