@@ -57,44 +57,61 @@ const Home = (props: Props) => {
             </motion.div>
           )}
         </Grid>
-        <Grid container justifyContent="center" spacing={1} marginTop={2} marginBottom={3}>
-          <AnimatePresence>
-            {animationStart && (
-              <>
-                <Grid item xs={6} sm={4} md={3}>
-                  <motion.div 
-                    initial={{ opacity: 0, x: '100vw' }}
-                    animate={{ opacity: 1, x: 0 }} 
-                    transition={{
-                      type: "spring",
-                      stiffness: 100,
-                      damping: 12,
-                      delay: questions.length * 0.1
-                    }}
-                    exit={{ opacity: 0 }}
-                  >
-                    <MiddleButton text="質問履歴" href="student/question-history"/>
-                  </motion.div>
-                </Grid>
-                <Grid item xs={6} sm={4} md={3}>
-                  <motion.div 
-                    initial={{ opacity: 0, x: '100vw' }}
-                    animate={{ opacity: 1, x: 0 }} 
-                    transition={{
-                      type: "spring",
-                      stiffness: 100,
-                      damping: 12,
-                      delay: questions.length * 0.1
-                    }}
-                    exit={{ opacity: 0 }}
-                  >
-                    <MiddleButton text="質問する" href={"student/create-question"}/>
-                  </motion.div>
-                </Grid>
-              </>
-            )}
-          </AnimatePresence>
-        </Grid>
+        <AnimatePresence>
+          {animationStart && props.middleware === 'student' && (
+            <Grid container justifyContent="center" spacing={1} marginTop={2} marginBottom={3}>
+              <Grid item xs={6} sm={4} md={3}>
+                <motion.div 
+                  initial={{ opacity: 0, x: '100vw' }}
+                  animate={{ opacity: 1, x: 0 }} 
+                  transition={{
+                    type: "spring",
+                    stiffness: 100,
+                    damping: 12,
+                    delay: questions.length * 0.1 - 0.1
+                  }}
+                  exit={{ opacity: 0 }}
+                >
+                  <MiddleButton text="質問履歴" href="student/question-history"/>
+                </motion.div>
+              </Grid>
+              <Grid item xs={6} sm={4} md={3}>
+                <motion.div 
+                  initial={{ opacity: 0, x: '100vw' }}
+                  animate={{ opacity: 1, x: 0 }} 
+                  transition={{
+                    type: "spring",
+                    stiffness: 100,
+                    damping: 12,
+                    delay: questions.length * 0.1 - 0.1
+                  }}
+                  exit={{ opacity: 0 }}
+                >
+                  <MiddleButton text="質問する" href={"student/create-question"}/>
+                </motion.div>
+              </Grid>
+            </Grid>
+          )}
+          {animationStart && props.middleware === 'tutor' && (
+            <Grid container justifyContent="center" marginTop={3} marginBottom={3}>
+              <Grid item xs={8} sm={6} md={4}>
+                <motion.div 
+                  initial={{ opacity: 0, x: '100vw' }}
+                  animate={{ opacity: 1, x: 0 }} 
+                  transition={{
+                    type: "spring",
+                    stiffness: 100,
+                    damping: 12,
+                    delay: questions.length * 0.1 - 0.1
+                  }}
+                  exit={{ opacity: 0 }}
+                >
+                  <MiddleButton text="質問を見つける" href="tutor/unassigned-questions"/>
+                </motion.div>
+              </Grid>
+            </Grid>
+          )}
+        </AnimatePresence>
       </Grid>
     </>
   )
