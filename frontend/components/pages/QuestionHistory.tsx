@@ -45,28 +45,28 @@ const QuestionHistory = (props: Props) => {
             </motion.div>
           )}
         </Grid>
-      </Grid>
-      <AnimatePresence>
-        {animationStart && (
-          <Grid container justifyContent="center">
-            <Grid item xs={6} sm={4} md={3} marginTop={2} marginBottom={3}>
-              <motion.div 
-                initial={{ opacity: 0, x: '100vw' }}
-                animate={{ opacity: 1, x: 0 }} 
-                transition={{
-                  type: "spring",
-                  stiffness: 100,
-                  damping: 12,
-                  delay: questions.length * 0.1 - 0.1,
-                }}
-                exit={{ opacity: 0 }}
-              >
-                <MiddleButton text="ホームに戻る" href={`/${middleware}`} />
-              </motion.div>
-            </Grid>
-          </Grid>
-        )}
-      </AnimatePresence>
+				<AnimatePresence>
+					{animationStart && (
+						<Grid container justifyContent="center">
+							<Grid item xs={6} sm={4} md={3} marginTop={2} marginBottom={3}>
+								<motion.div 
+									initial={{ opacity: 0, x: '100vw' }}
+									animate={{ opacity: 1, x: 0 }} 
+									transition={{
+										type: "spring",
+										stiffness: 100,
+										damping: 12,
+										delay: questions.length * 0.1 - 0.1,
+									}}
+									exit={{ opacity: 0 }}
+								>
+									<MiddleButton text="ホームに戻る" href={`/${middleware}`} />
+								</motion.div>
+							</Grid>
+						</Grid>
+					)}
+				</AnimatePresence>
+			</Grid>
     </>
   )
 }
