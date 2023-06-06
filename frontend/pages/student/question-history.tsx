@@ -1,16 +1,12 @@
 import { useAuth } from '@/hooks/auth'
 import type { NextPage } from 'next'
 import {Grid} from "@mui/material";
-import * as React from "react";
 import DefaultLayout from "@/components/DefaultLayout";
 import CardMessage from "@/components/CardMessage";
-import HomeButton from "@/components/HomeButton";
 import {useEffect, useState} from "react";
 import {StudentQuestion} from "@/types";
 import axios from "@/lib/axios";
 import MiddleButton from '@/components/MiddleButton';
-import { useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
 
 const QuestionHistory: NextPage = () => {
   const middleware = "student"
@@ -31,12 +27,14 @@ const QuestionHistory: NextPage = () => {
       <Grid container justifyContent="center">
         <Grid item xs={12} md={8}>
           {questions.map(x =>
-            <CardMessage key={x.id} text={x.content} href={`/${middleware}/chat/${x.id}`} />
+            <CardMessage key={x.id} text={x.text} href={`/${middleware}/chat/${x.id}`} />
           )}
         </Grid>
       </Grid>
-      <Grid container justifyContent='right'>
-        <HomeButton href='/student' />
+      <Grid container justifyContent="center">
+        <Grid item xs={6} sm={4} md={3} lg={2} marginTop={2} marginBottom={3}>
+          <MiddleButton text="ホームに戻る" href={`/${middleware}`} />
+        </Grid>
       </Grid>
     </>
   )
