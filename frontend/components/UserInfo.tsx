@@ -40,7 +40,7 @@ const UserInfo = (props: Props) => {
       <br />
         {isStudent(props) &&
           <>
-            高校：{props.high_school}
+            高校：{props.high_school} 高校
             <br />
             第一志望大学：{props.first_choice_university}
             <br />

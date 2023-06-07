@@ -20,7 +20,7 @@ class StudentSeeder extends Seeder
             'first_name'=>'良平',
             'email'=>'takashimaryohei@gmail.com',
             'password'=>bcrypt('password'),
-            'high_school'=>'巣鴨高校',
+            'high_school'=>'巣鴨',
             'first_choice_university'=>'東京大学',
             'first_choice_faculty'=>'文科三類',
             'birth_date'=> '1996-07-28',
