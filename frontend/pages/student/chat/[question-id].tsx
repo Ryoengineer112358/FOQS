@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import * as ChatComponent from "@/components/Pages/Chat";
+import * as ChatComponent from "@/components/Chat";
 import MiddleButton from '@/components/MiddleButton';
 import BackButton from '@/components/BackButton';
 import {Grid, Typography} from "@mui/material";
