@@ -19,6 +19,10 @@ class Student extends Authenticatable implements MustVerifyEmail
         'remember_token',
     ];
 
+    protected $dataFormat = 'Y-m-d H:i:s.v';
+
+    protected $dates = ['created_at', 'updated_at'];
+
     public function student_questions()
     {
         return $this->hasMany(StudentQuestion::class);

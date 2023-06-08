@@ -11,6 +11,10 @@ class TutorAnswer extends Model
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
+    protected $dataFormat = 'Y-m-d H:i:s.v';
+
+    protected $dates = ['created_at', 'updated_at'];
+
     public function tutor()
     {
         return $this->belongsTo(Tutor::class);
