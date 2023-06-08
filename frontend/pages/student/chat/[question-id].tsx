@@ -16,7 +16,7 @@ const Chat: NextPage = () => {
   const { query, isReady } = router
   const questionId = query["question-id"]
   const [question, setQuestion] = useState<StudentQuestion>({
-    ...defaultMessage,
+    ...defaultMessage(),
     student_id: 0,
     tutor_answers: [],
     student_comments: [],

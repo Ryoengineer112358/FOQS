@@ -1,13 +1,13 @@
 export type Middleware = "student" | "tutor" | "guest";
 
-export const defaultMessage = {
+export const defaultMessage = () => ({
   id: 0,
-      text: '',
-      tutor_id: 0,
-      student_question_id: 0,
-      created_at: new Date(),
-      updated_at: new Date(),
-}
+  text: '',
+  tutor_id: 0,
+  student_question_id: 0,
+  created_at: new Date(),
+  updated_at: new Date(),
+})
 
 export type StudentQuestion = {
   id: number,

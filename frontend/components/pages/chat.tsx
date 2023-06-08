@@ -27,7 +27,7 @@ const Chat = (props: Props) => {
   useEffect(fetchMessages, [isReady])
   const { user } = useAuth({ middleware: props.middleware })
   const [question, setQuestion] = useState<StudentQuestion>({
-    ...defaultMessage,
+    ...defaultMessage(),
     student_id: 0,
     tutor_answers: [],
     student_comments: [],
@@ -41,7 +41,7 @@ const Chat = (props: Props) => {
       student_comments: isStudent? [...question.student_comments, newMessage] : question.student_comments,
       tutor_answers: isTutor? [...question.tutor_answers, newMessage] : question.tutor_answers})
     axios.post(`/api/questions/${questionId}`, {message: newMessage.text}).then(
-      fetchMessages
+      //fetchMessages
     )
   }
 

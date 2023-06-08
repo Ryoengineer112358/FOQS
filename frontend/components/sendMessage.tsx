@@ -20,7 +20,7 @@ function SendMessage(props: Props) {
       return;
     }
     props.sendFunction({
-      ...defaultMessage,
+      ...defaultMessage(),
       text: message,
     })
     //ここにDBとのやりとりを記載
