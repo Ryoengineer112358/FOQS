@@ -7,7 +7,7 @@ import CardMessage from "@/components/CardMessage";
 import { useEffect, useState } from 'react';
 import { StudentQuestion } from '@/types';
 import axios from '@/lib/axios';
-import MiddleButton from '@/components/MiddleButton';
+import LinkButton from '@/components/LinkButton';
 
 const UnassignedQuestions: NextPage = () => {
   const middleware = "tutor"
@@ -35,7 +35,7 @@ const UnassignedQuestions: NextPage = () => {
       </Grid>
       <Grid container justifyContent='center'>
         <Grid item xs={6} sm={4} md={3} marginTop={2} marginBottom={3}>
-          <MiddleButton text={'ホームに戻る' } href={'/tutor'} />
+          <LinkButton text={'ホームに戻る' } href={'/tutor'} />
         </Grid>
       </Grid>
     </>

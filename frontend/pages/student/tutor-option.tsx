@@ -4,8 +4,8 @@ import {Grid} from "@mui/material";
 import * as React from "react";
 import DefaultLayout from "@/components/DefaultLayout";
 import BackButton from "@/components/BackButton";
-import Textarea from "@/components/Textarea";
 import MiddleButton from "@/components/MiddleButton";
+import LinkButton from "@/components/LinkButton";
 import {useAppDispatch} from "@/store";
 import {setTutorId} from "@/store/modules/newQuestion";
 
@@ -21,7 +21,7 @@ const TutorOption: NextPage = () => {
       </DefaultLayout>
       <Grid container justifyContent="center" spacing={1} marginTop={1} marginBottom={2}>
         <Grid item xs={10} md={4}>
-          <MiddleButton text={"質問する講師を選択"} href={"tutors"} />
+          <LinkButton text={"質問する講師を選択"} href={"tutors"} />
         </Grid>
         <Grid item xs={10} md={4}>
           <MiddleButton

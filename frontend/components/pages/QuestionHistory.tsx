@@ -5,7 +5,7 @@ import CardMessage from "@/components/CardMessage";
 import {useEffect, useState} from "react";
 import {StudentQuestion, Middleware} from "@/types";
 import axios from "@/lib/axios";
-import MiddleButton from '@/components/MiddleButton';
+import LinkButton from '@/components/LinkButton';
 import { motion, AnimatePresence } from 'framer-motion';
 
 type Props = {
@@ -60,7 +60,7 @@ const QuestionHistory = (props: Props) => {
 									}}
 									exit={{ opacity: 0 }}
 								>
-									<MiddleButton text="ホームに戻る" href={`/${middleware}`} />
+									<LinkButton text="ホームに戻る" href={`/${middleware}`} />
 								</motion.div>
 							</Grid>
 						</Grid>

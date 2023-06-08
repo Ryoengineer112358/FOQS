@@ -6,7 +6,7 @@ import axios from "@/lib/axios";
 import {Middleware, StudentQuestion} from "@/types";
 import DefaultLayout from "@/components/DefaultLayout";
 import CardMessage from "@/components/CardMessage";
-import MiddleButton from '../MiddleButton';
+import LinkButton from '../LinkButton';
 import { motion, AnimatePresence } from 'framer-motion';
 
 type Props = {
@@ -72,7 +72,7 @@ const Home = (props: Props) => {
                   }}
                   exit={{ opacity: 0 }}
                 >
-                  <MiddleButton text="質問履歴" href="student/question-history"/>
+                  <LinkButton text="質問履歴" href="student/question-history"/>
                 </motion.div>
               </Grid>
               <Grid item xs={6} sm={4} md={3}>
@@ -87,7 +87,7 @@ const Home = (props: Props) => {
                   }}
                   exit={{ opacity: 0 }}
                 >
-                  <MiddleButton text="質問する" href={"student/create-question"}/>
+                  <LinkButton text="質問する" href={"student/create-question"}/>
                 </motion.div>
               </Grid>
             </Grid>
@@ -106,7 +106,7 @@ const Home = (props: Props) => {
                   }}
                   exit={{ opacity: 0 }}
                 >
-                  <MiddleButton text="質問を見つける" href="tutor/unassigned-questions"/>
+                  <LinkButton text="質問を見つける" href="tutor/unassigned-questions"/>
                 </motion.div>
               </Grid>
             </Grid>

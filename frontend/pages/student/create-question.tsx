@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import DefaultLayout from "@/components/DefaultLayout";
 import BackButton from "@/components/BackButton";
 import QuestionInputArea from "@/components/QuestionInputArea";
-import MiddleButton from "@/components/MiddleButton";
+import LinkButton from "@/components/LinkButton";
 import {useAppDispatch} from "@/store";
 import {setText, setImages} from "@/store/modules/newQuestion";
 import {useSelector} from 'react-redux';
@@ -44,9 +44,8 @@ const CreateQuestion: NextPage = () => {
             <BackButton />
           </Grid>
           <Grid item xs={6} md={2}>
-            <MiddleButton
+            <LinkButton
               text={"次へ"}
-              onClickHandler={() => dispatch(setText(newQuestion?.text))}
               href={( newQuestion?.tutorId ) ? "confirmation" : "tutor-option"}
             />
           </Grid>

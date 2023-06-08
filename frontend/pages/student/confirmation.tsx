@@ -6,7 +6,7 @@ import DefaultLayout from "@/components/DefaultLayout";
 import BackButton from "@/components/BackButton";
 import QuestionContent from "@/components/QuestionContent";
 import ModalButton from "@/components/ModalButton";
-import MiddleButton from '@/components/MiddleButton';
+import LinkButton from '@/components/LinkButton';
 import { useRouter } from 'next/router';
 import {useSelector} from 'react-redux';
 import {State, useAppDispatch} from "@/store"
@@ -58,10 +58,10 @@ const Confirmation: NextPage = () => {
             <BackButton />
           </Grid>
           <Grid item xs={4} sm={3} md={2}>
-            <MiddleButton text='質問を変更する' href='create-question' />
+            <LinkButton text='質問を変更する' href='create-question' />
           </Grid>
           <Grid item xs={4} sm={3} md={2}>
-            <MiddleButton text='講師を変更する' href='tutor-option' />
+            <LinkButton text='講師を変更する' href='tutor-option' />
           </Grid>
         </Grid>
         <Grid container justifyContent="center" marginTop={2} marginBottom={3}>

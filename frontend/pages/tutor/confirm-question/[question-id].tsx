@@ -4,7 +4,6 @@ import {Grid, Button, Modal, Box, Typography} from "@mui/material";
 import * as React from "react";
 import DefaultLayout from "@/components/DefaultLayout";
 import BackButton from "@/components/BackButton";
-import MiddleButton from "@/components/MiddleButton";
 import QuestionContent from "@/components/QuestionContent";
 import ModalButton from "@/components/ModalButton";
 import { useRouter } from 'next/router';

@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import * as ChatComponent from "@/components/Chat";
-import MiddleButton from '@/components/MiddleButton';
+import LinkButton from '@/components/LinkButton';
 import BackButton from '@/components/BackButton';
 import {Grid, Typography} from "@mui/material";
 import { useRouter } from "next/router";
@@ -87,7 +87,7 @@ const Chat: NextPage = () => {
           {question && (question.closed_at ? (
             <>
               <Grid item xs={7} sm={5} md={3}>
-                <MiddleButton
+                <LinkButton
                   text='この講師にまた質問する'
                   href={`/student/tutor-profile/${question.tutor_id}`}
                 />

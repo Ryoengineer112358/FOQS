@@ -5,7 +5,7 @@ import {Grid} from "@mui/material"
 import { useEffect, useState } from 'react'
 import axios from "@/lib/axios"
 import { Student, Tutor, Middleware } from '@/types'
-import MiddleButton from '../MiddleButton'
+import LinkButton from '../LinkButton'
 
 type Props = {
   middleware: Middleware,
@@ -27,7 +27,7 @@ const MyPage = (props: Props) => {
       </Grid>
       <Grid container justifyContent='center'>
         <Grid item xs={6} sm={4} md={3} marginTop={2} marginBottom={3}>
-          <MiddleButton text='ホームに戻る' href={props.href} />
+          <LinkButton text='ホームに戻る' href={props.href} />
         </Grid>
       </Grid>
     </>
