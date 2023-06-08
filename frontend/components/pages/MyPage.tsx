@@ -1,11 +1,11 @@
 import { useAuth } from '@/hooks/auth'
 import UserInfo from '@/components/UserInfo'
 import DefaultLayout from '@/components/DefaultLayout'
-import HomeButton from '@/components/HomeButton'
 import {Grid} from "@mui/material"
 import { useEffect, useState } from 'react'
 import axios from "@/lib/axios"
 import { Student, Tutor, Middleware } from '@/types'
+import MiddleButton from '../MiddleButton'
 
 type Props = {
   middleware: Middleware,
@@ -25,8 +25,10 @@ const MyPage = (props: Props) => {
           {user && <UserInfo {...user}/>}
         </Grid>
       </Grid>
-      <Grid container justifyContent='right'>
-        <HomeButton href={props.href} />
+      <Grid container justifyContent='center'>
+        <Grid item xs={6} sm={4} md={3} marginTop={2} marginBottom={3}>
+          <MiddleButton text='ホームに戻る' href={props.href} />
+        </Grid>
       </Grid>
     </>
   )
