@@ -4,14 +4,16 @@ import {Grid} from "@mui/material";
 import * as React from "react";
 import DefaultLayout from "@/components/DefaultLayout";
 import BackButton from "@/components/BackButton";
-import MiddleButton from "@/components/MiddleButton";
+import ActionButton from "@/components/ActionButton";
 import LinkButton from "@/components/LinkButton";
 import {useAppDispatch} from "@/store";
 import {setTutorId} from "@/store/modules/newQuestion";
+import { useRouter } from "next/router";
 
 const TutorOption: NextPage = () => {
   const middleware = "student"
   const { user } = useAuth({ middleware: middleware })
+  const router = useRouter()
   const dispatch = useAppDispatch()
 
   return (
@@ -24,10 +26,13 @@ const TutorOption: NextPage = () => {
           <LinkButton text={"質問する講師を選択"} href={"tutors"} />
         </Grid>
         <Grid item xs={10} md={4}>
-          <MiddleButton
+          <ActionButton
             text={"講師を選択しないで質問"}
-            onClickHandler={() => dispatch(setTutorId(null))}
-            href={"confirmation"} />
+            onClickHandler={async() => {
+              await dispatch(setTutorId(null))
+              router.push('confirmation')
+            }}
+          />
         </Grid>
       </Grid>
       <Grid container justifyContent="center">
