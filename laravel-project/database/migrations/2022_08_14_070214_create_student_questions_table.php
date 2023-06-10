@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('student_questions', function (Blueprint $table) {
             $table->id();
             $table->text('text');
-            $table->timestamps(2);
+            $table->timestamps(3);
             $table->boolean('tutor_checked')->nullable();
             $table->timestamp('closed_at')->nullable();
             $table->unsignedTinyInteger('tutor_rating')->nullable();
