@@ -26,25 +26,12 @@ export const submitQuestion = createAsyncThunk(
       params.append('text', state.newQuestion.text)
       params.append('tutor_id', state.newQuestion.tutorId?.toString() ?? '')
       
-      const imagesPromises = state.newQuestion.images.map(async (imgUrl, index) => {
+      const imagesUploadPromises = state.newQuestion.images.map(async (imgUrl, index) => {
         const imageBlob = await fetch(imgUrl).then(res => res.blob())
-
-        let ext;
-        switch (imageBlob.type) {
-          case 'image/jpeg':
-            ext = 'jpg'
-            break;
-          case 'image/png':
-            ext = 'png'
-            break;
-          default:
-            ext = 'jpg';
-        }
-
-        const fileName = `image_${Date.now()}_${index}.${ext}`;
+        const fileName = `image_${index}`;
         params.append(`images[${index}]`, imageBlob, fileName)
       })
-      await Promise.all(imagesPromises)
+      await Promise.all(imagesUploadPromises)
       const response = await axios.post('/api/questions', params)
       
       return response.data

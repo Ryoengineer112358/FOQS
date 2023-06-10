@@ -74,12 +74,13 @@ class QuestionController extends Controller
         ]);
 
         if($request->hasfile('images')){
-            foreach($request->file('images') as $file) {
-                $name = $file->getClientOriginalName();
-                $file->storeAs('public/questions', $name);
+            $fileStoragePath = 'public/questions/';
+
+            foreach($request->file('images') as $image) {
+                $hashName = $image->store($fileStoragePath);
 
                 $question->images()->create([
-                    'image_path' => 'public/questions/'.$name,
+                    'image_path' => $hashName,
                 ]);
             }
         }
