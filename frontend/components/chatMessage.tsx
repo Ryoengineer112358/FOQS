@@ -35,6 +35,15 @@ function ChatMessage(props: Props) {
             )
         return (
           <div className="msgs">
+            {props.question.images && props.question.images.map((image, index) => (
+              <div key={index} className="image">
+                <img
+                  src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${image.image_path}`}
+                  style={{width: '100%'}}
+                  alt="uploaded"
+                />
+              </div>
+            ))}
             {props.question.text ? (
               <div>
               <div className={`msg ${props.middleware === "student" ? "sent" : "received"}`}>
