@@ -74,13 +74,10 @@ class QuestionController extends Controller
         ]);
 
         if($request->hasfile('images')){
-            $fileStoragePath = 'public/questions/';
-
             foreach($request->file('images') as $image) {
-                $hashName = $image->store($fileStoragePath);
-
+                $relativePath = $image->store('questions', 'public');
                 $question->images()->create([
-                    'image_path' => $hashName,
+                    'image_path' => $relativePath,
                 ]);
             }
         }
@@ -106,6 +103,7 @@ class QuestionController extends Controller
                         ->orderBy('created_at', 'asc');
             },
             'student',
+            'images',
         ]);
 
         return ($question);
