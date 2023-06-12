@@ -28,6 +28,7 @@ Route::group(['middleware' => ['auth:students,tutors']], function () {
         Route::post('/questions/{question}', [QuestionController::class, 'reply']);
         Route::post('/questions/{question}/solve', [QuestionController::class, 'solve']);
         Route::apiResource('questions', QuestionController::class)->only('index', 'show');
+        Route::get('/tutors/{tutorId}/average-rating', [TutorController::class, 'getAgerageTutorRating']);
     });
 });
 
