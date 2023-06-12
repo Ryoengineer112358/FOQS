@@ -1,7 +1,8 @@
 import { useAuth } from '@/hooks/auth'
 import type { NextPage } from 'next'
 import {Grid} from "@mui/material";
-import * as React from "react";
+import axios from "@/lib/axios";
+import {useEffect, useState} from "react";
 import DefaultLayout from "@/components/DefaultLayout";
 import BackButton from "@/components/BackButton";
 import ActionButton from "@/components/ActionButton";
@@ -24,6 +25,16 @@ const TutorId: NextPage = () => {
   const selectedTutor = tutors.find(tutor => tutor.id == Number(tutorId));
   const dispatch = useAppDispatch()
 
+  const [averageRating, setAverageRating] = useState<number | null |undefined>(undefined)
+
+  useEffect(() => {
+    if (selectedTutor) {
+      axios.get(`/api/tutors/${selectedTutor.id}/average-rating`)
+        .then(response => setAverageRating(response.data.average_rating))
+        .catch(() => setAverageRating(undefined))
+    }
+  }, [selectedTutor])
+
   return (
       <DefaultLayout middleware={middleware}>
         {selectedTutor
@@ -34,6 +45,7 @@ const TutorId: NextPage = () => {
                   name={selectedTutor.last_name}
                   university={selectedTutor.university}
                   faculty={selectedTutor.faculty}
+                  rating={averageRating}
                 />
               </Grid>
               <Grid item xs={10} marginTop={2} marginBottom={2}>
