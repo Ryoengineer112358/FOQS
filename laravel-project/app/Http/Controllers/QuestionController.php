@@ -181,6 +181,21 @@ class QuestionController extends Controller
         });
     }
 
+    public function rateTutor(Request $request, StudentQuestion $question)
+    {
+        $request->validate([
+            'rating' => 'required|integer|between:0,5',
+        ]);
+
+        $question->update([
+            'tutor_rating' => $request->input('rating'),
+        ]);
+
+        return response()->json([
+            'message' => '評価が正常に保存されました',
+        ], 200);
+    }
+
     public function solve(StudentQuestion $question)
     {
         $question->closed_at = now();

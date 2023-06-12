@@ -28,9 +28,21 @@ const Chat: NextPage = () => {
     if (isReady) {
       axios.get(`/api/questions/${questionId}`)
       .then(response => setQuestion(response.data))
-      .catch(error => error(error))
+      .catch(() => setError('通信エラーが発生しました'))
     }
   }, [isReady, questionId])
+
+  const handleRateTutor = async () => {
+    if (isReady && ratingValue) {
+      try {
+        await axios.post(`/api/questions/${questionId}/rate`, {
+          rating: ratingValue
+        });
+      } catch (err) {
+        setError('通信エラーが発生しました')
+      }
+    }
+  }
 
   const handleSolveQuestion = async () => {
     if (!ratingValue) {
@@ -39,7 +51,12 @@ const Chat: NextPage = () => {
     }
 
     try {
-      isReady && await axios.post(`/api/questions/${questionId}/solve`)
+      await handleRateTutor()
+
+      if (isReady) {
+        await axios.post(`/api/questions/${questionId}/solve`)
+      }
+
       router.push("/student")
     } catch (err) {
       setError('通信エラーが発生しました')
