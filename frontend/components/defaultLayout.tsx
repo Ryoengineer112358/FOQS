@@ -10,7 +10,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 import {State, useAppDispatch} from "@/store";
 import {fetchTutors} from "@/store/modules/tutors";
 import {useSelector} from "react-redux";
-import {setText, setTutorId} from "@/store/modules/newQuestion";
+import {setImages, setText, setTutorId} from "@/store/modules/newQuestion";
+import { get } from 'idb-keyval';
 
 const drawerWidth = "80%";
 
@@ -49,8 +50,31 @@ const DefaultLayout = ({ middleware, children }: { middleware: String, children:
       if (tutorId !== null) {
         dispatch(setTutorId(Number(tutorId)));
       }
+      restoreImages();
     }
   }, []);
+  
+  const restoreImages = async () => {
+    const imageURLs = [] as string[];
+    const maxRetires = 5;
+      for (let i = 0; i < maxRetires; i++) {
+        try {
+            const blob = await get(i);
+            if (blob !== undefined) {
+                imageURLs.push(URL.createObjectURL(blob));
+              continue;
+            }
+            // レスポンスがエラーの場合はループを抜ける
+            console.info(`Get failed with index: ${i}`);
+            break;
+        } catch (error) {
+            // 通信エラーなどの場合はループを抜ける
+            console.error(`Get failed with error: ${error}`);
+            break;
+        }
+      }
+      dispatch(setImages(imageURLs));
+    }
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
