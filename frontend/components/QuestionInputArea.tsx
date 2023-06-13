@@ -1,5 +1,5 @@
 import { TextareaAutosize, Box, IconButton } from "@mui/material";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import ImageOutlinedIcon from '@mui/icons-material/ImageOutlined';
 import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined';
 import CloseIcon from '@mui/icons-material/Close';
@@ -14,7 +14,6 @@ type Props = {
 const QuestionInputArea = (props: Props) => {
   const cameraRef = useRef<HTMLInputElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  const [imageSrcs, setImageSrcs] = useState<string[]>(props.images);
 
   const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -25,22 +24,15 @@ const QuestionInputArea = (props: Props) => {
           objectUrls.push(URL.createObjectURL(file));
         }
       })
-      setImageSrcs(prevImageSrcs => {
-        const newImageSrcs = [...prevImageSrcs, ...objectUrls];
-        props.imagesChangeHandler(newImageSrcs);
-        return newImageSrcs;
-      });
+      props.imagesChangeHandler([...props.images, ...objectUrls]);
     }
     e.target.value = '';
   };
 
   const onRemoveImage = (index: number) => {
-    URL.revokeObjectURL(imageSrcs[index]);
-    setImageSrcs(prevImageSrcs => {
-      const newImageSrcs = prevImageSrcs.filter((src, i) => i !== index);
-      props.imagesChangeHandler(newImageSrcs);
-      return newImageSrcs;
-    });
+    URL.revokeObjectURL(props.images[index]);
+    const newImageSrcs = props.images.filter((src, i) => i !== index);
+    props.imagesChangeHandler(newImageSrcs);
   };
 
   return (
@@ -78,7 +70,7 @@ const QuestionInputArea = (props: Props) => {
         />
         <input type='file' hidden ref={inputRef} onChange={onFileChange} accept='image/*' multiple />
       </Box>
-      {imageSrcs.map((src, index) => (
+      {props.images.map((src, index) => (
         <Box key={index} width="100%" textAlign="center" position="relative" marginTop={4}>
           <IconButton 
             onClick={() => onRemoveImage(index)}
