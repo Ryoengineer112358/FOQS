@@ -37,6 +37,7 @@ const navItemsForTutor: Item[] = [
 const DefaultLayout = ({ middleware, children }: { middleware: String, children: ReactElement}) => {
 
   const tutors = useSelector((state: State) => state.tutors)
+  const imagesInRedux = useSelector((state: State) => state.newQuestion?.images || [])
   const dispatch = useAppDispatch()
   useEffect(() => {
     // 生徒でログインしている場合は講師一覧を初回取得
@@ -50,7 +51,9 @@ const DefaultLayout = ({ middleware, children }: { middleware: String, children:
       if (tutorId !== null) {
         dispatch(setTutorId(Number(tutorId)));
       }
-      restoreImages();
+      if (imagesInRedux.length === 0) {
+        restoreImages();
+      }
     }
   }, []);
   
