@@ -73,9 +73,47 @@ class QuestionController extends Controller
             'text' => $request->text,
         ]);
 
-        if($request->hasfile('images')){
-            foreach($request->file('images') as $image) {
-                $relativePath = $image->store('questions', 'public');
+        if ($request->hasfile('images')) {
+            foreach ($request->file('images') as $image) {
+
+                // 画像のパスを取得
+                $originalPath = $image->getPathname();
+
+                // Imagick インスタンスを初期化
+                $imagick = new \Imagick($originalPath);
+
+                // 現在のオリエンテーションを取得
+                $orientation = $imagick->getImageOrientation();
+
+                // 現在のオリエンテーションに基づいて画像を回転
+                switch ($orientation) {
+                    case \Imagick::ORIENTATION_BOTTOMRIGHT:
+                        $imagick->rotateimage("#000", 180); // 180度回転
+                        break;
+
+                    case \Imagick::ORIENTATION_RIGHTTOP:
+                        $imagick->rotateimage("#000", 90); // 90度時計回り回転
+                        break;
+
+                    case \Imagick::ORIENTATION_LEFTBOTTOM:
+                        $imagick->rotateimage("#000", -90); // 90度反時計回り回転
+                        break;
+                }
+
+                // 自動的に回転した後、EXIF オリエンテーションを1 (通常) に設定
+                $imagick->setImageOrientation(\Imagick::ORIENTATION_TOPLEFT);
+
+                // GPS情報を含むすべての EXIF データを削除
+                $imagick->stripImage();
+
+                // 一時ファイルに変更された画像を保存
+                $tempPath = tempnam(sys_get_temp_dir(), 'modified_image');
+                $imagick->writeImage($tempPath);
+
+                // ストレージに変更された画像を保存
+                $relativePath = \Storage::disk('public')->putFile('questions', new \Illuminate\Http\File($tempPath));
+
+                // 画像テーブルにレコードを作成
                 $question->images()->create([
                     'image_path' => $relativePath,
                 ]);
