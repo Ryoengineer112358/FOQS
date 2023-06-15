@@ -1,5 +1,5 @@
 import { Tutor } from "@/types";
-import { set, get, del } from 'idb-keyval';
+import { set, get, del, clear } from 'idb-keyval';
 import axios from "@/lib/axios";
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import { csrf } from "@/hooks/auth";
@@ -109,6 +109,7 @@ const slice = createSlice({
     builder.addCase(submitQuestion.fulfilled, () => {
       localStorage.removeItem('questionText')
       localStorage.removeItem('tutorId')
+      clear()
       return {...initialState}
     })
     builder.addCase(submitQuestion.rejected, (state, action) => {
