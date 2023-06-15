@@ -3,6 +3,9 @@ import { useRef } from "react";
 import ImageOutlinedIcon from '@mui/icons-material/ImageOutlined';
 import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined';
 import CloseIcon from '@mui/icons-material/Close';
+import { removeImage } from "@/store/modules/newQuestion";
+import { unwrapResult } from "@reduxjs/toolkit";
+import { useAppDispatch } from "@/store";
 
 type Props = {
   text: string;
@@ -14,6 +17,7 @@ type Props = {
 const QuestionInputArea = (props: Props) => {
   const cameraRef = useRef<HTMLInputElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const dispatch = useAppDispatch();
 
   const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -29,10 +33,14 @@ const QuestionInputArea = (props: Props) => {
     e.target.value = '';
   };
 
-  const onRemoveImage = (index: number) => {
+  const onRemoveImage = async (index: number) => {
     URL.revokeObjectURL(props.images[index]);
-    const newImageSrcs = props.images.filter((src, i) => i !== index);
-    props.imagesChangeHandler(newImageSrcs);
+    try {
+        const resultAction = await dispatch(removeImage(index));
+        unwrapResult(resultAction);
+    } catch (err) {
+        console.error('Failed to remove image: ', err);
+    }
   };
 
   return (

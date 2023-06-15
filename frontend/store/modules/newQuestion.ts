@@ -1,5 +1,5 @@
 import { Tutor } from "@/types";
-import { set, setMany, get, getMany } from 'idb-keyval';
+import { set, get, del } from 'idb-keyval';
 import axios from "@/lib/axios";
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import { csrf } from "@/hooks/auth";
@@ -40,6 +40,39 @@ export const submitQuestion = createAsyncThunk(
 )
 
 // Reducers
+let isRemoving = false;
+
+export const removeImage = createAsyncThunk(
+  "newQuestion/removeImage",
+  async (indexToRemove: number, { getState }) => {
+    // Check if already removing, if so, exit early
+    if (isRemoving) return;
+    isRemoving = true;
+
+    try {
+      const state = getState() as { newQuestion: NewQuestion };
+      const newImages = state.newQuestion.images.filter(
+        (_, index) => index !== indexToRemove
+      );
+
+      // Delete the item at the index
+      await del(indexToRemove);
+
+      // Shift down the keys for items above the index
+      for (let i = indexToRemove + 1; i < state.newQuestion.images.length; i++) {
+        const imageBlob = await get(i);
+        await set(i - 1, imageBlob);
+        await del(i);
+      }
+
+      return { text: state.newQuestion.text, images: newImages, tutorId: state.newQuestion.tutorId };
+    } finally {
+      // Allow future removals
+      isRemoving = false;
+    }
+  }
+);
+
 const slice = createSlice({
   name: 'newQuestion',
   initialState: initialState,
@@ -70,15 +103,19 @@ const slice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    builder.addCase(removeImage.fulfilled, (state, action) => {
+      return action.payload;
+    });
     builder.addCase(submitQuestion.fulfilled, () => {
       localStorage.removeItem('questionText')
       localStorage.removeItem('tutorId')
       return {...initialState}
-  })
+    })
     builder.addCase(submitQuestion.rejected, (state, action) => {
       console.log(action.error)
       return state
-  })}
+    })
+  },
 });
 // Action Creators
 export const {setText, setImages, setTutorId, clearNewQuestion} = slice.actions;
