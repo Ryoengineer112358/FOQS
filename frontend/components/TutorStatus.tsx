@@ -1,24 +1,27 @@
-import * as React from 'react';
-import { useState, useEffect } from 'react';
-import Box from '@mui/material/Box';
-import Rating from '@mui/material/Rating';
-import { Typography } from '@mui/material';
-import axios from "@/lib/axios";
+import * as React from 'react'
+import { useState, useEffect } from 'react'
+import Box from '@mui/material/Box'
+import Rating from '@mui/material/Rating'
+import { Typography } from '@mui/material'
+import axios from '@/lib/axios'
 
 type Props = {
-    tutorId: number;
+  tutorId: number
 }
 
 const TutorStatus = (props: Props) => {
-    const [averageRating, setAverageRating] = useState<number | null |undefined>(undefined)
-  
+  const [averageRating, setAverageRating] = useState<number | null | undefined>(
+    undefined,
+  )
+
   useEffect(() => {
     if (props.tutorId) {
-      axios.get(`/api/tutors/${props.tutorId}/average-rating`)
-        .then(response => setAverageRating(response.data.average_rating))
+      axios
+        .get(`/api/tutors/${props.tutorId}/average-rating`)
+        .then((response) => setAverageRating(response.data.average_rating))
         .catch(() => setAverageRating(undefined))
     }
-  }, [props.tutorId]);
+  }, [props.tutorId])
 
   return (
     <Box
@@ -40,23 +43,26 @@ const TutorStatus = (props: Props) => {
         }}
       >
         <Typography>評価：</Typography>
-          {averageRating === undefined ? (
-            <Typography>集計中…</Typography>
-            ) : (
-            averageRating !== null ? (
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <Rating name='average-rating' value={averageRating} readOnly size="small" />
-                <Typography sx={{ marginLeft: 1 }}>
-                  {parseFloat(Number(averageRating).toFixed(2)).toString()}/5
-                </Typography>
-              </Box>
-            ) : (
-              <Typography>まだ評価がありません</Typography>
-            )
+        {averageRating === undefined ? (
+          <Typography>集計中…</Typography>
+        ) : averageRating !== null ? (
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <Rating
+              name='average-rating'
+              value={averageRating}
+              readOnly
+              size='small'
+            />
+            <Typography sx={{ marginLeft: 1 }}>
+              {parseFloat(Number(averageRating).toFixed(2)).toString()}/5
+            </Typography>
+          </Box>
+        ) : (
+          <Typography>まだ評価がありません</Typography>
         )}
       </Box>
     </Box>
-  );
+  )
 }
 
-export default TutorStatus;
+export default TutorStatus

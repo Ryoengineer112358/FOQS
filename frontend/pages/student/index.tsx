@@ -1,12 +1,11 @@
 import type { NextPage } from 'next'
-import * as React from "react";
-import Home from "@/components/Pages/Home";
+import * as React from 'react'
+import Home from '@/components/Pages/Home'
 
 const Top: NextPage = () => {
-
   return (
     <>
-      <Home middleware={"student"} />
+      <Home middleware={'student'} />
     </>
   )
 }

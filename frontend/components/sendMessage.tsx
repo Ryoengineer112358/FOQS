@@ -1,23 +1,23 @@
 import React from 'react'
-import { useState } from 'react';
-import { Input } from '@mui/material';
-import SendIcon from "@mui/icons-material/Send"
-import { defaultMessage } from '@/types';
+import { useState } from 'react'
+import { Input } from '@mui/material'
+import SendIcon from '@mui/icons-material/Send'
+import { defaultMessage } from '@/types'
 
 type Props = {
-  sendFunction: Function;
-  sender_role: string;
+  sendFunction: Function
+  sender_role: string
 }
 
 function SendMessage(props: Props) {
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState('')
 
   function sendMessage(e: any) {
     //型のanyはいずれ変更する
-    console.log(e);
-    e.preventDefault();
+    console.log(e)
+    e.preventDefault()
     if (message === '') {
-      return;
+      return
     }
     props.sendFunction({
       ...defaultMessage(),
@@ -25,29 +25,29 @@ function SendMessage(props: Props) {
     })
     //ここにDBとのやりとりを記載
 
-    setMessage("");
+    setMessage('')
   }
 
   return (
     <>
       <form onSubmit={sendMessage}>
-        <div className="sendMsg">
+        <div className='sendMsg'>
           <Input
             sx={{
-              width: "78%",
-              fontSize: "15px",
-              fontWeight: "550",
-              marginLeft: "5px",
-              marginBottom: "-3px",
+              width: '78%',
+              fontSize: '15px',
+              fontWeight: '550',
+              marginLeft: '5px',
+              marginBottom: '-3px',
             }}
-            placeholder="メッセージを入力してください"
-            type="text"
+            placeholder='メッセージを入力してください'
+            type='text'
             onChange={(e: any) => setMessage(e.target.value)}
             value={message}
           />
           <SendIcon
             onClick={sendMessage}
-            style={{ color: "#7AC2FF", marginLeft: "20px" }}
+            style={{ color: '#7AC2FF', marginLeft: '20px' }}
           />
         </div>
       </form>

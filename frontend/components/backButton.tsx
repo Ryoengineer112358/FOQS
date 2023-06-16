@@ -1,15 +1,14 @@
-import {Button} from "@mui/material";
-import {ReactElement} from 'react'
-import {TurnLeft} from "@mui/icons-material";
-import Link from 'next/link';
+import { Button } from '@mui/material'
+import { ReactElement } from 'react'
+import { TurnLeft } from '@mui/icons-material'
+import Link from 'next/link'
 
 const BackButton = () => {
-
   return (
     <>
       <Button
         startIcon={<TurnLeft />}
-        variant="outlined"
+        variant='outlined'
         onClick={() => history.back()}
         sx={{
           width: '100%',
@@ -23,4 +22,4 @@ const BackButton = () => {
   )
 }
 
-export default BackButton;
+export default BackButton

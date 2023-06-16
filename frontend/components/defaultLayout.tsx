@@ -1,161 +1,204 @@
 import {
-  AppBar, Box, Grid, Container, IconButton,
-  Typography, Divider, List, ListItem,
-  ListItemButton, ListItemText, Drawer, Toolbar
-} from "@mui/material";
-import {ReactElement, useEffect} from 'react'
-import Link from 'next/link';
-import * as React from "react";
-import MenuIcon from "@mui/icons-material/Menu";
-import {State, useAppDispatch} from "@/store";
-import {fetchTutors} from "@/store/modules/tutors";
-import {useSelector} from "react-redux";
-import {setImages, setText, setTutorId} from "@/store/modules/newQuestion";
-import { get } from 'idb-keyval';
+  AppBar,
+  Box,
+  Grid,
+  Container,
+  IconButton,
+  Typography,
+  Divider,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Drawer,
+  Toolbar,
+} from '@mui/material'
+import { ReactElement, useEffect } from 'react'
+import Link from 'next/link'
+import * as React from 'react'
+import MenuIcon from '@mui/icons-material/Menu'
+import { State, useAppDispatch } from '@/store'
+import { fetchTutors } from '@/store/modules/tutors'
+import { useSelector } from 'react-redux'
+import { setImages, setText, setTutorId } from '@/store/modules/newQuestion'
+import { get } from 'idb-keyval'
 
-const drawerWidth = "80%";
+const drawerWidth = '80%'
 
 type Item = {
-  label: string;
-  link: string;
+  label: string
+  link: string
 }
 
 const navItemsForStudent: Item[] = [
-  {'label' : 'ホーム', 'link': '/student'},
-  {'label' : 'マイページ', 'link': '/student/my-page'},
-  {'label' : '質問履歴', 'link': '/student/question-history'},
-  {'label' : '講師一覧', 'link': '/student/tutors'},
+  { label: 'ホーム', link: '/student' },
+  { label: 'マイページ', link: '/student/my-page' },
+  { label: '質問履歴', link: '/student/question-history' },
+  { label: '講師一覧', link: '/student/tutors' },
 ]
 
 const navItemsForTutor: Item[] = [
-  {'label' : 'ホーム', 'link': '/tutor'},
-  {'label' : 'マイページ', 'link': '/tutor/my-page'},
-  {'label' : 'フリー質問一覧', 'link': '/tutor/unassigned-questions'},
-  {'label' : '回答履歴', 'link': '/tutor/question-history'},
-];
+  { label: 'ホーム', link: '/tutor' },
+  { label: 'マイページ', link: '/tutor/my-page' },
+  { label: 'フリー質問一覧', link: '/tutor/unassigned-questions' },
+  { label: '回答履歴', link: '/tutor/question-history' },
+]
 
-const DefaultLayout = ({ middleware, children }: { middleware: String, children: ReactElement}) => {
-
+const DefaultLayout = ({
+  middleware,
+  children,
+}: {
+  middleware: String
+  children: ReactElement
+}) => {
   const tutors = useSelector((state: State) => state.tutors)
-  const imagesInRedux = useSelector((state: State) => state.newQuestion?.images || [])
+  const imagesInRedux = useSelector(
+    (state: State) => state.newQuestion?.images || [],
+  )
   const dispatch = useAppDispatch()
   useEffect(() => {
     // 生徒でログインしている場合は講師一覧を初回取得
-    if (middleware == "student") {
-      const questionText = localStorage.getItem("questionText");
+    if (middleware == 'student') {
+      const questionText = localStorage.getItem('questionText')
       if (questionText !== null) {
-        dispatch(setText(questionText));
+        dispatch(setText(questionText))
       }
       if (tutors.length == 0) dispatch(fetchTutors())
-      const tutorId = localStorage.getItem("tutorId");
+      const tutorId = localStorage.getItem('tutorId')
       if (tutorId !== null) {
-        dispatch(setTutorId(Number(tutorId)));
+        dispatch(setTutorId(Number(tutorId)))
       }
       if (imagesInRedux.length === 0) {
-        restoreImages();
+        restoreImages()
       }
     }
-  }, []);
-  
-  const restoreImages = async () => {
-    const imageURLs = [] as string[];
-    const maxRetires = 5;
-      for (let i = 0; i < maxRetires; i++) {
-        try {
-            const blob = await get(i);
-            if (blob !== undefined) {
-                imageURLs.push(URL.createObjectURL(blob));
-              continue;
-            }
-            // レスポンスがエラーの場合はループを抜ける
-            console.info(`Get failed with index: ${i}`);
-            break;
-        } catch (error) {
-            // 通信エラーなどの場合はループを抜ける
-            console.error(`Get failed with error: ${error}`);
-            break;
-        }
-      }
-      dispatch(setImages(imageURLs));
-    }
+  }, [])
 
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const restoreImages = async () => {
+    const imageURLs = [] as string[]
+    const maxRetires = 5
+    for (let i = 0; i < maxRetires; i++) {
+      try {
+        const blob = await get(i)
+        if (blob !== undefined) {
+          imageURLs.push(URL.createObjectURL(blob))
+          continue
+        }
+        // レスポンスがエラーの場合はループを抜ける
+        console.info(`Get failed with index: ${i}`)
+        break
+      } catch (error) {
+        // 通信エラーなどの場合はループを抜ける
+        console.error(`Get failed with error: ${error}`)
+        break
+      }
+    }
+    dispatch(setImages(imageURLs))
+  }
+
+  const [mobileOpen, setMobileOpen] = React.useState(false)
 
   const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
+    setMobileOpen(!mobileOpen)
+  }
 
   const drawer = (
-      <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-        <Typography variant="h4" sx={{ my: 2 }}>
-          FOQS
-        </Typography>
-        <Divider />
-        <List>
-          {(middleware == 'student' ? navItemsForStudent : navItemsForTutor).map((item: Item) => (
-            <Link href={item.link} key={item.link} >
+    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
+      <Typography variant='h4' sx={{ my: 2 }}>
+        FOQS
+      </Typography>
+      <Divider />
+      <List>
+        {(middleware == 'student' ? navItemsForStudent : navItemsForTutor).map(
+          (item: Item) => (
+            <Link href={item.link} key={item.link}>
               <ListItem key={item.label} disablePadding>
                 <ListItemButton sx={{ textAlign: 'center' }}>
                   <ListItemText primary={item.label} />
                 </ListItemButton>
               </ListItem>
             </Link>
-          ))}
-        </List>
-      </Box>
-  );
+          ),
+        )}
+      </List>
+    </Box>
+  )
 
   return (
     <>
       {/* AppBar */}
-      <AppBar component="nav" elevation={0} square={true} color="transparent" sx={{backdropFilter: "blur(10px)"}}>
-          {middleware == "guest" ?
-            <Toolbar>
-              <Grid container alignItems="center" justifyContent="center" fontSize="4rem" color="white">
-                <div>FOQS</div>
-              </Grid>
-            </Toolbar>
-          :
-            <Toolbar>
-              <Box component="div" sx={{height: "1rem", width: "4rem", mr: 2}}/>
-              <Grid container alignItems="center" justifyContent="center" fontSize="4rem" color="white">
-                <Link href={`/${middleware}`}>
-                  FOQS
-                </Link>
-              </Grid>
-              <IconButton
-                  color="primary"
-                  aria-label="open drawer"
-                  edge="end"
-                  onClick={handleDrawerToggle}
-                  sx={{ mr: 2 }}
-              >
-                <MenuIcon />
-              </IconButton>
-            </Toolbar>
-          }
+      <AppBar
+        component='nav'
+        elevation={0}
+        square={true}
+        color='transparent'
+        sx={{ backdropFilter: 'blur(10px)' }}
+      >
+        {middleware == 'guest' ? (
+          <Toolbar>
+            <Grid
+              container
+              alignItems='center'
+              justifyContent='center'
+              fontSize='4rem'
+              color='white'
+            >
+              <div>FOQS</div>
+            </Grid>
+          </Toolbar>
+        ) : (
+          <Toolbar>
+            <Box
+              component='div'
+              sx={{ height: '1rem', width: '4rem', mr: 2 }}
+            />
+            <Grid
+              container
+              alignItems='center'
+              justifyContent='center'
+              fontSize='4rem'
+              color='white'
+            >
+              <Link href={`/${middleware}`}>FOQS</Link>
+            </Grid>
+            <IconButton
+              color='primary'
+              aria-label='open drawer'
+              edge='end'
+              onClick={handleDrawerToggle}
+              sx={{ mr: 2 }}
+            >
+              <MenuIcon />
+            </IconButton>
+          </Toolbar>
+        )}
       </AppBar>
 
-      <Box component="nav">
+      <Box component='nav'>
         <Drawer
-            container={() => document.body}
-            variant="temporary"
-            open={mobileOpen}
-            onClose={handleDrawerToggle}
-            ModalProps={{
-              keepMounted: true, // Better open performance on mobile.
-            }}
-            sx={{
-              '& .MuiDrawer-paper': { boxSizing: 'border-box', minWidth: drawerWidth },
-            }}
+          container={() => document.body}
+          variant='temporary'
+          open={mobileOpen}
+          onClose={handleDrawerToggle}
+          ModalProps={{
+            keepMounted: true, // Better open performance on mobile.
+          }}
+          sx={{
+            '& .MuiDrawer-paper': {
+              boxSizing: 'border-box',
+              minWidth: drawerWidth,
+            },
+          }}
         >
           {drawer}
         </Drawer>
       </Box>
 
       {/* Page Content */}
-      <Container maxWidth="sm">
-        <Box component="main" sx={{paddingTop: "6.4rem"}}>{children}</Box>
+      <Container maxWidth='sm'>
+        <Box component='main' sx={{ paddingTop: '6.4rem' }}>
+          {children}
+        </Box>
       </Container>
     </>
   )

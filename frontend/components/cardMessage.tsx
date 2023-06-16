@@ -1,9 +1,9 @@
-import * as React from 'react';
-import {Card, CardActions, CardContent, Typography} from '@mui/material';
-import Link from 'next/link';
+import * as React from 'react'
+import { Card, CardActions, CardContent, Typography } from '@mui/material'
+import Link from 'next/link'
 type Props = {
-  text: string;
-  href: string;
+  text: string
+  href: string
 }
 
 const CardMessage = (props: Props) => {
@@ -11,7 +11,7 @@ const CardMessage = (props: Props) => {
     <>
       <Link href={props.href}>
         <Card
-          variant="outlined"
+          variant='outlined'
           sx={{
             mt: 2,
             p: 1,
@@ -20,14 +20,12 @@ const CardMessage = (props: Props) => {
           }}
         >
           <CardContent>
-            <Typography>
-              {props.text}
-            </Typography>
+            <Typography>{props.text}</Typography>
           </CardContent>
         </Card>
       </Link>
     </>
-  );
+  )
 }
 
-export default CardMessage;
+export default CardMessage

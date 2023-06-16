@@ -1,14 +1,23 @@
 import React, { useState } from 'react'
 import { useRouter } from 'next/router'
 import { useAuth } from '@/hooks/auth'
-import { Box, Button, Card, TextField, Container, Typography, Grid, FormHelperText } from '@mui/material'
+import {
+  Box,
+  Button,
+  Card,
+  TextField,
+  Container,
+  Typography,
+  Grid,
+  FormHelperText,
+} from '@mui/material'
 import DefaultLayout from '@/components/DefaultLayout'
-import Link from "next/link";
-import type { Middleware } from "@/types";
+import Link from 'next/link'
+import type { Middleware } from '@/types'
 import { GetServerSideProps } from 'next'
 
 type Props = {
-    userType: Middleware
+  userType: Middleware
 }
 
 const ResetPassword = (props: Props) => {
@@ -16,39 +25,39 @@ const ResetPassword = (props: Props) => {
 
   const { resetPassword } = useAuth({
     middleware: 'guest',
-    redirectIfAuthenticated: '/'
+    redirectIfAuthenticated: '/',
   })
 
   const [newPassword, setNewPassword] = useState('')
   const [passwordConfirmation, setPasswordConfirmation] = useState('')
   type ValidationErrorMessages = {
-    [key: string]: string[];
-  };
+    [key: string]: string[]
+  }
   const [errors, setErrors] = useState<ValidationErrorMessages>({})
   const [status, setStatus] = useState(null)
-  const [email, setEmail] = useState('');
- 
+  const [email, setEmail] = useState('')
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     resetPassword({
-			user_type: props.userType,
-			setErrors,
-			setStatus,
-			email,
-			password: newPassword,
-			password_confirmation: passwordConfirmation,
-			token: router.query.token as string
+      user_type: props.userType,
+      setErrors,
+      setStatus,
+      email,
+      password: newPassword,
+      password_confirmation: passwordConfirmation,
+      token: router.query.token as string,
     })
   }
 
   return (
-    <DefaultLayout middleware="guest">
-      <Grid container justifyContent="center">
+    <DefaultLayout middleware='guest'>
+      <Grid container justifyContent='center'>
         <Grid item xs={12} sm={8} md={6} lg={4}>
           <Card sx={{ p: 4, borderRadius: 8 }}>
             <Box
               onSubmit={handleSubmit}
-              component="form"
+              component='form'
               sx={{
                 display: 'flex',
                 flexDirection: 'column',
@@ -56,9 +65,9 @@ const ResetPassword = (props: Props) => {
               }}
             >
               <Typography
-                variant="h6"
-                align="center"
-                fontWeight="bold"
+                variant='h6'
+                align='center'
+                fontWeight='bold'
                 sx={{ marginBottom: '1rem' }}
               >
                 パスワードリセット
@@ -66,10 +75,10 @@ const ResetPassword = (props: Props) => {
 
               <Box sx={{ marginBottom: '1rem', width: '90%' }}>
                 <TextField
-                  id="email"
-                  type="email"
+                  id='email'
+                  type='email'
                   value={email}
-                  label="メールアドレス"
+                  label='メールアドレス'
                   onChange={(e) => setEmail(e.target.value)}
                   required
                   fullWidth
@@ -81,10 +90,10 @@ const ResetPassword = (props: Props) => {
               {/* New Password */}
               <Box sx={{ marginBottom: '1rem', width: '90%' }}>
                 <TextField
-                  id="new_password"
-                  type="password"
+                  id='new_password'
+                  type='password'
                   value={newPassword}
-                  label="新しいパスワード"
+                  label='新しいパスワード'
                   onChange={(e) => setNewPassword(e.target.value)}
                   required
                   fullWidth
@@ -96,10 +105,10 @@ const ResetPassword = (props: Props) => {
               {/* Password Confirmation */}
               <Box sx={{ marginBottom: '1rem', width: '90%' }}>
                 <TextField
-                  id="password_confirmation"
-                  type="password"
+                  id='password_confirmation'
+                  type='password'
                   value={passwordConfirmation}
-                  label="新しいパスワード (確認)"
+                  label='新しいパスワード (確認)'
                   onChange={(e) => setPasswordConfirmation(e.target.value)}
                   required
                   fullWidth
@@ -110,9 +119,9 @@ const ResetPassword = (props: Props) => {
 
               <Container sx={{ display: 'flex', justifyContent: 'center' }}>
                 <Button
-                  type="submit"
-                  variant="contained"
-                  color="primary"
+                  type='submit'
+                  variant='contained'
+                  color='primary'
                   sx={{
                     fontSize: '0.9rem',
                     py: '1.2rem',
@@ -121,11 +130,17 @@ const ResetPassword = (props: Props) => {
                     width: '100%',
                   }}
                 >
-                    パスワードをリセット
-                  </Button>
+                  パスワードをリセット
+                </Button>
               </Container>
-              
-              <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '2rem' }}>
+
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  marginTop: '2rem',
+                }}
+              >
                 <Link href={`/${props.userType}/login`}>
                   <a>ログインページに戻る</a>
                 </Link>
@@ -138,21 +153,23 @@ const ResetPassword = (props: Props) => {
   )
 }
 
-export const redirectIfWithoutToken = (userType: string): GetServerSideProps => async (context) => {
-  const { token } = context.query;
+export const redirectIfWithoutToken =
+  (userType: string): GetServerSideProps =>
+  async (context) => {
+    const { token } = context.query
 
-  if (!token) {
+    if (!token) {
+      return {
+        redirect: {
+          destination: `/${userType}/login`,
+          permanent: false,
+        },
+      }
+    }
+
     return {
-      redirect: {
-        destination: `/${userType}/login`,
-        permanent: false,
-      },
-    };
+      props: {},
+    }
   }
-
-  return {
-    props: {},
-  };
-};
 
 export default ResetPassword

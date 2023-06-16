@@ -1,10 +1,10 @@
-import * as React from 'react';
-import {Card, CardActions, CardContent, Typography} from '@mui/material';
-import Link from 'next/link';
+import * as React from 'react'
+import { Card, CardActions, CardContent, Typography } from '@mui/material'
+import Link from 'next/link'
 
 type Props = {
-  text: string;
-  href: string;
+  text: string
+  href: string
 }
 
 const Tutor = (props: Props) => {
@@ -12,7 +12,7 @@ const Tutor = (props: Props) => {
     <>
       <Link href={props.href}>
         <Card
-          variant="outlined"
+          variant='outlined'
           sx={{
             mt: 2,
             p: 1,
@@ -21,14 +21,12 @@ const Tutor = (props: Props) => {
           }}
         >
           <CardContent>
-            <Typography>
-              {props.text}
-            </Typography>
+            <Typography>{props.text}</Typography>
           </CardContent>
         </Card>
       </Link>
     </>
-  );
+  )
 }
 
-export default Tutor;
+export default Tutor
