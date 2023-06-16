@@ -50,7 +50,7 @@ const ModalButton = (props: Props) => {
         <Box
           sx={{
             textAlign: 'center',
-            position: 'absolute' as 'absolute',
+            position: 'absolute' as const,
             top: '45%',
             left: '50%',
             transform: 'translate(-50%, -50%)',

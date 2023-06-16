@@ -37,7 +37,7 @@ const Login = (props: Props) => {
     [key: string]: string[]
   }
   const [errors, setErrors] = useState<ValidationErrorMessages>({})
-  const [status, setStatus] = useState<String | null>(null)
+  const [status, setStatus] = useState<string | null>(null)
 
   useEffect(() => {
     const reset = router.query.reset

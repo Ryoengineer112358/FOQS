@@ -1,8 +1,7 @@
 import { combineReducers } from 'redux'
 import { Tutor } from '@/types'
 import tutorsReducer from './modules/tutors'
-import newQuestionReducer from './modules/newQuestion'
-import { NewQuestion } from './modules/newQuestion'
+import newQuestionReducer, { NewQuestion } from './modules/newQuestion'
 import { configureStore } from '@reduxjs/toolkit'
 import { useDispatch } from 'react-redux'
 

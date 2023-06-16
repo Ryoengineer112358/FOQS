@@ -1,5 +1,4 @@
-import React from 'react'
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import SendMessage from './SendMessage'
 import {
   StudentQuestion,
@@ -13,8 +12,8 @@ import BackButton from './BackButton'
 
 import student from '../pages/student'
 
-type MessageStudent = StudentComment & { className: String }
-type MessageTutor = TutorAnswer & { className: String }
+type MessageStudent = StudentComment & { className: string }
+type MessageTutor = TutorAnswer & { className: string }
 type TimelineItem = MessageStudent | MessageTutor
 
 type Props = {

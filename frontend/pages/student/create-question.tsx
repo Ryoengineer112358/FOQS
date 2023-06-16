@@ -6,10 +6,9 @@ import DefaultLayout from '@/components/DefaultLayout'
 import BackButton from '@/components/BackButton'
 import QuestionInputArea from '@/components/QuestionInputArea'
 import LinkButton from '@/components/LinkButton'
-import { useAppDispatch } from '@/store'
+import { useAppDispatch, State } from '@/store'
 import { setText, setImages } from '@/store/modules/newQuestion'
 import { useSelector } from 'react-redux'
-import { State } from '@/store'
 
 const CreateQuestion: NextPage = () => {
   const middleware = 'student'

@@ -48,7 +48,7 @@ const DefaultLayout = ({
   middleware,
   children,
 }: {
-  middleware: String
+  middleware: string
   children: ReactElement
 }) => {
   const tutors = useSelector((state: State) => state.tutors)

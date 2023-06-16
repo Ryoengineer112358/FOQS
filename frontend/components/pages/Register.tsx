@@ -53,7 +53,7 @@ const Register = (props: Props) => {
   }
 
   const [errors, setErrors] = useState<ValidationErrorMessages>({})
-  const [status, setStatus] = useState<String>('initial')
+  const [status, setStatus] = useState<string>('initial')
 
   const submitForm: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault()
