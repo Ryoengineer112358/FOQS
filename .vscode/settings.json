@@ -1,3 +1,6 @@
 {
-    "genieai.openai.model": "gpt-4"
+    "genieai.openai.model": "gpt-4",
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    }
 }
