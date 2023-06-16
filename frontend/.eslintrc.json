@@ -1,16 +1,43 @@
 {
   "extends": [
-      "next/core-web-vitals",
-      "plugin:@typescript-eslint/recommended",
-      "plugin:prettier/recommended",
-      "plugin:import/errors",
-      "plugin:import/warnings",
-      "plugin:import/typescript"
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript"
   ],
   "parser": "@typescript-eslint/parser",
   "rules": {
-      "prettier/prettier": "error",
-      "import/no-unused-modules": ["error"],
-      "object-curly-spacing": ["error", "always"]
+    "prettier/prettier": "error",
+    "import/no-unused-modules": ["error"],
+    "object-curly-spacing": ["error", "always"],
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "react-hooks/exhaustive-deps": "off",
+    "@typescript-eslint/ban-types": [
+      "error",
+      {
+        "types": {
+          "Function": false
+        }
+      }
+    ],
+    "@next/next/no-img-element": "off"
+  },
+  "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true,
+        "project": "./tsconfig.json"
+      },
+      "alias": {
+        "map": [["@", "./"]],
+        "extensions": [".ts", ".tsx"]
+      }
+    }
   }
 }
