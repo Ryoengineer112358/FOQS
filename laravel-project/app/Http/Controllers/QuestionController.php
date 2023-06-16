@@ -144,6 +144,10 @@ class QuestionController extends Controller
             'images',
         ]);
 
+        $question ->image_urls = $question->images->map(function ($image) {
+            return $image->image_path;
+        });
+
         return ($question);
 
     }
