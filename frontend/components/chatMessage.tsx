@@ -35,10 +35,10 @@ function ChatMessage(props: Props) {
             )
         return (
           <div className="msgs">
-            {props.question.images && props.question.images.map((image, index) => (
+            {props.question.image_urls && props.question.image_urls.map((url, index) => (
               <div key={index} className="image">
                 <img
-                  src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${image.image_path}`}
+                  src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${url}`}
                   style={{width: '100%'}}
                   alt="uploaded"
                 />
