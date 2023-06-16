@@ -55,7 +55,10 @@ const QuestionContent = ({
         {text}
       </Box>
       {images.map((image, index) => (
-        <img key={index} src={image} alt={`Image ${index}`} style={{width: '100%', marginTop: '15px'}} />
+        <img 
+          key={index}
+          src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${image}`}
+        />
       ))}
       <h1 style={{color: "white", textAlign: "center", marginBottom: 0}}>
         {tutors.length === 0
