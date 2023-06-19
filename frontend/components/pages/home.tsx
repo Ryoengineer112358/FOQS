@@ -1,6 +1,6 @@
 import { useAuth } from '@/hooks/auth'
 import { Grid } from '@mui/material'
-import { FormEventHandler, useEffect, useState, ReactElement } from 'react'
+import { useEffect, useState } from 'react'
 import * as React from 'react'
 import axios from '@/lib/axios'
 import { Middleware, StudentQuestion } from '@/types'

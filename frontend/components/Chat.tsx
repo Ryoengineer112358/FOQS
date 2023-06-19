@@ -2,12 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { useAuth } from '@/hooks/auth'
 import DefaultLayout from '@/components/DefaultLayout'
 import ChatMessage from '@/components/ChatMessage'
-import BackButton from '@/components/BackButton'
 import type {
   Middleware,
   StudentComment,
   StudentQuestion,
-  Tutor,
   TutorAnswer,
 } from '@/types'
 import { Box } from '@mui/material'
@@ -54,9 +52,7 @@ const Chat = (props: Props) => {
     })
     axios
       .post(`/api/questions/${questionId}`, { message: newMessage.text })
-      .then
-      //fetchMessages
-      ()
+      .then()
   }
 
   return (

@@ -156,7 +156,6 @@ export const useAuth = ({
   }
 
   useEffect(() => {
-    // console.log("isStudent " + isStudent(user)); console.log("isTutor " + isTutor(user)); console.log(user);
     if (user && !user.email_verified_at && !error)
       router.push(
         `/${

@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import * as ChatComponent from '@/components/Chat'
 import BackButton from '@/components/BackButton'
-import { Grid, Typography } from '@mui/material'
+import { Grid } from '@mui/material'
 import { useRouter } from 'next/router'
 import axios from '@/lib/axios'
 import { useState, useEffect } from 'react'

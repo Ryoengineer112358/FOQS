@@ -1,19 +1,5 @@
 import * as React from 'react'
 import { Box, Button, Typography, Modal, Grid } from '@mui/material'
-import Link from 'next/link'
-
-// const style = {
-//   position: 'absolute' as 'absolute',
-//   top: '35%',
-//   left: '50%',
-//   transform: 'translate(-50%, -50%)',
-//   width: 360,
-//   borderRadius: 6,
-//   bgcolor: 'background.paper',
-//   border: '2px solid #ffffff',
-//   boxShadow: 24,
-//   p: 4,
-// };
 
 type Props = {
   firstbuttontext: string

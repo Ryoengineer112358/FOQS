@@ -1,16 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import SendMessage from './SendMessage'
 import {
   StudentQuestion,
-  isStudentQuestion,
   TutorAnswer,
   StudentComment,
-  isStudentComment,
-  isTutorAnswer,
 } from '@/types'
-import BackButton from './BackButton'
-
-import student from '../pages/student'
 
 type MessageStudent = StudentComment & { className: string }
 type MessageTutor = TutorAnswer & { className: string }

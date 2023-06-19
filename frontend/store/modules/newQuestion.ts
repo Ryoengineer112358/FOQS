@@ -1,4 +1,3 @@
-import { Tutor } from '@/types'
 import { set, get, del, clear } from 'idb-keyval'
 import axios from '@/lib/axios'
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
@@ -47,7 +46,7 @@ let isRemoving = false
 export const removeImage = createAsyncThunk(
   'newQuestion/removeImage',
   async (indexToRemove: number, { getState }) => {
-    // Check if already removing, if so, exit early
+    // もし既に削除していたら、早期に終了
     if (isRemoving) return
     isRemoving = true
 
@@ -57,10 +56,10 @@ export const removeImage = createAsyncThunk(
         (_, index) => index !== indexToRemove,
       )
 
-      // Delete the item at the index
+      // インデックスのアイテムを削除
       await del(indexToRemove)
 
-      // Shift down the keys for items above the index
+      // 例えば、indexToRemoveが1だったら、2番目のアイテムを1番目に移動する
       for (
         let i = indexToRemove + 1;
         i < state.newQuestion.images.length;
@@ -77,7 +76,7 @@ export const removeImage = createAsyncThunk(
         tutorId: state.newQuestion.tutorId,
       }
     } finally {
-      // Allow future removals
+      // これがないと、削除ができなくなる
       isRemoving = false
     }
   },

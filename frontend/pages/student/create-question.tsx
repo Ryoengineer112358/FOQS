@@ -1,7 +1,6 @@
 import { useAuth } from '@/hooks/auth'
 import type { NextPage } from 'next'
 import { Grid } from '@mui/material'
-import { useState, useEffect } from 'react'
 import DefaultLayout from '@/components/DefaultLayout'
 import BackButton from '@/components/BackButton'
 import QuestionInputArea from '@/components/QuestionInputArea'

@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useRouter } from 'next/router'
-import { NextPage } from 'next'
 import { useAuth } from '@/hooks/auth'
 import {
   Box,
@@ -55,15 +54,15 @@ const ForgotPassword = (props: Props) => {
           sx={{
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center', // 中央揃えに
+            alignItems: 'center',
           }}
         >
           {!statusChanged && (
             <Typography
               variant='h6'
-              align='center' // 中央揃えに
+              align='center'
               fontWeight='bold'
-              sx={{ marginBottom: '1rem' }} // 上下にスペースを空ける
+              sx={{ marginBottom: '1rem' }}
             >
               パスワードを忘れた場合
             </Typography>
@@ -71,8 +70,8 @@ const ForgotPassword = (props: Props) => {
 
           <Typography
             variant='body1'
-            align='center' // 中央揃えに
-            sx={{ marginBottom: '0.8rem', width: '90%', textAlign: 'left' }} // 左右にスペースを空ける
+            align='center'
+            sx={{ marginBottom: '0.8rem', width: '90%', textAlign: 'left' }}
           >
             {statusChanged ? (
               <>
@@ -130,7 +129,7 @@ const ForgotPassword = (props: Props) => {
                 py: '0.8rem',
                 px: '2.4rem',
                 textTransform: 'none',
-                width: '100%', // 幅を80%に
+                width: '100%',
               }}
             >
               送信

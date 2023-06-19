@@ -1,6 +1,6 @@
 import { useAuth } from '@/hooks/auth'
 import type { NextPage } from 'next'
-import { Grid, Button, Modal, Box, Typography } from '@mui/material'
+import { Grid } from '@mui/material'
 import * as React from 'react'
 import DefaultLayout from '@/components/DefaultLayout'
 import BackButton from '@/components/BackButton'

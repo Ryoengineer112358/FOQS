@@ -15,7 +15,6 @@ const slice = createSlice({
 })
 
 // Action Creators
-// export const { updateTutors } = slice.actions
 
 // Operations
 export const fetchTutors = createAsyncThunk('tutors/fetchTutors', async () => {

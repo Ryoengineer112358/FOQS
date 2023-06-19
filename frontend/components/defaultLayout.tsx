@@ -181,7 +181,7 @@ const DefaultLayout = ({
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
+            keepMounted: true, // モバイルでのパフォーマンス向上のため
           }}
           sx={{
             '& .MuiDrawer-paper': {

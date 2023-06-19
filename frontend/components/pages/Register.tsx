@@ -1,7 +1,6 @@
 import { useAuth } from '@/hooks/auth'
-import { FormEventHandler, useEffect, useState } from 'react'
+import { FormEventHandler, useState } from 'react'
 import { useRouter } from 'next/router'
-import { NextPage } from 'next'
 import Link from 'next/link'
 import {
   Box,

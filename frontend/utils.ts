@@ -1,3 +1,4 @@
+//未ログイン状態の場合、ログインページにリダイレクトする getServerSideProps を定義
 import { GetServerSideProps } from 'next'
 
 export function convertDateTypeOnObject(obj: any): any {
