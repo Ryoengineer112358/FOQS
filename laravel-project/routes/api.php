@@ -25,21 +25,42 @@ Route::group(['middleware' => ['auth:students,tutors']], function () {
         return $request->user();
     });
     Route::group(['middleware' => ['verified']], function () {
-        Route::post('/questions/{question}', [QuestionController::class, 'reply']);
-        Route::post('/questions/{question}/solve', [QuestionController::class, 'solve']);
-        Route::apiResource('questions', QuestionController::class)->only('index', 'show');
-        Route::get('/tutors/{tutorId}/average-rating', [TutorController::class, 'getAgerageTutorRating']);
+        Route::post('/questions/{question}', [
+            QuestionController::class,
+            'reply',
+        ]);
+        Route::post('/questions/{question}/solve', [
+            QuestionController::class,
+            'solve',
+        ]);
+        Route::apiResource('questions', QuestionController::class)->only(
+            'index',
+            'show'
+        );
+        Route::get('/tutors/{tutorId}/average-rating', [
+            TutorController::class,
+            'getAgerageTutorRating',
+        ]);
     });
 });
 
 Route::group(['middleware' => ['auth:students', 'verified']], function () {
     Route::get('/tutors', [TutorController::class, 'index']);
     Route::post('/questions', [QuestionController::class, 'store']);
-    Route::post('questions/{question}/rate', [QuestionController::class, 'rateTutor']);
-    Route::delete('/questions/{question}', [QuestionController::class, 'destroy']);
+    Route::post('questions/{question}/rate', [
+        QuestionController::class,
+        'rateTutor',
+    ]);
+    Route::delete('/questions/{question}', [
+        QuestionController::class,
+        'destroy',
+    ]);
 });
 
 Route::group(['middleware' => ['auth:tutors', 'verified']], function () {
-    Route::get('/unassigned-questions', [QuestionController::class, 'getUnassignedQuestions']);
+    Route::get('/unassigned-questions', [
+        QuestionController::class,
+        'getUnassignedQuestions',
+    ]);
     Route::put('/questions/{question}', [QuestionController::class, 'update']);
 });

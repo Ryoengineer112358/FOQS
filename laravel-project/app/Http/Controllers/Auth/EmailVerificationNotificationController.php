@@ -20,7 +20,9 @@ class EmailVerificationNotificationController extends Controller
         $userType = $request->input('user_type');
 
         if ($request->user()->hasVerifiedEmail()) {
-            return redirect()->intended(config('app.frontend_url').'/'.$userType);
+            return redirect()->intended(
+                config('app.frontend_url') . '/' . $userType
+            );
         }
 
         $request->user()->sendEmailVerificationNotification();

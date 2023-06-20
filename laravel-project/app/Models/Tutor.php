@@ -14,10 +14,7 @@ class Tutor extends Authenticatable implements MustVerifyEmail
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    protected $hidden = ['password', 'remember_token'];
 
     protected $dataFormat = 'Y-m-d H:i:s.v';
 

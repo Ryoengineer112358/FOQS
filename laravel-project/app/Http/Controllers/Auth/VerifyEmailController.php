@@ -19,7 +19,9 @@ class VerifyEmailController extends Controller
     {
         if ($request->user()->hasVerifiedEmail()) {
             return redirect()->intended(
-                config('app.frontend_url').'/'.strtolower(class_basename(get_class($request->user())))
+                config('app.frontend_url') .
+                    '/' .
+                    strtolower(class_basename(get_class($request->user())))
             );
         }
 
@@ -28,8 +30,9 @@ class VerifyEmailController extends Controller
         }
 
         return redirect()->intended(
-            config('app.frontend_url').'/'.strtolower(class_basename(get_class($request->user())))
+            config('app.frontend_url') .
+                '/' .
+                strtolower(class_basename(get_class($request->user())))
         );
-
     }
 }

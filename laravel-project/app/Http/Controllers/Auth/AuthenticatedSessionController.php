@@ -22,15 +22,18 @@ class AuthenticatedSessionController extends Controller
 
         switch ($userType) {
             case 'student':
-                $request->authenticate(Auth::guard("students"));
+                $request->authenticate(Auth::guard('students'));
                 break;
 
             case 'tutor':
-                $request->authenticate(Auth::guard("tutors"));
+                $request->authenticate(Auth::guard('tutors'));
                 break;
 
             default:
-                return response()->json(['message' => 'Invalid user type'], Response::HTTP_BAD_REQUEST);
+                return response()->json(
+                    ['message' => 'Invalid user type'],
+                    Response::HTTP_BAD_REQUEST
+                );
         }
 
         $request->session()->regenerate();
@@ -46,8 +49,8 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request)
     {
-        Auth::guard("tutors")->logout();
-        Auth::guard("students")->logout();
+        Auth::guard('tutors')->logout();
+        Auth::guard('students')->logout();
 
         $request->session()->invalidate();
 

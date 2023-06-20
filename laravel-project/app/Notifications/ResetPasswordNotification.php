@@ -18,15 +18,34 @@ class ResetPasswordNotification extends ResetPassword
 
     public function toMail($notifiable)
     {
-       $resetUrlPath = $this->userType === 'student' ? 'student/reset-password' : 'tutor/reset-password';
+        $resetUrlPath =
+            $this->userType === 'student'
+                ? 'student/reset-password'
+                : 'tutor/reset-password';
 
-       $url = url(config('app.frontend_url') . '/' . $resetUrlPath . '?token=' . $this->token);
+        $url = url(
+            config('app.frontend_url') .
+                '/' .
+                $resetUrlPath .
+                '?token=' .
+                $this->token
+        );
 
-        return (new MailMessage)
+        return (new MailMessage())
             ->line('アカウントのパスワードリセットリクエストを受け取りました。')
             ->action('パスワードをリセット', $url)
-            ->line('このパスワードリセットリンクは、:count分で有効期限が切れます。', ['count' => config('auth.passwords.' . config('auth.defaults.passwords') . '.expire')])
-            ->line('もしパスワードリセットをリクエストしていない場合、これ以上の操作は不要です。');
+            ->line(
+                'このパスワードリセットリンクは、:count分で有効期限が切れます。',
+                [
+                    'count' => config(
+                        'auth.passwords.' .
+                            config('auth.defaults.passwords') .
+                            '.expire'
+                    ),
+                ]
+            )
+            ->line(
+                'もしパスワードリセットをリクエストしていない場合、これ以上の操作は不要です。'
+            );
     }
-
 }

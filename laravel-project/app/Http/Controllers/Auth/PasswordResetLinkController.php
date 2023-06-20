@@ -22,7 +22,11 @@ class PasswordResetLinkController extends Controller
     {
         $userType = $request->input('user_type');
         $request->validate([
-            'email' => ['required', 'email', Rule::exists($userType . 's', 'email')],
+            'email' => [
+                'required',
+                'email',
+                Rule::exists($userType . 's', 'email'),
+            ],
             'user_type' => ['required', Rule::in(['student', 'tutor'])],
         ]);
 

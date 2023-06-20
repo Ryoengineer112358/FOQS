@@ -28,20 +28,17 @@ class QuestionController extends Controller
             $query = StudentQuestion::where('tutor_id', \Auth::id());
         }
 
-
         if ($request->solved_only) {
             $query = $query->whereNotNull('closed_at');
         } else {
-            $query = $query->whereNull('closed_at')->with(
-                [
-                    'tutor_answers' => function ($query) {
-                        $query->orderBy('created_at', 'desc');
-                    },
-                    'student_comments' => function ($query) {
-                        $query->orderBy('created_at', 'desc');
-                    },
-                ]
-            );
+            $query = $query->whereNull('closed_at')->with([
+                'tutor_answers' => function ($query) {
+                    $query->orderBy('created_at', 'desc');
+                },
+                'student_comments' => function ($query) {
+                    $query->orderBy('created_at', 'desc');
+                },
+            ]);
         }
 
         $questions = $query->orderByDesc('updated_at')->get();
@@ -75,7 +72,6 @@ class QuestionController extends Controller
 
         if ($request->hasfile('images')) {
             foreach ($request->file('images') as $image) {
-
                 // 画像のパスを取得
                 $originalPath = $image->getPathname();
 
@@ -88,15 +84,15 @@ class QuestionController extends Controller
                 // 現在のオリエンテーションに基づいて画像を回転
                 switch ($orientation) {
                     case \Imagick::ORIENTATION_BOTTOMRIGHT:
-                        $imagick->rotateimage("#000", 180); // 180度回転
+                        $imagick->rotateimage('#000', 180); // 180度回転
                         break;
 
                     case \Imagick::ORIENTATION_RIGHTTOP:
-                        $imagick->rotateimage("#000", 90); // 90度時計回り回転
+                        $imagick->rotateimage('#000', 90); // 90度時計回り回転
                         break;
 
                     case \Imagick::ORIENTATION_LEFTBOTTOM:
-                        $imagick->rotateimage("#000", -90); // 90度反時計回り回転
+                        $imagick->rotateimage('#000', -90); // 90度反時計回り回転
                         break;
                 }
 
@@ -111,7 +107,10 @@ class QuestionController extends Controller
                 $imagick->writeImage($tempPath);
 
                 // ストレージに変更された画像を保存
-                $relativePath = \Storage::disk('public')->putFile('questions', new \Illuminate\Http\File($tempPath));
+                $relativePath = \Storage::disk('public')->putFile(
+                    'questions',
+                    new \Illuminate\Http\File($tempPath)
+                );
 
                 // 画像テーブルにレコードを作成
                 $question->images()->create([
@@ -133,23 +132,24 @@ class QuestionController extends Controller
     {
         $question->load([
             'tutor_answers' => function ($query) use ($question) {
-                $query->where('tutor_id', $question->tutor_id)
+                $query
+                    ->where('tutor_id', $question->tutor_id)
                     ->orderBy('created_at', 'asc');
             },
             'student_comments' => function ($query) use ($question) {
-                $query->where('tutor_id', $question->tutor_id)
-                        ->orderBy('created_at', 'asc');
+                $query
+                    ->where('tutor_id', $question->tutor_id)
+                    ->orderBy('created_at', 'asc');
             },
             'student',
             'images',
         ]);
 
-        $question ->image_urls = $question->images->map(function ($image) {
+        $question->image_urls = $question->images->map(function ($image) {
             return $image->image_path;
         });
 
-        return ($question);
-
+        return $question;
     }
 
     /**
@@ -189,9 +189,12 @@ class QuestionController extends Controller
     public function destroy(StudentQuestion $question)
     {
         $question->delete();
-        return response()->json([
-            'message' => '質問が正常に削除されました',
-        ], 200);
+        return response()->json(
+            [
+                'message' => '質問が正常に削除されました',
+            ],
+            200
+        );
     }
 
     public function reply(Request $request, StudentQuestion $question)
@@ -200,7 +203,7 @@ class QuestionController extends Controller
             abort(403);
         }
 
-        \DB::transaction(function () use($question, $request) {
+        \DB::transaction(function () use ($question, $request) {
             $studentAuth = \Auth::guard('students')->check();
             $tutorAuth = \Auth::guard('tutors')->check();
             $question->touch();
@@ -233,9 +236,12 @@ class QuestionController extends Controller
             'tutor_rating' => $request->input('rating'),
         ]);
 
-        return response()->json([
-            'message' => '評価が正常に保存されました',
-        ], 200);
+        return response()->json(
+            [
+                'message' => '評価が正常に保存されました',
+            ],
+            200
+        );
     }
 
     public function solve(StudentQuestion $question)
@@ -249,8 +255,8 @@ class QuestionController extends Controller
     public function getUnassignedQuestions()
     {
         $questions = StudentQuestion::whereNull('tutor_id')
-                                    ->orderByDesc('created_at')
-                                    ->get();
+            ->orderByDesc('created_at')
+            ->get();
 
         return $questions;
     }

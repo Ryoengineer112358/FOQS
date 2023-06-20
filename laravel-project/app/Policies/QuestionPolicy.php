@@ -19,10 +19,14 @@ class QuestionPolicy
      * @param  \App\Models\StudentQuestion  $studentQuestion
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(Student | Tutor $student, StudentQuestion $studentQuestion)
-    {
-        return (Auth::guard('students')->check() && $studentQuestion->student_id == Auth::id())
-            || (Auth::guard('tutors')->check() && $studentQuestion->tutor_id == Auth::id());
+    public function view(
+        Student|Tutor $student,
+        StudentQuestion $studentQuestion
+    ) {
+        return (Auth::guard('students')->check() &&
+            $studentQuestion->student_id == Auth::id()) ||
+            (Auth::guard('tutors')->check() &&
+                $studentQuestion->tutor_id == Auth::id());
     }
 
     /**
@@ -31,7 +35,7 @@ class QuestionPolicy
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function create(Student | Tutor $student)
+    public function create(Student|Tutor $student)
     {
         //
     }
@@ -43,8 +47,10 @@ class QuestionPolicy
      * @param  \App\Models\StudentQuestion  $studentQuestion
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(Student | Tutor $student, StudentQuestion $studentQuestion)
-    {
+    public function update(
+        Student|Tutor $student,
+        StudentQuestion $studentQuestion
+    ) {
         //
     }
 
@@ -55,8 +61,10 @@ class QuestionPolicy
      * @param  \App\Models\StudentQuestion  $studentQuestion
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(Student | Tutor $student, StudentQuestion $studentQuestion)
-    {
+    public function delete(
+        Student|Tutor $student,
+        StudentQuestion $studentQuestion
+    ) {
         //
     }
 
@@ -67,8 +75,10 @@ class QuestionPolicy
      * @param  \App\Models\StudentQuestion  $studentQuestion
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(Student | Tutor $student, StudentQuestion $studentQuestion)
-    {
+    public function restore(
+        Student|Tutor $student,
+        StudentQuestion $studentQuestion
+    ) {
         //
     }
 
@@ -79,8 +89,10 @@ class QuestionPolicy
      * @param  \App\Models\StudentQuestion  $studentQuestion
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(Student | Tutor $student, StudentQuestion $studentQuestion)
-    {
+    public function forceDelete(
+        Student|Tutor $student,
+        StudentQuestion $studentQuestion
+    ) {
         //
     }
 }

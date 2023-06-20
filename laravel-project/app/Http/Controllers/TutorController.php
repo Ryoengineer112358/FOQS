@@ -8,7 +8,8 @@ use App\Models\Tutor;
 
 class TutorController extends Controller
 {
-    function index() {
+    function index()
+    {
         return Tutor::all();
     }
 

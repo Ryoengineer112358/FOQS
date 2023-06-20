@@ -31,8 +31,14 @@ class RegisteredUserController extends Controller
         $request->validate([
             'last_name' => 'required|string|max:255',
             'first_name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:students|unique:tutors',
-            'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
+            'email' =>
+                'required|string|email|max:255|unique:students|unique:tutors',
+            'password' => [
+                'required',
+                'string',
+                'confirmed',
+                Rules\Password::defaults(),
+            ],
             'birth_date' => 'required|date',
             'gender' => 'required|integer|min:0|max:2',
         ]);
@@ -50,7 +56,8 @@ class RegisteredUserController extends Controller
                     'email' => $request->email,
                     'password' => Hash::make($request->password),
                     'high_school' => $request->high_school,
-                    'first_choice_university' => $request->first_choice_university,
+                    'first_choice_university' =>
+                        $request->first_choice_university,
                     'first_choice_faculty' => $request->first_choice_faculty,
                     'birth_date' => $request->birth_date,
                     'gender' => $request->gender,
@@ -75,7 +82,10 @@ class RegisteredUserController extends Controller
                 break;
 
             default:
-                return response()->json(['error' => 'Invalid user type'], Response::HTTP_BAD_REQUEST);
+                return response()->json(
+                    ['error' => 'Invalid user type'],
+                    Response::HTTP_BAD_REQUEST
+                );
         }
 
         event(new Registered($user));
