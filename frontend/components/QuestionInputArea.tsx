@@ -108,7 +108,7 @@ const QuestionInputArea = (props: Props) => {
           >
             <CloseIcon style={{ fontSize: 30 }} />
           </IconButton>
-          <img src={src} alt='preview' style={{ maxWidth: '100%' }} />
+          <img src={src} alt='画像のプレビュー' style={{ maxWidth: '100%' }} />
         </Box>
       ))}
     </>

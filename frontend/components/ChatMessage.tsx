@@ -43,7 +43,7 @@ function ChatMessage(props: Props) {
                   <img
                     src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${url}`}
                     style={{ width: '100%' }}
-                    alt='uploaded'
+                    alt='生徒が質問をした時に送った画像'
                   />
                 </div>
               ))}
