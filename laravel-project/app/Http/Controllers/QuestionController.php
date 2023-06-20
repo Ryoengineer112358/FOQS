@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\StudentComment;
 use App\Models\StudentQuestion;
 use App\Models\TutorAnswer;
 use Illuminate\Http\Request;
-use App\Models\StudentComment;
 
 class QuestionController extends Controller
 {
