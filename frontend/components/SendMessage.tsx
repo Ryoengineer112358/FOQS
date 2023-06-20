@@ -22,7 +22,7 @@ function SendMessage(props: Props) {
       ...defaultMessage(),
       text: message,
     })
-    
+
     setMessage('')
   }
 

@@ -1,13 +1,6 @@
 import React, { useState } from 'react'
 import { useAuth } from '@/hooks/auth'
-import {
-  Box,
-  Button,
-  Card,
-  Container,
-  Typography,
-  Grid,
-} from '@mui/material'
+import { Box, Button, Card, Container, Typography, Grid } from '@mui/material'
 import DefaultLayout from '@/components/DefaultLayout'
 import { Middleware } from '@/types'
 

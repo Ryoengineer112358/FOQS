@@ -1,10 +1,6 @@
 import React from 'react'
 import SendMessage from './SendMessage'
-import {
-  StudentQuestion,
-  TutorAnswer,
-  StudentComment,
-} from '@/types'
+import { StudentQuestion, TutorAnswer, StudentComment } from '@/types'
 
 type MessageStudent = StudentComment & { className: string }
 type MessageTutor = TutorAnswer & { className: string }
