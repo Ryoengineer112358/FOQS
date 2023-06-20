@@ -6,8 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Student;
 use App\Models\Tutor;
 use Illuminate\Auth\Events\Registered;
-use Illuminate\Auth\Events\Verified;
-use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;

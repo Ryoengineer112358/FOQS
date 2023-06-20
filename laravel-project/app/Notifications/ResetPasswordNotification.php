@@ -4,7 +4,6 @@ namespace App\Notifications;
 
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Support\Facades\Lang;
 
 class ResetPasswordNotification extends ResetPassword
 {
