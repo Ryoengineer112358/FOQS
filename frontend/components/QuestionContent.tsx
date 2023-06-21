@@ -56,8 +56,9 @@ const QuestionContent = ({
       {images.map((image, index) => (
         <img
           key={index}
-          src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${image}`}
-          alt={`生徒が質問をした時に送った画像 ${index + 1}`}
+          src={image}
+          alt={`質問時に一緒に送る画像 ${index + 1} 枚目`}
+          style={{ width: '100%', marginTop: '8px' }}
         />
       ))}
       <h1 style={{ color: 'white', textAlign: 'center', marginBottom: 0 }}>
