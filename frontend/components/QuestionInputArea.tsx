@@ -50,7 +50,9 @@ const QuestionInputArea = (props: Props) => {
           minRows={5}
           maxRows={100}
           placeholder='ここに質問を入力してください。右下のアイコンをクリックすると画像を追加できます。'
-          onChange={(e: any) => props.textChangeHandler(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+            props.textChangeHandler(e.target.value)
+          }
           value={props.text}
           style={{
             fontSize: 16,

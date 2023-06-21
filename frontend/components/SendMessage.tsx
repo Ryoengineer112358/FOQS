@@ -11,9 +11,7 @@ type Props = {
 function SendMessage(props: Props) {
   const [message, setMessage] = useState('')
 
-  function sendMessage(e: any) {
-    //型のanyはいずれ変更する
-    console.log(e)
+  function sendMessage(e: React.SyntheticEvent) {
     e.preventDefault()
     if (message === '') {
       return
@@ -40,7 +38,9 @@ function SendMessage(props: Props) {
             }}
             placeholder='メッセージを入力してください'
             type='text'
-            onChange={(e: any) => setMessage(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setMessage(e.target.value)
+            }
             value={message}
           />
           <SendIcon
