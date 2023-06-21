@@ -19,15 +19,30 @@ const QuestionInputArea = (props: Props) => {
   const inputRef = useRef<HTMLInputElement>(null)
   const dispatch = useAppDispatch()
 
-  const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const files = Array.from(e.target.files)
       const objectUrls = [] as string[]
-      files.forEach((file) => {
-        if (file.type.match('image.*')) {
+
+      for (const file of files) {
+        if (file.type === 'image/heic' || file.type === 'image/heif') {
+          try {
+            // ダイナミックインポート
+            const heic2any = (await import('heic2any')).default
+            const convertedBlob = (await heic2any({
+              blob: file,
+              toType: 'image/jpeg',
+              quality: 0.8,
+            })) as Blob
+            objectUrls.push(URL.createObjectURL(convertedBlob))
+          } catch (err) {
+            console.error('Failed to convert HEIC/HEIF to JPEG: ', err)
+          }
+        } else if (file.type.match('image.*')) {
           objectUrls.push(URL.createObjectURL(file))
         }
-      })
+      }
+
       props.imagesChangeHandler([...props.images, ...objectUrls])
     }
     e.target.value = ''
