@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Input } from '@mui/material'
 import SendIcon from '@mui/icons-material/Send'
 import { defaultMessage } from '@/types'
+import { useRouter } from 'next/router'
 
 type Props = {
   sendFunction: Function
@@ -9,19 +10,35 @@ type Props = {
 }
 
 function SendMessage(props: Props) {
-  const [message, setMessage] = useState('')
+  const { query } = useRouter()
+  const questionId = query['question-id']
+
+  const [chatMessage, setChatMessage] = useState('')
+
+  useEffect(() => {
+    const savedChatMessage = localStorage.getItem(`chatMessage-${questionId}`)
+    if (savedChatMessage) {
+      setChatMessage(savedChatMessage)
+    }
+  }, [questionId])
 
   function sendMessage(e: React.SyntheticEvent) {
     e.preventDefault()
-    if (message === '') {
+    if (chatMessage === '') {
       return
     }
     props.sendFunction({
       ...defaultMessage(),
-      text: message,
+      text: chatMessage,
     })
 
-    setMessage('')
+    localStorage.removeItem(`chatMessage-${questionId}`)
+    setChatMessage('')
+  }
+
+  function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
+    localStorage.setItem(`chatMessage-${questionId}`, e.target.value)
+    setChatMessage(e.target.value)
   }
 
   return (
@@ -38,10 +55,8 @@ function SendMessage(props: Props) {
             }}
             placeholder='メッセージを入力してください'
             type='text'
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setMessage(e.target.value)
-            }
-            value={message}
+            onChange={handleInputChange}
+            value={chatMessage}
           />
           <SendIcon
             onClick={sendMessage}
