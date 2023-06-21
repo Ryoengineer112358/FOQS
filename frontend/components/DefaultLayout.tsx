@@ -52,49 +52,69 @@ const DefaultLayout = ({
   children: ReactElement
 }) => {
   const tutors = useSelector((state: State) => state.tutors)
+  const textInRedux = useSelector((state: State) => state.newQuestion?.text)
+  const tutorIdInRedux = useSelector(
+    (state: State) => state.newQuestion?.tutorId,
+  )
   const imagesInRedux = useSelector(
     (state: State) => state.newQuestion?.images || [],
   )
   const dispatch = useAppDispatch()
+
   useEffect(() => {
-    // 生徒でログインしている場合は講師一覧を初回取得
-    if (middleware == 'student') {
-      const questionText = localStorage.getItem('questionText')
-      if (questionText !== null) {
-        dispatch(setText(questionText))
+    const restoreImages = async () => {
+      const imageURLs = [] as string[]
+      const maxRetires = 5
+      for (let i = 0; i < maxRetires; i++) {
+        try {
+          const blob = await get(i)
+          if (blob !== undefined) {
+            imageURLs.push(URL.createObjectURL(blob))
+            continue
+          }
+          // レスポンスがエラーの場合はループを抜ける
+          console.info(`Get failed with index: ${i}`)
+          break
+        } catch (error) {
+          // 通信エラーなどの場合はループを抜ける
+          console.error(`Get failed with error: ${error}`)
+          break
+        }
       }
-      if (tutors.length == 0) dispatch(fetchTutors())
-      const tutorId = localStorage.getItem('tutorId')
-      if (tutorId !== null) {
-        dispatch(setTutorId(Number(tutorId)))
+      dispatch(setImages(imageURLs))
+    }
+
+    if (middleware === 'student') {
+      if (!textInRedux) {
+        const questionText = localStorage.getItem('questionText')
+        if (questionText) {
+          dispatch(setText(questionText))
+        }
       }
+
+      if (tutors.length === 0) {
+        dispatch(fetchTutors())
+      }
+
+      if (!tutorIdInRedux) {
+        const tutorId = localStorage.getItem('tutorId')
+        if (tutorId) {
+          dispatch(setTutorId(Number(tutorId)))
+        }
+      }
+
       if (imagesInRedux.length === 0) {
         restoreImages()
       }
     }
-  }, [])
-
-  const restoreImages = async () => {
-    const imageURLs = [] as string[]
-    const maxRetires = 5
-    for (let i = 0; i < maxRetires; i++) {
-      try {
-        const blob = await get(i)
-        if (blob !== undefined) {
-          imageURLs.push(URL.createObjectURL(blob))
-          continue
-        }
-        // レスポンスがエラーの場合はループを抜ける
-        console.info(`Get failed with index: ${i}`)
-        break
-      } catch (error) {
-        // 通信エラーなどの場合はループを抜ける
-        console.error(`Get failed with error: ${error}`)
-        break
-      }
-    }
-    dispatch(setImages(imageURLs))
-  }
+  }, [
+    middleware,
+    textInRedux,
+    tutors.length,
+    tutorIdInRedux,
+    imagesInRedux.length,
+    dispatch,
+  ])
 
   const [mobileOpen, setMobileOpen] = React.useState(false)
 
