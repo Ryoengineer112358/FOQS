@@ -90,7 +90,7 @@ const QuestionInputArea = (props: Props) => {
           hidden
           ref={cameraRef}
           onChange={onFileChange}
-          accept='image/*'
+          accept='image/*,.heic,.heif'
           capture='environment'
           multiple
         />
@@ -106,7 +106,7 @@ const QuestionInputArea = (props: Props) => {
           hidden
           ref={inputRef}
           onChange={onFileChange}
-          accept='image/*'
+          accept='image/*,.heic,.heif'
           multiple
         />
       </Box>
