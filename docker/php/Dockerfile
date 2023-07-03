@@ -17,7 +17,8 @@ RUN php composer-setup.php
 RUN php -r "unlink('composer-setup.php');"
 RUN mv composer.phar /usr/local/bin/composer
 
-COPY ./docker/php/php.ini /usr/local/etc/php/8.1/php.ini
+# COPY ./docker/php/php.ini /usr/local/etc/php/8.1/php.ini
+COPY ./docker/php/php.ini /usr/local/etc/php/php.ini
 #find / -name php.ini の結果、php/8.1/php.iniに変更
 
 COPY --from=composer:2.0 /usr/bin/composer /usr/bin/composer
