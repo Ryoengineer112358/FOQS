@@ -54,7 +54,7 @@ function ChatMessage(props: Props) {
                     props.middleware === 'student' ? 'sent' : 'received'
                   }`}
                 >
-                  <p>{props.question.text}</p>
+                  <article>{props.question.text}</article>
                 </div>
               </div>
             ) : (
@@ -63,7 +63,7 @@ function ChatMessage(props: Props) {
             {messages.map((message) => (
               <div key={message.id}>
                 <div className={`msg ${message.className}`}>
-                  <p>{message.text}</p>
+                  <article>{message.text}</article>
                 </div>
               </div>
             ))}
