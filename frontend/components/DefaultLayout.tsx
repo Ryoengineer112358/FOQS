@@ -12,8 +12,13 @@ import {
   ListItemText,
   Drawer,
   Toolbar,
+  Dialog,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+  Button,
 } from '@mui/material'
-import { ReactElement, useEffect } from 'react'
+import { ReactElement, useEffect, useState } from 'react'
 import Link from 'next/link'
 import * as React from 'react'
 import MenuIcon from '@mui/icons-material/Menu'
@@ -22,33 +27,22 @@ import { fetchTutors } from '@/store/modules/tutors'
 import { useSelector } from 'react-redux'
 import { setImages, setText, setTutorId } from '@/store/modules/newQuestion'
 import { get } from 'idb-keyval'
+import { useAuth } from '@/hooks/auth'
+import type { Middleware } from '@/types'
 
 const drawerWidth = '80%'
 
 type Item = {
   label: string
-  link: string
+  link?: string
+  action?: () => void
 }
-
-const navItemsForStudent: Item[] = [
-  { label: 'ホーム', link: '/student' },
-  { label: 'マイページ', link: '/student/my-page' },
-  { label: '質問履歴', link: '/student/question-history' },
-  { label: '講師一覧', link: '/student/tutors' },
-]
-
-const navItemsForTutor: Item[] = [
-  { label: 'ホーム', link: '/tutor' },
-  { label: 'マイページ', link: '/tutor/my-page' },
-  { label: 'フリー質問一覧', link: '/tutor/unassigned-questions' },
-  { label: '回答履歴', link: '/tutor/question-history' },
-]
 
 const DefaultLayout = ({
   middleware,
   children,
 }: {
-  middleware: string
+  middleware: Middleware
   children: ReactElement
 }) => {
   const tutors = useSelector((state: State) => state.tutors)
@@ -60,6 +54,44 @@ const DefaultLayout = ({
     (state: State) => state.newQuestion?.images || [],
   )
   const dispatch = useAppDispatch()
+
+  const { logout } = useAuth({ middleware })
+
+  const [mobileOpen, setMobileOpen] = useState(false)
+  const [openModal, setOpenModal] = useState(false)
+
+  const handleOpenModal = () => {
+    setOpenModal(true)
+  }
+
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen)
+  }
+
+  const handleCloseModal = () => {
+    setOpenModal(false)
+  }
+
+  const handleLogout = () => {
+    logout(middleware)
+    handleCloseModal()
+  }
+
+  const navItemsForStudent: Item[] = [
+    { label: 'ホーム', link: '/student' },
+    { label: 'マイページ', link: '/student/my-page' },
+    { label: '質問履歴', link: '/student/question-history' },
+    { label: '講師一覧', link: '/student/tutors' },
+    { label: 'ログアウト', action: handleOpenModal },
+  ]
+
+  const navItemsForTutor: Item[] = [
+    { label: 'ホーム', link: '/tutor' },
+    { label: 'マイページ', link: '/tutor/my-page' },
+    { label: 'フリー質問一覧', link: '/tutor/unassigned-questions' },
+    { label: '回答履歴', link: '/tutor/question-history' },
+    { label: 'ログアウト', action: handleOpenModal },
+  ]
 
   useEffect(() => {
     const restoreImages = async () => {
@@ -116,12 +148,6 @@ const DefaultLayout = ({
     dispatch,
   ])
 
-  const [mobileOpen, setMobileOpen] = React.useState(false)
-
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen)
-  }
-
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
       <Typography variant='h4' sx={{ my: 2 }}>
@@ -130,15 +156,27 @@ const DefaultLayout = ({
       <Divider />
       <List>
         {(middleware == 'student' ? navItemsForStudent : navItemsForTutor).map(
-          (item: Item) => (
-            <Link href={item.link} key={item.link}>
-              <ListItem key={item.label} disablePadding>
+          (item: Item) =>
+            item.link ? (
+              <Link href={item.link} key={item.label}>
+                <ListItem disablePadding>
+                  <ListItemButton sx={{ textAlign: 'center' }}>
+                    <ListItemText primary={item.label} />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+            ) : (
+              <ListItem
+                button
+                key={item.label}
+                onClick={item.action}
+                disablePadding
+              >
                 <ListItemButton sx={{ textAlign: 'center' }}>
                   <ListItemText primary={item.label} />
                 </ListItemButton>
               </ListItem>
-            </Link>
-          ),
+            ),
         )}
       </List>
     </Box>
@@ -212,6 +250,65 @@ const DefaultLayout = ({
         >
           {drawer}
         </Drawer>
+        <Dialog
+          open={openModal}
+          onClose={handleCloseModal}
+          aria-describedby='logout-dialog-description'
+          maxWidth='xs'
+          fullWidth
+          sx={{
+            '& .MuiDialog-paper': {
+              maxHeight: '40vh',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              width: 360,
+              borderRadius: 6,
+              pt: 2,
+              pb: 2,
+            },
+          }}
+        >
+          <DialogContent>
+            <DialogContentText
+              id='logout-dialog-description'
+              sx={{ fontWeight: 'bold', textAlign: 'center' }}
+            >
+              本当にログアウトしますか？
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions sx={{ justifyContent: 'center' }}>
+            <Button
+              onClick={handleCloseModal}
+              sx={{
+                width: 120,
+                height: 60,
+                mr: 1,
+                ml: 1,
+                border: '1px solid black',
+                color: 'black',
+                borderRadius: 100,
+              }}
+            >
+              キャンセル
+            </Button>
+            <Button
+              onClick={handleLogout}
+              sx={{
+                width: 120,
+                height: 60,
+                mr: 1,
+                ml: 1,
+                border: '1px solid #000000',
+                backgroundColor: 'red',
+                color: 'white',
+                borderRadius: 100,
+              }}
+            >
+              ログアウト
+            </Button>
+          </DialogActions>
+        </Dialog>
       </Box>
 
       {/* Page Content */}
