@@ -69,7 +69,7 @@ test('ChatMessage component tests', () => {
   )
 
   // メッセージが正しい順序で表示されていることを確認
-  const messages = screen.getAllByRole('article')
+  const messages = screen.getAllByRole('p')
   expect(messages[0]).toHaveTextContent('Question Text')
   expect(messages[1]).toHaveTextContent('Tutor Answer 1')
   expect(messages[2]).toHaveTextContent('Tutor Answer 2')
