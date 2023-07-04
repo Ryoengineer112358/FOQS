@@ -1,7 +1,7 @@
 import { useAuth } from '@/hooks/auth'
 import type { NextPage } from 'next'
 import { Grid } from '@mui/material'
-import * as React from 'react'
+import { useState, useEffect } from 'react'
 import DefaultLayout from '@/components/DefaultLayout'
 import BackButton from '@/components/BackButton'
 import QuestionContent from '@/components/QuestionContent'
@@ -19,8 +19,9 @@ const Confirmation: NextPage = () => {
   const { user } = useAuth({ middleware: middleware })
   const newQuestion = useSelector((state: State) => state.newQuestion)
   const dispatch = useAppDispatch()
+  const [error, setError] = useState('')
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!newQuestion?.text) {
       const timer = setTimeout(() => {
         router.push(`/${middleware}`)
@@ -30,15 +31,24 @@ const Confirmation: NextPage = () => {
   }, [newQuestion, router, middleware])
 
   const onSubmit = async () => {
+    setError('')
+
     try {
       const resultAction = await dispatch(submitQuestion())
       unwrapResult(resultAction)
       dispatch(clearNewQuestion())
       router.push(`/${middleware}`)
-    } catch (rejectedValueOrSerializedError) {
-      // エラー処理を実装する
+    } catch (err) {
+      setError('質問の送信に失敗しました。再度お試しください。')
     }
   }
+
+  const ErrorComponent = error && (
+    <p style={{ textAlign: 'center', color: 'red', fontWeight: 'bold' }}>
+      {error}
+    </p>
+  )
+
   return (
     <>
       <DefaultLayout middleware={middleware}>
@@ -78,6 +88,7 @@ const Confirmation: NextPage = () => {
                 }
                 finalbuttontext={'質問する'}
                 clickHandler={onSubmit}
+                additionalElement={ErrorComponent}
               />
             </Grid>
           </Grid>
