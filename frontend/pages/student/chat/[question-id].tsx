@@ -73,7 +73,7 @@ const Chat: NextPage = () => {
     }
   }
 
-  const ratingComponent = (
+  const RatingComponent = (
     <>
       <Rating
         name='rating-tutor'
@@ -162,7 +162,7 @@ const Chat: NextPage = () => {
                       modaltext='講師を評価して質問を終了してください'
                       finalbuttontext='評価して終了'
                       clickHandler={handleSolveQuestion}
-                      additionalElement={ratingComponent}
+                      additionalElement={RatingComponent}
                     />
                   </Grid>
                 </Grid>
