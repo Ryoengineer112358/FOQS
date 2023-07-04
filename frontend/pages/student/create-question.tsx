@@ -23,6 +23,7 @@ const CreateQuestion: NextPage = () => {
   const cameraRef = useRef<HTMLInputElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const [error, setError] = useState('')
+  const MAX_IMAGES = 5
 
   const onChangeQuestionContent = (value: string) => {
     dispatch(setText(value))
@@ -35,6 +36,12 @@ const CreateQuestion: NextPage = () => {
   const onFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const files = Array.from(e.target.files)
+
+      if ((newQuestion?.images?.length || 0) + files.length > MAX_IMAGES) {
+        setError(`※画像は${MAX_IMAGES}枚までしかアップロードできません`)
+        return
+      }
+
       const objectUrls = [] as string[]
 
       for (const file of files) {
