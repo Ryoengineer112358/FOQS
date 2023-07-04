@@ -42,6 +42,8 @@ const CreateQuestion: NextPage = () => {
         return
       }
 
+      setError('')
+
       const objectUrls = [] as string[]
 
       for (const file of files) {
