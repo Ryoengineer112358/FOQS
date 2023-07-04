@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import { useRef } from 'react'
+import React, { useState, useRef } from 'react'
 import { Grid, TextareaAutosize, Box, IconButton } from '@mui/material'
 import ImageOutlinedIcon from '@mui/icons-material/ImageOutlined'
 import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined'
@@ -9,17 +9,20 @@ import { unwrapResult } from '@reduxjs/toolkit'
 import { useAuth } from '@/hooks/auth'
 import DefaultLayout from '@/components/DefaultLayout'
 import BackButton from '@/components/BackButton'
-import LinkButton from '@/components/LinkButton'
+import ActionButton from '@/components/ActionButton'
 import { setText, setImages, removeImage } from '@/store/modules/newQuestion'
 import { useAppDispatch, State } from '@/store'
+import { useRouter } from 'next/router'
 
 const CreateQuestion: NextPage = () => {
+  const router = useRouter()
   const middleware = 'student'
   const { user } = useAuth({ middleware: middleware })
   const newQuestion = useSelector((state: State) => state.newQuestion)
   const dispatch = useAppDispatch()
   const cameraRef = useRef<HTMLInputElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
+  const [error, setError] = useState('')
 
   const onChangeQuestionContent = (value: string) => {
     dispatch(setText(value))
@@ -70,6 +73,15 @@ const CreateQuestion: NextPage = () => {
     }
   }
 
+  const onNext = () => {
+    if (newQuestion?.text?.trim() === '') {
+      setError('※質問文は必須です')
+      return
+    }
+
+    router.push(newQuestion?.tutorId ? 'confirmation' : 'tutor-option')
+  }
+
   return (
     <>
       <DefaultLayout middleware={middleware}>
@@ -78,13 +90,19 @@ const CreateQuestion: NextPage = () => {
       <Grid container justifyContent='center' marginBottom={3}>
         <Grid item xs={12} md={8} marginBottom={2}>
           <Box position='relative' width='100%'>
+            {error && (
+              <p style={{ textAlign: 'center', color: 'red', fontSize: 20 }}>
+                {error}
+              </p>
+            )}
             <TextareaAutosize
               minRows={5}
               maxRows={100}
               placeholder='ここに質問を入力してください。右下のアイコンをクリックすると画像を追加できます。画像は最大5枚までアップロードできます。'
-              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
                 onChangeQuestionContent(e.target.value)
-              }
+                setError('')
+              }}
               value={newQuestion?.text ?? ''}
               style={{
                 fontSize: 16,
@@ -155,10 +173,7 @@ const CreateQuestion: NextPage = () => {
             <BackButton />
           </Grid>
           <Grid item xs={6} md={2}>
-            <LinkButton
-              text={'次へ'}
-              href={newQuestion?.tutorId ? 'confirmation' : 'tutor-option'}
-            />
+            <ActionButton text={'次へ'} onClickHandler={onNext} />
           </Grid>
         </Grid>
       </Grid>
