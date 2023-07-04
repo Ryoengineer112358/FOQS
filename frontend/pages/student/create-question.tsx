@@ -13,6 +13,7 @@ import ActionButton from '@/components/ActionButton'
 import { setText, setImages, removeImage } from '@/store/modules/newQuestion'
 import { useAppDispatch, State } from '@/store'
 import { useRouter } from 'next/router'
+import { MAX_IMAGES } from '@/utils'
 
 const CreateQuestion: NextPage = () => {
   const router = useRouter()
@@ -23,7 +24,6 @@ const CreateQuestion: NextPage = () => {
   const cameraRef = useRef<HTMLInputElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const [error, setError] = useState('')
-  const MAX_IMAGES = 5
 
   const onChangeQuestionContent = (value: string) => {
     dispatch(setText(value))

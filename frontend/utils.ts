@@ -1,6 +1,8 @@
 //未ログイン状態の場合、ログインページにリダイレクトする getServerSideProps を定義
 import { GetServerSideProps } from 'next'
 
+export const MAX_IMAGES = 5
+
 export function convertDateTypeOnObject(obj: any): any {
   if (Array.isArray(obj)) {
     return obj.map(convertDateTypeOnObject)

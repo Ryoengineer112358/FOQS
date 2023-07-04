@@ -29,6 +29,7 @@ import { setImages, setText, setTutorId } from '@/store/modules/newQuestion'
 import { get } from 'idb-keyval'
 import { useAuth } from '@/hooks/auth'
 import type { Middleware } from '@/types'
+import { MAX_IMAGES } from '@/utils'
 
 const drawerWidth = '80%'
 
@@ -96,8 +97,7 @@ const DefaultLayout = ({
   useEffect(() => {
     const restoreImages = async () => {
       const imageURLs = [] as string[]
-      const maxRetires = 5
-      for (let i = 0; i < maxRetires; i++) {
+      for (let i = 0; i < MAX_IMAGES; i++) {
         try {
           const blob = await get(i)
           if (blob !== undefined) {
