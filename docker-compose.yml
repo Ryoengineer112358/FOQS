@@ -38,6 +38,7 @@ services:
       - 3306:3306
 
   frontend:
+    container_name: frontend
     build:
       context: ./docker/frontend/
     volumes:
@@ -45,9 +46,3 @@ services:
     command: sh -c 'npm run dev'
     ports:
       - "3000:3000"
-
-    #build：「一つのDockerを詳細に組み立てる＝Dockerfileを作る」ための命令
-    #context：docker buildコマンドを実行した場所
-    #context: .：コンテキストをルートディレクトリに設定
-    #volumes：自分のパソコンの中のファイルを、Dockerの環境に接続する命令
-    #environment：環境変数
