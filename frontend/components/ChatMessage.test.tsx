@@ -1,4 +1,5 @@
 import React from 'react'
+import renderer from 'react-test-renderer'
 import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import ChatMessage from './ChatMessage'
@@ -45,7 +46,7 @@ test('ChatMessage component tests', () => {
   const middleware = 'tutor'
   const sendFunction = jest.fn()
 
-  render(
+  const component = renderer.create(
     <ChatMessage
       middleware={middleware}
       question={question}
@@ -53,25 +54,29 @@ test('ChatMessage component tests', () => {
     />,
   )
 
+    const tree = component.toJSON()
+    expect(tree).toMatchSnapshot()
+
+    const root = component.root
+
   // メッセージ入力フォームが表示されていることを確認
   // const sendMessageElement = screen.getByRole('button', { name: /send/i })
   // expect(sendMessageElement).toBeInTheDocument()
 
   // 質問のテキストが表示されていることを確認
-  const questionTextElement = screen.getByText(/Question Text/i)
-  expect(questionTextElement).toBeInTheDocument()
+  // const questionTextElement = root.(/Question Text/i)
+  // expect(questionTextElement).toBeInTheDocument()
 
   // 画像が表示されていることを確認
-  const imageElement = screen.getByRole('img')
-  expect(imageElement).toHaveAttribute(
-    'src',
+  const imageElement = root.findAllByType('img')
+  expect(imageElement[0].props.src).toBe(
     `${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/image1.jpg`,
   )
 
   // メッセージが正しい順序で表示されていることを確認
-  const messages = screen.getAllByRole('p')
-  expect(messages[0]).toHaveTextContent('Question Text')
-  expect(messages[1]).toHaveTextContent('Tutor Answer 1')
-  expect(messages[2]).toHaveTextContent('Tutor Answer 2')
-  expect(messages[3]).toHaveTextContent('Student Comment')
+  const messages = root.findAllByType('p')
+  expect(messages[0].props.children).toBe('Question Text')
+  expect(messages[1].props.children).toBe('Tutor Answer 1')
+  expect(messages[2].props.children).toBe('Tutor Answer 2')
+  expect(messages[3].props.children).toBe('Student Comment')
 })
