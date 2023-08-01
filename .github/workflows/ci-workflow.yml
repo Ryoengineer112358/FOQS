@@ -19,6 +19,6 @@ jobs:
 
       - name: Install Dependencies and Run tests
         run: |
-          cd ${{ github.workspace }}/FOQS/frontend
+          cd ${{ github.workspace }}/frontend
           npm install
           npm run test
