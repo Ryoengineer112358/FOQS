@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ChatMessage component tests 1`] = `
+exports[`ChatMessage component tests when question is closed 1`] = `
 <div
   className="msgs"
 >
