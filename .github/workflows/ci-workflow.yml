@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   ci:
-    name: ci
+    name: frontend-tests
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
@@ -20,5 +20,5 @@ jobs:
       - name: Install Dependencies and Run tests
         run: |
           cd ${{ github.workspace }}/frontend
-          npm install
+          npm ci
           npm run test
