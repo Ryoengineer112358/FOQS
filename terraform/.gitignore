@@ -1,0 +1,27 @@
+# .terraform directories can include sensitive information and should never be included in version control
+.terraform*
+
+# Ignore Terraform .tfstate files
+*.tfstate
+*.tfstate.*
+
+# Ignore Terraform .tfvars files, which often contain sensitive information
+*.tfvars
+
+# Ignore Terraform plan files
+*.tfplan
+
+# Ignore Terraform crash log files
+crash.log
+
+# Ignore all log files
+*.log
+
+# Ignore all .env files
+*.env
+
+# Ignore override files as they can include sensitive information
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
