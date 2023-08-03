@@ -1,7 +1,6 @@
 FROM php:8.1-fpm
-#8.2から8.1に変更
-#COPY php.ini /usr/local/etc/php/ 左記消去(COPYは下に新たに記載)
 
+# Install dependencies and PHP extensions
 RUN apt-get update \
   && apt-get install -y zlib1g-dev mariadb-client vim libzip-dev libfreetype6-dev libjpeg62-turbo-dev libpng-dev libmagickwand-dev \
   && docker-php-ext-install zip pdo_mysql \
@@ -9,33 +8,24 @@ RUN apt-get update \
   && docker-php-ext-configure gd --with-freetype --with-jpeg \
   && docker-php-ext-install -j$(nproc) gd \
   && pecl install imagick \
-  && docker-php-ext-enable imagick
+  && docker-php-ext-enable imagick \
+  # Download and install Composer
+  && php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
+  && php composer-setup.php \
+  && php -r "unlink('composer-setup.php');" \
+  && mv composer.phar /usr/local/bin/composer \
+  && composer global require "laravel/installer" \
+  # Clean up
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
 
-#Composer install
-RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-RUN php composer-setup.php
-RUN php -r "unlink('composer-setup.php');"
-RUN mv composer.phar /usr/local/bin/composer
-
-# COPY ./docker/php/php.ini /usr/local/etc/php/8.1/php.ini
+# Copy php.ini
 COPY ./docker/php/php.ini /usr/local/etc/php/php.ini
-#find / -name php.ini の結果、php/8.1/php.iniに変更
 
-COPY --from=composer:2.0 /usr/bin/composer /usr/bin/composer
-
+# Set Environment Variables
 ENV COMPOSER_ALLOW_SUPERUSER 1
-
 ENV COMPOSER_HOME /composer
-
 ENV PATH $PATH:/composer/vendor/bin
 
-
+# Set Workdir
 WORKDIR /var/www
-
-RUN composer global require "laravel/installer"
-
-
-#FROM イメージの指定
-#RUN 実行
-#COPY ファイルのコピー
-#ENV 環境変数の指定
