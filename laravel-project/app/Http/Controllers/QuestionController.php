@@ -108,19 +108,14 @@ class QuestionController extends Controller
                     $tempPath = tempnam(sys_get_temp_dir(), 'modified_image');
                     $imagick->writeImage($tempPath);
 
-                    // 画像テーブルにレコードを作成
-                    $imageRecord = $question->images()->create([
-                        'image_path' => null,
-                    ]);
-
-                    // ストレージに変更された画像を保存
+                    // ストレージに変更された画像を保存し、そのパスを取得
                     $relativePath = \Storage::disk('public')->putFile(
                         'questions',
                         new \Illuminate\Http\File($tempPath)
                     );
 
-                    // 画像テーブルのレコードを更新
-                    $imageRecord->update([
+                    // 画像テーブルにレコードを作成
+                    $question->images()->create([
                         'image_path' => $relativePath,
                     ]);
                 }
@@ -130,6 +125,11 @@ class QuestionController extends Controller
             return response($question, 201);
         } catch (\Exception $e) {
             \DB::rollback();
+
+            // エラーが発生した場合、保存したファイルを削除
+            if (isset($relativePath)) {
+                \Storage::disk('public')->delete($relativePath);
+            }
 
             return response()->json([
                 'error' => $e->getMessage(),
