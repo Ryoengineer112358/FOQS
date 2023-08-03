@@ -1,7 +1,7 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 import '@testing-library/jest-dom/extend-expect'
-import ChatMessage from './ChatMessage'
+import ChatMessage from '@/components/ChatMessage'
 import { useRouter } from 'next/router'
 
 jest.mock('next/router', () => ({

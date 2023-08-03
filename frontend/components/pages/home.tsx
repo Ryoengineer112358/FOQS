@@ -6,7 +6,7 @@ import axios from '@/lib/axios'
 import { Middleware, StudentQuestion } from '@/types'
 import DefaultLayout from '@/components/DefaultLayout'
 import CardMessage from '@/components/CardMessage'
-import LinkButton from '../LinkButton'
+import LinkButton from '@/components/LinkButton'
 import { motion, AnimatePresence } from 'framer-motion'
 
 type Props = {

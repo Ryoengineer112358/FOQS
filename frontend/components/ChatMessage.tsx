@@ -1,5 +1,5 @@
 import React from 'react'
-import SendMessage from './SendMessage'
+import SendMessage from '@/components/SendMessage'
 import { StudentQuestion, TutorAnswer, StudentComment } from '@/types'
 
 type MessageStudent = StudentComment & { className: string }
