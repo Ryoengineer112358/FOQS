@@ -144,7 +144,7 @@ test('ChatMessage component tests when question is closed', () => {
 })
 
 test('ChatMessage component tests when question is not closed', () => {
-  const middleware = 'tutor'
+  const middleware = 'student'
   const questionNotClosed = {
     ...question,
     closed_at: undefined,
