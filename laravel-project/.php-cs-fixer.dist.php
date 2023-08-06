@@ -2,7 +2,7 @@
 
 $finder = PhpCsFixer\Finder::create()
     ->in(__DIR__)
-    ->exclude(['vendor', 'storage', 'bootstrap/cache', 'tests'])
+    ->exclude(['vendor', 'storage', 'bootstrap/cache'])
     ->notPath('_ide_helper.php')
     ->notPath('storage/framework/views/*');
 
@@ -20,6 +20,7 @@ return (new PhpCsFixer\Config())
         'declare_equal_normalize' => ['space' => 'none'],
         'function_typehint_space' => true,
         'include' => true,
+        'indentation_type' => true,
         'new_with_braces' => true,
         'no_blank_lines_after_class_opening' => true,
         'no_leading_import_slash' => true,
