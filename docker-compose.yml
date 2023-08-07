@@ -20,7 +20,7 @@ services:
     depends_on:
       - app
   db:
-    image: mysql:5.7.38
+    image: mysql:8.0
     platform: linux/amd64
     container_name: db
     environment:
@@ -31,13 +31,14 @@ services:
       TZ: 'Asia/Tokyo'
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     volumes:
-      - ./docker/db/data:/var/lib/mysql
+      - ./docker/db/data:/var/lib/mysql:rw
       - ./docker/db/my.cnf:/etc/mysql/conf.d/my.cnf
       - ./docker/db/sql:/docker-entrypoint-initdb.d
+    user: "999:999"
     ports:
       - 3306:3306
   test_db:
-    image: mysql:5.7.38
+    image: mysql:8.0
     platform: linux/amd64
     container_name: test_db
     environment:
@@ -48,9 +49,10 @@ services:
       TZ: 'Asia/Tokyo'
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     volumes:
-      - ./docker/test_db/data:/var/lib/mysql
+      - ./docker/test_db/data:/var/lib/mysql:rw
       - ./docker/test_db/my.cnf:/etc/mysql/conf.d/my.cnf
       - ./docker/test_db/sql:/docker-entrypoint-initdb.d
+    user: "999:999"
     ports:
       - 3307:3306
   frontend:
