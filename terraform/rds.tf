@@ -1,5 +1,5 @@
 # ---------------------------------------------
-# RDS parameter group
+# RDS Parameter Group
 # ---------------------------------------------
 resource "aws_db_parameter_group" "mysql_parameter_group" {
   name   = "${var.project}-${var.environment}-mysql-parameter-group"
@@ -17,7 +17,7 @@ resource "aws_db_parameter_group" "mysql_parameter_group" {
 }
 
 # ---------------------------------------------
-# RDS subnet group
+# RDS Subnet Group
 # ---------------------------------------------
 resource "aws_db_subnet_group" "mysql_subnet_group" {
   name = "${var.project}-${var.environment}-mysql-subnet-group"
@@ -32,3 +32,7 @@ resource "aws_db_subnet_group" "mysql_subnet_group" {
     Env     = var.environment
   }
 }
+
+# ---------------------------------------------
+# RDS Instance
+# ---------------------------------------------
