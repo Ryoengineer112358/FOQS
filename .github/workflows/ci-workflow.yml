@@ -45,6 +45,9 @@ jobs:
             sleep 10
           done
 
+      - name: Install Dependencies
+        run: docker compose exec app composer install
+
       - name: Run Laravel Tests
         run: docker compose exec app php artisan test
 
