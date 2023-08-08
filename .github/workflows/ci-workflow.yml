@@ -22,3 +22,33 @@ jobs:
           cd ${{ github.workspace }}/frontend
           npm ci
           npm run test
+
+  backend-tests:
+    name: Run Laravel Backend tests in Docker
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Build and Start Docker Containers
+        run: |
+          cd ${{ github.workspace }}
+          docker compose up -d app test_db
+
+      - name: Wait for MySQL
+        run: |
+          for i in {1..10}; do
+            docker-compose exec -T test_db mysql -uuser -ppassword -e 'SELECT 1' &> /dev/null && break
+            echo "Waiting for MySQL..."
+            sleep 10
+          done
+
+      - name: Run Laravel Tests
+        run: docker compose exec app php artisan test
+
+      - name: Stop Docker Containers
+        run: |
+          cd ${{ github.workspace }}
+          docker compose down
