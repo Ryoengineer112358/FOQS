@@ -20,7 +20,7 @@ const QuestionHistory = (props: Props) => {
 
   useEffect(() => {
     axios
-      .get<StudentQuestion[]>('/api/questions?closed_only=true')
+      .get<StudentQuestion[]>('/api/questions?closed_only=1')
       .then((result) => {
         setQuestions(result.data)
         setAnimationStart(true)
