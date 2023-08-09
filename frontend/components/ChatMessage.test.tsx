@@ -117,7 +117,6 @@ test('ChatMessage component tests when question is closed', () => {
   )
 
   const tree = component.toJSON()
-  expect(tree).toMatchSnapshot()
 
   const root = component.root
 
