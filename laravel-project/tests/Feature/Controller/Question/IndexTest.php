@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Controller\Question;
 
 use App\Models\Student;
 use App\Models\StudentQuestion;
@@ -9,7 +9,7 @@ use Artisan;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class QuestionControllerTest extends TestCase
+class IndexTest extends TestCase
 {
     use RefreshDatabase;
 
