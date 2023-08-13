@@ -59,14 +59,14 @@ resource "aws_db_instance" "mysql" {
 
   multi_az               = true
   db_subnet_group_name   = aws_db_subnet_group.mysql_subnet_group.name
-  vpc_security_group_ids = [aws_security_group.mysql.id]
+  vpc_security_group_ids = [aws_security_group.rds_sg.id]
   publicly_accessible    = false
   port                   = 3306
 
   name                 = "${var.project}-${var.environment}-db"
-  parameter_group_name = aws_db_parameter_group.mysql_parameter_group
+  parameter_group_name = aws_db_parameter_group.mysql_parameter_group.name
 
-  backup_window              = "04:00-5:00"
+  backup_window              = "04:00-05:00"
   backup_retention_period    = 7
   maintenance_window         = "Mon:05:00-Mon:08:00"
   auto_minor_version_upgrade = false
