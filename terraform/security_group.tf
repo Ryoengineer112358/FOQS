@@ -16,12 +16,22 @@ resource "aws_security_group" "alb_sg" {
 
 ### Ingress rule for ALB
 resource "aws_security_group_rule" "alb_ingress" {
-
+  security_group_id = aws_security_group.alb_sg.id
+  type              = "ingress"
+  protocol          = "tcp"
+  from_port         = 443
+  to_port           = 443
+  cidr_blocks       = ["0.0.0.0/0"]
 }
 
 ### Egress rule for ALB
 resource "aws_security_group_rule" "alb_egress" {
-
+  security_group_id = aws_security_group.alb_sg.id
+  type              = "egress"
+  protocol          = "-1"
+  from_port         = 0
+  to_port           = 0
+  cidr_blocks       = ["0.0.0.0/0"]
 }
 
 ### ECS Security Group
