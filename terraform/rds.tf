@@ -63,7 +63,7 @@ resource "aws_db_instance" "mysql" {
   publicly_accessible    = false
   port                   = 3306
 
-  name                 = "${var.project}-${var.environment}-db"
+  name                 = "${var.project}_${var.environment}_db"
   parameter_group_name = aws_db_parameter_group.mysql_parameter_group.name
 
   backup_window              = "04:00-05:00"
