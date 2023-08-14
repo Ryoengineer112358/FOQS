@@ -43,7 +43,7 @@ resource "random_string" "db_password" {
 
 resource "aws_db_instance" "mysql" {
   engine         = "mysql"
-  engine_version = "8.0.34"
+  engine_version = "8.0.28"
 
   identifier = "${var.project}-${var.environment}-mysql"
 
