@@ -55,7 +55,7 @@ resource "aws_db_instance" "mysql" {
   allocated_storage     = 20
   max_allocated_storage = 50
   storage_type          = "gp2"
-  storage_encrypted     = true
+  storage_encrypted     = false
 
   multi_az               = true
   db_subnet_group_name   = aws_db_subnet_group.mysql_subnet_group.name
