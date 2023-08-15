@@ -59,7 +59,6 @@ resource "aws_ecs_task_definition" "task_definition" {
       portMappings = [
         {
           containerPort = 80,
-          hostPort      = 80,
           protocol      = "tcp"
         }
       ]
@@ -71,4 +70,90 @@ resource "aws_ecs_task_definition" "task_definition" {
       ]
     }
   ])
+}
+
+### Service
+resource "aws_ecs_service" "service" {
+  name                              = "${var.project}-${var.environment}-ecs-service"
+  cluster                           = aws_ecs_cluster.cluster.id
+  task_definition                   = aws_ecs_task_definition.task_definition.arn
+  desired_count                     = 2
+  launch_type                       = "FARGATE"
+  platform_version                  = "1.4.0"
+  health_check_grace_period_seconds = 600
+
+  network_configuration {
+    assign_public_ip = false
+    subnets          = [aws_subnet.private_subnet_1a.id, aws_subnet.private_subnet_1c.id]
+    security_groups  = [aws_security_group.ecs_sg.id]
+  }
+
+  load_balancer {
+    target_group_arn = aws_lb_target_group.blue_tg.arn
+    container_name   = "nginx"
+    container_port   = 80
+  }
+
+  deployment_controller {
+    type = "CODE_DEPLOY"
+  }
+
+  lifecycle {
+    ignore_changes = [task_definition]
+  }
+}
+
+### CodeDeploy
+resource "aws_codedeploy_app" "codedeploy_app" {
+  compute_platform = "ECS"
+  name             = "${var.project}-${var.environment}-codedeploy-app"
+}
+
+resource "aws_codedeploy_deployment_group" "codedeploy_dg" {
+  app_name               = aws_codedeploy_app.codedeploy_app.name
+  deployment_group_name  = "${var.project}-${var.environment}-codedeploy-dg"
+  service_role_arn       = aws_iam_role.ecs_code_deploy_role.arn
+  deployment_config_name = "CodeDeployDefault.ECSAllAtOnce"
+
+  auto_rollback_configuration {
+    enabled = true
+    events  = ["DEPLOYMENT_FAILURE"]
+  }
+
+  blue_green_deployment_config {
+    deployment_ready_option {
+      action_on_timeout = "CONTINUE_DEPLOYMENT"
+    }
+
+    terminate_blue_instances_on_deployment_success {
+      action                           = "TERMINATE"
+      termination_wait_time_in_minutes = 5
+    }
+  }
+
+  deployment_style {
+    deployment_option = "WITH_TRAFFIC_CONTROL"
+    deployment_type   = "BLUE_GREEN"
+  }
+
+  ecs_service {
+    cluster_name = aws_ecs_cluster.cluster.name
+    service_name = aws_ecs_service.service.name
+  }
+
+  load_balancer_info {
+    target_group_pair_info {
+      prod_traffic_route {
+        listener_arns = [aws_lb_listener.https.arn]
+      }
+
+      target_group {
+        name = aws_lb_target_group.blue_tg.name
+      }
+
+      target_group {
+        name = aws_lb_target_group.green_tg.name
+      }
+    }
+  }
 }
