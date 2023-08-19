@@ -89,3 +89,36 @@ resource "aws_security_group_rule" "db_ingress_mysql_from_ecs" {
   to_port                  = 3306
   source_security_group_id = aws_security_group.ecs_sg.id
 }
+
+### ECS Security Group for Endpoint
+resource "aws_security_group" "ecs_sg_for_endpoint" {
+  name        = "${var.project}-${var.environment}-ecs-sg-for-endpoint"
+  description = "ECS Security Group for ECR Endpoint"
+  vpc_id      = aws_vpc.vpc.id
+
+  tags = {
+    Name    = "${var.project}-${var.environment}-ecs-sg-for-endpoint"
+    Project = var.project
+    Env     = var.environment
+  }
+}
+
+### Ingress rule for ECS Endpoint
+resource "aws_security_group_rule" "ecs_endpoint_ingress" {
+  security_group_id = aws_security_group.ecs_sg_for_endpoint.id
+  type              = "ingress"
+  protocol          = "tcp"
+  from_port         = 443
+  to_port           = 443
+  cidr_blocks       = ["0.0.0.0/0"]
+}
+
+### Egress rule for ECS Endpoint
+resource "aws_security_group_rule" "ecs_endpoint_egress" {
+  security_group_id = aws_security_group.ecs_sg_for_endpoint.id
+  type              = "egress"
+  protocol          = "-1"
+  from_port         = 0
+  to_port           = 0
+  cidr_blocks       = ["0.0.0.0/0"]
+}
