@@ -93,7 +93,7 @@ resource "aws_security_group_rule" "db_ingress_mysql_from_ecs" {
 ### ECS Security Group for Endpoint
 resource "aws_security_group" "ecs_sg_for_endpoint" {
   name        = "${var.project}-${var.environment}-ecs-sg-for-endpoint"
-  description = "ECS Security Group for ECR Endpoint"
+  description = "ECS Security Group for ECR and CloueWatch Endpoint"
   vpc_id      = aws_vpc.vpc.id
 
   tags = {
