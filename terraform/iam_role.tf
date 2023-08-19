@@ -45,6 +45,34 @@ resource "aws_iam_role" "ecs_task_role" {
   })
 }
 
+### ECS Policy for CloudWatch Logs
+resource "aws_iam_policy" "ecs_logging_policy" {
+  name        = "ECSLoggingToCloudWatch"
+  description = "Allows ECS tasks to push logs to CloudWatch"
+
+  policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Action = [
+          "logs:CreateLogGroup",
+          "logs:CreateLogStream",
+          "logs:PutLogEvents",
+          "logs:DescribeLogStreams"
+        ],
+        Effect   = "Allow",
+        Resource = "*"
+      }
+    ]
+  })
+}
+
+# Attach the logging policy to the ECS task execution role
+resource "aws_iam_role_policy_attachment" "ecs_logging_attachment" {
+  role       = aws_iam_role.ecs_task_execution_role.name
+  policy_arn = aws_iam_policy.ecs_logging_policy.arn
+}
+
 # ---------------------------------------------
 # IAM Role for CodeDeploy
 # ---------------------------------------------
