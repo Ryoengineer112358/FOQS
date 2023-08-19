@@ -43,17 +43,33 @@ resource "aws_ecs_task_definition" "task_definition" {
           name  = "DB_PASSWORD",
           value = random_string.db_password.result
         }
-      ]
+      ],
+      logConfiguration = {
+        logDriver = "awslogs",
+        options = {
+          "awslogs-group"         = aws_cloudwatch_log_group.ecs_logs.name
+          "awslogs-region"        = "ap-northeast-1"
+          "awslogs-stream-prefix" = "laravel-app"
+        }
+      }
     },
     {
       name      = "nextjs-frontend",
       image     = "${aws_ecr_repository.nextjs_frontend_repository.repository_url}:latest",
       memory    = 512,
       essential = true,
+      logConfiguration = {
+        logDriver = "awslogs",
+        options = {
+          "awslogs-group"         = aws_cloudwatch_log_group.ecs_logs.name
+          "awslogs-region"        = "ap-northeast-1"
+          "awslogs-stream-prefix" = "nextjs-frontend"
+        }
+      }
     },
     {
       name      = "nginx",
-      image     = "nginx:latest",
+      image     = "${aws_ecr_repository.nginx_repository.repository_url}:latest",
       memory    = 512,
       essential = true,
       portMappings = [
@@ -68,6 +84,14 @@ resource "aws_ecs_task_definition" "task_definition" {
           condition     = "START"
         }
       ]
+      logConfiguration = {
+        logDriver = "awslogs",
+        options = {
+          "awslogs-group"         = aws_cloudwatch_log_group.ecs_logs.name
+          "awslogs-region"        = "ap-northeast-1"
+          "awslogs-stream-prefix" = "nginx"
+        }
+      }
     }
   ])
 }
