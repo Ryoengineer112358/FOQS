@@ -9,12 +9,18 @@ RUN apt-get update \
     && docker-php-ext-install -j$(nproc) gd \
     && pecl install imagick \
     && docker-php-ext-enable imagick \
+    # Download and install Composer
+    && php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
+    && php composer-setup.php \
+    && php -r "unlink('composer-setup.php');" \
+    && mv composer.phar /usr/local/bin/composer \
+    && composer global require "laravel/installer" \
     # Clean up
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy php.ini for production
-COPY ./docker/php/php.ini /usr/local/etc/php/php.ini
+COPY ./php.ini /usr/local/etc/php/php.ini
 
 # Set Workdir
 WORKDIR /var/www
