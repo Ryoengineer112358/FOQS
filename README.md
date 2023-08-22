@@ -5,7 +5,7 @@
 
 # 使用技術
 - フロントエンド
-  - Next.js / TypeScript / React / Material-UI (MUI)
+  - Next.js / TypeScript / React / Redux / Material-UI (MUI)
   - ESLint (リンター)
   - Prettier (フォーマッター)
 
@@ -17,7 +17,7 @@
   - MySQL
 
 - インフラ
-  - AWS(VPC / ECS on Fargate / ECR / CodeDeploy / ALB / CloudFront / ACM / Route53 / RDS / S3 / ElastiCache for Redis)
+  - AWS(VPC / ECS on Fargate / ECR / CodeDeploy / ALB / CloudFront / ACM / Route53 / RDS / S3 / ElastiCache for Redis / Budgets)
   - Terraform(IaC)
 
 - テスト
