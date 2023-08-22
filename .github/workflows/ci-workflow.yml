@@ -35,7 +35,7 @@ jobs:
       - name: Build and Start Docker Containers
         run: |
           cd ${{ github.workspace }}
-          docker compose up -d app test_db
+          docker compose up -d laravel-app test_db
 
       - name: Wait for MySQL
         run: |
@@ -46,10 +46,10 @@ jobs:
           done
 
       - name: Install Dependencies
-        run: docker compose exec app composer install
+        run: docker compose exec laravel-app composer install
 
       - name: Run Laravel Tests
-        run: docker compose exec app php artisan test
+        run: docker compose exec laravel-app php artisan test
 
       - name: Stop Docker Containers
         run: |
