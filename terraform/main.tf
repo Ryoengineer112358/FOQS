@@ -2,7 +2,7 @@
 # Terraform Configuration
 # ---------------------------------------------
 terraform {
-  required_version = ">=0.13"
+  required_version = ">=1.1"
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -28,4 +28,9 @@ variable "project" {
 
 variable "environment" {
   type = string
+}
+
+variable "email_address" {
+  description = "Email address for receiving notifications"
+  type        = string
 }
