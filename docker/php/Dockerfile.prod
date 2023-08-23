@@ -20,7 +20,9 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy php.ini for production
-COPY ./php.ini /usr/local/etc/php/php.ini
+COPY ./docker/php/php.ini /usr/local/etc/php/php.ini
+
+COPY ./laravel-project /var/www
 
 # Set Workdir
 WORKDIR /var/www
