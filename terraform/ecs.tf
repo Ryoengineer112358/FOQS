@@ -22,6 +22,12 @@ resource "aws_ecs_task_definition" "task_definition" {
       image     = "${aws_ecr_repository.laravel_app_repository.repository_url}:latest",
       memory    = 512,
       essential = true,
+      portMappings = [
+        {
+          containerPort = 9000,
+          protocol      = "tcp"
+        }
+      ]
       environment = [
         {
           name  = "DB_HOST",
@@ -58,6 +64,12 @@ resource "aws_ecs_task_definition" "task_definition" {
       image     = "${aws_ecr_repository.nextjs_frontend_repository.repository_url}:latest",
       memory    = 512,
       essential = true,
+      portMappings = [
+        {
+          containerPort = 3000,
+          protocol      = "tcp"
+        }
+      ]
       logConfiguration = {
         logDriver = "awslogs",
         options = {
