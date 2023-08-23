@@ -2,4 +2,4 @@ FROM nginx:1.21.6
 
 WORKDIR /var/www
 
-COPY ./docker/nginx/default.conf /etc/nginx/conf.d/default.conf
+COPY ./docker/nginx/defaultprod.conf /etc/nginx/conf.d/default.conf
