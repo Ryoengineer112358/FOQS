@@ -20,10 +20,12 @@ const Home = (props: Props) => {
   const [animationStart, setAnimationStart] = useState<boolean>(false)
 
   useEffect(() => {
-    axios.get<StudentQuestion[]>('/api/questions?closed_only=0').then((result) => {
-      setQuestions(result.data)
-      setAnimationStart(true)
-    })
+    axios
+      .get<StudentQuestion[]>('/api/questions?closed_only=0')
+      .then((result) => {
+        setQuestions(result.data)
+        setAnimationStart(true)
+      })
   }, [])
 
   return (
