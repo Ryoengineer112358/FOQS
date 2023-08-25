@@ -15,7 +15,7 @@ resource "aws_lb" "alb" {
   ]
 
   security_groups = [
-    aws_security_group.ecs_sg.id
+    aws_security_group.alb_sg.id
   ]
 }
 
