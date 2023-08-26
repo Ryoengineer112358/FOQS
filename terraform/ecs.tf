@@ -94,6 +94,10 @@ resource "aws_ecs_task_definition" "task_definition" {
         {
           containerName = "laravel-app",
           condition     = "START"
+        },
+        {
+          containerName = "nextjs-frontend",
+          condition     = "START"
         }
       ]
       logConfiguration = {
