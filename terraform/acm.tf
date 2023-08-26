@@ -3,8 +3,9 @@
 # -------------------------------------------
 ### HTTPS Certificate for ALB
 resource "aws_acm_certificate" "tokyo_cert" {
-  domain_name       = data.aws_route53_zone.hostzone.name
-  validation_method = "DNS"
+  domain_name               = data.aws_route53_zone.hostzone.name
+  validation_method         = "DNS"
+  subject_alternative_names = ["api.foqs.net"]
 
   tags = {
     Name    = "${var.project}-${var.environment}-tokyo-cert"
