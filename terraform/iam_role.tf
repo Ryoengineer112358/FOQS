@@ -101,3 +101,36 @@ resource "aws_iam_role_policy_attachment" "ecs_code_deploy_attachment" {
   role       = aws_iam_role.ecs_code_deploy_role.name
   policy_arn = "arn:aws:iam::aws:policy/AWSCodeDeployRoleForECSLimited"
 }
+
+# ---------------------------------------------
+# IAM Role for S3
+# ---------------------------------------------
+
+### Policy to allow specific S3 access
+resource "aws_iam_policy" "s3_access_policy" {
+  name        = "${var.project}-${var.environment}-s3-access-policy"
+  description = "Policy to allow specific users to access S3 bucket"
+
+  policy = jsonencode({
+    "Version" : "2012-10-17",
+    "Statement" : [
+      {
+        "Effect" : "Allow",
+        "Action" : [
+          "s3:GetObject",
+          "s3:PutObject"
+        ],
+        "Resource" : [
+          "${aws_s3_bucket.s3_static_bucket.arn}",
+          "${aws_s3_bucket.s3_static_bucket.arn}/*"
+        ]
+      }
+    ]
+  })
+}
+
+### Attach S3 access policy to the ECS task role
+resource "aws_iam_role_policy_attachment" "ecs_task_s3_access_attachment" {
+  role       = aws_iam_role.ecs_task_role.name
+  policy_arn = aws_iam_policy.s3_access_policy.arn
+}
