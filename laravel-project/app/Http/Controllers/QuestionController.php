@@ -109,7 +109,7 @@ class QuestionController extends Controller
                     $imagick->writeImage($tempPath);
 
                     // ストレージに変更された画像を保存し、そのパスを取得
-                    $relativePath = \Storage::disk('public')->putFile(
+                    $relativePath = \Storage::disk(env('FILESYSTEM_DISK', 'public'))->putFile(
                         'questions',
                         new \Illuminate\Http\File($tempPath)
                     );
