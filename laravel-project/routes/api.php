@@ -60,3 +60,7 @@ Route::group(['middleware' => ['auth:tutors', 'verified']], function () {
     ]);
     Route::put('/questions/{question}', [QuestionController::class, 'update']);
 });
+
+Route::get('/healthcheck', function () {
+    return response()->json(['status' => 'OK'], 200);
+});
