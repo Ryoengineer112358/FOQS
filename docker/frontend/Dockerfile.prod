@@ -1,10 +1,6 @@
 FROM node:20.3.1
 WORKDIR /usr/src/app
 
-ENV NODE_ENV=production
-
 COPY ./frontend /usr/src/app/
-
-COPY ./frontend/.env.production /usr/src/app/.env.production
 
 CMD ["npm", "start"]
