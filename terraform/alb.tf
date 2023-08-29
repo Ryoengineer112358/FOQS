@@ -67,6 +67,16 @@ resource "aws_lb_target_group" "blue_tg" {
   protocol             = "HTTP"
   deregistration_delay = 300
 
+  health_check {
+    path                = "/api/healthcheck"
+    healthy_threshold   = 3
+    unhealthy_threshold = 2
+    timeout             = 5
+    interval            = 15
+    matcher             = 200
+    port                = "traffic-port"
+    protocol            = "HTTP"
+  }
 
   depends_on = [aws_lb.alb]
 }
@@ -80,4 +90,16 @@ resource "aws_lb_target_group" "green_tg" {
   protocol             = "HTTP"
   deregistration_delay = 300
 
+  health_check {
+    path                = "/api/healthcheck"
+    healthy_threshold   = 3
+    unhealthy_threshold = 2
+    timeout             = 5
+    interval            = 15
+    matcher             = 200
+    port                = "traffic-port"
+    protocol            = "HTTP"
+  }
+
+  depends_on = [aws_lb.alb]
 }
